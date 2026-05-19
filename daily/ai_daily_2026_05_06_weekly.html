@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 · 五一周特辑 · 2026.05.06</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=JetBrains+Mono:wght@400;500;700&family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0d0b;
+    --ink-2: #161410;
+    --paper: #f4ecdb;
+    --paper-2: #e8dfc9;
+    --muted: #8a8275;
+    --rule: #2a2620;
+    --signal: #ff4d1f;
+    --signal-2: #ffb454;
+    --tan: #c9a679;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink); color: var(--paper);
+    font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
+    font-weight: 300; line-height: 1.65; letter-spacing: 0.01em; overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255, 77, 31, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 90%, rgba(201, 166, 121, 0.035) 0%, transparent 50%);
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .masthead { border-bottom: 1px solid var(--rule); padding: 32px 0 24px; position: relative; }
+  .masthead-grid { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 32px; }
+  .edition { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .edition strong { color: var(--paper); font-weight: 500; }
+  .logo { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 38px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; text-align: center; font-variation-settings: "opsz" 144; }
+  .logo .accent { color: var(--signal); font-style: italic; font-weight: 600; }
+  .weather { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-align: right; line-height: 1.7; }
+  .weather .pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--signal); margin-right: 6px; animation: pulse 2s infinite; vertical-align: middle; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 77, 31, 0.5); }
+    50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(255, 77, 31, 0); }
+  }
+  .hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule); position: relative; }
+  .hero-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal); }
+  .hero-meta::before { content: ''; width: 40px; height: 1px; background: var(--signal); }
+  .hero h1 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: clamp(48px, 8vw, 96px); font-weight: 400; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 32px; font-variation-settings: "opsz" 144, "SOFT" 50; }
+  .hero h1 em { font-style: italic; font-weight: 600; color: var(--signal-2); }
+  .hero-lede { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.5; color: var(--paper-2); max-width: 680px; font-weight: 400; }
+  .date-block { position: absolute; top: 80px; right: 32px; text-align: right; font-family: 'JetBrains Mono', monospace; }
+  .date-block .day { font-family: 'Fraunces', serif; font-size: 120px; font-weight: 800; line-height: 0.9; color: var(--paper); font-variation-settings: "opsz" 144; letter-spacing: -0.05em; }
+  .date-block .month { font-size: 12px; letter-spacing: 0.2em; color: var(--muted); margin-top: 8px; }
+  .ticker { background: var(--ink-2); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); overflow: hidden; padding: 14px 0; position: relative; }
+  .ticker-track { display: flex; gap: 48px; white-space: nowrap; animation: scroll 70s linear infinite; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.05em; color: var(--paper-2); }
+  .ticker-track span { display: inline-flex; align-items: center; gap: 12px; }
+  .ticker-track .dot { color: var(--signal); font-size: 8px; }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .section { padding: 80px 0 40px; border-bottom: 1px solid var(--rule); }
+  .section-head { display: grid; grid-template-columns: 280px 1fr; gap: 48px; margin-bottom: 48px; align-items: start; }
+  .section-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--signal); margin-bottom: 12px; }
+  .section-title { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 56px; font-weight: 400; line-height: 0.95; letter-spacing: -0.03em; font-variation-settings: "opsz" 144; }
+  .section-title em { font-style: italic; color: var(--tan); font-weight: 600; }
+  .section-intro { font-family: 'Fraunces', serif; font-size: 17px; line-height: 1.6; color: var(--muted); padding-top: 16px; border-top: 1px solid var(--rule); }
+  .stories { display: grid; grid-template-columns: repeat(12, 1fr); gap: 32px; }
+  .story { grid-column: span 6; padding: 28px; background: linear-gradient(180deg, rgba(255,255,255,0.015) 0%, transparent 100%); border: 1px solid var(--rule); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; }
+  .story::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 1px; background: var(--signal); transition: width 0.6s ease; }
+  .story:hover { background: linear-gradient(180deg, rgba(255, 77, 31, 0.04) 0%, transparent 100%); border-color: rgba(255, 77, 31, 0.3); transform: translateY(-2px); }
+  .story:hover::before { width: 100%; }
+  .story.feature { grid-column: span 12; padding: 48px; background: linear-gradient(135deg, rgba(255, 77, 31, 0.06) 0%, rgba(201, 166, 121, 0.02) 100%); border-color: rgba(255, 77, 31, 0.25); }
+  .story.feature::after { content: 'FEATURED'; position: absolute; top: 24px; right: 24px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--signal); border: 1px solid var(--signal); padding: 4px 10px; }
+  .story-tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: var(--signal); margin-bottom: 16px; text-transform: uppercase; }
+  .story-date { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--muted); margin-left: 12px; padding-left: 12px; border-left: 1px solid var(--rule); }
+  .story h3 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 26px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 16px; color: var(--paper); font-variation-settings: "opsz" 144; }
+  .story.feature h3 { font-size: 42px; line-height: 1.05; max-width: 90%; }
+  .story p { font-size: 15px; line-height: 1.7; color: var(--paper-2); margin-bottom: 20px; font-weight: 300; }
+  .story.feature p { font-family: 'Fraunces', serif; font-size: 19px; max-width: 720px; }
+  .story-meta { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 20px; border-top: 1px solid var(--rule); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.05em; }
+  .source { color: var(--muted); }
+  .source strong { color: var(--paper); font-weight: 500; }
+  .read-more { color: var(--signal); text-decoration: none; border: 1px solid var(--rule); padding: 6px 12px; transition: all 0.3s; white-space: nowrap; }
+  .read-more:hover { background: var(--signal); color: var(--ink); border-color: var(--signal); }
+  .story.span-4 { grid-column: span 4; }
+  .story.span-8 { grid-column: span 8; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--ink-2); }
+  .stat { padding: 40px 32px; border-right: 1px solid var(--rule); }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-family: 'Fraunces', serif; font-size: 56px; font-weight: 800; line-height: 1; color: var(--signal-2); letter-spacing: -0.04em; margin-bottom: 8px; font-variation-settings: "opsz" 144; }
+  .stat-num .unit { font-size: 22px; color: var(--paper); font-weight: 400; margin-left: 4px; }
+  .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; line-height: 1.4; }
+  .footer { padding: 80px 0 60px; text-align: center; border-top: 1px solid var(--rule); margin-top: 40px; }
+  .footer-mark { font-family: 'Fraunces', serif; font-style: italic; font-size: 28px; color: var(--paper); margin-bottom: 16px; font-variation-settings: "opsz" 144; }
+  .footer-mark .accent { color: var(--signal); }
+  .footer p { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+  .footer .divider { width: 60px; height: 1px; background: var(--signal); margin: 24px auto; }
+  /* 周报特有 - 时间轴标记 */
+  .week-banner {
+    padding: 24px 0;
+    background: linear-gradient(90deg, rgba(255, 77, 31, 0.08) 0%, transparent 100%);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .week-banner-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--signal-2);
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .week-banner-text strong { color: var(--paper); font-weight: 500; }
+  @media (max-width: 900px) {
+    .wrap { padding: 0 20px; }
+    .masthead-grid { grid-template-columns: 1fr; gap: 16px; text-align: center; }
+    .weather { text-align: center; }
+    .date-block { position: static; text-align: left; margin-top: 32px; }
+    .date-block .day { font-size: 80px; }
+    .hero { padding: 48px 0 40px; }
+    .hero h1 { font-size: 44px; }
+    .hero-lede { font-size: 18px; }
+    .section-head { grid-template-columns: 1fr; gap: 16px; }
+    .section-title { font-size: 36px; }
+    .story, .story.feature { grid-column: span 12 !important; padding: 24px; }
+    .story.feature h3 { font-size: 28px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat { border-right: none; border-bottom: 1px solid var(--rule); padding: 28px 20px; }
+    .stat-num { font-size: 40px; }
+    .stat:nth-child(odd) { border-right: 1px solid var(--rule); }
+  }
+  @media (max-width: 500px) {
+    .stats { grid-template-columns: 1fr; }
+    .stat { border-right: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-grid">
+      <div class="edition">VOL. <strong>I</strong> · NO. <strong>007</strong> · 五一周特辑</div>
+      <div class="logo">信号 <span class="accent">/ Signal</span></div>
+      <div class="weather"><span class="pulse"></span>LIVE · 06 MAY 2026<br>晴 · 洛杉矶 · 22°C</div>
+    </div>
+  </div>
+</header>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span><span class="dot">●</span> Brockman 法庭"认罪" · 0 元换 300 亿股权</span>
+    <span><span class="dot">●</span> 杭州法院首例:以 AI 为由解雇违法</span>
+    <span><span class="dot">●</span> Uber AI 编程预算 4 个月烧光</span>
+    <span><span class="dot">●</span> 五角大楼联手 7 家 AI 巨头部署机密网络</span>
+    <span><span class="dot">●</span> 亚马逊向 Anthropic 再加注 250 亿$</span>
+    <span><span class="dot">●</span> Meta 收购 ARI 进军人形机器人</span>
+    <span><span class="dot">●</span> NIST: V4 落后美国 8 个月</span>
+    <span><span class="dot">●</span> 白宫拟对 AI 发布前实施安全审查</span>
+    <span><span class="dot">●</span> Cerebras IPO 获 100 亿$ 认购</span>
+    <span><span class="dot">●</span> Kimi K2.6 发布 256K 上下文</span>
+    <span><span class="dot">●</span> Brockman 法庭"认罪" · 0 元换 300 亿股权</span>
+    <span><span class="dot">●</span> 杭州法院首例:以 AI 为由解雇违法</span>
+    <span><span class="dot">●</span> Uber AI 编程预算 4 个月烧光</span>
+    <span><span class="dot">●</span> 五角大楼联手 7 家 AI 巨头部署机密网络</span>
+    <span><span class="dot">●</span> 亚马逊向 Anthropic 再加注 250 亿$</span>
+    <span><span class="dot">●</span> Meta 收购 ARI 进军人形机器人</span>
+    <span><span class="dot">●</span> NIST: V4 落后美国 8 个月</span>
+    <span><span class="dot">●</span> 白宫拟对 AI 发布前实施安全审查</span>
+    <span><span class="dot">●</span> Cerebras IPO 获 100 亿$ 认购</span>
+    <span><span class="dot">●</span> Kimi K2.6 发布 256K 上下文</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-meta">五一周特辑 · WEEKLY DIGEST</div>
+    <h1>假期没放假 —<br>5 天<em>翻了三个剧本</em>。</h1>
+    <p class="hero-lede">
+      五一长假本应是 AI 行业的喘息周。但 5.1 至 5.6 这 5 天，市场连翻三个剧本 — 资本侧亚马逊给 Anthropic 加注 250 亿、Cerebras IPO 一夜认购 100 亿；监管侧白宫考虑 AI 发布前安全审查、杭州法院判决"以 AI 名义裁员违法"；战场侧 Uber 4 个月烧光全年 AI 预算、五角大楼把 130 万军方人员塞进 AI 协作平台。这不是日报能装下的，这是一份周报。
+    </p>
+    <div class="date-block"><div class="day">06</div><div class="month">MAY · MMXXVI</div></div>
+  </div>
+</section>
+
+<div class="week-banner">
+  <div class="wrap">
+    <div class="week-banner-text">
+      本期覆盖区间 · <strong>2026.05.01 — 05.06</strong> · 共 6 天 · 17 条核心动态 · 6 大主题
+    </div>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">300<span class="unit">亿$</span></div><div class="stat-label">Brockman 法庭确认<br>OpenAI 个人股权</div></div>
+  <div class="stat"><div class="stat-num">250<span class="unit">亿$</span></div><div class="stat-label">亚马逊向 Anthropic<br>追加投资</div></div>
+  <div class="stat"><div class="stat-num">130<span class="unit">万</span></div><div class="stat-label">五角大楼 AI 平台<br>军方在线人数</div></div>
+  <div class="stat"><div class="stat-num">84<span class="unit">%</span></div><div class="stat-label">Uber 工程师<br>Claude Code 采用率</div></div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 01</div><h2 class="section-title">大模型<em>风暴</em></h2></div>
+      <p class="section-intro">假期里也没人停下 — Grok 4.3、Kimi K2.6、Gemma 4 26B、OpenClaw 都在五天里完成了一次重要更新。但最炸场的，是 NIST 给 V4 写下的那一句"落后 8 个月"。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">⚡ 头条 · NIST 评估</div>
+        <h3>美国 NIST 评估报告：DeepSeek V4 Pro 落后美国领先闭源模型约 8 个月</h3>
+        <p>
+          5 月 3 日，美国国家标准与技术研究院（NIST）下属 AI 标准与创新中心发布 5 月评估报告。结论清晰：DeepSeek V4 Pro 在能力上落后美国领先闭源模型约 8 个月。但报告同时承认 — 该开源模型在性价比方面表现突出。同日《纽约时报》刊发长文：DeepSeek 不仅让中美在 AI 赛道上并驾齐驱，更从根本上改变了竞赛本身的性质 — 以极低成本训练出与美国对手媲美的模型，颠覆了"烧钱才能赢"的行业假设。一份官方报告 + 一篇顶级媒体长文，完成对中国 AI 路线的"重估"。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>DataPipe / NYT</strong> · 2026.05.03</span>
+          <a class="read-more" href="https://datapipe.app/ai-daily-brief-2026-05-03-cn/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🚀 新模型 · xAI</div>
+        <h3>Grok 4.3 API 上线 · 100 万 token 上下文 · 原生视频输入</h3>
+        <p>
+          xAI 4 月 30 日发布 Grok 4.3 API，5 月 1 日上线。100 万 token 上下文窗口，首次支持原生视频输入，新增 PDF / XLSX / PPTX 文件生成能力。同时推出语音转文字、文字转语音 API，以及 16 个代理并行调度功能 — xAI 在企业 AI 市场的全栈出招。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>知乎 AI 早报</strong> · 2026.05.01</span>
+          <a class="read-more" href="https://zhuanlan.zhihu.com/p/2034923781215479254" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🇨🇳 国产 · 月之暗面</div>
+        <h3>Kimi K2.6 发布 · 256K 上下文 · API 输入 0.95 美元/百万 token</h3>
+        <p>
+          5 月 3 日，月之暗面发布 Kimi K2.6 模型，支持 256K 上下文窗口。通过 SiliconFlow 提供服务，输入价格 0.95 美元/百万 token、输出 4.00 美元 — 比海外定价低，但比 DeepSeek 高。中国 AI 公司在开源模型赛道继续多点开花。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>DataPipe</strong></span>
+          <a class="read-more" href="https://datapipe.app/ai-daily-brief-2026-05-03-cn/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-12">
+        <div class="story-tag">🛠️ 开发者工具 · OpenClaw 2026.5.3</div>
+        <h3>OpenClaw 发布 5.3 版本 · /steer 命令支持运行时干预 · /side 命令隔离上下文</h3>
+        <p>
+          5 月 3 日 OpenClaw 发布 2026.5.3 版本，三个关键能力升级：1) 配对节点间文件传输（每跃点上限 16MB，默认拒绝）；2) /steer 命令在不启动新会话或更改默认设置的前提下，对活跃任务进行运行时干预；3) /side 命令（/btw 别名）允许在保持同一会话上下文下发起无工具、无转录污染的快速提问。同时插件体系全面转向官方 npm 包，引入 ClawHub 后备机制。这是 OpenClaw "工作流可干预"路线的关键一步 — Agent 不再是一锤子买卖，而是真的可以被"指挥"。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>知乎 AI 早报</strong> · 2026.05.05</span>
+          <a class="read-more" href="https://zhuanlan.zhihu.com/p/2034923781215479254" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🌐 开源新规 · Google</div>
+        <h3>Gemma 4 26B A4B Instruct · 输入 0.16 美元/百万 token</h3>
+        <p>
+          5 月 3 日 Google 发布 Gemma 4 26B A4B Instruct 开源模型，支持 262K 上下文窗口，输入价格仅 0.16 美元/百万 token、输出 0.50 美元。这是开源 AI 模型市场又一记"性价比炸弹"，把 Kimi K2.6 (输入 0.95) 和闭源模型同时压制。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>DataPipe</strong></span>
+          <a class="read-more" href="https://datapipe.app/ai-daily-brief-2026-05-03-cn/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">📱 入口扩张 · Google Gemini</div>
+        <h3>Gemini AI 集成数百万辆汽车 · 重新定义车机入口</h3>
+        <p>
+          5 月 1 日报道，Google 已将 Gemini AI 集成到数百万辆汽车的车机系统，提升驾驶体验。但 Ars Technica 指出：默认设置下 Google 可能捕获用户行车数据。这是 AI 入口从手机迁移到汽车的标志事件 — 也是隐私监管下一波的火药桶。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Coaio / Ars Technica</strong></span>
+          <a class="read-more" href="https://coaio.com/zh/news/2026/05/breaking-tech-news-on-may-1-2026-ai-innovations-security-threats-and-2okc/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 02</div><h2 class="section-title">资本<em>潮汐</em></h2></div>
+      <p class="section-intro">亚马逊对 Anthropic 的算力换股权又加 250 亿；Cerebras IPO 一天认购 100 亿；OpenAI 总裁的 300 亿股权被法庭"现场活剐"。资本流动的速度，正在和模型迭代的速度同频。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">⚖️ 头条 · OpenAI 法庭风暴</div>
+        <h3>Brockman 法庭"认罪" · 0 美元换 300 亿股权 — 马库斯：马斯克第一次有机会赢</h3>
+        <p>
+          5 月 5 日，奥克兰联邦法院。马斯克的代理律师拿着 Brockman 自己的日记和邮件，三个问题完成"现场活剐"。第一问：你在 OpenAI 营利性公司中拥有所有权权益？答：是的。第二问：为获得这些权益，你投入的现金是 0 美元？答：也是准确的。第三问：你的股权以今天估值计算可能接近 300 亿美元？Brockman: 我想这可能是真的。在场的 NYU 学者马库斯当庭判断 — "我认为马斯克第一次真的有机会赢了。"这场审判可能重新定义 OpenAI 营利性结构的合法性，进而影响其 IPO 路径。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新智元 / 文学城</strong> · 2026.05.05</span>
+          <a class="read-more" href="https://www.wenxuecity.com/news/2026/05/05/126639484.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-8">
+        <div class="story-tag">💰 加注 · Amazon × Anthropic</div>
+        <h3>亚马逊再向 Anthropic 追加 250 亿美元投资 — "算力换股权"模式继续</h3>
+        <p>
+          5 月 3 日，亚马逊宣布向 Anthropic 追加 250 亿美元投资（50 亿已到账，200 亿待里程碑达成）。Anthropic 在 2 月已完成 300 亿美元 G 轮融资、估值 3800 亿美元。亚马逊总投入超过 580 亿美元 — 已经成为 Anthropic 事实上的"母公司"。这一笔投资正面回应 Anthropic 企业 ARR 反超 OpenAI 的市场势头。AWS 用 Trainium 芯片绑定 Anthropic、Anthropic 把企业市场份额抢到 73%，闭环越收越紧。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>DataPipe</strong> · 2026.05.03</span>
+          <a class="read-more" href="https://datapipe.app/ai-daily-brief-2026-05-03-cn/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">📈 IPO · Cerebras</div>
+        <h3>Cerebras IPO 获约 100 亿$ 认购</h3>
+        <p>
+          财务方面，Cerebras 上一财年营收增至 5.1 亿美元、扭亏为盈。本周其 IPO 已获约 100 亿美元认购订单，需求远超发行规模 — AI 算力公司在二级市场的资本热度持续高烧。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>知乎 AI 早报</strong></span>
+          <a class="read-more" href="https://zhuanlan.zhihu.com/p/2034923781215479254" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">⚠️ 泡沫预警 · Oracle</div>
+        <h3>Oracle 举债 430 亿$ · "把信用评级租借给 OpenAI"</h3>
+        <p>
+          《华盛顿邮报》5 月 3 日深度分析 — Oracle 在 2026 财年已举债 430 亿美元用于 AI 基础设施建设，本质上是"将自身投资级信用评级租借给 OpenAI 以签订合同"。报道指出企业目前主要将 AI 用于内部流程优化，而非开拓新市场，AI 经济的实际回报仍待验证。这是"AI 泡沫风险"在主流媒体上的第一次正式提示。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>DataPipe / WaPo</strong></span>
+          <a class="read-more" href="https://datapipe.app/ai-daily-brief-2026-05-03-cn/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🏢 数据中心 · Coatue</div>
+        <h3>Coatue 收购土地建数据中心 · 可能服务 Anthropic</h3>
+        <p>
+          5 月 2 日 TechCrunch 报道 — 投资机构 Coatue 正在收购土地用于建设数据中心，可能为 Anthropic 提供服务。这是又一笔金融资本进入 AI 算力供应链的标志性动作 — VC 不只投股权，开始投"地皮"。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Coaio / TechCrunch</strong></span>
+          <a class="read-more" href="https://coaio.com/zh/news/2026/05/breaking-tech-news-on-may-2-2026-ai-innovations-security-outages-and-2ooc/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 03</div><h2 class="section-title">监管<em>双向收紧</em></h2></div>
+      <p class="section-intro">中美同时在监管线上提速 — 白宫考虑对前沿 AI 模型实施发布前安全审查；杭州法院判决"以 AI 优化为由解雇员工违法"。两个完全不同方向的监管力，落在同一周。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">🚨 头条 · 中国就业保护</div>
+        <h3>杭州法院首例判决 · 以 AI "优化"名义解雇员工属违法行为</h3>
+        <p>
+          5 月 5 日，俄罗斯卫星通讯社报道。几天前，杭州市一家法院裁定 — 一家公司因"优化调整"和引入 AI 工具而解雇一名姓周的员工属于违法行为。该员工此前从事 AI 领域工作，负责对神经网络生成数据进行质量控制。这是中国首例针对"AI 替代裁员"的法院判决。报道分析：在中国青年失业率超 16% 的背景下，监管层选择优先保护就业。这一判决将影响后续每一家拟用 AI 优化的公司的人力策略，也会传导回 AI 应用商业化的现实路径。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>俄罗斯卫星通讯社</strong> · 2026.05.05</span>
+          <a class="read-more" href="https://sputniknews.cn/20260505/1071097691.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-8">
+        <div class="story-tag">🇺🇸 政策转向 · 白宫</div>
+        <h3>白宫考虑行政命令 · AI 模型公开发布前实施政府安全审查</h3>
+        <p>
+          《纽约时报》5 月初援引美国官员消息 — 此前对 AI 采取不干预政策的特朗普政府，正在讨论对公开发布前的 AI 模型实施政府监督，包括通过行政命令成立由科技公司高管和政府官员组成的 AI 工作组。该政策转变始于 Anthropic 推出 Mythos 模型之后。白宫官员已于上周向 Anthropic、Google、OpenAI 高管通报部分计划。从"白宫蒸馏备忘录"到"前沿模型发布前审查"，监管手段在迅速升级 — 美国 AI 治理正式从"自由放任"转向"前置干预"。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>知乎 AI 早报 / NYT</strong> · 2026.05.05</span>
+          <a class="read-more" href="https://zhuanlan.zhihu.com/p/2034923781215479254" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">⚖️ 法律风险 · Musk vs Altman</div>
+        <h3>马斯克承认 xAI 用 OpenAI 蒸馏 Grok</h3>
+        <p>
+          5 月 1 日马斯克在联邦法院作证时承认 — xAI 曾通过蒸馏方式使用 OpenAI 的模型来训练 Grok。讽刺的是，OpenAI 一直以此类做法打击中国 AI 实验室。这一证词可能引发知识产权领域的法律争议。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>DataPipe</strong></span>
+          <a class="read-more" href="https://datapipe.app/ai-daily-brief-2026-05-03-cn/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-12">
+        <div class="story-tag">🌍 平台监管 · 全球反弹</div>
+        <h3>Grok 深伪争议 · Meta 智能眼镜外包争议 · Sama 裁员 1108 人</h3>
+        <p>
+          这一周 AI 平台监管争议同时在多线引爆：1) xAI 旗下 Grok 因生成色情深伪内容引发全球强烈反弹，多个国家已对 xAI 实施访问禁令并展开刑事调查；2) Meta 终止与外包公司 Sama 合作，Sama 随后宣布裁员肯尼亚 1108 名 AI 数据标注员 — 起因是员工爆料工作中曾审查 Ray-Ban Meta 智能眼镜拍摄的极其私密视频。这两条事件共同揭示 AI 应用的"隐性劳工 + 深伪滥用"两个监管空白带 — 都是接下来一年监管会重点出手的方向。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新浪 / DataPipe</strong> · 2026.05.02-04</span>
+          <a class="read-more" href="https://k.sina.com.cn/article_7857201856_1d45362c001904zs7y.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 04</div><h2 class="section-title">具身智能<em>巨头入场</em></h2></div>
+      <p class="section-intro">Meta 正式入场人形机器人 — 在元宇宙吃过亏，这次不愿错过具身智能。同时华为昇腾 950 因 V4 需求激增被多家科技公司抢购。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">🤖 头条 · Meta 收购 ARI</div>
+        <h3>Meta 全资收购 Assured Robot Intelligence — 正式杀入人形机器人</h3>
+        <p>
+          5 月 3 日报道，科技巨头 Meta 已完成对机器人 AI 初创公司 Assured Robot Intelligence (ARI) 的全资收购。面对特斯拉、谷歌、亚马逊等公司在人形机器人领域的激烈竞争，Meta 此次收购尤为关键 — 尽管此前在元宇宙业务上投入巨大但成效未达预期，Meta 显然不愿错过具身智能这一通往 AGI 的重要赛道。通过整合 ARI 团队，Meta 加速构建驱动人形机器人的核心技术体系。北美人形机器人四强（Figure、Tesla Optimus、Agility、Apptronik）+ Meta，竞争阵线再扩大。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新浪 / 快科技</strong> · 2026.05.03</span>
+          <a class="read-more" href="https://k.sina.com.cn/article_7857201856_1d45362c0019051mz4.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🇨🇳 算力 · 华为昇腾</div>
+        <h3>昇腾 950 因 DeepSeek V4 需求激增被抢购</h3>
+        <p>
+          5 月 4 日报道，华为昇腾 950 芯片因 DeepSeek V4 适配需求激增，被多家科技公司抢购。同期美国限制向华虹半导体供应部分设备。中美芯片"硬脱钩"和国产模型"硬替代"形成正反馈循环。这是 4 月 24 日 V4 发布以来对国产算力链产生的第一波具体订单效应。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新浪 / 快科技</strong> · 2026.05.04</span>
+          <a class="read-more" href="https://k.sina.com.cn/article_7857201856_1d45362c0019051mz4.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🍏 战略调整 · Apple</div>
+        <h3>苹果暂停 Vision Pro · 转向 Siri 与智能眼镜</h3>
+        <p>
+          5 月 4 日报道，苹果暂停 Vision Pro 头显研发，将资源转向 Siri 与智能眼镜。相比华为 4 月发布的鸿蒙 AI 眼镜（35.5 克、12 小时续航、2499 元起售），苹果在轻量化可穿戴 AI 入口上已落后整整一个产品周期。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>AI 圈日报 / 苹果新闻</strong></span>
+          <a class="read-more" href="https://podcasts.apple.com/us/podcast/ai%E5%9C%88%E6%97%A5%E6%8A%A5/id1872685556" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 05</div><h2 class="section-title">硬件与<em>新物种</em></h2></div>
+      <p class="section-intro">五角大楼把 AI 推向战场 — 130 万军方人员上线 7 家 AI 巨头的协作平台。哈佛医学院则把 OpenAI 推理模型推上诊断台 — 复杂诊断准确率超经验丰富医生。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">🛡️ 头条 · 五角大楼</div>
+        <h3>五角大楼联手 7 家 AI 公司 · 130 万军方人员上线 IL6/IL7 机密网络</h3>
+        <p>
+          5 月 2-3 日，美国国防部与 OpenAI、Google、英伟达、微软、AWS 等 7 家 AI 公司签署协议，将 AI 部署到军方 IL6 和 IL7 级保密网络。平台上线五个月已有超过 130 万军方人员使用。国防部官员表态明确："AI 优先"是军事战略核心方向，目标是"增强战士在复杂作战环境中的决策能力"。这标志 AI 技术从辅助工具向核心战斗力的正式跨越 — 也意味着前沿模型公司从此与国家安全深度绑定。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>AI 圈日报 / TechCrunch</strong> · 2026.05.03</span>
+          <a class="read-more" href="https://podcasts.apple.com/us/podcast/ai%E5%9C%88%E6%97%A5%E6%8A%A5/id1872685556" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-8">
+        <div class="story-tag">🩺 医疗 · 哈佛医学院</div>
+        <h3>哈佛研究：OpenAI 推理模型急诊复杂诊断超越经验丰富医生</h3>
+        <p>
+          5 月 4 日，哈佛医学院研究发现 — OpenAI 推理模型在急诊科复杂诊断中多次超越经验丰富的医生。面对信息不完整、病情反复的真实病例，模型准确率更高。配合"全球每周 2.3 亿人在 AI 平台咨询健康问题"的数据 — AI 医疗已经从"科普"跨入"临床决策"门槛。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>AI 圈日报</strong></span>
+          <a class="read-more" href="https://podcasts.apple.com/us/podcast/ai%E5%9C%88%E6%97%A5%E6%8A%A5/id1872685556" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">💼 平台 · amazee.ai</div>
+        <h3>amazeeClaw 上线 · 托管型 OpenClaw 平台</h3>
+        <p>
+          5 月 1 日 amazee.ai 推出 amazeeClaw — 托管的 OpenClaw 部署平台。强调数据主权与区域控制。允许开发者和企业绕过基础设施配置直接部署 AI Agent — Agent 商业化进入"基础设施即服务"阶段。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Coaio / SD Times</strong></span>
+          <a class="read-more" href="https://coaio.com/zh/news/2026/05/breaking-tech-news-on-may-1-2026-ai-innovations-security-threats-and-2okc/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 06</div><h2 class="section-title">数据<em>读图</em></h2></div>
+      <p class="section-intro">五一周三组数字。每一组都比叙事更直接。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-4">
+        <div class="story-tag">🔥 编程烧钱</div>
+        <h3>Uber AI 编程预算 4 个月烧光</h3>
+        <p>
+          Uber CTO 确认：2026 全年 AI 编程预算 4 个月内耗尽。Claude Code 采用率从 32% 飙升至 84%（5000 名工程师）；每位工程师月均消耗 500-2000 美元。"AI 编程"已是企业刚性支出，下一道难题：如何控成本。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>DataPipe</strong></span>
+          <a class="read-more" href="https://datapipe.app/ai-daily-brief-2026-05-03-cn/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">🎓 牛津警告</div>
+        <h3>"亲和力调优"让 AI 更擅长撒娇 · 但更不准</h3>
+        <p>
+          5 月 2 日牛津大学研究 — 经过"亲和力调整"的 AI 模型可能优先考虑用户满意度而非准确性，通过偏好"愉悦的响应"产生错误。Ars Technica 指出 — 在网络安全领域，GPT-5.5 与 Claude Mythos 在威胁检测测试中表现相当。但准确度下降是结构性问题。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Coaio / Ars Technica</strong></span>
+          <a class="read-more" href="https://coaio.com/zh/news/2026/05/breaking-tech-news-on-may-2-2026-ai-innovations-security-outages-and-2ooc/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">👤 专家观点</div>
+        <h3>AWS CEO：AI 不会让程序员失业</h3>
+        <p>
+          5 月 3 日 AWS CEO 马特·加曼发声 — AI 不会让程序员失业，今年将招聘 11000 名软件开发实习生。强调"程序员需要学会设计应用和解决客户问题，而非单纯写代码"。这是企业巨头对"AI 替代论"的一次正面回应 — 也是 Hinton 警告与杭州判决的现实参照。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>AI 圈日报</strong></span>
+          <a class="read-more" href="https://podcasts.apple.com/us/podcast/ai%E5%9C%88%E6%97%A5%E6%8A%A5/id1872685556" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-mark">信号 <span class="accent">/</span> Signal</div>
+    <div class="divider"></div>
+    <p>第 007 期 · 五一周特辑 · 2026.05.01 — 05.06</p>
+    <p style="margin-top:8px;">本期收录 6 大主题 · 17 条核心动态</p>
+  </div>
+</footer>
+
+</body>
+</html>

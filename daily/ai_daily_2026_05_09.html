@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 · 2026.05.09</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=JetBrains+Mono:wght@400;500;700&family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0d0b; --ink-2: #161410; --paper: #f4ecdb; --paper-2: #e8dfc9;
+    --muted: #8a8275; --rule: #2a2620; --signal: #ff4d1f; --signal-2: #ffb454; --tan: #c9a679;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink); color: var(--paper);
+    font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
+    font-weight: 300; line-height: 1.65; letter-spacing: 0.01em; overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255, 77, 31, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 90%, rgba(201, 166, 121, 0.035) 0%, transparent 50%);
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .masthead { border-bottom: 1px solid var(--rule); padding: 32px 0 24px; position: relative; }
+  .masthead-grid { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 32px; }
+  .edition { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .edition strong { color: var(--paper); font-weight: 500; }
+  .logo { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 38px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; text-align: center; font-variation-settings: "opsz" 144; }
+  .logo .accent { color: var(--signal); font-style: italic; font-weight: 600; }
+  .weather { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-align: right; line-height: 1.7; }
+  .weather .pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--signal); margin-right: 6px; animation: pulse 2s infinite; vertical-align: middle; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 77, 31, 0.5); }
+    50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(255, 77, 31, 0); }
+  }
+  .hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule); position: relative; }
+  .hero-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal); }
+  .hero-meta::before { content: ''; width: 40px; height: 1px; background: var(--signal); }
+  .hero h1 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: clamp(48px, 8vw, 96px); font-weight: 400; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 32px; font-variation-settings: "opsz" 144, "SOFT" 50; }
+  .hero h1 em { font-style: italic; font-weight: 600; color: var(--signal-2); }
+  .hero-lede { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.5; color: var(--paper-2); max-width: 680px; font-weight: 400; }
+  .date-block { position: absolute; top: 80px; right: 32px; text-align: right; font-family: 'JetBrains Mono', monospace; }
+  .date-block .day { font-family: 'Fraunces', serif; font-size: 120px; font-weight: 800; line-height: 0.9; color: var(--paper); font-variation-settings: "opsz" 144; letter-spacing: -0.05em; }
+  .date-block .month { font-size: 12px; letter-spacing: 0.2em; color: var(--muted); margin-top: 8px; }
+  .ticker { background: var(--ink-2); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); overflow: hidden; padding: 14px 0; position: relative; }
+  .ticker-track { display: flex; gap: 48px; white-space: nowrap; animation: scroll 60s linear infinite; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.05em; color: var(--paper-2); }
+  .ticker-track span { display: inline-flex; align-items: center; gap: 12px; }
+  .ticker-track .dot { color: var(--signal); font-size: 8px; }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .section { padding: 80px 0 40px; border-bottom: 1px solid var(--rule); }
+  .section-head { display: grid; grid-template-columns: 280px 1fr; gap: 48px; margin-bottom: 48px; align-items: start; }
+  .section-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--signal); margin-bottom: 12px; }
+  .section-title { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 56px; font-weight: 400; line-height: 0.95; letter-spacing: -0.03em; font-variation-settings: "opsz" 144; }
+  .section-title em { font-style: italic; color: var(--tan); font-weight: 600; }
+  .section-intro { font-family: 'Fraunces', serif; font-size: 17px; line-height: 1.6; color: var(--muted); padding-top: 16px; border-top: 1px solid var(--rule); }
+  .stories { display: grid; grid-template-columns: repeat(12, 1fr); gap: 32px; }
+  .story { grid-column: span 6; padding: 28px; background: linear-gradient(180deg, rgba(255,255,255,0.015) 0%, transparent 100%); border: 1px solid var(--rule); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; }
+  .story::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 1px; background: var(--signal); transition: width 0.6s ease; }
+  .story:hover { background: linear-gradient(180deg, rgba(255, 77, 31, 0.04) 0%, transparent 100%); border-color: rgba(255, 77, 31, 0.3); transform: translateY(-2px); }
+  .story:hover::before { width: 100%; }
+  .story.feature { grid-column: span 12; padding: 48px; background: linear-gradient(135deg, rgba(255, 77, 31, 0.06) 0%, rgba(201, 166, 121, 0.02) 100%); border-color: rgba(255, 77, 31, 0.25); }
+  .story.feature::after { content: 'FEATURED'; position: absolute; top: 24px; right: 24px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--signal); border: 1px solid var(--signal); padding: 4px 10px; }
+  .story-tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: var(--signal); margin-bottom: 16px; text-transform: uppercase; }
+  .story h3 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 26px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 16px; color: var(--paper); font-variation-settings: "opsz" 144; }
+  .story.feature h3 { font-size: 42px; line-height: 1.05; max-width: 90%; }
+  .story p { font-size: 15px; line-height: 1.7; color: var(--paper-2); margin-bottom: 20px; font-weight: 300; }
+  .story.feature p { font-family: 'Fraunces', serif; font-size: 19px; max-width: 720px; }
+  .story-meta { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 20px; border-top: 1px solid var(--rule); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.05em; }
+  .source { color: var(--muted); }
+  .source strong { color: var(--paper); font-weight: 500; }
+  .read-more { color: var(--signal); text-decoration: none; border: 1px solid var(--rule); padding: 6px 12px; transition: all 0.3s; white-space: nowrap; }
+  .read-more:hover { background: var(--signal); color: var(--ink); border-color: var(--signal); }
+  .story.span-4 { grid-column: span 4; }
+  .story.span-8 { grid-column: span 8; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--ink-2); }
+  .stat { padding: 40px 32px; border-right: 1px solid var(--rule); }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-family: 'Fraunces', serif; font-size: 56px; font-weight: 800; line-height: 1; color: var(--signal-2); letter-spacing: -0.04em; margin-bottom: 8px; font-variation-settings: "opsz" 144; }
+  .stat-num .unit { font-size: 22px; color: var(--paper); font-weight: 400; margin-left: 4px; }
+  .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; line-height: 1.4; }
+  .footer { padding: 80px 0 60px; text-align: center; border-top: 1px solid var(--rule); margin-top: 40px; }
+  .footer-mark { font-family: 'Fraunces', serif; font-style: italic; font-size: 28px; color: var(--paper); margin-bottom: 16px; font-variation-settings: "opsz" 144; }
+  .footer-mark .accent { color: var(--signal); }
+  .footer p { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+  .footer .divider { width: 60px; height: 1px; background: var(--signal); margin: 24px auto; }
+  @media (max-width: 900px) {
+    .wrap { padding: 0 20px; }
+    .masthead-grid { grid-template-columns: 1fr; gap: 16px; text-align: center; }
+    .weather { text-align: center; }
+    .date-block { position: static; text-align: left; margin-top: 32px; }
+    .date-block .day { font-size: 80px; }
+    .hero { padding: 48px 0 40px; }
+    .hero h1 { font-size: 44px; }
+    .hero-lede { font-size: 18px; }
+    .section-head { grid-template-columns: 1fr; gap: 16px; }
+    .section-title { font-size: 36px; }
+    .story, .story.feature { grid-column: span 12 !important; padding: 24px; }
+    .story.feature h3 { font-size: 28px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat { border-right: none; border-bottom: 1px solid var(--rule); padding: 28px 20px; }
+    .stat-num { font-size: 40px; }
+    .stat:nth-child(odd) { border-right: 1px solid var(--rule); }
+  }
+  @media (max-width: 500px) {
+    .stats { grid-template-columns: 1fr; }
+    .stat { border-right: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-grid">
+      <div class="edition">VOL. <strong>I</strong> · NO. <strong>009</strong></div>
+      <div class="logo">信号 <span class="accent">/ Signal</span></div>
+      <div class="weather"><span class="pulse"></span>LIVE · 09 MAY 2026<br>晴 · 洛杉矶 · 24°C</div>
+    </div>
+  </div>
+</header>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span><span class="dot">●</span> Anthropic 估值冲 1 万亿$ · 今夏融资 500 亿</span>
+    <span><span class="dot">●</span> ARR 即将破 450 亿$ · 一年涨 5 倍</span>
+    <span><span class="dot">●</span> 福建人形机器人创新中心 Pre-A 落地</span>
+    <span><span class="dot">●</span> 具身智能产业链融资破 345 亿元</span>
+    <span><span class="dot">●</span> Simon Willison · 全部模型切换到 V4</span>
+    <span><span class="dot">●</span> 中国云厂商 10 天集体涨价 30-50%</span>
+    <span><span class="dot">●</span> Token 日均调用 140 万亿 · 千倍增长</span>
+    <span><span class="dot">●</span> 新鼎资本: 2026 是行业洗牌元年</span>
+    <span><span class="dot">●</span> Anthropic 估值冲 1 万亿$ · 今夏融资 500 亿</span>
+    <span><span class="dot">●</span> ARR 即将破 450 亿$ · 一年涨 5 倍</span>
+    <span><span class="dot">●</span> 福建人形机器人创新中心 Pre-A 落地</span>
+    <span><span class="dot">●</span> 具身智能产业链融资破 345 亿元</span>
+    <span><span class="dot">●</span> Simon Willison · 全部模型切换到 V4</span>
+    <span><span class="dot">●</span> 中国云厂商 10 天集体涨价 30-50%</span>
+    <span><span class="dot">●</span> Token 日均调用 140 万亿 · 千倍增长</span>
+    <span><span class="dot">●</span> 新鼎资本: 2026 是行业洗牌元年</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-meta">今日要闻 · TODAY'S BRIEFING</div>
+    <h1>万亿估值。<br>这次<em>轮到 Anthropic</em>。</h1>
+    <p class="hero-lede">
+      5 月 8 日财联社爆料 — Anthropic 考虑今夏筹集 500 亿美元，投前估值 9000 亿。从年初 600 亿到今天 9000 亿，不到一年涨 15 倍。Claude Code 和 Cowork 把 ARR 推到 450 亿美元（去年底 90 亿的 5 倍）。OpenAI 之外，硅谷第一次有第二个万亿玩家。
+    </p>
+    <div class="date-block"><div class="day">09</div><div class="month">MAY · MMXXVI</div></div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">1<span class="unit">万亿$</span></div><div class="stat-label">Anthropic 投后估值<br>本轮目标</div></div>
+  <div class="stat"><div class="stat-num">450<span class="unit">亿$</span></div><div class="stat-label">Anthropic ARR<br>去年底 5 倍</div></div>
+  <div class="stat"><div class="stat-num">345<span class="unit">亿¥</span></div><div class="stat-label">具身智能产业链<br>2026 至今融资</div></div>
+  <div class="stat"><div class="stat-num">90<span class="unit">%</span></div><div class="stat-label">Uber 工程师切换<br>V4 后账单降幅</div></div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 01</div><h2 class="section-title">资本<em>潮汐</em></h2></div>
+      <p class="section-intro">从年初的 600 亿到今天的 9000 亿，Anthropic 用 8 个月超过了 OpenAI 用 8 年走完的路。同一周，福建地方国资率先入场具身智能 Pre-A，资本流动方向第一次同时清晰。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">⚡ 头条 · ANTHROPIC</div>
+        <h3>Anthropic 考虑今夏筹 500 亿美元 · 估值近 1 万亿、有望超越 OpenAI</h3>
+        <p>
+          5 月 8 日，财联社引知情人士消息 — Anthropic 正考虑今夏开启新一轮融资，投前估值 9000 亿美元、筹资规模高达 500 亿，最快两个月内完成。Dragoneer、General Catalyst、Lightspeed 等机构表现浓厚兴趣。Anthropic ARR 即将突破 450 亿美元 — 是去年年底 90 亿的 5 倍。Claude Code（开发者工具）和 Cowork（普通用户产品）在企业市场跑出强势曲线。投资人原话："投资者们都愿意为 Anthropic 投入巨资，现在的问题只是 Anthropic 何时会露面宣布 — 我们准备好了。" 相比之下，OpenAI 在 3 月完成的 1220 亿美元融资让其投后估值仅 8520 亿。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>财联社 / 新浪财经</strong> · 2026.05.08</span>
+          <a class="read-more" href="https://finance.sina.com.cn/stock/t/2026-05-08/doc-inhxemqf7648429.shtml" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">💰 落地 · 福建人形机器人</div>
+        <h3>福建人形机器人创新中心完成 Pre-A 轮 · 闽江产业引导基金独家领投</h3>
+        <p>
+          5 月 8 日，福建人形机器人创新中心宣布顺利完成 Pre-A 轮股权融资，闽江产业引导基金独家领投，多家国有资本及头部产业资本同步抛出 TS。资金重点投向：核心技术迭代（运动控制、具身大模型）、"福智"系列产品量产、产业链生态构建、高端人才引育。这是地方国资在具身智能领域的又一次精准切入 — 继银河通用拿到大基金三期、自变量集齐字节美团阿里小米之后，福建以"省级母基金主导、产业链集群"再开一城。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>证券之星</strong> · 2026.05.08</span>
+          <a class="read-more" href="https://finance.stockstar.com/IG2026050800020501.shtml" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">📊 全景 · 具身智能</div>
+        <h3>2026 至今具身智能融资破 345 亿元 · 资本从整机蔓延全产业链</h3>
+        <p>
+          《科创板日报》5 月 5 日数据 — 2026 年至今具身智能领域融资已超 345 亿元（IT 桔子统计 525 亿），资金正从整机向全产业链渗透：上游关节模组（泉智博）、灵巧手（灵心巧手 B+ 轮）、传感器（开普勒、蓝点触控）激增；中游具身大脑融资破 104 亿；下游 RaaS 平台（机时租、万机易租）成布局热点。新鼎资本张驰判断：2026 是行业洗牌元年，国内上百家人形机器人公司最终可能只剩 10-20 家。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新浪财经 / 科创板日报</strong> · 2026.05.05</span>
+          <a class="read-more" href="https://finance.sina.com.cn/jjxw/2026-05-05/doc-inhwwezc3952105.shtml" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 02</div><h2 class="section-title">大模型<em>实战</em></h2></div>
+      <p class="section-intro">V4 发布两周后的真实战场反馈出来了 — 从 Simon Willison 到 Uber 工程师，"切到 V4 + Claude Code"已经成为重度用户的共识动作。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">🛠️ 头条 · DEEPSEEK V4 实战</div>
+        <h3>"我把所有模型都换成了 DeepSeek V4 — 月账单降 90%，效果反而更好"</h3>
+        <p>
+          知名科技博主 Simon Willison 在 V4 发布当晚写下这条帖子，被 InfoQ 等媒体迅速放大。"DeepSeek V4 Pro 在编码基准测试中击败了 Claude Opus 4.6 和 GPT-5.4 — 今天早上，我把 Claude Code、Codex、Cursor、Aider，以及我用的所有其他编程智能体全部指向了 DeepSeek 端点。" 他强调：不是便宜，是效果反而更好。SWE-bench Verified V4-Pro 80.6%，与 Claude Opus 4.6（80.8%）几乎打平，但 API 价格便宜两个数量级。同期 Uber 工程师 Claude Code 采用率从 32% 飙到 84%、月账单 4 个月烧光全年预算 — 现在所有人都在重新算这笔账。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>InfoQ / Simon Willison</strong> · 2026.05.04</span>
+          <a class="read-more" href="https://www.infoq.cn/article/e4UXTsCToLXsRVEWNUqW" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🇨🇳 国产合奏 · 大模型之家月报</div>
+        <h3>4 月国产大模型月报: GLM、Qwen、阶跃、MiniMax 同时发力</h3>
+        <p>
+          智谱 GLM-5.1 4 月 8 日开源，约 10 万颗华为昇腾 910B 完成全流程训练，验证"从零 NVIDIA"的纯国产路径，综合能力对齐 Claude Opus 4.6。MaaS 平台年化收入 17 亿元。阿里 Qwen3.6 三周三次旗舰发布，登顶 Artificial Analysis 最佳国产大模型，通义 App 更名"千问"月活破 1.66 亿。MiniMax M2.7 开源、自我进化训练范式让 SWE-bench 比 Opus 4.6 高 23 个百分点。国产并发节奏，已经从年更切到周更。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>澎湃 / 大模型之家</strong> · 2026.05.06</span>
+          <a class="read-more" href="https://www.thepaper.cn/newsDetail_forward_33102242" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">⚠️ 限制 · V4 短板</div>
+        <h3>V4 Pro 实测短板曝光: 不支持图片输入</h3>
+        <p>
+          阿里云开发者社区一篇 V4 Pro 接 Claude Code 的实测记录揭示了 1M 上下文光环下的盲区 — V4 当前版本是纯文本模型，完全不支持图片输入，Claude Code 发图给 V4 时只能收到 [Image #1] 占位符。"我无法直接查看图片"不是谦虚，是真的看不见。对多文件 + 截图工作流的开发者，目前只能临时切回 Anthropic 原生 API。Vision 模式在规划中，但何时上线未知。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>阿里云开发者</strong></span>
+          <a class="read-more" href="https://developer.aliyun.com/article/1730869" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 03</div><h2 class="section-title">算力<em>逆转</em></h2></div>
+      <p class="section-intro">中国 Token 日调用量突破 140 万亿、千倍增长。DeepSeek 把单价打到 0.02 元的同时，云厂商 10 天集体涨价 30-50% — 价格曲线第一次开始反弹。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">⚡ 头条 · 中国云厂商</div>
+        <h3>云厂商 10 天集体涨价 30-50% · 腾讯云部分核心产品涨幅高达 400%</h3>
+        <p>
+          到 2026 年 3 月，云厂商在 10 天内集体上调 AI 算力与存储服务价格，涨幅普遍 30-50%、腾讯云部分核心产品涨幅高达 400%。背后原因是 Token 调用量暴增 — 2026 年 3 月中国日均 Token 调用量突破 140 万亿，较 2024 年初的 1000 亿增长超千倍。Token 单价大幅下降但调用规模指数级增长，导致供需关系逆转。GPU 芯片价格高、供应链紧张，云厂商资本开支居高不下，长期低价竞争难以维持合理利润。行业正从"算力二房东"转向"AI 整体解决方案"，定价逻辑从低价走量转向服务价值驱动。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>雷科技 / 行业综合</strong></span>
+          <a class="read-more" href="https://www.leikeji.com/article/75961" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-12">
+        <div class="story-tag">🌏 趋势 · 博鳌报告</div>
+        <h3>博鳌亚洲论坛报告: 全球 AI 发展重心从欧美向亚洲转移</h3>
+        <p>
+          博鳌亚洲论坛发布的《亚洲经济前景及一体化进程 2026 年度报告》提出 — 全球人工智能发展重心从欧美向亚洲转移，亚洲经济体凭借庞大的数字人口、丰富的应用场景和系统化的政策推动，从 AI 追随者转变为引领者。这与 4 月时代周刊"中国成为最早实现 AI 助手大规模应用的国家之一"、麻省理工与 Hugging Face 报告"中国研发的开源模型全球下载量占比 17.1% 反超美国 15.8%"等数据形成共振。叙事正在被改写。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>中新网 / 博鳌</strong></span>
+          <a class="read-more" href="https://www.chinanews.com.cn/cj/2026/03-26/10593387.shtml" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 04</div><h2 class="section-title">监管<em>立规矩</em></h2></div>
+      <p class="section-intro">杭州又一次走在前面 — 全国首部具身智能机器人产业法规出台。在融资井喷的同时，地方政府开始为这条"千亿赛道"画护栏。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-12">
+        <div class="story-tag">🇨🇳 头条 · 杭州</div>
+        <h3>全国首部 · 杭州为千亿具身智能机器人产业立规矩、划赛道</h3>
+        <p>
+          杭州市出手 — 推出全国首部针对具身智能机器人产业的专门法规。法规涉及产业准入、数据采集、技术伦理、应用场景等关键环节，被业界视为继上月工信部《人形机器人与具身智能标准体系（2026 版）》之后，地方层面最具执行力的产业政策。这是 4 月底 5 月初系列政策动作的延续 — 工信部十部门《AI 科技伦理审查办法》、国家网信办《生成式 AI 服务管理规定（修订版征求意见稿）》、杭州法院"AI 优化解雇违法"首例判决。中国式 AI 治理"四件套"(资本边界、伦理边界、就业保护、地方法规) 全面成形。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>上观新闻</strong> · 2026.05.01</span>
+          <a class="read-more" href="https://www.shobserver.com/staticsg/res/html/web/newsDetail.html?id=1106585&sid=11" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 05</div><h2 class="section-title">数据<em>读图</em></h2></div>
+      <p class="section-intro">三组数字，定义本期。Anthropic 增速、具身智能阵营出清、Token 千倍曲线。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-4">
+        <div class="story-tag">🔥 估值×15</div>
+        <h3>Anthropic 不到一年估值×15</h3>
+        <p>
+          年初 600 亿 → 2 月 G 轮 3800 亿 → 5 月本周 9000 亿。配合 ChatGPT 4 月卸载量同比+132%、Claude 在美国 App Store 单日下载首超 ChatGPT — 王座位移信号已经清晰。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>财联社</strong></span>
+          <a class="read-more" href="https://finance.sina.com.cn/stock/t/2026-05-08/doc-inhxemqf7648429.shtml" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">🔻 出清率 95%</div>
+        <h3>千家公司只剩 10-20 家</h3>
+        <p>
+          新鼎资本判断：到 2026 年行业进入洗牌期，国内上百家人形机器人公司最终可能只留 10-20 家。融资井喷不是普惠，是头部把"百亿俱乐部"门槛抬到天花板。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>科创板日报</strong></span>
+          <a class="read-more" href="https://finance.sina.com.cn/jjxw/2026-05-05/doc-inhwwezc3952105.shtml" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">📈 千倍曲线</div>
+        <h3>140 万亿 / 日 vs 1000 亿 / 日</h3>
+        <p>
+          中国日均 Token 调用从 2024 年初 1000 亿到 2026 年 3 月 140 万亿，两年涨千倍。但单价同时降了 90%+。"低价获取规模 → 服务价值驱动"的范式切换正在发生。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>国家数据局</strong></span>
+          <a class="read-more" href="https://www.leikeji.com/article/75961" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-mark">信号 <span class="accent">/</span> Signal</div>
+    <div class="divider"></div>
+    <p>第 009 期 · 2026 年 5 月 9 日 · 周六</p>
+    <p style="margin-top:8px;">本期收录 5.7 — 5.9 共 11 条 AI 相关动态</p>
+  </div>
+</footer>
+
+</body>
+</html>

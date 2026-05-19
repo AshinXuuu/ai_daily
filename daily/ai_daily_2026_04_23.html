@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 · 2026.04.23</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=JetBrains+Mono:wght@400;500;700&family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0d0b;
+    --ink-2: #161410;
+    --paper: #f4ecdb;
+    --paper-2: #e8dfc9;
+    --muted: #8a8275;
+    --rule: #2a2620;
+    --signal: #ff4d1f;
+    --signal-2: #ffb454;
+    --tan: #c9a679;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
+    font-weight: 300;
+    line-height: 1.65;
+    letter-spacing: 0.01em;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255, 77, 31, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 90%, rgba(201, 166, 121, 0.035) 0%, transparent 50%);
+  }
+
+  /* Subtle grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ====== MASTHEAD ====== */
+  .masthead {
+    border-bottom: 1px solid var(--rule);
+    padding: 32px 0 24px;
+    position: relative;
+  }
+
+  .masthead-grid {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .edition {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .edition strong { color: var(--paper); font-weight: 500; }
+
+  .logo {
+    font-family: 'Fraunces', 'Noto Serif SC', serif;
+    font-size: 38px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    text-align: center;
+    font-variation-settings: "opsz" 144;
+  }
+
+  .logo .accent {
+    color: var(--signal);
+    font-style: italic;
+    font-weight: 600;
+  }
+
+  .weather {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-align: right;
+    line-height: 1.7;
+  }
+
+  .weather .pulse {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--signal);
+    margin-right: 6px;
+    animation: pulse 2s infinite;
+    vertical-align: middle;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 77, 31, 0.5); }
+    50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(255, 77, 31, 0); }
+  }
+
+  /* ====== HERO ====== */
+  .hero {
+    padding: 80px 0 60px;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--signal);
+  }
+
+  .hero-meta::before {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: var(--signal);
+  }
+
+  .hero h1 {
+    font-family: 'Fraunces', 'Noto Serif SC', serif;
+    font-size: clamp(48px, 8vw, 96px);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    margin-bottom: 32px;
+    font-variation-settings: "opsz" 144, "SOFT" 50;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 600;
+    color: var(--signal-2);
+  }
+
+  .hero-lede {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--paper-2);
+    max-width: 680px;
+    font-weight: 400;
+  }
+
+  .date-block {
+    position: absolute;
+    top: 80px;
+    right: 32px;
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .date-block .day {
+    font-family: 'Fraunces', serif;
+    font-size: 120px;
+    font-weight: 800;
+    line-height: 0.9;
+    color: var(--paper);
+    font-variation-settings: "opsz" 144;
+    letter-spacing: -0.05em;
+  }
+
+  .date-block .month {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+
+  /* ====== TICKER ====== */
+  .ticker {
+    background: var(--ink-2);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    overflow: hidden;
+    padding: 14px 0;
+    position: relative;
+  }
+
+  .ticker-track {
+    display: flex;
+    gap: 48px;
+    white-space: nowrap;
+    animation: scroll 60s linear infinite;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    color: var(--paper-2);
+  }
+
+  .ticker-track span {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .ticker-track .dot {
+    color: var(--signal);
+    font-size: 8px;
+  }
+
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ====== SECTIONS ====== */
+  .section {
+    padding: 80px 0 40px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .section-head {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+    align-items: start;
+  }
+
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--signal);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Fraunces', 'Noto Serif SC', serif;
+    font-size: 56px;
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    font-variation-settings: "opsz" 144;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--tan);
+    font-weight: 600;
+  }
+
+  .section-intro {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--muted);
+    padding-top: 16px;
+    border-top: 1px solid var(--rule);
+  }
+
+  /* ====== STORY GRID ====== */
+  .stories {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 32px;
+  }
+
+  .story {
+    grid-column: span 6;
+    padding: 28px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.015) 0%, transparent 100%);
+    border: 1px solid var(--rule);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .story::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--signal);
+    transition: width 0.6s ease;
+  }
+
+  .story:hover {
+    background: linear-gradient(180deg, rgba(255, 77, 31, 0.04) 0%, transparent 100%);
+    border-color: rgba(255, 77, 31, 0.3);
+    transform: translateY(-2px);
+  }
+
+  .story:hover::before { width: 100%; }
+
+  .story.feature {
+    grid-column: span 12;
+    padding: 48px;
+    background: linear-gradient(135deg, rgba(255, 77, 31, 0.06) 0%, rgba(201, 166, 121, 0.02) 100%);
+    border-color: rgba(255, 77, 31, 0.25);
+  }
+
+  .story.feature::after {
+    content: 'FEATURED';
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--signal);
+    border: 1px solid var(--signal);
+    padding: 4px 10px;
+  }
+
+  .story-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--signal);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+
+  .story h3 {
+    font-family: 'Fraunces', 'Noto Serif SC', serif;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
+    color: var(--paper);
+    font-variation-settings: "opsz" 144;
+  }
+
+  .story.feature h3 { font-size: 42px; line-height: 1.05; max-width: 90%; }
+
+  .story p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--paper-2);
+    margin-bottom: 20px;
+    font-weight: 300;
+  }
+
+  .story.feature p {
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    max-width: 720px;
+  }
+
+  .story-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+  }
+
+  .source {
+    color: var(--muted);
+  }
+
+  .source strong { color: var(--paper); font-weight: 500; }
+
+  .read-more {
+    color: var(--signal);
+    text-decoration: none;
+    border: 1px solid var(--rule);
+    padding: 6px 12px;
+    transition: all 0.3s;
+    white-space: nowrap;
+  }
+
+  .read-more:hover {
+    background: var(--signal);
+    color: var(--ink);
+    border-color: var(--signal);
+  }
+
+  /* Story span variants */
+  .story.span-4 { grid-column: span 4; }
+  .story.span-8 { grid-column: span 8; }
+
+  /* ====== STAT BLOCK ====== */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    background: var(--ink-2);
+  }
+
+  .stat {
+    padding: 40px 32px;
+    border-right: 1px solid var(--rule);
+  }
+
+  .stat:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: 'Fraunces', serif;
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--signal-2);
+    letter-spacing: -0.04em;
+    margin-bottom: 8px;
+    font-variation-settings: "opsz" 144;
+  }
+
+  .stat-num .unit {
+    font-size: 22px;
+    color: var(--paper);
+    font-weight: 400;
+    margin-left: 4px;
+  }
+
+  .stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  /* ====== FOOTER ====== */
+  .footer {
+    padding: 80px 0 60px;
+    text-align: center;
+    border-top: 1px solid var(--rule);
+    margin-top: 40px;
+  }
+
+  .footer-mark {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 28px;
+    color: var(--paper);
+    margin-bottom: 16px;
+    font-variation-settings: "opsz" 144;
+  }
+
+  .footer-mark .accent { color: var(--signal); }
+
+  .footer p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .footer .divider {
+    width: 60px;
+    height: 1px;
+    background: var(--signal);
+    margin: 24px auto;
+  }
+
+  /* ====== RESPONSIVE ====== */
+  @media (max-width: 900px) {
+    .wrap { padding: 0 20px; }
+    .masthead-grid { grid-template-columns: 1fr; gap: 16px; text-align: center; }
+    .weather { text-align: center; }
+    .date-block { position: static; text-align: left; margin-top: 32px; }
+    .date-block .day { font-size: 80px; }
+    .hero { padding: 48px 0 40px; }
+    .hero h1 { font-size: 44px; }
+    .hero-lede { font-size: 18px; }
+    .section-head { grid-template-columns: 1fr; gap: 16px; }
+    .section-title { font-size: 36px; }
+    .story, .story.feature { grid-column: span 12 !important; padding: 24px; }
+    .story.feature h3 { font-size: 28px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat { border-right: none; border-bottom: 1px solid var(--rule); padding: 28px 20px; }
+    .stat-num { font-size: 40px; }
+    .stat:nth-child(odd) { border-right: 1px solid var(--rule); }
+  }
+
+  @media (max-width: 500px) {
+    .stats { grid-template-columns: 1fr; }
+    .stat { border-right: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============= MASTHEAD ============= -->
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-grid">
+      <div class="edition">
+        VOL. <strong>I</strong> · NO. <strong>001</strong>
+      </div>
+      <div class="logo">
+        信号 <span class="accent">/ Signal</span>
+      </div>
+      <div class="weather">
+        <span class="pulse"></span>LIVE · 23 APR 2026<br>
+        晴 · 洛杉矶 · 19°C
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============= TICKER ============= -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span><span class="dot">●</span> SpaceX × Cursor 600 亿美元收购选项</span>
+    <span><span class="dot">●</span> OpenAI ChatGPT Images 2.0 上线</span>
+    <span><span class="dot">●</span> Google Gemma 4 开源</span>
+    <span><span class="dot">●</span> DeepSeek V4 月底发布</span>
+    <span><span class="dot">●</span> Amazon 加注 Anthropic 50 亿</span>
+    <span><span class="dot">●</span> 库克卸任 · 特努斯接棒</span>
+    <span><span class="dot">●</span> 美佛州对 OpenAI 启动刑事调查</span>
+    <span><span class="dot">●</span> Grok 出现间歇性服务中断</span>
+    <!-- duplicated for seamless loop -->
+    <span><span class="dot">●</span> SpaceX × Cursor 600 亿美元收购选项</span>
+    <span><span class="dot">●</span> OpenAI ChatGPT Images 2.0 上线</span>
+    <span><span class="dot">●</span> Google Gemma 4 开源</span>
+    <span><span class="dot">●</span> DeepSeek V4 月底发布</span>
+    <span><span class="dot">●</span> Amazon 加注 Anthropic 50 亿</span>
+    <span><span class="dot">●</span> 库克卸任 · 特努斯接棒</span>
+    <span><span class="dot">●</span> 美佛州对 OpenAI 启动刑事调查</span>
+    <span><span class="dot">●</span> Grok 出现间歇性服务中断</span>
+  </div>
+</div>
+
+<!-- ============= HERO ============= -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-meta">今日要闻 · TODAY'S BRIEFING</div>
+    <h1>当模型每三个月翻番，<br><em>资本与监管</em>开始追赶时差。</h1>
+    <p class="hero-lede">
+      过去 48 小时，SpaceX 把触手伸向 AI 编程，OpenAI 与 Google 同日加码新模型，DeepSeek V4 蓄势待发。与此同时，美国首次将聊天机器人写进刑事案卷。这不再是"模型周报"，而是一份关于权力位移的备忘录。
+    </p>
+    <div class="date-block">
+      <div class="day">23</div>
+      <div class="month">APRIL · MMXXVI</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= STATS ============= -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-num">600<span class="unit">亿$</span></div>
+    <div class="stat-label">SpaceX 对 Cursor<br>潜在收购金额</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">140<span class="unit">万亿</span></div>
+    <div class="stat-label">中国日均<br>词元 (Token) 调用</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">2.7<span class="unit">%</span></div>
+    <div class="stat-label">中美 AI 技术<br>差距 (斯坦福报告)</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">50<span class="unit">分</span></div>
+    <div class="stat-label">人形机器人半马成绩<br>(打破人类纪录)</div>
+  </div>
+</div>
+
+<!-- ============= SECTION 1: MODELS ============= -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-num">章 节 / 01</div>
+        <h2 class="section-title">大模型<em>风暴</em></h2>
+      </div>
+      <p class="section-intro">
+        OpenAI、Google、Anthropic、DeepSeek 在同一周里几乎同时出招。"日更"已经不再是修辞，而是行业的实际节奏。
+      </p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">⚡ 焦点 · OpenAI</div>
+        <h3>ChatGPT Images 2.0 公测：图像模型从"玩具"转向"生产工具"</h3>
+        <p>
+          OpenAI 4 月 22 日正式推出新一代图像生成模型 ChatGPT Images 2.0。官方表示该模型在指令遵循、物体精准放置与密集文本渲染方面有大幅进步，支持多种宽高比，视觉审美更接近经过设计的稿件、而非典型的 "AI 感"。从灰测到公测，市场开始把图像模型当作真正的设计与营销工具来评估。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新浪财经</strong> · 2026.04.22</span>
+          <a class="read-more" href="https://finance.sina.com.cn/jjxw/2026-04-22/doc-inhvkixy5604643.shtml" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🌐 开源 · Google</div>
+        <h3>Gemma 4 开源系列发布：单卡部署、手机离线可跑</h3>
+        <p>
+          Google DeepMind 发布 Gemma 4 系列开源模型，参数规模覆盖 2B / 7B / 27B，采用 Apache 2.0 协议可商用，支持手机端离线多模态运行。310 亿参数版本被业内视为可能重塑大模型竞争格局的"平民化"力量。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>博客园 AI 信息日报</strong></span>
+          <a class="read-more" href="https://www.cnblogs.com/terrorpig/p/19910896" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🚀 国产 · DeepSeek</div>
+        <h3>DeepSeek V4 即将发布：多模态、支持华为芯片</h3>
+        <p>
+          普林斯顿 AI 实验室研究员在 X 上发布的暗示性内容，被视为 DeepSeek 提前预热。据卫星通讯社报道，V4 预计 4 月底推出，将是一款多模态模型，支持华为设备 — 进一步降低对美国芯片的依赖。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新浪科技 / 卫星通讯社</strong></span>
+          <a class="read-more" href="https://finance.sina.com.cn/stock/2026-04-19/doc-inhuzhfe1476008.shtml" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-8">
+        <div class="story-tag">⚠️ 服务异常 · xAI</div>
+        <h3>Grok 出现间歇性宕机，用户报告响应延迟与图像生成失败</h3>
+        <p>
+          4 月 23 日，xAI 旗下 Grok 聊天机器人在网页、移动应用和 X 平台集成端均出现连接问题与响应延迟。部分用户收到"出现意外，请重试"的错误提示，图像生成临时不可用。官方状态页仍显示"服务运行正常"，未声明重大事故。问题被认为与高峰期用户激增相关，多数情况下 1-2 小时内自行恢复。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>IBTimes Australia</strong> · 2026.04.23</span>
+          <a class="read-more" href="https://www.ibtimes.com.au/grok-down-now-grok-ai-experiences-intermittent-outages-amid-high-demand-april-23-2026-1867290" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">🏆 编程 · Anthropic</div>
+        <h3>Claude Opus 4.7 编程榜登顶</h3>
+        <p>
+          Claude Opus 4.7 在多项编程能力评测中表现突出，被业内视作当前编程能力榜首。其"自适应思维"特性可让模型自主判断何时需要深度推理。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>知乎专栏</strong></span>
+          <a class="read-more" href="https://zhuanlan.zhihu.com/p/670574382" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============= SECTION 2: BUSINESS ============= -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-num">章 节 / 02</div>
+        <h2 class="section-title">资本<em>潮汐</em></h2>
+      </div>
+      <p class="section-intro">
+        硬件公司开始抢 AI 订单，云厂商把基础模型公司锁进生态。最值钱的不再是工具，是工具与算力的捆绑。
+      </p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">🚀 战略合作 · SpaceX × Cursor</div>
+        <h3>SpaceX 拿下 600 亿美元收购 Cursor 的"二选一"选项</h3>
+        <p>
+          4 月 21 日，SpaceX 在社交平台宣布与 AI 编程公司 Cursor 达成深度合作 — 可在今年晚些时候以 600 亿美元全资收购 Cursor，或选择支付 100 亿美元作为合作费。双方将联合研发面向专业工程师的下一代编程 AI，并整合 SpaceX 自研的 Colossus 超级计算机（算力宣称相当于 100 万颗英伟达 H100）。这是 SpaceX 在并购 xAI 之后，进一步把触手伸向"软件 + 算力"完整栈的关键一步。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>21 世纪经济报道</strong> · 2026.04.22</span>
+          <a class="read-more" href="https://www.21jingji.com/article/20260422/herald/2f7234b7761518c2e4ac961e0cde1833.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">💰 投资 · Amazon → Anthropic</div>
+        <h3>亚马逊追加 50 亿美元投资 Anthropic，最高再注 200 亿</h3>
+        <p>
+          亚马逊宣布向 Anthropic 追加 50 亿美元，未来最多再追加 200 亿（此前已投资 80 亿）。Anthropic 将获得高达 5 GW 的 AWS Trainium 芯片算力，并承诺未来十年在 AWS 投入超过 1000 亿美元 — 一桩典型的"芯片换股权"。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>证券时报网</strong></span>
+          <a class="read-more" href="https://www.stcn.com/article/detail/3778576.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🍎 人事 · Apple</div>
+        <h3>苹果换帅落定：库克交棒，特努斯接任 CEO</h3>
+        <p>
+          4 月 20 日苹果正式宣布换帅。报道援引苹果内部消息，库克早在 2022 年就与董事会启动了继任者计划，市场反应平稳。这次权力交接被业内解读为苹果在 AI 时代切换"底层逻辑"的开始。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>钛媒体</strong> · 2026.04.20</span>
+          <a class="read-more" href="https://k.sina.com.cn/article_7857201856_1d45362c001904la5m.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-12">
+        <div class="story-tag">📊 行业洞察 · Morgan Stanley</div>
+        <h3>代理 AI 崛起，CPU 需求被重新点燃</h3>
+        <p>
+          摩根士丹利最新报告指出，随着 AI 从"生成式"转向"自主代理式"，计算瓶颈正从 GPU 向 CPU 与内存转移。预计到 2030 年，代理 AI 将为已经超过 1000 亿美元的数据中心 CPU 市场，再增加 325 亿至 600 亿美元 — 在英伟达独大的 GPU 故事之外，给芯片版图开了一扇新窗。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>财联社</strong> · 2026.04.20</span>
+          <a class="read-more" href="https://finance.sina.com.cn/roll/2026-04-20/doc-inhvcvua6808442.shtml" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============= SECTION 3: POLICY ============= -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-num">章 节 / 03</div>
+        <h2 class="section-title">监管<em>追上来了</em></h2>
+      </div>
+      <p class="section-intro">
+        当一个聊天机器人可能间接影响一桩枪击案，刑事案卷里第一次写下了 ChatGPT 的名字。规则正在以技术之外的速度赶上技术。
+      </p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-8">
+        <div class="story-tag">⚖️ 全球首例 · 美国</div>
+        <h3>美国佛州对 OpenAI 启动刑事调查 — AI 第一次进入刑案</h3>
+        <p>
+          4 月 21 日，佛罗里达州检察官詹姆斯·乌斯迈尔宣布，正式针对 OpenAI 及其聊天机器人 ChatGPT 启动刑事调查，称其在 2025 年 4 月佛罗里达州立大学校园枪击案中存在潜在作用。这是美国首例将人工智能纳入刑事调查范畴的案件，也将"AI 责任"这件事从赔偿与下架，推到了刑事追责的边界。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>证券时报网</strong> · 2026.04.22</span>
+          <a class="read-more" href="https://www.stcn.com/article/detail/3778576.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">🇨🇳 政策 · 广东</div>
+        <h3>《广东 AI 全域全时全行业应用方案》出台</h3>
+        <p>
+          广东省政府办公厅 4 月 22 日印发行动方案，重点推动 AI 与电子信息制造、机器人产业融合，支持广州、深圳建设具身智能训练场体系。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>财联社</strong></span>
+          <a class="read-more" href="https://finance.sina.com.cn/jjxw/2026-04-22/doc-inhvkiya9371808.shtml" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🌍 警告 · 杰弗里·辛顿</div>
+        <h3>AI 教父在日内瓦：人类与超级智能的共存"前景不明"</h3>
+        <p>
+          在 4 月 21 日日内瓦举行的 2026 年数字世界大会上，杰弗里·辛顿罕见发出强烈警告，称迫切需要加强全球监管框架与道德保障措施。这一表态距其离开 Google 已三年。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>证券时报网</strong></span>
+          <a class="read-more" href="https://www.stcn.com/article/detail/3778576.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">📜 规范 · 中国五部门</div>
+        <h3>AI 拟人化服务被纳入管理办法</h3>
+        <p>
+          国家五部门联合发布管理办法，对 AI 拟人化互动服务进行规范。这是继生成式 AI 服务管理办法之后，对"陪伴型 / 角色扮演"赛道的第一次全国性出手。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>博客园 AI 日报</strong></span>
+          <a class="read-more" href="https://www.cnblogs.com/terrorpig/p/19910896" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============= SECTION 4: ROBOTICS ============= -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-num">章 节 / 04</div>
+        <h2 class="section-title">具身智能<em>奔跑中</em></h2>
+      </div>
+      <p class="section-intro">
+        机器人 50 分跑完半马打破人类纪录、被写入"十五五"规划、智元一次发布 4 款本体 — 具身智能正在从展会走向产业。
+      </p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">🏃 突破 · 北京亦庄</div>
+        <h3>人形机器人半马跑出 50 分 26 秒，超越人类世界纪录</h3>
+        <p>
+          4 月 19 日，2026 北京亦庄半程马拉松暨人形机器人半马开跑，100 余个机器人队伍参赛。北京荣耀的"闪电"以 50 分 26 秒夺冠，超过乌干达选手基普利莫今年 3 月在里斯本创下的 57 分 20 秒男子半马世界纪录。相比去年冠军 2 小时 40 分的成绩，仅 12 个月内进步超过 1 小时 50 分钟 — 这是一条比人类预期陡得多的曲线。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新浪 · 千龙网</strong> · 2026.04.20</span>
+          <a class="read-more" href="https://k.sina.com.cn/article_7857201856_1d45362c001904j1na.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">📋 国家战略</div>
+        <h3>具身智能写入"十五五"规划纲要</h3>
+        <p>
+          "十五五"规划纲要将具身智能与量子科技、脑机接口、6G 等并列为新的经济增长点；今年政府工作报告同样将其纳入未来产业培育清单。资本与政策双轨同行。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新浪财经</strong></span>
+          <a class="read-more" href="https://finance.sina.com.cn/wm/2026-04-22/doc-inhvitan6302644.shtml" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🤖 量产元年</div>
+        <h3>智元开启"部署态元年"，发布 4 款机器人本体</h3>
+        <p>
+          智元在大规模发布会上推出 4 款机器人本体、6 款具身智能模型与 7 大行业解决方案，被业界视为具身智能从"做出来"走向"用出来"的转折信号。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>博客园 AI 日报</strong></span>
+          <a class="read-more" href="https://www.cnblogs.com/terrorpig/p/19910896" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============= SECTION 5: HARDWARE ============= -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-num">章 节 / 05</div>
+        <h2 class="section-title">硬件与<em>新物种</em></h2>
+      </div>
+      <p class="section-intro">
+        AI 眼镜从概念走入开售，AI Agent 走进社交平台 — 模型之外，最值得关注的是它落进了哪个外壳。
+      </p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-8">
+        <div class="story-tag">👓 可穿戴 · 华为</div>
+        <h3>华为 AI 眼镜发布：35.5 克重，"所见即所拍，所问即所答"</h3>
+        <p>
+          华为在 4 月 20 日 Pura 新品发布会上推出首款鸿蒙 AI 眼镜，整机仅 35.5 克，12 小时综合续航。基于 30 万 + 亚洲头型数据构建"黄金三角平衡架构"。光学镜款 2499 元、太阳镜款 2899 元，4 月 25 日开售。鸿蒙系统协同能力，是它对 Meta Ray-Ban 的核心差异化叙事。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>深圳新闻网</strong> · 2026.04.20</span>
+          <a class="read-more" href="https://www.sznews.com/news/content/2026-04/20/content_32022541.htm" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">🎬 影视 · 爱奇艺</div>
+        <h3>100 + 艺人签约 AI"代演"</h3>
+        <p>
+          爱奇艺 CEO 龚宇 4 月 20 日宣布，平台自研 AI 智能体平台已与 100 余位艺人签约，面部数据通过授权用于 AI 内容生成。从概念到行业现实，争议同时引爆。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>极目新闻</strong></span>
+          <a class="read-more" href="https://k.sina.com.cn/article_7857201856_1d45362c001904j1na.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============= SECTION 6: TRENDS ============= -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-num">章 节 / 06</div>
+        <h2 class="section-title">数据<em>读图</em></h2>
+      </div>
+      <p class="section-intro">
+        三个数字、三种叙事 — 词元经济、技术差距、与一份每年都被引用的"AI 体检报告"。
+      </p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-4">
+        <div class="story-tag">🪙 词元经济</div>
+        <h3>中国日均词元调用量达 140 万亿</h3>
+        <p>
+          较 2024 年初的 1000 亿大幅跃升。在 OpenRouter 平台上，中国模型调用量已超美国模型 — Token 正在成为新的大宗商品。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>财富中文网</strong></span>
+          <a class="read-more" href="https://www.fortunechina.com/shangye/c/2026-04/19/content_473422.htm" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">🌏 中美差距</div>
+        <h3>斯坦福报告：中美 AI 差距收窄至 2.7%</h3>
+        <p>
+          顶级模型间分数差距以"细微"计算。竞争开始从模型能力，转向成本、可靠性与真实世界可用性。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Stanford AI Index 2026</strong></span>
+          <a class="read-more" href="https://spectrum.ieee.org/state-of-ai-index-2026" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">📈 加速曲线</div>
+        <h3>AI 翻番速度缩短至 3-4 个月</h3>
+        <p>
+          自 Claude Opus 4.5 与 GPT-5.2 发布之后，能力翻番周期再次加速。线性时代的人类直觉，开始追不上指数曲线。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>澎湃新闻</strong></span>
+          <a class="read-more" href="https://m.thepaper.cn/newsDetail_forward_33017146" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============= FOOTER ============= -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-mark">信号 <span class="accent">/</span> Signal</div>
+    <div class="divider"></div>
+    <p>第 001 期 · 2026 年 4 月 23 日 · 周四</p>
+    <p style="margin-top:8px;">本期收录 4.19 — 4.23 共 17 条 AI 相关动态</p>
+  </div>
+</footer>
+
+</body>
+</html>

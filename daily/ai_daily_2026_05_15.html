@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 · 2026.05.15</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=JetBrains+Mono:wght@400;500;700&family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0d0b; --ink-2: #161410; --paper: #f4ecdb; --paper-2: #e8dfc9;
+    --muted: #8a8275; --rule: #2a2620; --signal: #ff4d1f; --signal-2: #ffb454; --tan: #c9a679;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink); color: var(--paper);
+    font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
+    font-weight: 300; line-height: 1.65; letter-spacing: 0.01em; overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255, 77, 31, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 90%, rgba(201, 166, 121, 0.035) 0%, transparent 50%);
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .masthead { border-bottom: 1px solid var(--rule); padding: 32px 0 24px; position: relative; }
+  .masthead-grid { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 32px; }
+  .edition { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .edition strong { color: var(--paper); font-weight: 500; }
+  .logo { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 38px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; text-align: center; font-variation-settings: "opsz" 144; }
+  .logo .accent { color: var(--signal); font-style: italic; font-weight: 600; }
+  .weather { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-align: right; line-height: 1.7; }
+  .weather .pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--signal); margin-right: 6px; animation: pulse 2s infinite; vertical-align: middle; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 77, 31, 0.5); }
+    50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(255, 77, 31, 0); }
+  }
+  .hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule); position: relative; }
+  .hero-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal); }
+  .hero-meta::before { content: ''; width: 40px; height: 1px; background: var(--signal); }
+  .hero h1 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: clamp(48px, 8vw, 96px); font-weight: 400; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 32px; font-variation-settings: "opsz" 144, "SOFT" 50; }
+  .hero h1 em { font-style: italic; font-weight: 600; color: var(--signal-2); }
+  .hero-lede { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.5; color: var(--paper-2); max-width: 680px; font-weight: 400; }
+  .date-block { position: absolute; top: 80px; right: 32px; text-align: right; font-family: 'JetBrains Mono', monospace; }
+  .date-block .day { font-family: 'Fraunces', serif; font-size: 120px; font-weight: 800; line-height: 0.9; color: var(--paper); font-variation-settings: "opsz" 144; letter-spacing: -0.05em; }
+  .date-block .month { font-size: 12px; letter-spacing: 0.2em; color: var(--muted); margin-top: 8px; }
+  .ticker { background: var(--ink-2); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); overflow: hidden; padding: 14px 0; position: relative; }
+  .ticker-track { display: flex; gap: 48px; white-space: nowrap; animation: scroll 60s linear infinite; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.05em; color: var(--paper-2); }
+  .ticker-track span { display: inline-flex; align-items: center; gap: 12px; }
+  .ticker-track .dot { color: var(--signal); font-size: 8px; }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .section { padding: 80px 0 40px; border-bottom: 1px solid var(--rule); }
+  .section-head { display: grid; grid-template-columns: 280px 1fr; gap: 48px; margin-bottom: 48px; align-items: start; }
+  .section-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--signal); margin-bottom: 12px; }
+  .section-title { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 56px; font-weight: 400; line-height: 0.95; letter-spacing: -0.03em; font-variation-settings: "opsz" 144; }
+  .section-title em { font-style: italic; color: var(--tan); font-weight: 600; }
+  .section-intro { font-family: 'Fraunces', serif; font-size: 17px; line-height: 1.6; color: var(--muted); padding-top: 16px; border-top: 1px solid var(--rule); }
+  .stories { display: grid; grid-template-columns: repeat(12, 1fr); gap: 32px; }
+  .story { grid-column: span 6; padding: 28px; background: linear-gradient(180deg, rgba(255,255,255,0.015) 0%, transparent 100%); border: 1px solid var(--rule); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; }
+  .story::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 1px; background: var(--signal); transition: width 0.6s ease; }
+  .story:hover { background: linear-gradient(180deg, rgba(255, 77, 31, 0.04) 0%, transparent 100%); border-color: rgba(255, 77, 31, 0.3); transform: translateY(-2px); }
+  .story:hover::before { width: 100%; }
+  .story.feature { grid-column: span 12; padding: 48px; background: linear-gradient(135deg, rgba(255, 77, 31, 0.06) 0%, rgba(201, 166, 121, 0.02) 100%); border-color: rgba(255, 77, 31, 0.25); }
+  .story.feature::after { content: 'FEATURED'; position: absolute; top: 24px; right: 24px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--signal); border: 1px solid var(--signal); padding: 4px 10px; }
+  .story-tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: var(--signal); margin-bottom: 16px; text-transform: uppercase; }
+  .story h3 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 26px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 16px; color: var(--paper); font-variation-settings: "opsz" 144; }
+  .story.feature h3 { font-size: 42px; line-height: 1.05; max-width: 90%; }
+  .story p { font-size: 15px; line-height: 1.7; color: var(--paper-2); margin-bottom: 20px; font-weight: 300; }
+  .story.feature p { font-family: 'Fraunces', serif; font-size: 19px; max-width: 720px; }
+  .story-meta { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 20px; border-top: 1px solid var(--rule); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.05em; }
+  .source { color: var(--muted); }
+  .source strong { color: var(--paper); font-weight: 500; }
+  .read-more { color: var(--signal); text-decoration: none; border: 1px solid var(--rule); padding: 6px 12px; transition: all 0.3s; white-space: nowrap; }
+  .read-more:hover { background: var(--signal); color: var(--ink); border-color: var(--signal); }
+  .story.span-4 { grid-column: span 4; }
+  .story.span-8 { grid-column: span 8; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--ink-2); }
+  .stat { padding: 40px 32px; border-right: 1px solid var(--rule); }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-family: 'Fraunces', serif; font-size: 56px; font-weight: 800; line-height: 1; color: var(--signal-2); letter-spacing: -0.04em; margin-bottom: 8px; font-variation-settings: "opsz" 144; }
+  .stat-num .unit { font-size: 22px; color: var(--paper); font-weight: 400; margin-left: 4px; }
+  .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; line-height: 1.4; }
+  .footer { padding: 80px 0 60px; text-align: center; border-top: 1px solid var(--rule); margin-top: 40px; }
+  .footer-mark { font-family: 'Fraunces', serif; font-style: italic; font-size: 28px; color: var(--paper); margin-bottom: 16px; font-variation-settings: "opsz" 144; }
+  .footer-mark .accent { color: var(--signal); }
+  .footer p { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+  .footer .divider { width: 60px; height: 1px; background: var(--signal); margin: 24px auto; }
+  @media (max-width: 900px) {
+    .wrap { padding: 0 20px; }
+    .masthead-grid { grid-template-columns: 1fr; gap: 16px; text-align: center; }
+    .weather { text-align: center; }
+    .date-block { position: static; text-align: left; margin-top: 32px; }
+    .date-block .day { font-size: 80px; }
+    .hero { padding: 48px 0 40px; }
+    .hero h1 { font-size: 44px; }
+    .hero-lede { font-size: 18px; }
+    .section-head { grid-template-columns: 1fr; gap: 16px; }
+    .section-title { font-size: 36px; }
+    .story, .story.feature { grid-column: span 12 !important; padding: 24px; }
+    .story.feature h3 { font-size: 28px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat { border-right: none; border-bottom: 1px solid var(--rule); padding: 28px 20px; }
+    .stat-num { font-size: 40px; }
+    .stat:nth-child(odd) { border-right: 1px solid var(--rule); }
+  }
+  @media (max-width: 500px) {
+    .stats { grid-template-columns: 1fr; }
+    .stat { border-right: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-grid">
+      <div class="edition">VOL. <strong>I</strong> · NO. <strong>014</strong></div>
+      <div class="logo">信号 <span class="accent">/ Signal</span></div>
+      <div class="weather"><span class="pulse"></span>LIVE · 15 MAY 2026<br>阴 · 洛杉矶 · 21°C</div>
+    </div>
+  </div>
+</header>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span><span class="dot">●</span> Cerebras 上市首日 +68% · 市值冲 950 亿$</span>
+    <span><span class="dot">●</span> DeepSeek 首轮融资 500 亿元 · 估值 3500 亿</span>
+    <span><span class="dot">●</span> xAI 推 Grok Build · 正面挑战 Claude Code</span>
+    <span><span class="dot">●</span> Cisco 砍 4000 人 · 把钱砸进 AI</span>
+    <span><span class="dot">●</span> 马斯克逼 SpaceX 投行强制订阅 Grok</span>
+    <span><span class="dot">●</span> AI 占据全美 VC 市场近一半</span>
+    <span><span class="dot">●</span> 梁文锋个人出资 200 亿入局 DeepSeek</span>
+    <span><span class="dot">●</span> Anthropic 推 Claude for Small Business</span>
+    <span><span class="dot">●</span> OpenAI 上线 GPT-Realtime-Translate · 70 语种</span>
+    <span><span class="dot">●</span> MemReread · 长上下文推理新范式</span>
+    <span><span class="dot">●</span> Cerebras 上市首日 +68% · 市值冲 950 亿$</span>
+    <span><span class="dot">●</span> DeepSeek 首轮融资 500 亿元 · 估值 3500 亿</span>
+    <span><span class="dot">●</span> xAI 推 Grok Build · 正面挑战 Claude Code</span>
+    <span><span class="dot">●</span> Cisco 砍 4000 人 · 把钱砸进 AI</span>
+    <span><span class="dot">●</span> 马斯克逼 SpaceX 投行强制订阅 Grok</span>
+    <span><span class="dot">●</span> AI 占据全美 VC 市场近一半</span>
+    <span><span class="dot">●</span> 梁文锋个人出资 200 亿入局 DeepSeek</span>
+    <span><span class="dot">●</span> Anthropic 推 Claude for Small Business</span>
+    <span><span class="dot">●</span> OpenAI 上线 GPT-Realtime-Translate · 70 语种</span>
+    <span><span class="dot">●</span> MemReread · 长上下文推理新范式</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-meta">今日要闻 · TODAY'S BRIEFING</div>
+    <h1>AI 芯片新王。<br>Cerebras 上市首日<em>翻倍</em>。</h1>
+    <p class="hero-lede">
+      5 月 14 日，Cerebras Systems 在纳斯达克挂牌交易 — 发行价 $185、开盘 $350、收盘 $311.07、单日 +68%，市值冲到 $950 亿。这是 2026 年迄今最大的科技 IPO，募资 $55 亿，刷下 2019 年 Uber 之后美国科技公司单次募资纪录。八个月前它还在以 $81 亿估值私募融资，到挂牌定价已经 $400 亿、收盘市值 $950 亿 — 涨了 12 倍。投资人把钱砸进一只「单一客户依赖」「亏损刚刚转正」的芯片股，因为它是 Nvidia 之外唯一拿得出 wafer-scale 工程能力的公司。算力的资本叙事，正在从「卖 GPU 的人赢」转向「能造系统的人赢」。
+    </p>
+    <div class="date-block"><div class="day">15</div><div class="month">MAY · MMXXVI</div></div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">5.5<span class="unit">B$</span></div><div class="stat-label">Cerebras IPO 募资规模<br>2026 年迄今美股最大科技 IPO</div></div>
+  <div class="stat"><div class="stat-num">+68<span class="unit">%</span></div><div class="stat-label">Cerebras 上市首日涨幅<br>市值 $400 亿 → $950 亿</div></div>
+  <div class="stat"><div class="stat-num">3500<span class="unit">亿¥</span></div><div class="stat-label">DeepSeek 投后估值<br>国产 AI 单轮融资纪录</div></div>
+  <div class="stat"><div class="stat-num">4000<span class="unit">人</span></div><div class="stat-label">Cisco 此轮裁员人数<br>同期录得 $158 亿季度收入新高</div></div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 01</div><h2 class="section-title">资本<em>灼热</em></h2></div>
+      <p class="section-intro">同一周，纳斯达克迎来年度最大科技 IPO、北京最大 AI 单轮融资、马斯克拿 SpaceX 上市要挟投行订阅 Grok — AI 资本市场的「定价权」正在被两条战线同时重写。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">⚡ 资本头条 · CEREBRAS</div>
+        <h3>Cerebras 上市首日 +68% · 市值 $950 亿、年度最大科技 IPO 落地</h3>
+        <p>
+          5 月 14 日 Cerebras Systems 登陆纳斯达克。发行价 $185（高于初始 $115–125 区间，扩大发行量到 3000 万股），开盘 $350、收盘 $311.07，市值锁定 $950 亿，超越市场预期。公司 2025 年营收 $5.1 亿，同比 +76%，净利润首次转正至 $2.38 亿（去年同期亏近 $5 亿）。八个月前它在私募市场估值还只是 $81 亿，今天挂牌就把价签贴到 12 倍以上。买家明知它「客户高度集中（G42 占大头）」也甘心入场 — 因为 Cerebras 是 Nvidia 之外唯一造得出 wafer-scale 巨型芯片的人，是 OpenAI、SpaceX 之前给 AI IPO 大潮做的「试水第一弹」。算力叙事正从「GPU 牌照争夺战」转向「系统级供应链稀缺战」 — 这场 IPO 不只是给 Cerebras 定价，更是给整个 AI 基础设施市场重新定锚。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>CNBC / Bloomberg / TechCrunch</strong> · 2026.05.14</span>
+          <a class="read-more" href="https://www.cnbc.com/2026/05/14/cerebras-cbrs-stock-trade-nasdaq-ipo.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🇨🇳 国产融资 · DEEPSEEK</div>
+        <h3>DeepSeek 首轮募 500 亿元 · 估值 3500 亿、梁文锋自掏 200 亿</h3>
+        <p>
+          长期坚持「不融资、不商业化、不路演」的 DeepSeek 正式启动首轮外部股权融资 — 募资 500 亿元人民币、投后估值 3500 亿元（约 $515 亿）。创始人梁文锋个人出资 200 亿，外部募 300 亿；国家集成电路产业投资基金正洽谈领投，腾讯、阿里、多家国资跟投。估值在 4 月初还是 $1000 亿，到 4 月 22 日翻到 $2000 亿、5 月 6 日 $4500 亿、5 月 9 日锁死 $515 亿 — 21 天涨了 5 倍。V4.1 定档 6 月。这是国产 AI 单轮融资纪录，也意味着「拒绝资本」的 DeepSeek 终于上桌 — 资本叙事不再是太平洋两岸两套规则。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新浪财经 / 量子位 / 21世纪经济报道</strong> · 2026.05.09-11</span>
+          <a class="read-more" href="https://www.qbitai.com/2026/05/414432.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">💼 资本胁迫 · XAI</div>
+        <h3>马斯克要求 SpaceX 投行强制订阅 Grok · Goldman / JPM / MS 已签</h3>
+        <p>
+          Bloomberg 报道：马斯克要求所有参与 SpaceX 上市（目标估值 $1.75 万亿）的银行、律所、审计、咨询机构购买 Grok 订阅。Bank of America、Citigroup、Goldman Sachs、JPMorgan Chase、Morgan Stanley 已签字。部分银行进一步同意把 Grok 接入内部 IT 系统，单笔潜在合同价值数千万美元。但内部信号矛盾 — Apollo、Valor、MS 的员工承认极少真用 Grok 干活，在金融场景下被一致认为不如 OpenAI / Anthropic。这是 SaaS 商业史上罕见的「捆绑买路」 — 给 AI 产品力差距找资本端补丁，也给 xAI 在 SpaceX IPO 之前抢一波营收叙事。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Bloomberg / Seeking Alpha / The Japan Times</strong> · 2026.05.13-14</span>
+          <a class="read-more" href="https://www.bloomberg.com/news/articles/2026-05-13/musk-s-xai-races-to-get-wall-street-firms-to-use-grok-chatbot" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 02</div><h2 class="section-title">Agent<em>开火</em></h2></div>
+      <p class="section-intro">马斯克承认「落后了」，把 xAI 的第一发 CLI 弹直接对准 Claude Code。Anthropic 把模型搬进 QuickBooks。OpenAI 把翻译也变成了实时直播 — 三条产品线、同一种打法：模型不再是 chatbot，而是工具。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">⚙️ 编程 AGENT · GROK BUILD</div>
+        <h3>xAI 发布 Grok Build · 命令行编程 Agent 正面挑战 Claude Code</h3>
+        <p>
+          5 月 14 日 xAI 上线第一款 agentic 编程产品 Grok Build — CLI 形态，支持规划模式、并行 sub-agent、代码仓库集成。能规划项目、写改文件、执行 shell 命令、按自然语言指令把应用从零造出来。新订阅档 Grok SuperHeavy 定价 $299/月（前 6 个月促销 $99），同时面向公测开放注册。xAI 总裁明说「短期目标就是追上 Claude Code」 — 这是马斯克最罕见的一次公开认怂。Claude Code、GitHub Copilot CLI、Gemini CLI 是这条赛道的同代选手，现在多了 Grok。命令行正在成为 AI 真正的「下一个浏览器」 — 谁拿下开发者的 terminal，谁就拿下软件的入口。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Bloomberg / TechCrunch / 基诺</strong> · 2026.05.14</span>
+          <a class="read-more" href="https://www.bloomberg.com/news/articles/2026-05-14/musk-s-xai-unveils-first-coding-agent-in-bid-to-rival-anthropic" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🧾 中小企业 AI · ANTHROPIC</div>
+        <h3>Anthropic 推 Claude for Small Business · QuickBooks / HubSpot / Canva 全打通</h3>
+        <p>
+          5 月 13 日 Anthropic 推出 Claude for Small Business — 把 Claude 嵌进 QuickBooks、PayPal、HubSpot、Canva、Docusign、Google Workspace、Microsoft 365，配套现成 workflow，覆盖薪资、开票、销售、营销、月度对账。这是 Claude for Legal 之后第二条「行业切片」打法，从「卖 token」转向「卖端到端工作流」。Anthropic 同步官宣 Excel / PowerPoint / Word 的 Microsoft 365 集成正式 GA，Outlook 进 public beta。中小企业市场长期由 SaaS 拼凑而成 — 现在 Claude 试图把它们打包进一个 prompt 入口。Salesforce 化路径再下一城。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>SiliconANGLE / Releasebot</strong> · 2026.05.13</span>
+          <a class="read-more" href="https://siliconangle.com/2026/05/13/anthropic-launches-claude-small-business-new-automation-workflows/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🌐 多语言 AGENT · OPENAI</div>
+        <h3>OpenAI 上线 GPT-Realtime-Translate · 实时翻 70+ 语种</h3>
+        <p>
+          OpenAI 同期推出 GPT-Realtime-Translate — 把语音从 70+ 输入语言实时翻成 13 种输出语言；姊妹模型 GPT-Realtime-Whisper 同时上线，做流式语音转写、随说随出文本。配合本月初 GPT-5.5 Instant（默认替换 GPT-5.3 Instant、幻觉率 −52.5%），ChatGPT 正在系统性把单点能力打散成实时 API — 翻译、转写、客服、协作各自独立调用。竞品端，Google Gemini Intelligence 同期渗入 Android 系统层。「实时 + 多模态」是 2026 年下半场的主战场，谁的延迟最低、谁的语种最全，谁就拿下下一波 voice-first 应用。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>OpenAI / TechCrunch</strong> · 2026.05.14</span>
+          <a class="read-more" href="https://openai.com/index/gpt-5-5-instant/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 03</div><h2 class="section-title">AI<em>反噬</em></h2></div>
+      <p class="section-intro">Cisco 单季营收破纪录，下一个动作是裁 4000 人换 AI。一级市场 AI 公司吞掉全美 VC 近一半 — 资本喂出的「AI 红利」，正在把原岗位反向吃掉。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-8">
+        <div class="story-tag">🏢 行业重排 · CISCO</div>
+        <h3>Cisco 季度营收 $158 亿创新高 · 同步官宣裁员 4000 人、钱挪去 AI 与网安</h3>
+        <p>
+          5 月 13 日 Cisco 公布 FY26 Q3 财报 — 单季营收 $158 亿、调整后 EPS $1.06，双双超华尔街预期。CEO Chuck Robbins 同一份内部信里宣布：全球裁员 4000 人（约 5% 员工），从 5 月 14 日起陆续通知。理由不是收入压力，而是「主动重塑成本结构，把更多人力和资金投到 AI、网络安全、数据中心芯片」。股价当日大涨 +15%。这是 AI 时代典型的「双轨财报」 — 创纪录的营收、创纪录的裁员，同步发生在同一家公司里。AI 反噬不是「机器人接管」式叙事，而是企业资金流的悄悄重定向。下一个被「打回成本结构」的传统科技巨头，是谁。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>TechCrunch / CNBC / Fox Business</strong> · 2026.05.13-14</span>
+          <a class="read-more" href="https://techcrunch.com/2026/05/14/cisco-cuts-nearly-4000-jobs-to-spend-more-on-ai-reports-record-quarterly-revenue/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">📊 资本集中度 · 美股 VC</div>
+        <h3>AI 公司吞掉全美 VC 市场近一半</h3>
+        <p>
+          5 月 14 日 BusinessToday 等多源数据：AI 初创公司目前已占美国风险投资市场总价值的近 50%。Q1 2026 全球 AI 公司单季吸金 $2555 亿，比 2025 全年还多；OpenAI、Anthropic、xAI 三家就吃掉了所有 AI 交易额的 67.3%。整个一级市场被压成两层 — Big 4 + 其他。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>BusinessToday / Crunchbase</strong> · 2026.05.14</span>
+          <a class="read-more" href="https://www.businesstoday.in/technology/story/ai-startups-now-make-up-nearly-half-of-us-venture-capital-market-report-531467-2026-05-14" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 04</div><h2 class="section-title">论文与<em>开源</em></h2></div>
+      <p class="section-intro">学术界把长上下文推理压缩成一个「rereading」动作；GitHub 上的开发者，则在尝试把 AI 装进个人的本地知识图谱 — 模型层之外的新创新，全都长在「记忆」这件事上。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-8">
+        <div class="story-tag">📄 学术 · ARXIV 2605.10268</div>
+        <h3>MemReread · 通过「记忆引导回读」改造长上下文推理</h3>
+        <p>
+          5 月新挂出的 cs.AI 工作 MemReread 给出一种简单但有效的长文本推理范式 — 不再「一次读完 + 一次回答」，而是让模型在推理过程中根据当前问题、自动回读最相关的历史片段。论文报告：相对 baseline agent 框架，MemReread 在长上下文推理任务上稳定胜出，时间复杂度仍然保持线性。当业界都在堆 1M / 2M token 上下文，「让模型学会主动回头看」这件事开始变得比「让窗口更大」更重要 — 这也是 RAG 与 agent memory 这条线的下一站。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>arXiv</strong> · 2026.05</span>
+          <a class="read-more" href="https://arxiv.org/abs/2605.10268v1" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">💎 GITHUB TRENDING · OPENHUMAN</div>
+        <h3>OpenHuman · 本地私有的「个人 AI 超级智能」</h3>
+        <p>
+          tinyhumansai/openhuman 本周登上 GitHub Trending — 5.6k 星、Rust + Tauri、GPL-3.0。卖点是把邮件、聊天、文档每 20 分钟自动抓回本地，压成 Karpathy 风格的 Markdown「记忆树」，跑在本机 SQLite 上，让 agent 真正知道「你是谁」。这是「个人超级智能」叙事的第一个像样开源样本 — 隐私优先、记忆为核心。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>GitHub / AIToolly</strong> · 2026.05.13</span>
+          <a class="read-more" href="https://github.com/tinyhumansai/openhuman" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-mark">信号 <span class="accent">/</span> Signal</div>
+    <div class="divider"></div>
+    <p>第 014 期 · 2026 年 5 月 15 日 · 周五</p>
+    <p style="margin-top:8px;">本期收录 5.13 — 5.15 共 10 条 AI 相关动态</p>
+  </div>
+</footer>
+
+</body>
+</html>

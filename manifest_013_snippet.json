@@ -1,0 +1,40 @@
+{
+  "issue": "013",
+  "date": "2026-05-14",
+  "weekday": "周四",
+  "weekdayEn": "Thursday",
+  "type": "daily",
+  "file": "ai_daily_2026_05_14.html",
+  "stories": [
+    {
+      "tag": "⚡ 资本头条 · ANTHROPIC",
+      "headline": "Anthropic 拟以最高 9500 亿$ 估值再融 500 亿 · 估值或反超 OpenAI",
+      "summary": "NYT 5 月 12 日率先披露，Bloomberg 与 TechCrunch 跟进确认：Anthropic 正与投资人洽谈一轮 300–500 亿美元新融资，估值上限 9500 亿美元，若拍板将超过 OpenAI 此前 8520 亿美元估值。9 个月前估值还是 380 亿，年化收入从 90 亿冲到 440 亿，Google 追投 400 亿、Amazon 追投 250 亿 — 云厂商在用基础设施换股权。模型层的资本叙事正从 OpenAI 一极转向双寡头，但整个生态对这两家公司算力定价权的依赖也被锁得更死。这是 2026 年 AI 资本市场最重要的一笔交易，还没签字。",
+      "source": "NYT / Bloomberg / TechCrunch"
+    },
+    {
+      "tag": "🏢 企业 AI · OPENAI",
+      "headline": "OpenAI 拆出「DeployCo」· 40 亿$ 起步、收购伦敦咨询 Tomoro",
+      "summary": "5 月 11 日 OpenAI 官宣成立 OpenAI Deployment Company（内部叫 DeployCo），TPG 领投，Advent / Bain Capital / Brookfield 联合发起，启动资金超 40 亿美元，同步收购伦敦 AI 咨询公司 Tomoro，把 150 名 Forward Deployed Engineer 一次性搬进新公司。客户含 Tesco、Virgin Atlantic、Supercell。模型不再「丢一个 SDK 给客户自己玩」，而是派人嵌进对方组织 — OpenAI 在反向追赶 Anthropic 早就搭好的 enterprise consulting 阵地。资本叙事换打法，下一战在「人嵌进客户」。",
+      "source": "OpenAI / Bloomberg / Axios"
+    },
+    {
+      "tag": "⚖️ 行业拓荒 · CLAUDE FOR LEGAL",
+      "headline": "Anthropic 一口气推 20+ 法律连接器、12 个执业领域插件 · Claude for Legal 全面落地",
+      "summary": "5 月 13 日 Anthropic 推出 Claude for Legal，发布 20+ MCP 连接器和 12 个执业领域插件 — 商法、公司法（含 M&A 尽调与交割清单）、雇佣、隐私、产品、监管、AI 治理、IP、诉讼皆覆盖。Westlaw、Docusign、Box、Harvey、Solve Intelligence、Definely、Ironclad、Midpage、Trellis 等悉数入伙。Harvey、Relativity、Everlaw、Thomson Reuters 选择「集成进去」而非「自建对抗」 — 意味着行业承认了平台事实。Anthropic 正在做的，不是另一家 AI 公司，而是另一个 Salesforce，但以 prompt 为接口。这种打法下一站会复制到金融、医疗、税务。",
+      "source": "TechCrunch / LawSites / Law.com"
+    },
+    {
+      "tag": "🇨🇳 国产模型 · 百度",
+      "headline": "百度文心 5.1 · 搜索榜中文第一、全球第四、预训练成本仅业界 6%",
+      "summary": "5 月 9 日百度正式发布文心 5.1，主打「多维弹性预训练」，预训练成本仅同级别业界基准的约 6%。LMArena Search 榜单 1223 分，中文第一、全球第四，是 top10 唯一国产模型。Agent 评测超过 DeepSeek-V4-Pro，创意写作向 Gemini 3.1 Pro 看齐。看点不在分数，而在「每分能力的成本曲线」 — 当训练费降到 1/15，中等厂也能持续追平第一梯队。模型同步上架百度千帆与文心一言，企业可调。中文模型的下一战，是把性价比曲线压到对手不再忍受的位置。",
+      "source": "量子位 / 新浪科技"
+    },
+    {
+      "tag": "🇪🇺 政策 · EU AI ACT",
+      "headline": "欧盟 AI 法案 Omnibus 落槌 · 高风险条款延到 2027 年 12 月",
+      "summary": "5 月 7 日凌晨 4 点半欧盟理事会与议会就 AI Omnibus 达成临时协议：原定 2026 年 8 月生效的 Annex III 高风险条款延至 2027 年 12 月 2 日；Annex I 嵌入式高风险 AI 延至 2028 年 8 月。中小企业豁免扩展到 500 人规模的「小型中盘」。但 AI 生成内容标识反而被收紧 — 宽限期从 6 个月缩到 3 个月、2026 年 12 月 2 日落地。新增明文禁令：未经同意的性化/亲密 deepfake（「nudifier」工具）。监管在做减法，但留了底线。这是欧盟第一次承认 AI 立法节奏需要为产业留口子。",
+      "source": "Consilium / TechPolicy.Press"
+    }
+  ]
+},

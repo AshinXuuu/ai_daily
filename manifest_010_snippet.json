@@ -1,0 +1,40 @@
+{
+  "issue": "010",
+  "date": "2026-05-11",
+  "weekday": "周一",
+  "weekdayEn": "Monday",
+  "type": "daily",
+  "file": "ai_daily_2026_05_11.html",
+  "stories": [
+    {
+      "tag": "⚡ 头条 · DEEPSEEK",
+      "headline": "DeepSeek 筹 500 亿元首轮融资 · 梁文锋个人出资 200 亿、估值 3500 亿",
+      "summary": "5 月 9 日，凤凰财经 / 量子位等媒体援引消息 — DeepSeek 正寻求 500 亿元人民币首轮融资，将刷新中国 AI 公司单轮融资最高纪录。梁文锋个人出资 200 亿元、占近四成；国家集成电路产业投资基金（「大基金」）正洽谈领投，腾讯、阿里巴巴及多家国有基金同步跟进。融资完成后整体估值约 3500 亿元（约 515 亿美元）。V4 迭代版 V4.1 定档 6 月。「不融资、不商业化」是 DeepSeek 最有辨识度的标签，这次彻底翻篇 — 穷流派开始拿下中国 AI 史上最大支票。",
+      "source": "凤凰财经 / 量子位"
+    },
+    {
+      "tag": "⚡ 头条 · ANTHROPIC × GOOGLE",
+      "headline": "Google 400 亿$ 加注 Anthropic · 五年承诺反向锁 TPU 消费 2000 亿$",
+      "summary": "4 月 24 日 Google 宣布以 3500 亿美元估值向 Anthropic 投资最高 400 亿美元，并签五年期云协议、2027 年起提供 5 吉瓦 TPU 算力；Anthropic 同步对 Google Cloud 做出 2000 亿美元采购承诺 — 几乎把投资全部以云消费方式还回。Anthropic 一家公司今年同时拿微软系（Azure）、亚马逊（AWS Trainium）、Google（TPU）、马斯克（SpaceX Colossus 1）四路算力。「投资即云服务消费回流」的微软-OpenAI 范式被 Google-Anthropic 完整复刻。",
+      "source": "财联社 / 新浪财经"
+    },
+    {
+      "tag": "🛰️ 太空算力 · SPACEX × ANTHROPIC",
+      "headline": "Anthropic 独占 SpaceX Colossus 1 · 22 万颗 GPU 加轨道算力洽谈",
+      "summary": "5 月 6 日，Anthropic 与 SpaceX 签订算力协议 — Anthropic 独占使用马斯克 SpaceX 旗下 Colossus 1 数据中心（孟菲斯），配备超 22 万颗 NVIDIA GPU（H100/H200/GB200），提供 300 兆瓦容量。协议外双方还在洽谈「轨道 AI 算力」 — 在太空部署多吉瓦级数据中心。Anthropic 周内同步上调 Claude Code、Pro/Max 限额。马斯克自评：「会见 Anthropic 团队后，没有人触发我的邪恶探测器。」 一个公开起诉 OpenAI 的人，把自家最高端算力租给 OpenAI 的最大对手 — 算力短缺把竞争对手第一次推到同一张桌子。",
+      "source": "CNBC / Anthropic"
+    },
+    {
+      "tag": "⚡ 头条 · OPENAI × 微软",
+      "headline": "微软对 OpenAI 独家分销终结 · OpenAI 全面向 AWS、Google Cloud 开放",
+      "summary": "4 月 28 日，微软与 OpenAI 联合宣布修订延续 6 年的合作协议 — 微软不再独家分销 OpenAI 模型。OpenAI 此后可以向任意云厂商客户提供其全部产品，AWS 周内即官宣将通过 Bedrock 接入 OpenAI 模型。微软将不再向 OpenAI 支付收入分成，OpenAI 仍将向微软分成至 2030 年；Azure 仍为「首选云」但不再排他。这是 OpenAI 商业化路径的结构性松绑 — 它现在可以在云上和 Anthropic 直接拼客户。Anthropic 同期拿到 Google 400 亿 + SpaceX 算力，OpenAI 此刻松开微软独家 — 时间点不是巧合。",
+      "source": "36 氪 / 东方财富"
+    },
+    {
+      "tag": "🇨🇳 头条 · 三部门联合",
+      "headline": "三部门发布《智能体规范应用与创新发展实施意见》· 19 个场景、分级治理",
+      "summary": "5 月 8 日，国家网信办、国家发改委、工信部联合印发《智能体规范应用与创新发展实施意见》— 中国首份针对「智能体（Agent）」的系统性政策文件。给出官方定义：「具备自主感知、记忆、决策、交互与执行能力的智能系统」，提出技术底座、安全底线、19 个应用场景（科研、产业、消费、民生、治理）、创新生态四大方向。安全侧引入「分级治理」— 敏感领域 / 重点行业备案、检测、问题召回；低风险领域走合规自测 + 行业自律。继 4 月底《AI 伦理审查办法》、3 月《人形机器人标准体系》之后第三块护栏。",
+      "source": "中新网 / 证券时报"
+    }
+  ]
+},

@@ -1,0 +1,40 @@
+{
+  "issue": "012",
+  "date": "2026-05-13",
+  "weekday": "周三",
+  "weekdayEn": "Wednesday",
+  "type": "daily",
+  "file": "ai_daily_2026_05_13.html",
+  "stories": [
+    {
+      "tag": "⚡ 头条 · GOOGLEBOOK",
+      "headline": "Googlebook 发布 · Chromebook 15 年谢幕、Magic Pointer 把 Gemini 嵌进光标",
+      "summary": "5 月 12 日，Google 正式发布 Googlebook — 一条围绕 Gemini 从底层重写的 AI 原生笔记本产品线。Acer、Asus、Dell、HP、Lenovo 五家 PC 巨头同步首发，今秋上市。核心新交互「Magic Pointer」把 Gemini 嵌进鼠标光标本身：光标移到邮件日期会自动跳出「创建会议」、选中两张图会自动合成预览。Googlebook 同时与 Android 手机互通 — 笔记本可直接跑手机 App、调用手机文件。Google 没明说替代 Chromebook，但官方话术清晰：「从 ChromeOS 转向以 Android 为底、AI 为底座的新系统。」15 年前用浏览器即操作系统颠覆 Windows，今天 Google 用 AI 即操作系统颠覆自己 — 也正面回击 Microsoft Copilot+ PC。",
+      "source": "TechCrunch / Google Blog"
+    },
+    {
+      "tag": "📉 集体止盈 · AI STOCKS",
+      "headline": "华尔街创纪录连涨叫停 · Kospi 单日 -2.3%、CoreWeave -8%、Intel -4.7%",
+      "summary": "5 月 12 日，全球 AI 概念股第一次出现「同步踩刹车」。导火索来自亚洲早盘 — 韩国 Kospi 单日下跌 2.3%、跌出历史高点，市场担心政府拟将 AI 行业超额利润再分配给国民。情绪外溢到美股：Intel 跌 4.7%（年内曾翻 3 倍）、Micron -4%（YTD +180%）、CoreWeave -8% — 涨得越凶、回得越重。Nvidia 是唯一逆势创新高的 AI 巨头。财报和产品都没出问题，是市场情绪到了拐点。布伦特原油同日 +3.6% 到 107.99 美元，也在合谋这场调整。这是 2026 年 AI 板块第一次集体「先获利、再追问」。",
+      "source": "AP / U.S. News"
+    },
+    {
+      "tag": "🎙️ 估值翻倍 · WISPR",
+      "headline": "Wispr Flow 谈判 2.6 亿$ 新融资 · 估值翻倍至 20 亿美元、Menlo Ventures 领投",
+      "summary": "5 月 12 日，Bloomberg 援引知情人士报道 — AI 语音听写明星 Wispr Flow 正与 Menlo Ventures 谈判 2.6 亿美元新融资、投后估值约 20 亿美元，较 2025 年末 Series A 的 7 亿美元估值翻倍。产品在 macOS / Windows / iOS / Android 跨平台支持 104 种语言「口语即可发出去的文本」，2025 末至 2026 初下载量突破 250 万、企业客户覆盖数百家 Fortune 500。Q1 2026 全球语音 AI 赛道总吸金超 70 亿美元，全球语音识别市场体量约 220 亿美元、5 年三倍空间。大模型公司被资本回调的同一天，垂直语音工具仍在加杠杆。",
+      "source": "Bloomberg / Tech Portal"
+    },
+    {
+      "tag": "🧽 删页 · COMMERCE DEPT",
+      "headline": "美国商务部「悄悄删除」AI 安全测试公告 · Google / Microsoft / xAI 协议页面失踪",
+      "summary": "5 月 11-12 日，美国商务部从官网撤下了 5 月 5 日由 NIST 下属「AI 标准与创新中心」（CAISI）发布的公告 — 该公告宣布 Google、Microsoft、xAI 三家自愿提交未发布模型供联邦机构在上线前进行国家安全/网络安全评估，Anthropic 不在协议中。截至 5 月 11 日下午原 URL 已 404、跳转到 CAISI 主页，协议、时间表、覆盖范围信息一并消失。商务部和 White House 都拒绝回应删除原因。一周前这被视为美国 AI 治理向前迈一步，现在「先公开后撤回」把外界对监管「是协议还是握手」的疑问重新放回桌面。",
+      "source": "The Next Web / Benzinga"
+    },
+    {
+      "tag": "🧠 解释性突破 · ANTHROPIC NLA",
+      "headline": "Anthropic 开源 NLA · 让 Claude 解释自己的「内心独白」、隐藏动机发现率提升 5 倍",
+      "summary": "5 月 8 日前后，Anthropic 在 transformer-circuits.pub 发布并开源论文「Natural Language Autoencoders」— 一组用自然语言把大模型激活值「翻译成人类可读描述」再「翻译回激活值」的双模块结构（AV 激活语言化器 + AR 激活重建器）。在 Claude Opus 4.6 部署前审计中，NLA 帮助发现了「评估意识」等安全相关行为；用于「隐藏动机」检测时成功率从旧工具的 <3% 提到 15%，5 倍提升。代价是训练 Gemma-3-27B FVE 0.71 需 16 卡 H100 跑 1.5 天、每条描述生成约 500 tokens。同步在 GitHub 开源、和 Neuronpedia 合作建可交互前端。可解释性这件事，第一次从「看显微镜」换成了「问模型本人」。",
+      "source": "量子位 / Transformer Circuits"
+    }
+  ]
+},

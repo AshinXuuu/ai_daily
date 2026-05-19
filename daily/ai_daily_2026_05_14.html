@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 · 2026.05.14</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=JetBrains+Mono:wght@400;500;700&family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0d0b; --ink-2: #161410; --paper: #f4ecdb; --paper-2: #e8dfc9;
+    --muted: #8a8275; --rule: #2a2620; --signal: #ff4d1f; --signal-2: #ffb454; --tan: #c9a679;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink); color: var(--paper);
+    font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
+    font-weight: 300; line-height: 1.65; letter-spacing: 0.01em; overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255, 77, 31, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 90%, rgba(201, 166, 121, 0.035) 0%, transparent 50%);
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .masthead { border-bottom: 1px solid var(--rule); padding: 32px 0 24px; position: relative; }
+  .masthead-grid { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 32px; }
+  .edition { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .edition strong { color: var(--paper); font-weight: 500; }
+  .logo { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 38px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; text-align: center; font-variation-settings: "opsz" 144; }
+  .logo .accent { color: var(--signal); font-style: italic; font-weight: 600; }
+  .weather { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-align: right; line-height: 1.7; }
+  .weather .pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--signal); margin-right: 6px; animation: pulse 2s infinite; vertical-align: middle; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 77, 31, 0.5); }
+    50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(255, 77, 31, 0); }
+  }
+  .hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule); position: relative; }
+  .hero-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal); }
+  .hero-meta::before { content: ''; width: 40px; height: 1px; background: var(--signal); }
+  .hero h1 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: clamp(48px, 8vw, 96px); font-weight: 400; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 32px; font-variation-settings: "opsz" 144, "SOFT" 50; }
+  .hero h1 em { font-style: italic; font-weight: 600; color: var(--signal-2); }
+  .hero-lede { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.5; color: var(--paper-2); max-width: 680px; font-weight: 400; }
+  .date-block { position: absolute; top: 80px; right: 32px; text-align: right; font-family: 'JetBrains Mono', monospace; }
+  .date-block .day { font-family: 'Fraunces', serif; font-size: 120px; font-weight: 800; line-height: 0.9; color: var(--paper); font-variation-settings: "opsz" 144; letter-spacing: -0.05em; }
+  .date-block .month { font-size: 12px; letter-spacing: 0.2em; color: var(--muted); margin-top: 8px; }
+  .ticker { background: var(--ink-2); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); overflow: hidden; padding: 14px 0; position: relative; }
+  .ticker-track { display: flex; gap: 48px; white-space: nowrap; animation: scroll 60s linear infinite; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.05em; color: var(--paper-2); }
+  .ticker-track span { display: inline-flex; align-items: center; gap: 12px; }
+  .ticker-track .dot { color: var(--signal); font-size: 8px; }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .section { padding: 80px 0 40px; border-bottom: 1px solid var(--rule); }
+  .section-head { display: grid; grid-template-columns: 280px 1fr; gap: 48px; margin-bottom: 48px; align-items: start; }
+  .section-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--signal); margin-bottom: 12px; }
+  .section-title { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 56px; font-weight: 400; line-height: 0.95; letter-spacing: -0.03em; font-variation-settings: "opsz" 144; }
+  .section-title em { font-style: italic; color: var(--tan); font-weight: 600; }
+  .section-intro { font-family: 'Fraunces', serif; font-size: 17px; line-height: 1.6; color: var(--muted); padding-top: 16px; border-top: 1px solid var(--rule); }
+  .stories { display: grid; grid-template-columns: repeat(12, 1fr); gap: 32px; }
+  .story { grid-column: span 6; padding: 28px; background: linear-gradient(180deg, rgba(255,255,255,0.015) 0%, transparent 100%); border: 1px solid var(--rule); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; }
+  .story::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 1px; background: var(--signal); transition: width 0.6s ease; }
+  .story:hover { background: linear-gradient(180deg, rgba(255, 77, 31, 0.04) 0%, transparent 100%); border-color: rgba(255, 77, 31, 0.3); transform: translateY(-2px); }
+  .story:hover::before { width: 100%; }
+  .story.feature { grid-column: span 12; padding: 48px; background: linear-gradient(135deg, rgba(255, 77, 31, 0.06) 0%, rgba(201, 166, 121, 0.02) 100%); border-color: rgba(255, 77, 31, 0.25); }
+  .story.feature::after { content: 'FEATURED'; position: absolute; top: 24px; right: 24px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--signal); border: 1px solid var(--signal); padding: 4px 10px; }
+  .story-tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: var(--signal); margin-bottom: 16px; text-transform: uppercase; }
+  .story h3 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 26px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 16px; color: var(--paper); font-variation-settings: "opsz" 144; }
+  .story.feature h3 { font-size: 42px; line-height: 1.05; max-width: 90%; }
+  .story p { font-size: 15px; line-height: 1.7; color: var(--paper-2); margin-bottom: 20px; font-weight: 300; }
+  .story.feature p { font-family: 'Fraunces', serif; font-size: 19px; max-width: 720px; }
+  .story-meta { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 20px; border-top: 1px solid var(--rule); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.05em; }
+  .source { color: var(--muted); }
+  .source strong { color: var(--paper); font-weight: 500; }
+  .read-more { color: var(--signal); text-decoration: none; border: 1px solid var(--rule); padding: 6px 12px; transition: all 0.3s; white-space: nowrap; }
+  .read-more:hover { background: var(--signal); color: var(--ink); border-color: var(--signal); }
+  .story.span-4 { grid-column: span 4; }
+  .story.span-8 { grid-column: span 8; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--ink-2); }
+  .stat { padding: 40px 32px; border-right: 1px solid var(--rule); }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-family: 'Fraunces', serif; font-size: 56px; font-weight: 800; line-height: 1; color: var(--signal-2); letter-spacing: -0.04em; margin-bottom: 8px; font-variation-settings: "opsz" 144; }
+  .stat-num .unit { font-size: 22px; color: var(--paper); font-weight: 400; margin-left: 4px; }
+  .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; line-height: 1.4; }
+  .footer { padding: 80px 0 60px; text-align: center; border-top: 1px solid var(--rule); margin-top: 40px; }
+  .footer-mark { font-family: 'Fraunces', serif; font-style: italic; font-size: 28px; color: var(--paper); margin-bottom: 16px; font-variation-settings: "opsz" 144; }
+  .footer-mark .accent { color: var(--signal); }
+  .footer p { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+  .footer .divider { width: 60px; height: 1px; background: var(--signal); margin: 24px auto; }
+  @media (max-width: 900px) {
+    .wrap { padding: 0 20px; }
+    .masthead-grid { grid-template-columns: 1fr; gap: 16px; text-align: center; }
+    .weather { text-align: center; }
+    .date-block { position: static; text-align: left; margin-top: 32px; }
+    .date-block .day { font-size: 80px; }
+    .hero { padding: 48px 0 40px; }
+    .hero h1 { font-size: 44px; }
+    .hero-lede { font-size: 18px; }
+    .section-head { grid-template-columns: 1fr; gap: 16px; }
+    .section-title { font-size: 36px; }
+    .story, .story.feature { grid-column: span 12 !important; padding: 24px; }
+    .story.feature h3 { font-size: 28px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat { border-right: none; border-bottom: 1px solid var(--rule); padding: 28px 20px; }
+    .stat-num { font-size: 40px; }
+    .stat:nth-child(odd) { border-right: 1px solid var(--rule); }
+  }
+  @media (max-width: 500px) {
+    .stats { grid-template-columns: 1fr; }
+    .stat { border-right: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-grid">
+      <div class="edition">VOL. <strong>I</strong> · NO. <strong>013</strong></div>
+      <div class="logo">信号 <span class="accent">/ Signal</span></div>
+      <div class="weather"><span class="pulse"></span>LIVE · 14 MAY 2026<br>晴 · 洛杉矶 · 23°C</div>
+    </div>
+  </div>
+</header>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span><span class="dot">●</span> Anthropic 估值冲 9500 亿$ · 或反超 OpenAI</span>
+    <span><span class="dot">●</span> OpenAI 拆出 DeployCo · 40 亿$ 起步</span>
+    <span><span class="dot">●</span> Sierra 9.5 亿$ B+ 轮 · 估值 150 亿</span>
+    <span><span class="dot">●</span> 百度文心 5.1 · 搜索榜全球第四</span>
+    <span><span class="dot">●</span> Anthropic 推 20+ 法律连接器 · 12 个执业插件</span>
+    <span><span class="dot">●</span> 欧盟 AI Act Omnibus · 高风险延到 2027</span>
+    <span><span class="dot">●</span> Gemini Intelligence 装进 Android 系统层</span>
+    <span><span class="dot">●</span> Claude Mythos · 17 年老漏洞被挖出</span>
+    <span><span class="dot">●</span> 数据中心电力 2025 +17% · IEA 数据</span>
+    <span><span class="dot">●</span> BoundaryRouter · agent 路由免训练</span>
+    <span><span class="dot">●</span> Anthropic 估值冲 9500 亿$ · 或反超 OpenAI</span>
+    <span><span class="dot">●</span> OpenAI 拆出 DeployCo · 40 亿$ 起步</span>
+    <span><span class="dot">●</span> Sierra 9.5 亿$ B+ 轮 · 估值 150 亿</span>
+    <span><span class="dot">●</span> 百度文心 5.1 · 搜索榜全球第四</span>
+    <span><span class="dot">●</span> Anthropic 推 20+ 法律连接器 · 12 个执业插件</span>
+    <span><span class="dot">●</span> 欧盟 AI Act Omnibus · 高风险延到 2027</span>
+    <span><span class="dot">●</span> Gemini Intelligence 装进 Android 系统层</span>
+    <span><span class="dot">●</span> Claude Mythos · 17 年老漏洞被挖出</span>
+    <span><span class="dot">●</span> 数据中心电力 2025 +17% · IEA 数据</span>
+    <span><span class="dot">●</span> BoundaryRouter · agent 路由免训练</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-meta">今日要闻 · TODAY'S BRIEFING</div>
+    <h1>万亿前夜。<br>这一次<em>轮到 Anthropic</em>。</h1>
+    <p class="hero-lede">
+      NYT、Bloomberg、TechCrunch 多源交叉确认 — Anthropic 正与投资人洽谈一轮 300–500 亿美元新融资，估值上限 9500 亿美元，若拍板将一举超过 OpenAI 此前 8520 亿美元，成为全球最贵的 AI 初创公司。九个月前它估值还只是 380 亿；年化收入从 90 亿冲到 440 亿，Google 追投 400 亿、Amazon 追投 250 亿 — 云厂商在用基础设施换股权。模型层的资本叙事从一极变成双寡头，整个生态对两家公司算力定价权的依赖也被锁得更死。
+    </p>
+    <div class="date-block"><div class="day">14</div><div class="month">MAY · MMXXVI</div></div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">950<span class="unit">B$</span></div><div class="stat-label">Anthropic 新一轮估值上限<br>NYT / Bloomberg / TechCrunch</div></div>
+  <div class="stat"><div class="stat-num">4<span class="unit">B$</span></div><div class="stat-label">OpenAI DeployCo 启动资金<br>TPG / Advent / Bain / Brookfield</div></div>
+  <div class="stat"><div class="stat-num">6<span class="unit">%</span></div><div class="stat-label">文心 5.1 预训练成本<br>占同级别行业基准</div></div>
+  <div class="stat"><div class="stat-num">+17<span class="unit">%</span></div><div class="stat-label">2025 数据中心电力增长<br>国际能源署 IEA 报告</div></div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 01</div><h2 class="section-title">估值<em>地震</em></h2></div>
+      <p class="section-intro">钱去哪了？这一周硅谷连开三场大型融资 — Anthropic 把价签贴到 OpenAI 头顶、OpenAI 反手切出一家服务公司、Sierra 把客户成功也卖成了 150 亿。资本端的叙事正在重写。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">⚡ 资本头条 · ANTHROPIC</div>
+        <h3>Anthropic 拟以最高 9500 亿$ 估值再融 500 亿 · 估值或反超 OpenAI</h3>
+        <p>
+          NYT 5 月 12 日率先披露：Anthropic 与投资人就一轮 300–500 亿美元的新融资进行洽谈，估值最高可至 9500 亿美元。Bloomberg 跟进确认细节，TechCrunch 给出窗口期「两周内可能官宣」。这家公司今年 2 月最近一轮估值还是 3800 亿，9 个月翻 2.5 倍。真正撑得起这个数字的是收入 — annualized run rate 从年初的 90 亿冲到 5 月的 440 亿，企业市场尤其法律、金融、安全场景吃下大单。Google 已宣布追加 400 亿，Amazon 追加 250 亿 — 云厂商在用基础设施换股权。模型层的资本叙事正在从 OpenAI 一极转向「双寡头」 — 但代价是整个生态对这两家公司算力定价权的依赖被锁得更死。这是 2026 年 AI 资本市场最重要的一笔交易，还没签字。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>NYT / Bloomberg / TechCrunch</strong> · 2026.05.12-13</span>
+          <a class="read-more" href="https://techcrunch.com/2026/04/29/sources-anthropic-could-raise-a-new-50b-round-at-a-valuation-of-900b/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🏢 企业 AI · OPENAI</div>
+        <h3>OpenAI 拆出「DeployCo」· 40 亿$ 起步、收购伦敦咨询 Tomoro</h3>
+        <p>
+          5 月 11 日，OpenAI 官宣成立 OpenAI Deployment Company（内部叫 DeployCo），TPG 领投、Advent / Bain Capital / Brookfield 联合发起，启动资金超 40 亿美元。同步收购伦敦 AI 咨询公司 Tomoro，把约 150 名 Forward Deployed Engineer 一次性搬进新公司。这是一个赤裸的转向 — 模型不再「丢一个 SDK 给客户自己玩」，而是派人嵌进对方组织。客户列表里有 Tesco、Virgin Atlantic、Supercell — 都是要 SLA、合规、可审计的「传统重工业」。OpenAI 在反向追赶 Anthropic 早就搭好的 enterprise consulting 阵地，资本叙事换打法。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>OpenAI / Bloomberg / Axios</strong> · 2026.05.11</span>
+          <a class="read-more" href="https://openai.com/index/openai-launches-the-deployment-company/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🤝 客户 AGENT · SIERRA</div>
+        <h3>Bret Taylor 的 Sierra 拿 9.5 亿$ · 估值 150 亿、Tiger Global / GV 领投</h3>
+        <p>
+          5 月 4 日，Tiger Global 与 GV 领投，Benchmark / Sequoia / Greenoaks 跟投，Sierra 拿下 9.5 亿美元新一轮融资，post-money 估值 150 亿 — 距离上一轮 100 亿仅 8 个月。Sierra 的牌是「客户 Agent」：财富 50 强里超 40% 已是它的客户，包括 Prudential、Cigna、Blue Cross Blue Shield、Rocket Mortgage。ARR 从去年 11 月的 1 亿冲到今年 2 月的 1.5 亿。资本相信 customer-facing agent 是最快变现的 agent 形态 — 因为客户成功这件事本来就有钱、有 KPI、有合同。这一轮押注的是「应用层比基础模型更近钱」。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>TechCrunch / CNBC</strong> · 2026.05.04</span>
+          <a class="read-more" href="https://techcrunch.com/2026/05/04/sierra-raises-950m-as-the-race-to-own-enterprise-ai-gets-serious/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 02</div><h2 class="section-title">模型<em>上桌</em></h2></div>
+      <p class="section-intro">中文模型抢搜索榜、Google 把 Gemini 嵌进 Android 操作系统、Anthropic 把整条法律行业打包搬进 Claude — 产品端的发布密度，正在追赶资本端。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">⚖️ 行业拓荒 · CLAUDE FOR LEGAL</div>
+        <h3>Anthropic 一口气推 20+ 法律连接器、12 个执业领域插件 · Claude for Legal 全面落地</h3>
+        <p>
+          5 月 13 日，Anthropic 推出 Claude for Legal，发布 20 多个 MCP 连接器和 12 个面向具体执业领域的插件 — 商法、公司法（含 M&A 尽调与交割清单）、雇佣法、隐私法、产品法、监管法、AI 治理法、IP 法、诉讼法皆有覆盖。Westlaw、Docusign、Box、Harvey、Solve Intelligence、Definely、Ironclad、Midpage、Trellis、Legal Data Hunter、Descrybe、Free Law Project 一并入伙。这不是「再发一个法律 AI 助手」，而是 Anthropic 在用「插件市场 + 标准协议」把整条法律行业的工作流抽进 Claude。Harvey、Relativity、Everlaw、Thomson Reuters 选择「集成进去」而不是「自建对抗」 — 这意味着行业承认了平台事实。这种打法接下来会复制到金融、医疗、税务。Anthropic 正在做的，不是另一家 AI 公司，而是另一个 Salesforce — 但以 prompt 为接口。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>TechCrunch / LawSites / Law.com</strong> · 2026.05.12-13</span>
+          <a class="read-more" href="https://techcrunch.com/2026/05/12/the-ai-legal-services-industry-is-heating-up-anthropic-is-getting-in-on-the-action/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🇨🇳 国产模型 · 百度</div>
+        <h3>百度文心 5.1 · 搜索榜中文第一、全球第四、预训练成本仅业界 6%</h3>
+        <p>
+          5 月 9 日，百度正式发布文心 5.1，主打「多维弹性预训练」，让基础性能领先的同时，预训练成本只占同级别业界基准的约 6%。LMArena Search 榜单 1223 分，中文第一、全球第四，是 top10 里唯一国产模型。Agent 评测超过 DeepSeek-V4-Pro，创意写作向 Gemini 3.1 Pro 看齐。看点不在分数，而在「每分能力的成本曲线」 — 当训练费降到 1/15，「中等厂」也能持续追平第一梯队。模型同步上架百度千帆与文心一言，企业可调。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>量子位 / 新浪科技</strong> · 2026.05.09</span>
+          <a class="read-more" href="https://www.qbitai.com/2026/05/414496.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">📱 系统集成 · GOOGLE</div>
+        <h3>Gemini Intelligence 装进 Android · Google 把模型推到操作系统层</h3>
+        <p>
+          Google 正式公布 Gemini Intelligence 进入 Android — 自动化复杂任务、摘要网页、自动填表，从今夏起率先在三星与 Pixel 上线，年内扩展至更多设备。同期 DeepMind 在 Google AI Studio 公布「AI 鼠标指针」原型 — 不仅看到你点哪儿，还理解你在指什么、为什么指。这是 Apple Intelligence 的对位，但路径不同：Apple 是「端侧轻 + 私有云重」，Google 直接 OS 级集成 Gemini 3。下一代界面竞争从「App 层」下沉到「系统服务层」 — 谁的模型在系统里跑，谁就拿得到行为数据流。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Google Blog / MarkTechPost</strong> · 2026.05.13</span>
+          <a class="read-more" href="https://blog.google/products-and-platforms/platforms/android/gemini-intelligence/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 03</div><h2 class="section-title">监管与<em>边界</em></h2></div>
+      <p class="section-intro">欧盟把高风险条款向后顺延一年半、Anthropic 把「挖洞能力」圈起来不外放。监管和模型能力，还在赛跑 — 但都开始懂得「分级」。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">🇪🇺 政策 · EU AI ACT</div>
+        <h3>欧盟 AI 法案 Omnibus 落槌 · 高风险条款延到 2027 年 12 月</h3>
+        <p>
+          5 月 7 日凌晨 4 点半，欧盟理事会与议会就 AI Omnibus 达成临时协议：原定 2026 年 8 月生效的 Annex III 高风险条款延至 2027 年 12 月 2 日；嵌入受监管产品的 Annex I 高风险 AI 延至 2028 年 8 月。中小企业豁免扩展到 500 人规模的「小型中盘」。但透明度反而被收紧 — AI 生成内容的标识要求宽限期从 6 个月缩到 3 个月，2026 年 12 月 2 日就要落地。新增明文禁令：未经同意的性化/亲密 deepfake（「nudifier」工具）。监管在做减法，但留了底线。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Consilium / TechPolicy.Press</strong> · 2026.05.07</span>
+          <a class="read-more" href="https://www.consilium.europa.eu/en/press/press-releases/2026/05/07/artificial-intelligence-council-and-parliament-agree-to-simplify-and-streamline-rules/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🛡️ 限定开放 · CLAUDE MYTHOS</div>
+        <h3>Claude Mythos 找到 17 年前 FreeBSD 远控漏洞 · Project Glasswing 限定 11 家机构</h3>
+        <p>
+          red.anthropic.com 的 Mythos Preview 报告披露：该模型已自动发现并利用每一个主流操作系统和浏览器中的零日漏洞，其中一例是 17 年前 FreeBSD NFS 的远程提权（CVE-2026-4747）。Anthropic 因此选择「不公开发布」，转而启动 Project Glasswing — 让 AWS、Apple、Broadcom、Cisco、CrowdStrike、Google、JPMorgan、Linux Foundation、Microsoft、NVIDIA、Palo Alto Networks 等机构限定使用。这是 frontier 模型第一次明确「按攻击能力分级管控」。围绕 Mythos 的争议 — 这是「提前防御」还是「诱发军备竞赛」 — 会贯穿 2026 整年。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>red.anthropic.com / The Hacker News / CNBC</strong> · 2026.04-05</span>
+          <a class="read-more" href="https://red.anthropic.com/2026/mythos-preview/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 04</div><h2 class="section-title">算力与<em>开源</em></h2></div>
+      <p class="section-intro">电力正变成 AI 真正的天花板、路由变成新的工程问题 — 前线在挪向「基础设施」和「系统工程」。能力曲线已不只在模型本身。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-8">
+        <div class="story-tag">⚡ 基础设施 · IEA</div>
+        <h3>2025 全球数据中心电力 +17% · 5 大科技公司今年 capex 再涨 75%、SMR 预订翻倍</h3>
+        <p>
+          国际能源署 IEA 最新数据：2025 年全球数据中心耗电同比 +17%，AI 数据中心增速更高。前 5 家科技公司 2025 年合计 capex 已破 4000 亿美元，2026 年还要再涨 75%。美国数据中心耗电从今天的 ~180 TWh，预测 2030 年到 400-600 TWh — 若数据中心是一个国家，按某些估算会成为全球第五大耗能体，介于日本和俄罗斯之间。电网压力把「AI 能力天花板」从算力换成了「电力可获取性」。SMR（小型模块化反应堆）的条件性 offtake 预订量已从 2024 年底的 25 GW 涨到 45 GW。下一个「GPU 短缺」的形式，可能是「变电站短缺」。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>IEA / Datacenter Knowledge</strong> · 2026.05</span>
+          <a class="read-more" href="https://www.iea.org/reports/energy-and-ai/energy-demand-from-ai" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">📄 学术 · ARXIV 2605.07180</div>
+        <h3>BoundaryRouter · 免训练的 agent / LLM 路由</h3>
+        <p>
+          5 月新挂出的 cs.LG 工作 BoundaryRouter 给出一种完全免训练的 agent 路由方案 — 用早期行为经验 + rubric 引导的推理，在线决定一个 query 该用直接 LLM 推理回答，还是要升级到完整 agent pipeline。本质是把「路由」从模型层下放到决策层，对 token 成本曲线友好，对延迟友好，可能很快进入开源 agent 框架的默认配置。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>arXiv</strong> · 2026.05</span>
+          <a class="read-more" href="https://arxiv.org/abs/2605.07180" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-mark">信号 <span class="accent">/</span> Signal</div>
+    <div class="divider"></div>
+    <p>第 013 期 · 2026 年 5 月 14 日 · 周四</p>
+    <p style="margin-top:8px;">本期收录 5.4 — 5.14 共 10 条 AI 相关动态</p>
+  </div>
+</footer>
+
+</body>
+</html>

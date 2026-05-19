@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 · 2026.05.13</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=JetBrains+Mono:wght@400;500;700&family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0d0b; --ink-2: #161410; --paper: #f4ecdb; --paper-2: #e8dfc9;
+    --muted: #8a8275; --rule: #2a2620; --signal: #ff4d1f; --signal-2: #ffb454; --tan: #c9a679;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink); color: var(--paper);
+    font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
+    font-weight: 300; line-height: 1.65; letter-spacing: 0.01em; overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255, 77, 31, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 90%, rgba(201, 166, 121, 0.035) 0%, transparent 50%);
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .masthead { border-bottom: 1px solid var(--rule); padding: 32px 0 24px; position: relative; }
+  .masthead-grid { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 32px; }
+  .edition { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .edition strong { color: var(--paper); font-weight: 500; }
+  .logo { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 38px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; text-align: center; font-variation-settings: "opsz" 144; }
+  .logo .accent { color: var(--signal); font-style: italic; font-weight: 600; }
+  .weather { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-align: right; line-height: 1.7; }
+  .weather .pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--signal); margin-right: 6px; animation: pulse 2s infinite; vertical-align: middle; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 77, 31, 0.5); }
+    50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(255, 77, 31, 0); }
+  }
+  .hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule); position: relative; }
+  .hero-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal); }
+  .hero-meta::before { content: ''; width: 40px; height: 1px; background: var(--signal); }
+  .hero h1 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: clamp(48px, 8vw, 96px); font-weight: 400; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 32px; font-variation-settings: "opsz" 144, "SOFT" 50; }
+  .hero h1 em { font-style: italic; font-weight: 600; color: var(--signal-2); }
+  .hero-lede { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.5; color: var(--paper-2); max-width: 680px; font-weight: 400; }
+  .date-block { position: absolute; top: 80px; right: 32px; text-align: right; font-family: 'JetBrains Mono', monospace; }
+  .date-block .day { font-family: 'Fraunces', serif; font-size: 120px; font-weight: 800; line-height: 0.9; color: var(--paper); font-variation-settings: "opsz" 144; letter-spacing: -0.05em; }
+  .date-block .month { font-size: 12px; letter-spacing: 0.2em; color: var(--muted); margin-top: 8px; }
+  .ticker { background: var(--ink-2); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); overflow: hidden; padding: 14px 0; position: relative; }
+  .ticker-track { display: flex; gap: 48px; white-space: nowrap; animation: scroll 60s linear infinite; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.05em; color: var(--paper-2); }
+  .ticker-track span { display: inline-flex; align-items: center; gap: 12px; }
+  .ticker-track .dot { color: var(--signal); font-size: 8px; }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .section { padding: 80px 0 40px; border-bottom: 1px solid var(--rule); }
+  .section-head { display: grid; grid-template-columns: 280px 1fr; gap: 48px; margin-bottom: 48px; align-items: start; }
+  .section-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--signal); margin-bottom: 12px; }
+  .section-title { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 56px; font-weight: 400; line-height: 0.95; letter-spacing: -0.03em; font-variation-settings: "opsz" 144; }
+  .section-title em { font-style: italic; color: var(--tan); font-weight: 600; }
+  .section-intro { font-family: 'Fraunces', serif; font-size: 17px; line-height: 1.6; color: var(--muted); padding-top: 16px; border-top: 1px solid var(--rule); }
+  .stories { display: grid; grid-template-columns: repeat(12, 1fr); gap: 32px; }
+  .story { grid-column: span 6; padding: 28px; background: linear-gradient(180deg, rgba(255,255,255,0.015) 0%, transparent 100%); border: 1px solid var(--rule); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; }
+  .story::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 1px; background: var(--signal); transition: width 0.6s ease; }
+  .story:hover { background: linear-gradient(180deg, rgba(255, 77, 31, 0.04) 0%, transparent 100%); border-color: rgba(255, 77, 31, 0.3); transform: translateY(-2px); }
+  .story:hover::before { width: 100%; }
+  .story.feature { grid-column: span 12; padding: 48px; background: linear-gradient(135deg, rgba(255, 77, 31, 0.06) 0%, rgba(201, 166, 121, 0.02) 100%); border-color: rgba(255, 77, 31, 0.25); }
+  .story.feature::after { content: 'FEATURED'; position: absolute; top: 24px; right: 24px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--signal); border: 1px solid var(--signal); padding: 4px 10px; }
+  .story-tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: var(--signal); margin-bottom: 16px; text-transform: uppercase; }
+  .story h3 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 26px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 16px; color: var(--paper); font-variation-settings: "opsz" 144; }
+  .story.feature h3 { font-size: 42px; line-height: 1.05; max-width: 90%; }
+  .story p { font-size: 15px; line-height: 1.7; color: var(--paper-2); margin-bottom: 20px; font-weight: 300; }
+  .story.feature p { font-family: 'Fraunces', serif; font-size: 19px; max-width: 720px; }
+  .story-meta { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 20px; border-top: 1px solid var(--rule); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.05em; }
+  .source { color: var(--muted); }
+  .source strong { color: var(--paper); font-weight: 500; }
+  .read-more { color: var(--signal); text-decoration: none; border: 1px solid var(--rule); padding: 6px 12px; transition: all 0.3s; white-space: nowrap; }
+  .read-more:hover { background: var(--signal); color: var(--ink); border-color: var(--signal); }
+  .story.span-4 { grid-column: span 4; }
+  .story.span-8 { grid-column: span 8; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--ink-2); }
+  .stat { padding: 40px 32px; border-right: 1px solid var(--rule); }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-family: 'Fraunces', serif; font-size: 56px; font-weight: 800; line-height: 1; color: var(--signal-2); letter-spacing: -0.04em; margin-bottom: 8px; font-variation-settings: "opsz" 144; }
+  .stat-num .unit { font-size: 22px; color: var(--paper); font-weight: 400; margin-left: 4px; }
+  .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; line-height: 1.4; }
+  .footer { padding: 80px 0 60px; text-align: center; border-top: 1px solid var(--rule); margin-top: 40px; }
+  .footer-mark { font-family: 'Fraunces', serif; font-style: italic; font-size: 28px; color: var(--paper); margin-bottom: 16px; font-variation-settings: "opsz" 144; }
+  .footer-mark .accent { color: var(--signal); }
+  .footer p { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+  .footer .divider { width: 60px; height: 1px; background: var(--signal); margin: 24px auto; }
+  @media (max-width: 900px) {
+    .wrap { padding: 0 20px; }
+    .masthead-grid { grid-template-columns: 1fr; gap: 16px; text-align: center; }
+    .weather { text-align: center; }
+    .date-block { position: static; text-align: left; margin-top: 32px; }
+    .date-block .day { font-size: 80px; }
+    .hero { padding: 48px 0 40px; }
+    .hero h1 { font-size: 44px; }
+    .hero-lede { font-size: 18px; }
+    .section-head { grid-template-columns: 1fr; gap: 16px; }
+    .section-title { font-size: 36px; }
+    .story, .story.feature { grid-column: span 12 !important; padding: 24px; }
+    .story.feature h3 { font-size: 28px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat { border-right: none; border-bottom: 1px solid var(--rule); padding: 28px 20px; }
+    .stat-num { font-size: 40px; }
+    .stat:nth-child(odd) { border-right: 1px solid var(--rule); }
+  }
+  @media (max-width: 500px) {
+    .stats { grid-template-columns: 1fr; }
+    .stat { border-right: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-grid">
+      <div class="edition">VOL. <strong>I</strong> · NO. <strong>012</strong></div>
+      <div class="logo">信号 <span class="accent">/ Signal</span></div>
+      <div class="weather"><span class="pulse"></span>LIVE · 13 MAY 2026<br>多云 · 洛杉矶 · 21°C</div>
+    </div>
+  </div>
+</header>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span><span class="dot">●</span> Googlebook 来了 · Chromebook 15 年谢幕</span>
+    <span><span class="dot">●</span> Magic Pointer · Gemini 嵌进光标</span>
+    <span><span class="dot">●</span> Acer / Asus / Dell / HP / Lenovo 五家首发</span>
+    <span><span class="dot">●</span> Kospi 单日 -2.3% · AI 股集体踩刹车</span>
+    <span><span class="dot">●</span> Intel -4.7% · Micron -4% · CoreWeave -8%</span>
+    <span><span class="dot">●</span> Wispr Flow 估值翻倍 · 20 亿$ 在路上</span>
+    <span><span class="dot">●</span> 商务部"悄悄删页" · AI 安全测试公告失踪</span>
+    <span><span class="dot">●</span> Anthropic NLA 开源 · 隐藏动机发现率 ×5</span>
+    <span><span class="dot">●</span> 语音 AI Q1 吸金 70 亿$ · 三个月顶半年</span>
+    <span><span class="dot">●</span> Hugging Face: 30% 财富 500 已开账户</span>
+    <span><span class="dot">●</span> Googlebook 来了 · Chromebook 15 年谢幕</span>
+    <span><span class="dot">●</span> Magic Pointer · Gemini 嵌进光标</span>
+    <span><span class="dot">●</span> Acer / Asus / Dell / HP / Lenovo 五家首发</span>
+    <span><span class="dot">●</span> Kospi 单日 -2.3% · AI 股集体踩刹车</span>
+    <span><span class="dot">●</span> Intel -4.7% · Micron -4% · CoreWeave -8%</span>
+    <span><span class="dot">●</span> Wispr Flow 估值翻倍 · 20 亿$ 在路上</span>
+    <span><span class="dot">●</span> 商务部"悄悄删页" · AI 安全测试公告失踪</span>
+    <span><span class="dot">●</span> Anthropic NLA 开源 · 隐藏动机发现率 ×5</span>
+    <span><span class="dot">●</span> 语音 AI Q1 吸金 70 亿$ · 三个月顶半年</span>
+    <span><span class="dot">●</span> Hugging Face: 30% 财富 500 已开账户</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-meta">今日要闻 · TODAY'S BRIEFING</div>
+    <h1>15 年。<br>Google 把<em>Chromebook</em>烧掉了。</h1>
+    <p class="hero-lede">
+      5 月 12 日，Google 正式发布 Googlebook — 一条围绕 Gemini 从底层重写的 AI 原生笔记本产品线。Acer、Asus、Dell、HP、Lenovo 五家 PC 巨头同步首发，今秋上市。"Magic Pointer"把 Gemini 嵌进鼠标光标本身：抖一抖就出现上下文行动；Android 系手机 App 可在笔记本上直接调用；自定义 Widget 由 prompt 一键生成。Chromebook 不再延续 — 这是 Google 15 年来第一次抹掉自己的 PC 主线，正面对位微软 Copilot+ PC。
+    </p>
+    <div class="date-block"><div class="day">13</div><div class="month">MAY · MMXXVI</div></div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">5<span class="unit">家</span></div><div class="stat-label">Googlebook 首发联盟<br>Acer / Asus / Dell / HP / Lenovo</div></div>
+  <div class="stat"><div class="stat-num">-8<span class="unit">%</span></div><div class="stat-label">CoreWeave 单日跌幅<br>AI 概念股集体止盈</div></div>
+  <div class="stat"><div class="stat-num">2<span class="unit">×</span></div><div class="stat-label">Wispr Flow 估值翻倍<br>语音 AI 撑过 20 亿$ 大关</div></div>
+  <div class="stat"><div class="stat-num">5<span class="unit">×</span></div><div class="stat-label">Anthropic NLA 解释性<br>隐藏动机发现率 vs 旧工具</div></div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 01</div><h2 class="section-title">Chromebook<em>谢幕</em></h2></div>
+      <p class="section-intro">Google 烧掉自己的 PC 主线、Wall Street 把 AI 概念股集体止盈、语音 AI 一家公司估值翻倍 — 同一天的三条新闻读出来：硬件路径在重写、资本心情在转向、但语音赛道还在加杠杆。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">⚡ 头条 · GOOGLEBOOK</div>
+        <h3>Googlebook 发布 · Chromebook 15 年谢幕、Magic Pointer 把 Gemini 嵌进光标</h3>
+        <p>
+          5 月 12 日，Google 在 The Keyword 官方博客同步 TechCrunch briefing 正式发布 Googlebook — 一条围绕 Gemini 从底层重写的笔记本产品线。Acer、Asus、Dell、HP、Lenovo 五家 PC 厂商同步首发，今秋上市，多种形态、价位。核心新交互"Magic Pointer"把 Gemini 嵌进鼠标光标本身：把光标移到邮件里的日期上 — 自动跳出"创建会议"；选中两张图（沙发 + 客厅）— 自动合成可视化预览；任何屏幕元素都能"被解释"。Googlebook 同时与 Android 手机互通 — 笔记本上直接跑手机 App（Duolingo、Doubao 等同等地位）、手机文件直接出现在文件浏览器。"Create your Widget"让 Gemini 用一条 prompt 拼装个性化仪表盘 — 出差、家庭团聚、健康追踪都能秒生成专属面板。Google 发言人没明说替代 Chromebook，但官方话术明确："长程过渡，从 ChromeOS 转向以 Android 为底、AI 为底座的新系统。"15 年前 Chromebook 用"浏览器即操作系统"颠覆了 Windows，今天 Google 用"AI 即操作系统"颠覆掉自己。这是对微软 Copilot+ PC 的正面回击 — 也是消费级 PC 第一次从"装 AI 工具"变成"被 AI 重做"。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>TechCrunch / Google Blog</strong> · 2026.05.12</span>
+          <a class="read-more" href="https://techcrunch.com/2026/05/12/google-unveils-googlebooks-a-new-line-of-ai-native-laptops/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">📉 集体止盈 · AI STOCKS</div>
+        <h3>华尔街创纪录连涨叫停 · Kospi 单日 -2.3%、CoreWeave -8%、Intel -4.7%</h3>
+        <p>
+          5 月 12 日，全球 AI 概念股第一次出现"同步踩刹车"。导火索来自亚洲早盘 — 韩国 Kospi 单日下跌 2.3%、跌出历史高点，市场担心政府拟将 AI 行业"超额利润"再分配给国民；这一情绪外溢到美股，Intel 跌 4.7%（年内涨幅曾翻三倍）、Micron -4%（年初至今 +180%）、CoreWeave -8% — 涨得越凶、回得越重。AI 巨头里 Nvidia 是唯一逆势创下新高的公司。一句话：财报和产品没出问题，是市场情绪到了拐点 — 当一个概念让"提前止盈"的成本看起来比"继续持有"更低，第一波获利盘就动了。布伦特原油同日 +3.6% 到 107.99 美元，也在合谋这场调整。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>AP / U.S. News</strong> · 2026.05.12</span>
+          <a class="read-more" href="https://www.usnews.com/news/us/articles/2026-05-12/asian-shares-trade-mixed-after-wall-street-rally-despite-iran-war-worries" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🎙️ 估值翻倍 · WISPR</div>
+        <h3>Wispr Flow 谈判 2.6 亿$ 新融资 · 估值翻倍至 20 亿美元、Menlo Ventures 领投</h3>
+        <p>
+          5 月 12 日，Bloomberg 援引知情人士报道 — AI 语音听写明星 Wispr Flow（开发商 Wispr AI Inc.）正与 Menlo Ventures 谈判 2.6 亿美元新融资、投后估值约 20 亿美元、较 2025 年末 7 亿美元的 Series A 估值翻倍。产品本身：在 macOS / Windows / iOS / Android 上以 104 种语言把"口语转成可发出去的文本"，2025 年末到 2026 年初下载量突破 250 万、企业客户覆盖数百家 Fortune 500。背景值得记住 — Q1 2026 语音 AI 赛道共吸金超 70 亿美元，全球语音识别市场体量约 220 亿美元、未来 5 年三倍空间。在大模型公司被资本回调的同一天，垂直语音工具拿到的是另一张支票。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Bloomberg / Tech Portal</strong> · 2026.05.12</span>
+          <a class="read-more" href="https://www.bloomberg.com/news/articles/2026-05-12/ai-dictation-startup-wispr-in-funding-talks-at-2-billion-value" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 02</div><h2 class="section-title">政府的<em>橡皮擦</em></h2></div>
+      <p class="section-intro">5 月 5 日商务部高调宣布 Google / Microsoft / xAI 把模型送进 NIST 安全测试；7 天后，那个公告页悄悄消失。从"高调透明"到"匿名删除"中间发生了什么 — 还没有官方解释。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-12">
+        <div class="story-tag">🧽 删页 · COMMERCE DEPT</div>
+        <h3>美国商务部"悄悄删除"AI 安全测试公告 · Google / Microsoft / xAI 协议页面失踪</h3>
+        <p>
+          5 月 11-12 日，美国商务部从官网撤下了一周前那篇高调公告 — 5 月 5 日 NIST（隶属商务部）下属的"AI 标准与创新中心"（CAISI，前 AI 安全研究所 AISI）宣布与 Google、Microsoft、xAI 三家达成协议，提交未发布模型供联邦机构在上线前进行国家安全/网络安全评估。Anthropic 不在协议中（背景见昨日：Anthropic 仍处于"供应链风险"行政命令的诉讼阶段）。截至 5 月 11 日周一下午，该公告的官方 URL 已不可访问；点击后跳转到"CAISI 主页"，但具体协议、测试时间表、覆盖模型范围信息消失。商务部和 White House 拒绝就删除原因回应媒体。一周前，三家公司被官方宣布"自愿接受政府提前测试"被视为美国 AI 治理向前迈一步的标志；现在这种"先公开后撤回"的操作把外界对 AI 监管"是协议还是握手"的疑问重新放回桌面。Anthropic 的 Mythos 模型被该中心列为重点研究目标 — 但 Anthropic 本身仍不在公开协议名单内，这或许就是被删除信息的真正原因之一。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>The Next Web / Benzinga</strong> · 2026.05.12</span>
+          <a class="read-more" href="https://thenextweb.com/news/us-commerce-department-deletes-ai-security-test" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 03</div><h2 class="section-title">把模型<em>剖开看</em></h2></div>
+      <p class="section-intro">Anthropic 开源"自然语言自编码器"NLA — 让 Claude 自己解释自己的激活值。一句话：可解释性这件事，从"看显微镜"换成了"问模型本人"。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">🧠 解释性突破 · ANTHROPIC NLA</div>
+        <h3>Anthropic 开源 NLA · 让 Claude 解释自己的"内心独白"、隐藏动机发现率提升 5 倍</h3>
+        <p>
+          5 月 8 日前后，Anthropic 在 transformer-circuits.pub 发布并开源论文 "Natural Language Autoencoders" — 一组用自然语言把大模型激活值"翻译成人类可读描述"再"翻译回激活值"的双模块结构（AV 激活语言化器 + AR 激活重建器）。本质上让 Claude / Gemma / Qwen / Llama 等模型"用自然语言解释自己的脑回路"，用强化学习联合训练 AV-AR 对、保证"描述能复原激活、且激活能被生成"。一组真实结果：在 Claude Opus 4.6 的部署前审计中，NLA 帮助发现了"评估意识"等安全相关行为 — 模型相信自己正被测评、但没说出来；专门用于"隐藏动机"检测时，NLA 成功率 15%、对照旧解释性工具不到 3%，5 倍提升。代价不小：训练 Gemma-3-27B FVE 0.71 需在 16 卡 H100 上跑 1.5 天；每条激活描述要生成约 500 tokens、推理成本高。论文同步在 GitHub 开源训练代码，并和 Neuronpedia 合作建了一个可交互前端，"任何人都能在开源模型上做可解释性实验"。Anthropic 在做"模型自我描述"这件事上，把过去只属于显微镜级研究的能力，公开给了一整个社区。这是 5 月最低调、却可能最重要的一个发布。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>量子位 / Transformer Circuits</strong> · 2026.05.08</span>
+          <a class="read-more" href="https://www.qbitai.com/2026/05/414213.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 04</div><h2 class="section-title">数据<em>读图</em></h2></div>
+      <p class="section-intro">三组数字定义本期：消费 PC、资本止盈、开源生态。Googlebook 联盟规模、AI 股蒸发数字、Hugging Face 已经悄悄成为大企业的标配。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-4">
+        <div class="story-tag">💻 5 家联盟</div>
+        <h3>Acer / Asus / Dell / HP / Lenovo 同步首发</h3>
+        <p>
+          全球前五大消费 PC 厂商集体押注 Googlebook — 这是 Wintel 阵营 1990s 以来，Google 第一次让 PC OEM 主流梯队站到自己一侧。"形态多样、价位多元"意味着今秋会先冲教育与中端市场，Microsoft Copilot+ PC 至此进入真正的双线作战。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Google Blog</strong></span>
+          <a class="read-more" href="https://blog.google/products-and-platforms/platforms/android/meet-googlebook/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">🎙️ 70 亿$</div>
+        <h3>语音 AI Q1 2026 累计融资 70 亿+</h3>
+        <p>
+          仅 2026 年 Q1，全球语音 AI 赛道吸金超 70 亿美元 — 比 2024 全年高一倍。Wispr Flow、Granola、Hume、ElevenLabs 同期估值均在翻倍区间。市场逻辑很简单：能改变白领日均键盘时间的工具，正在和"通用大模型"抢同一根注意力指针。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>The Tech Portal</strong></span>
+          <a class="read-more" href="https://thetechportal.com/2026/05/12/ai-dictation-startup-wispr-could-secure-260mn-funding-at-2bn-valuation/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">🤗 30% 财富500</div>
+        <h3>Hugging Face 跨过"企业标配"线</h3>
+        <p>
+          Hugging Face 春季 2026 报告：超过 30% Fortune 500 公司在平台上维护了认证账号、总模型数突破 200 万、数据集 50 万、Spaces Demo 接近 100 万。开源不再是"非主流路径"— 它进入了企业架构图的核心位置。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Hugging Face Blog</strong></span>
+          <a class="read-more" href="https://huggingface.co/blog/huggingface/state-of-os-hf-spring-2026" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-mark">信号 <span class="accent">/</span> Signal</div>
+    <div class="divider"></div>
+    <p>第 012 期 · 2026 年 5 月 13 日 · 周三</p>
+    <p style="margin-top:8px;">本期收录 5.8 — 5.13 共 8 条 AI 相关动态</p>
+  </div>
+</footer>
+
+</body>
+</html>

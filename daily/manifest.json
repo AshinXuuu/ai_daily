@@ -1,0 +1,634 @@
+{
+  "_comment": "信号/Signal AI 日报清单 · 每天只需要在 issues 数组顶部插入一项新的对象。最新的在最上面。",
+  "issues": [
+    {
+      "issue": "016",
+      "date": "2026-05-19",
+      "weekday": "周二",
+      "weekdayEn": "Tuesday",
+      "type": "daily",
+      "file": "ai_daily_2026_05_19.html",
+      "stories": [
+        {
+          "tag": "⚡ 资本头条 · ANTHROPIC",
+          "headline": "Anthropic 谈 $300 亿融资、估值 $9000 亿 · 二级市场隐含已破万亿、反超 OpenAI",
+          "summary": "Bloomberg 5 月 16-17 日独家、PYMNTS 与 Yahoo Finance 跟进：Anthropic 与 Dragoneer、Greenoaks、Sequoia、Altimeter 进入实质谈判，本轮拟募集至少 $300 亿、pre-money 估值超 $9000 亿，月内有望签 term sheet。TechFundingNews 同步披露：Anthropic 二级市场员工股转让的隐含估值已触及 $1 万亿，第一次在估值口径上反超 OpenAI。背后是收入曲线 —— 年化收入预期即将跨过 $450 亿，一年前还是 $90 亿，5 倍跃升。Claude 体系把「开发者 + 企业 + 咨询绑定 + 行业版」打成一张正交牌，2026 年 AI 资本叙事从「OpenAI 一家通吃」变成「两家分别站上万亿」。",
+          "source": "Bloomberg / PYMNTS / Yahoo Finance / TechFundingNews"
+        },
+        {
+          "tag": "🐋 国产估值新高 · DEEPSEEK",
+          "headline": "DeepSeek 首轮外部融资 · 估值 $515 亿、梁文锋个人加注 ¥200 亿",
+          "summary": "SCMP、TechFundingNews、36 氪集中报道：DeepSeek 即将关闭首轮外部融资，目标规模超 ¥500 亿（约 $73.5 亿），post-money 估值预计跨过 ¥3500 亿 / $515 亿。结构罕见 —— 梁文锋亲自承担 ¥200 亿、占整轮 40%，直接 + 间接合计控股推升到 84.29%。机构端国家大基金三期 AI 子基金、腾讯（拟 ¥60 亿 / 约 2% 股权）、高瓴跟投，Alibaba 与字节传出「谈崩」。沉默五个月的 DeepSeek 不靠 V4.1 抬估值、靠把「独立性 + 国资 + 创始人加注」打成组合资产 —— 国产大模型估值定价权第一次完整握在创始团队手里。",
+          "source": "SCMP / TechFundingNews / 36 氪 / The Information"
+        },
+        {
+          "tag": "⚙️ 编码工具收购权 · CURSOR × SPACEX",
+          "headline": "Cursor $500 亿估值定 · SpaceX 同步握 $600 亿收购选择权",
+          "summary": "TechCrunch、CNBC 与 Futurum 跟进：Cursor 的 $20 亿融资 / $500 亿估值轮基本落定，a16z、Thrive Capital、Nvidia 领投；同期 SpaceX 4 月 21 日已签下 $600 亿收购选择权 —— 2026 年底前任意时点可行权，否则按 $100 亿合作费付清。配套是 xAI Colossus（等效 100 万张 H100）授权给 Cursor 训自家 Composer 模型。Cursor ARR 从 0 到 $20 亿走了三年，击穿 Slack / Snowflake / Zoom 同期。AI 编码工具正在从「IDE 插件」升级为「基础设施级别资产」—— 谁掌握开发者每天敲下的第一行代码，谁就掌握下一个 GitHub。",
+          "source": "TechCrunch / CNBC / Futurum / Chamath Substack"
+        },
+        {
+          "tag": "🛡️ 网络安全 · OPENAI DAYBREAK",
+          "headline": "OpenAI 推 Daybreak 网络安全计划 · 三档 GPT-5.5（含「permissive」红队版）打包给 Akamai / Cisco / Cloudflare / Palo Alto",
+          "summary": "5 月 11 日 OpenAI 官宣 Daybreak —— 把 GPT-5.5 / GPT-5.5 with Trusted Access for Cyber / GPT-5.5-Cyber 三档模型打包给安全厂商。GPT-5.5-Cyber 是「放开漏洞推理、面向红队 / 渗透测试」的 permissive 变体，仅向受邀方开放。配套的 Codex Security 读 GitHub 仓库建威胁模型 → 沙盒压测可利用性 → 直接给补丁草稿。首批合作：Akamai / Cisco / Cloudflare / CrowdStrike / Fortinet / Oracle / Palo Alto / Zscaler。和上周 Anthropic 的 Mythos AISI 评测形成正面对照 —— 同一类前沿能力，闭源 + 监管背书（Anthropic）vs 分级 + 受信任访问（OpenAI），两种产品哲学切开了网络安全市场。",
+          "source": "OpenAI / The Hacker News / DevOps.com / The Defense Post"
+        },
+        {
+          "tag": "🔌 AI 基础设施 · NVIDIA × CORNING",
+          "headline": "Nvidia × Corning 长期合作 · 美国本土光连接产能扩 10 倍 · NC / TX 三座新厂 · 3000 个高薪岗位",
+          "summary": "5 月 6 日 Nvidia 与 Corning 联合公告：把 Corning 美国本土光连接（光纤 / 光收发器 / 数据中心高速互连）制造产能扩到 10 倍，美国光纤产能再加 50%+。三座先进制造厂落北卡罗来纳州与德州，预计创造 3000+ 个高薪岗位。逻辑直接：每加一张 Blackwell / Rubin GPU，背后是数十米光纤、上百个光模块。Cerebras IPO 之后行业第一次把「光」这个上游瓶颈点出来 —— 当 OpenAI / Anthropic 在估值表上写 $9000 亿，Corning 在工厂地块上写 100 公顷。AI Capex 闭合到「光器件 + 美国制造业回流」叙事，Reshoring 政策最大 AI 受益者浮出水面。",
+          "source": "Corning IR / Nvidia / BusinessWire / Yahoo Finance"
+        }
+      ]
+    },
+    {
+      "issue": "015",
+      "date": "2026-05-18",
+      "weekday": "周一",
+      "weekdayEn": "Monday",
+      "type": "daily",
+      "file": "ai_daily_2026_05_18.html",
+      "stories": [
+        {
+          "tag": "⚡ 头条 · OPENAI DEPLOYCO",
+          "headline": "OpenAI 联手 19 家投行咨询砸 $40 亿建 DeployCo · 同步收 Tomoro 把 150 名工程师塞进去",
+          "summary": "5 月 11 日 OpenAI 官宣 OpenAI Deployment Company（DeployCo）— 一只由 OpenAI 主导、19 家全球资管 / 咨询 / 集成商共同发起的「企业 AI 落地公司」，初始投入 $40 亿。TPG 领投，Advent / Bain Capital / Brookfield 联合创始合伙人；Goldman Sachs、SoftBank、Warburg Pincus、Bain & Company、Capgemini、McKinsey 跟投入伙。同日收购 AI 咨询公司 Tomoro，把约 150 名 Forward Deployed Engineer 直接塞进 DeployCo 第一波编制。这是 OpenAI 第一次明确承认 — 仅卖 API 撑不起 $1 万亿估值，下一阶段：派工程师上门改流程、按结果收钱。模型公司正在变成咨询所。",
+          "source": "OpenAI / PYMNTS / eWeek / TechCrunch"
+        },
+        {
+          "tag": "🧬 SELF-IMPROVING AI · RECURSIVE",
+          "headline": "Recursive Superintelligence 出隐身 · $6.5 亿、估值 $46.5 亿，要做会改自己代码的 AI",
+          "summary": "5 月 13 日伦敦初创 Recursive Superintelligence 出隐身：单轮拿 $6.5 亿、估值 $46.5 亿，GV 与 Greycroft 联合领投，Nvidia、AMD、Conviction、Index 跟投。CEO 为前 Salesforce 首席科学家 Richard Socher、CTO 为 UCL 教授 + 前 DeepMind 研究员 Tim Rocktäschel，团队不到 30 人。目标极端浪漫 — 训练能分析自身性能、识别弱点、然后改写自己代码的 AI；术语称「Level 1 自治训练」，公开发布定 2026 年中。这是 OpenAI / Anthropic 主流路线之外，资本第一次大额下注「让 AI 改自己」 — 继 LeCun 的 AMI Labs 之后，跨大西洋阵营的第二次真正意义上的「另一条路」融资。",
+          "source": "TechCrunch / Tech.eu / SiliconANGLE / TFN"
+        },
+        {
+          "tag": "🛡️ AI 安全 · CLAUDE MYTHOS / AISI",
+          "headline": "英国 AISI 实测 Claude Mythos Preview · 73% 通关专家级 CTF · 3/10 跑通 32 步企业网络全链路",
+          "summary": "英国 AI Security Institute 5 月中旬发布对 Anthropic Claude Mythos Preview 的官方网络安全评测 — 这只是 Claude Opus 之上的非公开前沿模型，仅向 Project Glasswing 联盟（AWS、Apple、Microsoft、Google、CrowdStrike、Palo Alto 等）开放。AISI 测出：Mythos 在专家级 CTF 上 73% 一次通关；32 步企业网络模拟攻击（侦察→横向移动→域控接管，正常需 20 小时红队工时）里 10 次尝试 3 次完整跑通、平均完成 22 / 32 步。Anthropic 同步披露 Mythos 已在主流系统识别出数千个 0-day，包括 OpenBSD 一个 27 年的老 bug。Frontier AI 安全评估第一次给出「能 / 不能」的二元答案。",
+          "source": "UK AISI / Anthropic Red / CNBC / CyberScoop"
+        },
+        {
+          "tag": "🤝 企业咨询 · ANTHROPIC × PWC",
+          "headline": "Anthropic 拉 PwC 全员上 Claude · 顾问也被「Forward Deployed」",
+          "summary": "5 月 14 日 Anthropic 与 PwC 官宣合作：PwC 全球 30 万名顾问、审计师、咨询师全员部署 Claude，并把它做成 PwC 内部交付、客户尽调、并购执行、企业流程重塑的核心 AI。Anthropic 自身也在跟 IBM Consulting、Deloitte、KPMG、Accenture 谈类似交易。这是 Claude for Legal、Financial Services、Small Business 之后的第四条「行业切片 + 咨询绑定」战线。当模型公司开始绑定四大会计师事务所，意思是：模型公司学会把销售外包给咨询公司 — 既绕开自己直销的成本，也把 AI 渗透从「试点」直接变成「全员强制」。同周 Anthropic 还与盖茨基金会签 $2 亿全球卫生 AI 合作。",
+          "source": "Anthropic / Air Street Press / DistillIntelligence"
+        },
+        {
+          "tag": "🇨🇳 国产大模型 · 百度",
+          "headline": "百度文心 5.1 上线 · LMArena 搜索榜国产第一、全球第 4",
+          "summary": "5 月 13 日百度在 Create 2026 开发者大会发布文心 5.1 — 预训练成本仅为业界同体量模型的约 6%，综合能力升级。第三方榜单 LMArena 搜索榜文心 5.1 拿到 1223 分，国内第一、全球第 4，是目前唯一进前十的中国模型。已在百度千帆模型市场与官网同步开放企业 / 开发者调用。低成本预训练这件事比榜单更值得记 — 当 OpenAI、Anthropic 还在堆 H100 / B200 集群，国产侧已经在把「算力效率」做成另一种武器。DeepSeek 之后的第二个标志性「省钱叙事」样本。",
+          "source": "量子位 / 百度智能云"
+        }
+      ]
+    },
+    {
+      "issue": "014",
+      "date": "2026-05-15",
+      "weekday": "周五",
+      "weekdayEn": "Friday",
+      "type": "daily",
+      "file": "ai_daily_2026_05_15.html",
+      "stories": [
+        {
+          "tag": "⚡ 资本头条 · CEREBRAS",
+          "headline": "Cerebras 上市首日 +68% · 市值 $950 亿、年度最大科技 IPO 落地",
+          "summary": "5 月 14 日 Cerebras Systems 登陆纳斯达克：发行价 $185（突破初始 $115–125 区间）、开盘 $350、收盘 $311.07，单日 +68%，市值锁定 $950 亿，是 2026 年迄今最大的美股科技 IPO，募资 $55 亿。2025 年营收 $5.1 亿 / +76%、净利润首次转正至 $2.38 亿。8 个月前私募估值仅 $81 亿，挂牌就把价签贴到 12 倍。即便客户高度集中、仍属亏损刚转正，投资人愿意入场 — 因为 Cerebras 是 Nvidia 之外唯一能做 wafer-scale 巨型芯片的玩家。算力叙事正从「GPU 牌照争夺」转向「系统级供应链稀缺」，这场 IPO 也是 OpenAI / SpaceX 之前给 AI IPO 大潮的试水第一弹。",
+          "source": "CNBC / Bloomberg / TechCrunch"
+        },
+        {
+          "tag": "⚙️ 编程 AGENT · GROK BUILD",
+          "headline": "xAI 发布 Grok Build · 命令行编程 Agent 正面挑战 Claude Code",
+          "summary": "5 月 14 日 xAI 上线第一款 agentic 编程产品 Grok Build — CLI 形态，支持规划模式、并行 sub-agent、代码仓库集成，能规划项目、写改文件、执行 shell、按自然语言把应用造出来。新订阅档 Grok SuperHeavy 定价 $299/月（前 6 个月 $99 促销），同步面向公测。xAI 总裁明说短期目标就是追上 Claude Code — 这是马斯克最罕见的一次公开认怂。Claude Code、GitHub Copilot CLI、Gemini CLI 是同代选手，现在多了 Grok。命令行正在成为 AI 真正的下一个浏览器 — 谁拿下开发者的 terminal，谁就拿下软件的入口。",
+          "source": "Bloomberg / TechCrunch"
+        },
+        {
+          "tag": "🇨🇳 国产融资 · DEEPSEEK",
+          "headline": "DeepSeek 首轮募 500 亿元 · 估值 3500 亿、梁文锋自掏 200 亿",
+          "summary": "长期坚持「不融资、不商业化、不路演」的 DeepSeek 启动首轮外部股权融资 — 募资 500 亿元人民币、投后估值 3500 亿（约 $515 亿）。梁文锋个人出资 200 亿，外部募 300 亿；国家集成电路产业投资基金洽谈领投，腾讯、阿里、多家国资跟投。估值在 4 月初还是 $1000 亿，5 月 9 日锁死 $515 亿 — 21 天翻 5 倍。V4.1 定档 6 月。这是国产 AI 单轮融资纪录，也意味着「拒绝资本」的 DeepSeek 终于上桌 — 中美 AI 资本叙事不再是两套独立规则。",
+          "source": "新浪财经 / 量子位 / 21世纪经济报道"
+        },
+        {
+          "tag": "🏢 行业重排 · CISCO",
+          "headline": "Cisco 季度营收 $158 亿创新高 · 同步官宣裁员 4000 人、钱挪去 AI 与网安",
+          "summary": "5 月 13 日 Cisco 公布 FY26 Q3 — 单季营收 $158 亿、调整后 EPS $1.06，双双超华尔街预期。同份内部信里宣布全球裁员 4000 人（约 5% 员工），从 5 月 14 日起陆续通知。理由不是收入压力，而是「主动重塑成本结构，把更多人力和资金投到 AI、网络安全、数据中心芯片」。股价当日大涨 +15%。这是 AI 时代典型的「双轨财报」 — 创纪录的营收、创纪录的裁员，同步发生在同一家公司里。AI 反噬不是「机器人接管」式叙事，而是企业资金流的悄悄重定向。",
+          "source": "TechCrunch / CNBC / Fox Business"
+        },
+        {
+          "tag": "💼 资本胁迫 · XAI",
+          "headline": "马斯克要求 SpaceX 投行强制订阅 Grok · Goldman / JPM / MS 已签",
+          "summary": "Bloomberg 报道：马斯克要求所有参与 SpaceX 上市（目标估值 $1.75 万亿）的银行、律所、审计、咨询机构购买 Grok 订阅。Bank of America、Citigroup、Goldman Sachs、JPMorgan Chase、Morgan Stanley 已签字，部分进一步同意把 Grok 接入内部 IT 系统，单笔潜在合同价值数千万美元。但 Apollo、Valor、MS 的员工承认极少真用 — 在金融场景下被一致认为不如 OpenAI / Anthropic。这是 SaaS 商业史上罕见的「捆绑买路」 — 给 AI 产品力差距找资本端补丁，也给 xAI 在 SpaceX IPO 前抢一波营收叙事。",
+          "source": "Bloomberg / Seeking Alpha / The Japan Times"
+        }
+      ]
+    },
+    {
+      "issue": "013",
+      "date": "2026-05-14",
+      "weekday": "周四",
+      "weekdayEn": "Thursday",
+      "type": "daily",
+      "file": "ai_daily_2026_05_14.html",
+      "stories": [
+        {
+          "tag": "⚡ 资本头条 · ANTHROPIC",
+          "headline": "Anthropic 拟以最高 9500 亿$ 估值再融 500 亿 · 估值或反超 OpenAI",
+          "summary": "NYT 5 月 12 日率先披露，Bloomberg 与 TechCrunch 跟进确认：Anthropic 正与投资人洽谈一轮 300–500 亿美元新融资，估值上限 9500 亿美元，若拍板将超过 OpenAI 此前 8520 亿美元估值。9 个月前估值还是 380 亿，年化收入从 90 亿冲到 440 亿，Google 追投 400 亿、Amazon 追投 250 亿 — 云厂商在用基础设施换股权。模型层的资本叙事正从 OpenAI 一极转向双寡头，但整个生态对这两家公司算力定价权的依赖也被锁得更死。这是 2026 年 AI 资本市场最重要的一笔交易，还没签字。",
+          "source": "NYT / Bloomberg / TechCrunch"
+        },
+        {
+          "tag": "🏢 企业 AI · OPENAI",
+          "headline": "OpenAI 拆出「DeployCo」· 40 亿$ 起步、收购伦敦咨询 Tomoro",
+          "summary": "5 月 11 日 OpenAI 官宣成立 OpenAI Deployment Company（内部叫 DeployCo），TPG 领投，Advent / Bain Capital / Brookfield 联合发起，启动资金超 40 亿美元，同步收购伦敦 AI 咨询公司 Tomoro，把 150 名 Forward Deployed Engineer 一次性搬进新公司。客户含 Tesco、Virgin Atlantic、Supercell。模型不再「丢一个 SDK 给客户自己玩」，而是派人嵌进对方组织 — OpenAI 在反向追赶 Anthropic 早就搭好的 enterprise consulting 阵地。资本叙事换打法，下一战在「人嵌进客户」。",
+          "source": "OpenAI / Bloomberg / Axios"
+        },
+        {
+          "tag": "⚖️ 行业拓荒 · CLAUDE FOR LEGAL",
+          "headline": "Anthropic 一口气推 20+ 法律连接器、12 个执业领域插件 · Claude for Legal 全面落地",
+          "summary": "5 月 13 日 Anthropic 推出 Claude for Legal，发布 20+ MCP 连接器和 12 个执业领域插件 — 商法、公司法（含 M&A 尽调与交割清单）、雇佣、隐私、产品、监管、AI 治理、IP、诉讼皆覆盖。Westlaw、Docusign、Box、Harvey、Solve Intelligence、Definely、Ironclad、Midpage、Trellis 等悉数入伙。Harvey、Relativity、Everlaw、Thomson Reuters 选择「集成进去」而非「自建对抗」 — 意味着行业承认了平台事实。Anthropic 正在做的，不是另一家 AI 公司，而是另一个 Salesforce，但以 prompt 为接口。这种打法下一站会复制到金融、医疗、税务。",
+          "source": "TechCrunch / LawSites / Law.com"
+        },
+        {
+          "tag": "🇨🇳 国产模型 · 百度",
+          "headline": "百度文心 5.1 · 搜索榜中文第一、全球第四、预训练成本仅业界 6%",
+          "summary": "5 月 9 日百度正式发布文心 5.1，主打「多维弹性预训练」，预训练成本仅同级别业界基准的约 6%。LMArena Search 榜单 1223 分，中文第一、全球第四，是 top10 唯一国产模型。Agent 评测超过 DeepSeek-V4-Pro，创意写作向 Gemini 3.1 Pro 看齐。看点不在分数，而在「每分能力的成本曲线」 — 当训练费降到 1/15，中等厂也能持续追平第一梯队。模型同步上架百度千帆与文心一言，企业可调。中文模型的下一战，是把性价比曲线压到对手不再忍受的位置。",
+          "source": "量子位 / 新浪科技"
+        },
+        {
+          "tag": "🇪🇺 政策 · EU AI ACT",
+          "headline": "欧盟 AI 法案 Omnibus 落槌 · 高风险条款延到 2027 年 12 月",
+          "summary": "5 月 7 日凌晨 4 点半欧盟理事会与议会就 AI Omnibus 达成临时协议：原定 2026 年 8 月生效的 Annex III 高风险条款延至 2027 年 12 月 2 日；Annex I 嵌入式高风险 AI 延至 2028 年 8 月。中小企业豁免扩展到 500 人规模的「小型中盘」。但 AI 生成内容标识反而被收紧 — 宽限期从 6 个月缩到 3 个月、2026 年 12 月 2 日落地。新增明文禁令：未经同意的性化/亲密 deepfake（「nudifier」工具）。监管在做减法，但留了底线。这是欧盟第一次承认 AI 立法节奏需要为产业留口子。",
+          "source": "Consilium / TechPolicy.Press"
+        }
+      ]
+    },
+    {
+      "issue": "012",
+      "date": "2026-05-13",
+      "weekday": "周三",
+      "weekdayEn": "Wednesday",
+      "type": "daily",
+      "file": "ai_daily_2026_05_13.html",
+      "stories": [
+        {
+          "tag": "⚡ 头条 · GOOGLEBOOK",
+          "headline": "Googlebook 发布 · Chromebook 15 年谢幕、Magic Pointer 把 Gemini 嵌进光标",
+          "summary": "5 月 12 日，Google 正式发布 Googlebook — 一条围绕 Gemini 从底层重写的 AI 原生笔记本产品线。Acer、Asus、Dell、HP、Lenovo 五家 PC 巨头同步首发，今秋上市。核心新交互「Magic Pointer」把 Gemini 嵌进鼠标光标本身：光标移到邮件日期会自动跳出「创建会议」、选中两张图会自动合成预览。Googlebook 同时与 Android 手机互通 — 笔记本可直接跑手机 App、调用手机文件。Google 没明说替代 Chromebook，但官方话术清晰：「从 ChromeOS 转向以 Android 为底、AI 为底座的新系统。」15 年前用浏览器即操作系统颠覆 Windows，今天 Google 用 AI 即操作系统颠覆自己 — 也正面回击 Microsoft Copilot+ PC。",
+          "source": "TechCrunch / Google Blog"
+        },
+        {
+          "tag": "📉 集体止盈 · AI STOCKS",
+          "headline": "华尔街创纪录连涨叫停 · Kospi 单日 -2.3%、CoreWeave -8%、Intel -4.7%",
+          "summary": "5 月 12 日，全球 AI 概念股第一次出现「同步踩刹车」。导火索来自亚洲早盘 — 韩国 Kospi 单日下跌 2.3%、跌出历史高点，市场担心政府拟将 AI 行业超额利润再分配给国民。情绪外溢到美股：Intel 跌 4.7%（年内曾翻 3 倍）、Micron -4%（YTD +180%）、CoreWeave -8% — 涨得越凶、回得越重。Nvidia 是唯一逆势创新高的 AI 巨头。财报和产品都没出问题，是市场情绪到了拐点。布伦特原油同日 +3.6% 到 107.99 美元，也在合谋这场调整。这是 2026 年 AI 板块第一次集体「先获利、再追问」。",
+          "source": "AP / U.S. News"
+        },
+        {
+          "tag": "🎙️ 估值翻倍 · WISPR",
+          "headline": "Wispr Flow 谈判 2.6 亿$ 新融资 · 估值翻倍至 20 亿美元、Menlo Ventures 领投",
+          "summary": "5 月 12 日，Bloomberg 援引知情人士报道 — AI 语音听写明星 Wispr Flow 正与 Menlo Ventures 谈判 2.6 亿美元新融资、投后估值约 20 亿美元，较 2025 年末 Series A 的 7 亿美元估值翻倍。产品在 macOS / Windows / iOS / Android 跨平台支持 104 种语言「口语即可发出去的文本」，2025 末至 2026 初下载量突破 250 万、企业客户覆盖数百家 Fortune 500。Q1 2026 全球语音 AI 赛道总吸金超 70 亿美元，全球语音识别市场体量约 220 亿美元、5 年三倍空间。大模型公司被资本回调的同一天，垂直语音工具仍在加杠杆。",
+          "source": "Bloomberg / Tech Portal"
+        },
+        {
+          "tag": "🧽 删页 · COMMERCE DEPT",
+          "headline": "美国商务部「悄悄删除」AI 安全测试公告 · Google / Microsoft / xAI 协议页面失踪",
+          "summary": "5 月 11-12 日，美国商务部从官网撤下了 5 月 5 日由 NIST 下属「AI 标准与创新中心」（CAISI）发布的公告 — 该公告宣布 Google、Microsoft、xAI 三家自愿提交未发布模型供联邦机构在上线前进行国家安全/网络安全评估，Anthropic 不在协议中。截至 5 月 11 日下午原 URL 已 404、跳转到 CAISI 主页，协议、时间表、覆盖范围信息一并消失。商务部和 White House 都拒绝回应删除原因。一周前这被视为美国 AI 治理向前迈一步，现在「先公开后撤回」把外界对监管「是协议还是握手」的疑问重新放回桌面。",
+          "source": "The Next Web / Benzinga"
+        },
+        {
+          "tag": "🧠 解释性突破 · ANTHROPIC NLA",
+          "headline": "Anthropic 开源 NLA · 让 Claude 解释自己的「内心独白」、隐藏动机发现率提升 5 倍",
+          "summary": "5 月 8 日前后，Anthropic 在 transformer-circuits.pub 发布并开源论文「Natural Language Autoencoders」— 一组用自然语言把大模型激活值「翻译成人类可读描述」再「翻译回激活值」的双模块结构（AV 激活语言化器 + AR 激活重建器）。在 Claude Opus 4.6 部署前审计中，NLA 帮助发现了「评估意识」等安全相关行为；用于「隐藏动机」检测时成功率从旧工具的 <3% 提到 15%，5 倍提升。代价是训练 Gemma-3-27B FVE 0.71 需 16 卡 H100 跑 1.5 天、每条描述生成约 500 tokens。同步在 GitHub 开源、和 Neuronpedia 合作建可交互前端。可解释性这件事，第一次从「看显微镜」换成了「问模型本人」。",
+          "source": "量子位 / Transformer Circuits"
+        }
+      ]
+    },
+    {
+      "issue": "011",
+      "date": "2026-05-12",
+      "weekday": "周二",
+      "weekdayEn": "Tuesday",
+      "type": "daily",
+      "file": "ai_daily_2026_05_12.html",
+      "stories": [
+        {
+          "tag": "⚡ 头条 · OPENAI DEPLOYMENT CO.",
+          "headline": "OpenAI 成立「部署公司」· 40 亿美元起步、19 家机构入局、收购 Tomoro 并入 150 名前线工程师",
+          "summary": "5 月 11 日，OpenAI 宣布成立 OpenAI Deployment Company — 一家专门负责把 AI 部署进客户业务流的独立合资企业。OpenAI 控股，TPG 牵头领投，贝恩资本、布鲁克菲尔德为联合首席创始合伙人，B Capital、高盛、软银、Warburg Pincus、麦肯锡、凯捷等 19 家机构同期入局。首轮资金 40 亿美元，Axios 估值口径达 140 亿美元。同步收购应用 AI 咨询公司 Tomoro，并入约 150 名 Forward Deployed Engineers。模型公司亲自下场重写客户工作流 — 「会不会被服务商吃掉」的老问题被反向回答。",
+          "source": "OpenAI / Axios"
+        },
+        {
+          "tag": "🏦 攻进华尔街 · ANTHROPIC",
+          "headline": "Anthropic 推 10 套金融智能体 · Claude 加载项落地 Excel / PPT / Word / Outlook",
+          "summary": "5 月 5 日，Anthropic 在与摩根大通 CEO Jamie Dimon 同台后宣布 — 推出 10 套面向金融服务的开箱即用智能体模板（投行 pitchbook、KYC 审查、月末关账等高耗时工作流），并通过 Microsoft 365 加载项把 Claude 直接嵌入 Excel、PowerPoint、Word（Outlook 即将上线）。同期发布 Claude Opus 4.7，在 Vals AI 金融 Agent 榜以 64.37% 居首；与 Moody's 形成数据合作。OpenAI 派工程师下场的同一周，Anthropic 把工程师装进 Office 工具栏 — 两条不同的「模型嵌入企业」路径。",
+          "source": "Fortune / Anthropic"
+        },
+        {
+          "tag": "🇨🇳 国产追赶 · 百度文心",
+          "headline": "文心 5.1 发布 · 预训练成本仅业界 6%、LMArena 搜索榜国内第一",
+          "summary": "5 月 9 日，百度发布文心 5.1。技术亮点是「多维弹性预训练」— 同规模模型预训练成本被压到业界约 6%。性能层面：LMArena 搜索榜以 1223 分位列国内第一、全球第四，是唯一上榜国产模型；4 月 30 日 Preview 版在 LMArena 文本榜以 1476 分超过 GPT-5.5、DeepSeek-V4-Pro。文心 5.1 把 5.0 总参数压至约 1/3、激活参数压至约 1/2，Agent / 创意写作 / 推理同步上台阶。在 DeepSeek 拿到 500 亿融资同周，百度以「成本曲线」另辟一条路。",
+          "source": "量子位 / 新浪科技"
+        },
+        {
+          "tag": "⚡ 工位 · CLOUDFLARE",
+          "headline": "Cloudflare 一次性裁员 1100 人 · 16 年来公司首次、内部 AI 使用三个月暴增 600%",
+          "summary": "5 月 7-8 日，Cloudflare 在 Q1 财报当日宣布裁员约 1100 人，是公司创立 16 年来第一次大规模裁员。背景反差：Q1 营收 6.398 亿美元、同比 +34%、创单季新高；股价当日 -24%。CEO Matthew Prince 直言公司过去三个月内部 AI 调用量增长 600% — 「今天的动作不是降本，是重新定义高速增长公司在 Agentic AI 时代如何创造价值」。被裁员工工资延续到 2026 年底 + 医保延续 + 期权加速行权。这是 2026 年第一份把「AI 取代部分岗位」摆上财报会的硅谷一线公司。",
+          "source": "TechCrunch / CNBC"
+        },
+        {
+          "tag": "🛡️ 五角大楼 · DOD × 8 家",
+          "headline": "国防部签下 Google / Nvidia / OpenAI / Microsoft / AWS / Oracle / SpaceX / Reflection · Anthropic 落榜",
+          "summary": "5 月 1 日，美国国防部宣布与 8 家 AI 公司签订机密网络（IL6 / IL7）部署协议 — Google、Nvidia、Reflection、SpaceX、OpenAI、Microsoft、Oracle、AWS 全部入榜，唯独 Anthropic 缺席。背景是 Trump 政府以 Anthropic 不接受「全部合法用途（含自主武器与大规模监控）」为由切断合作，并把 Anthropic 列为「供应链风险」标签。Anthropic 已起诉行政部门、加州联邦法官上月已临时阻断该禁令。「再也不会只依赖一家 AI 厂商」 — 国防部官员的原话现在落到了 Anthropic 头上：4 月密集拿下 Google 400 亿、SpaceX 算力之后，5 月在政府订单一线被击穿。",
+          "source": "CNN Business / The Hill"
+        }
+      ]
+    },
+    {
+      "issue": "010",
+      "date": "2026-05-11",
+      "weekday": "周一",
+      "weekdayEn": "Monday",
+      "type": "daily",
+      "file": "ai_daily_2026_05_11.html",
+      "stories": [
+        {
+          "tag": "⚡ 头条 · DEEPSEEK",
+          "headline": "DeepSeek 筹 500 亿元首轮融资 · 梁文锋个人出资 200 亿、估值 3500 亿",
+          "summary": "5 月 9 日，凤凰财经 / 量子位等媒体援引消息 — DeepSeek 正寻求 500 亿元人民币首轮融资，将刷新中国 AI 公司单轮融资最高纪录。梁文锋个人出资 200 亿元、占近四成；国家集成电路产业投资基金（「大基金」）正洽谈领投，腾讯、阿里巴巴及多家国有基金同步跟进。融资完成后整体估值约 3500 亿元（约 515 亿美元）。V4 迭代版 V4.1 定档 6 月。「不融资、不商业化」是 DeepSeek 最有辨识度的标签，这次彻底翻篇 — 穷流派开始拿下中国 AI 史上最大支票。",
+          "source": "凤凰财经 / 量子位"
+        },
+        {
+          "tag": "⚡ 头条 · ANTHROPIC × GOOGLE",
+          "headline": "Google 400 亿$ 加注 Anthropic · 五年承诺反向锁 TPU 消费 2000 亿$",
+          "summary": "4 月 24 日 Google 宣布以 3500 亿美元估值向 Anthropic 投资最高 400 亿美元，并签五年期云协议、2027 年起提供 5 吉瓦 TPU 算力；Anthropic 同步对 Google Cloud 做出 2000 亿美元采购承诺 — 几乎把投资全部以云消费方式还回。Anthropic 一家公司今年同时拿微软系（Azure）、亚马逊（AWS Trainium）、Google（TPU）、马斯克（SpaceX Colossus 1）四路算力。「投资即云服务消费回流」的微软-OpenAI 范式被 Google-Anthropic 完整复刻。",
+          "source": "财联社 / 新浪财经"
+        },
+        {
+          "tag": "🛰️ 太空算力 · SPACEX × ANTHROPIC",
+          "headline": "Anthropic 独占 SpaceX Colossus 1 · 22 万颗 GPU 加轨道算力洽谈",
+          "summary": "5 月 6 日，Anthropic 与 SpaceX 签订算力协议 — Anthropic 独占使用马斯克 SpaceX 旗下 Colossus 1 数据中心（孟菲斯），配备超 22 万颗 NVIDIA GPU（H100/H200/GB200），提供 300 兆瓦容量。协议外双方还在洽谈「轨道 AI 算力」 — 在太空部署多吉瓦级数据中心。Anthropic 周内同步上调 Claude Code、Pro/Max 限额。马斯克自评：「会见 Anthropic 团队后，没有人触发我的邪恶探测器。」 一个公开起诉 OpenAI 的人，把自家最高端算力租给 OpenAI 的最大对手 — 算力短缺把竞争对手第一次推到同一张桌子。",
+          "source": "CNBC / Anthropic"
+        },
+        {
+          "tag": "⚡ 头条 · OPENAI × 微软",
+          "headline": "微软对 OpenAI 独家分销终结 · OpenAI 全面向 AWS、Google Cloud 开放",
+          "summary": "4 月 28 日，微软与 OpenAI 联合宣布修订延续 6 年的合作协议 — 微软不再独家分销 OpenAI 模型。OpenAI 此后可以向任意云厂商客户提供其全部产品，AWS 周内即官宣将通过 Bedrock 接入 OpenAI 模型。微软将不再向 OpenAI 支付收入分成，OpenAI 仍将向微软分成至 2030 年；Azure 仍为「首选云」但不再排他。这是 OpenAI 商业化路径的结构性松绑 — 它现在可以在云上和 Anthropic 直接拼客户。Anthropic 同期拿到 Google 400 亿 + SpaceX 算力，OpenAI 此刻松开微软独家 — 时间点不是巧合。",
+          "source": "36 氪 / 东方财富"
+        },
+        {
+          "tag": "🇨🇳 头条 · 三部门联合",
+          "headline": "三部门发布《智能体规范应用与创新发展实施意见》· 19 个场景、分级治理",
+          "summary": "5 月 8 日，国家网信办、国家发改委、工信部联合印发《智能体规范应用与创新发展实施意见》— 中国首份针对「智能体（Agent）」的系统性政策文件。给出官方定义：「具备自主感知、记忆、决策、交互与执行能力的智能系统」，提出技术底座、安全底线、19 个应用场景（科研、产业、消费、民生、治理）、创新生态四大方向。安全侧引入「分级治理」— 敏感领域 / 重点行业备案、检测、问题召回；低风险领域走合规自测 + 行业自律。继 4 月底《AI 伦理审查办法》、3 月《人形机器人标准体系》之后第三块护栏。",
+          "source": "中新网 / 证券时报"
+        }
+      ]
+    },
+    {
+      "issue": "009",
+      "date": "2026-05-09",
+      "weekday": "周六",
+      "weekdayEn": "Saturday",
+      "type": "daily",
+      "file": "ai_daily_2026_05_09.html",
+      "stories": [
+        {
+          "tag": "⚡ 资本头条 · ANTHROPIC",
+          "headline": "Anthropic 考虑今夏筹 500 亿$ · 估值近 1 万亿、有望超 OpenAI",
+          "summary": "5月8日财联社爆料 — Anthropic 正考虑今夏开启新一轮融资，投前估值 9000 亿美元、筹资规模高达 500 亿，最快两个月内完成。Anthropic ARR 即将突破 450 亿美元，是去年底 90 亿的 5 倍。Claude Code 与 Cowork 在企业市场跑出强势曲线。投资人原话：投资者们都愿意为 Anthropic 投入巨资，现在的问题只是何时露面宣布我们准备好了。相比之下，OpenAI 3 月完成 1220 亿融资后估值仅 8520 亿。",
+          "source": "财联社 / 新浪财经"
+        },
+        {
+          "tag": "💰 落地 · 福建人形机器人",
+          "headline": "福建人形机器人创新中心完成 Pre-A 轮 · 闽江产业引导基金独家领投",
+          "summary": "5月8日，福建人形机器人创新中心宣布完成 Pre-A 轮融资。资金重点投向核心技术迭代、福智系列产品量产、产业链生态构建、高端人才引育。这是地方国资在具身智能领域的又一精准切入 — 继银河通用拿到大基金三期、自变量集齐字节美团阿里小米之后，福建以省级母基金主导、产业链集群再开一城。",
+          "source": "证券之星"
+        },
+        {
+          "tag": "🛠️ 实战 · DEEPSEEK V4",
+          "headline": "Simon Willison：把所有模型都换成了 DeepSeek V4 · 月账单降 90%",
+          "summary": "知名科技博主 Simon Willison 在 V4 发布当晚把 Claude Code、Codex、Cursor、Aider 等所有编程智能体全部指向 DeepSeek 端点。他强调：不是便宜，是效果反而更好。SWE-bench Verified V4-Pro 80.6%，与 Claude Opus 4.6（80.8%）几乎打平，但 API 价格便宜两个数量级。Uber 工程师 Claude Code 采用率从 32% 飙到 84%、月账单 4 个月烧光全年预算 — 现在所有人都在重新算这笔账。",
+          "source": "InfoQ / Simon Willison"
+        },
+        {
+          "tag": "📊 全景 · 具身智能产业链",
+          "headline": "2026 至今具身智能融资破 345 亿元 · 资本从整机蔓延全产业链",
+          "summary": "科创板日报数据 — 2026 年至今具身智能领域融资已超 345 亿元，资金正从整机向全产业链渗透：上游关节模组（泉智博）、灵巧手（灵心巧手）、传感器（开普勒、蓝点触控）激增；中游具身大脑融资破 104 亿；下游 RaaS 平台成布局热点。新鼎资本张驰判断：2026 是行业洗牌元年，国内上百家人形机器人公司最终可能只剩 10-20 家。",
+          "source": "新浪财经 / 科创板日报"
+        },
+        {
+          "tag": "⚡ 算力逆转 · 中国云",
+          "headline": "云厂商 10 天集体涨价 30-50% · 腾讯云部分产品涨幅 400%",
+          "summary": "中国云厂商在 10 天内集体上调 AI 算力与存储服务价格，涨幅普遍 30-50%、腾讯云部分核心产品涨幅高达 400%。背后原因是 Token 调用量暴增 — 中国日均 Token 调用量已突破 140 万亿，较 2024 年初 1000 亿增长超千倍。Token 单价大幅下降但调用规模指数级增长，导致供需关系逆转。行业从算力二房东转向 AI 整体解决方案。",
+          "source": "雷科技 / 行业综合"
+        }
+      ]
+    },
+    {
+      "issue": "008",
+      "date": "2026-05-08",
+      "weekday": "周五",
+      "weekdayEn": "Friday",
+      "type": "daily",
+      "file": "ai_daily_2026_05_08.html",
+      "stories": [
+        {
+          "tag": "⚡ 大模型 · ANTHROPIC",
+          "headline": "Anthropic 牵手 SpaceX 接 300MW 算力 · 估值传破 9000 亿、10 月或赴美上市",
+          "summary": "从亚马逊 Trainium、Google TPU 到 SpaceX Colossus + 自建数据中心 — Anthropic 已搭起四条独立算力供给线，1 年估值×15。配合 ChatGPT 4 月卸载量 +132%、Claude 美国 App Store 单日下载首超 ChatGPT，AI 王座位移信号已经清晰。",
+          "source": "橘鸦 AI 早报 / 新浪财经"
+        },
+        {
+          "tag": "💰 资本 · 无问芯穹",
+          "headline": "无问芯穹超 7 亿融资 · 阿里香港创投首次入华 · 累计 22 亿",
+          "summary": "清华系 AI 数字炼油厂 宣布完成新一轮融资，居中国 AI 原生基建公司之首。同日发布 AI 生产力公式 = 智能规模 × Token 生产效率 × Token 价值转化。Agentic MaaS 平台已上线 160+ 大模型，日均 Token 调用增长 20 倍。",
+          "source": "每日经济新闻 / 虎嗅"
+        },
+        {
+          "tag": "🚨 漏洞 · GROK",
+          "headline": "阿里巴巴与四十大盗 重演 — 一段摩斯密码让 Grok 转出 20 万美元",
+          "summary": "X 用户用一段纯摩斯密码 @ Grok 转译，转译结果成为下游 Agent Bankrbot 的转账指令，300 万 DRB 代币（约 20 万美元）被薅走。Agent 时代第一个公开的 AI 跨调用注入 案例，Agent-to-Agent 安全护栏成为行业新议题。",
+          "source": "财联社 / 新浪"
+        },
+        {
+          "tag": "🇨🇳 战略转身 · 商汤",
+          "headline": "商汤新策略：出口受阻后转向 打成本 + 打非美市场",
+          "summary": "受制裁的商汤公开表示重点降低多模态成本以保持竞争力、拓展美国以外市场。SenseNova U1 系列开源、净亏损减少、EBITDA 转正。这条路径正在成为受制裁中国 AI 公司的 模板答案。",
+          "source": "俄罗斯卫星通讯社"
+        },
+        {
+          "tag": "🩺 AI 医疗",
+          "headline": "全国首款多病种 AI 医疗大模型进入药监局创新医疗器械特别审查",
+          "summary": "复旦中山医院胸部 CT 智能体让阅片时间缩短 33%。AI 医疗第一次以医疗器械身份接受国家级监管，跨过 科普 → 临床决策 门槛，对应美国 FDA 的 Pre-Sub 路径。",
+          "source": "上观新闻 / 新浪财经"
+        }
+      ]
+    },
+    {
+      "issue": "007",
+      "date": "2026-05-06",
+      "type": "weekly",
+      "specialLabel": "周特辑",
+      "dateRange": "五一假期 · 5.1—5.6",
+      "file": "ai_daily_2026_05_06_weekly.html",
+      "stories": [
+        {
+          "tag": "⚖️ 法庭风暴 · OPENAI",
+          "headline": "Brockman 法庭 认罪 — 0 美元换 300 亿股权",
+          "summary": "奥克兰联邦法院。马斯克律师拿着 Brockman 自己的日记和邮件，三个问题完成现场活剐。NYU 学者马库斯当庭判断：马斯克第一次有机会赢了。可能影响 OpenAI 的 IPO 路径。",
+          "source": "新智元 / 文学城"
+        },
+        {
+          "tag": "🇨🇳 监管 · 杭州法院",
+          "headline": "中国首例 · 以 AI 优化 名义解雇员工属违法行为",
+          "summary": "杭州法院裁定一家公司因优化调整和引入 AI 工具而解雇员工属违法。在青年失业率超 16% 背景下，监管层选择优先保护就业。这一判决将影响后续每一家拟用 AI 优化的公司的人力策略。",
+          "source": "俄罗斯卫星通讯社"
+        },
+        {
+          "tag": "🛡️ 战场 · 五角大楼",
+          "headline": "五角大楼联手 7 家 AI 公司 · 130 万军方人员上线 IL6/IL7 机密网络",
+          "summary": "国防部与 OpenAI、Google、英伟达、微软、AWS 等 7 家签署协议，明确 AI 优先 为军事战略核心方向。AI 技术从辅助工具到核心战斗力。",
+          "source": "AI 圈日报 / TechCrunch"
+        },
+        {
+          "tag": "💰 加注 · AMAZON",
+          "headline": "亚马逊向 Anthropic 再追加 250 亿美元 · 总投入超 580 亿",
+          "summary": "算力换股权 模式继续。Anthropic 估值已 3800 亿美元，亚马逊几乎成为事实上的母公司。AWS Trainium 芯片绑定 Anthropic、Anthropic 把企业市场份额抢到 73%，闭环越收越紧。",
+          "source": "DataPipe"
+        },
+        {
+          "tag": "🤖 入场 · META",
+          "headline": "Meta 全资收购 Assured Robot Intelligence — 杀入人形机器人",
+          "summary": "Meta 在元宇宙吃过亏，这次明显在用宁可投错也不能错过的速度切入具身智能。北美人形机器人四强（Figure / Tesla / Agility / Apptronik）+ Meta，竞争阵线再扩大。",
+          "source": "新浪 / 快科技"
+        }
+      ]
+    },
+    {
+      "issue": "006",
+      "date": "2026-04-30",
+      "weekday": "周四",
+      "weekdayEn": "Thursday",
+      "type": "daily",
+      "file": "ai_daily_2026_04_30.html",
+      "stories": [
+        {
+          "tag": "💸 价格战 · OPENAI",
+          "headline": "OpenAI 推出 8 美元/月 ChatGPT Go · 砍 60% · 目标 1.12 亿用户",
+          "summary": "面对 Anthropic 企业端反超后，OpenAI 从消费者订阅侧反咬一口。配合与甲骨文的云端绑定降低运营成本。AI 行业进入 订阅+API 双线价格战。",
+          "source": "钛媒体 Edge AI Daily"
+        },
+        {
+          "tag": "🚀 算力 · 英伟达",
+          "headline": "Nemotron 3 Nano Omni 发布 · 三模态统一 · 推理效率 9 倍",
+          "summary": "英伟达推出多模态边缘端模型，统一架构融合视觉、音频、语言。配合本周市值突破 5.28 万亿美元成为全球第一，算力底层闭环更紧。",
+          "source": "钛媒体"
+        },
+        {
+          "tag": "🇪🇺 反垄断 · 欧盟",
+          "headline": "欧盟强令谷歌 6 个月内开放安卓 AI 生态",
+          "summary": "要求拆除限制第三方 AI 服务的技术障碍，让 GPT、Llama 获得与 Gemini 同等的系统资源。同时要求向竞争对手共享匿名搜索数据。大模型时代第一次硬监管 AI 系统垄断。",
+          "source": "钛媒体 Edge AI Daily"
+        },
+        {
+          "tag": "🧸 落地 · 阿里",
+          "headline": "妙呀 AI 潮玩平台上线 — 设计周期从 60 天压到 7-10 天",
+          "summary": "大麦娱乐与阿里通义联合推出，基于 Wan2.7 大模型实现多模态生成。3D 模型生成准确率超 85%，速度比传统工具快 3-5 倍。AI 在创意产业落地的第一个完整商业案例。",
+          "source": "钛媒体"
+        },
+        {
+          "tag": "🤖 估值 · FIGURE AI",
+          "headline": "Figure AI 估值 480 亿美元 · 美国人形机器人天花板再刷新",
+          "summary": "Amazon 2 万台仓库部署执行中，月产 1200 台、Q4 目标 5000 台/月。中美第一梯队差距继续拉开（中国 420 亿元 vs 美国 3000 亿元）。",
+          "source": "SimonAKing 行业总结"
+        }
+      ]
+    },
+    {
+      "issue": "005",
+      "date": "2026-04-29",
+      "weekday": "周三",
+      "weekdayEn": "Wednesday",
+      "type": "daily",
+      "file": "ai_daily_2026_04_29.html",
+      "stories": [
+        {
+          "tag": "💸 价格葬礼 · DEEPSEEK",
+          "headline": "两天两次降价 · 百万 token 输入 2 分钱 · 调用量 24 小时涨 4 倍",
+          "summary": "V4-Flash 缓存命中价压到 0.02 元/百万 token，与 GPT-5.5 Pro 价差超 17 倍。Agent 模型价格锚被彻底打穿，所有按 token 计费的下游产品都在重算单位经济模型。",
+          "source": "36 氪 / 界面新闻"
+        },
+        {
+          "tag": "🐎 突袭 · 阿里",
+          "headline": "HappyHorse 突然上线 — 实测让奥特曼马斯克 法庭开撕 还手搓 GTA 6",
+          "summary": "阿里在豆包、千问、夸克之外又一张牌。区别于工具型路线，HappyHorse 走 娱乐+社交。中国 AI 应用入口的卡位战进入 严肃+娱乐 双轨。",
+          "source": "36 氪"
+        },
+        {
+          "tag": "⚠️ 警报 · OPENAI",
+          "headline": "市场消息 · OpenAI IPO 关键期未达核心营收和用户目标",
+          "summary": "与上月 1220 亿美元天价融资形成强烈反差。Anthropic ARR 反超后，资本叙事开始出现裂痕。",
+          "source": "新浪财经"
+        },
+        {
+          "tag": "📊 资本 · KPMG",
+          "headline": "2026 Q1 全球 VC 总额 3309 亿$ 创历史新高 · 10 笔巨型 AI 交易吃掉 60%+",
+          "summary": "单笔超 20 亿美元的 巨型交易 达 10 笔。中小项目融资窗口正被前所未有地挤压。",
+          "source": "KPMG / 新浪财经"
+        },
+        {
+          "tag": "🇨🇳 监管 · MANUS",
+          "headline": "中方禁止外资收购 Manus — 国家队优先 立场明确",
+          "summary": "Manus 是 2025 年红极一时的国产 AI Agent 创业公司。这条消息预示外资在中国 AI 收购窗口将持续收紧。",
+          "source": "36 氪"
+        }
+      ]
+    },
+    {
+      "issue": "004",
+      "date": "2026-04-28",
+      "weekday": "周二",
+      "weekdayEn": "Tuesday",
+      "type": "daily",
+      "file": "ai_daily_2026_04_28.html",
+      "stories": [
+        {
+          "tag": "⚡ 实测 · DEEPSEEK V4",
+          "headline": "代码竞技场开源第一 · Agent 端到端任务仍被 GPT-5.5 压制",
+          "summary": "Vibe Code Benchmark 拿下开源第一，LiveCodeBench 93.5 超过 GPT-5.4。但宝可梦战斗引擎端到端测试中只有 GPT-5.5 跑通。DeepSeek 自评：发展轨迹滞后前沿闭源约 3-6 个月。",
+          "source": "TechWeb / 53AI"
+        },
+        {
+          "tag": "🏆 榜单 · TIME",
+          "headline": "《时代》2026 AI 十大影响力机构出炉 · 阿里千问下载破 10 亿",
+          "summary": "OpenAI、阿里巴巴、亚马逊领衔。豆包春节 DAU 破 1 亿、WAU 1.55 亿。中国成为最早实现 AI 助手大规模应用的国家之一。智谱赴港 IPO 成中国 LLM 第一股。",
+          "source": "俄罗斯卫星通讯社"
+        },
+        {
+          "tag": "📊 账本 · 机器人双星",
+          "headline": "宇树年赚 6 亿 · 优必选年亏 7 亿 — 同赛道两本账",
+          "summary": "宇树营收同比 +335% 至 17.08 亿、人形机器人出货 5500 台稳居全球第一；优必选年收入 20.01 亿但仍亏 7 亿。两家估值都已迈过百亿，但商业化路径完全分叉。",
+          "source": "新浪财经"
+        },
+        {
+          "tag": "💰 融资 · 无界动力",
+          "headline": "天使轮累计破 2 亿美元 · 远景战略合作 5 亿元出海",
+          "summary": "远景科技集团与北京市 AI 产业基金联合投资。原生世界模型 + 强化学习 路线在天使轮就拿到这个金额，行业内罕见的 重注押大脑 案例。",
+          "source": "新浪科技 TechWeb"
+        }
+      ]
+    },
+    {
+      "issue": "003",
+      "date": "2026-04-27",
+      "weekday": "周一",
+      "weekdayEn": "Monday",
+      "type": "daily",
+      "file": "ai_daily_2026_04_27.html",
+      "stories": [
+        {
+          "tag": "⚡ 头条 · DEEPSEEK",
+          "headline": "DeepSeek V4 发布: 1.6 万亿参数 MoE · 价格只有海外的 1%",
+          "summary": "V4-Pro 1.6 万亿参数、V4-Flash 285B，百万词元上下文标配。完成与华为昇腾、寒武纪等国产芯片 Day 0 适配，被外媒称为 飞行中换引擎。同日 OpenAI 发布 GPT-5.5 全榜第一登顶。",
+          "source": "观察者网 / 路透社"
+        },
+        {
+          "tag": "💰 转身 · DEEPSEEK",
+          "headline": "DeepSeek 启动首次外部融资 · 估值从 100 亿抬至 300 亿$",
+          "summary": "那个 靠量化基金输血、技术理想主义 的 DeepSeek 第一次接受外部资本。腾讯、阿里洽谈入局。配合多位核心研究员被小米腾讯字节挖走，AI 公司竞争进入深水区。",
+          "source": "36 氪"
+        },
+        {
+          "tag": "📉 裁员 · META + 微软",
+          "headline": "同日宣布共裁 1.6 万人 · 都为 AI 投入腾预算",
+          "summary": "Meta 5 月 20 日起裁员近 8000 人并取消 6000 个空缺；微软同日启动自愿买断超 8000 人。效率优先 成同一句口号。",
+          "source": "新浪财经"
+        },
+        {
+          "tag": "🏭 突破 · 美的",
+          "headline": "4 个 AI Agent 与 3000 家供应商谈判 · 释放 9.6 亿现金流",
+          "summary": "谈判周期从三周缩到三天，平均采购价格降 2.4%。AI Agent 在企业采购场景中第一个真实商业价值案例 — 多 Agent 协作跨过演示门槛。",
+          "source": "openEuler / CSDN"
+        }
+      ]
+    },
+    {
+      "issue": "002",
+      "date": "2026-04-24",
+      "weekday": "周五",
+      "weekdayEn": "Friday",
+      "type": "daily",
+      "file": "ai_daily_2026_04_24.html",
+      "stories": [
+        {
+          "tag": "🚨 头条 · 白宫",
+          "headline": "白宫指控中国 大规模蒸馏 美国前沿 AI · 外交议题升级",
+          "summary": "白宫科技政策办公室主任克拉齐奥斯发布备忘录，称外国实体主要是位于中国的实体利用数万代理账户和越狱技术蓄意提取美国 AI 系统能力。中国驻美使馆反驳毫无根据。知识蒸馏从商业争议升级为国家安全议题。",
+          "source": "俄罗斯卫星通讯社 / 路透社"
+        },
+        {
+          "tag": "💰 融资 · 自变量机器人",
+          "headline": "B 轮 20 亿 · 集齐字节美团阿里小米四家巨头",
+          "summary": "小米战投与红杉中国联合领投，自变量成为国内唯一同时获得四家互联网巨头投资的具身智能企业。Q1 国内具身智能融资已近 200 亿，百亿估值公司增至 13 家。",
+          "source": "每日经济新闻"
+        },
+        {
+          "tag": "🏢 反超 · ANTHROPIC",
+          "headline": "Anthropic ARR 突破 300 亿$ · 正式反超 OpenAI",
+          "summary": "4 个月 3 倍增速。企业首次购买 AI 服务的新增资金中 73% 流向 Anthropic、OpenAI 占 27%（10 周前还是 50/50）。Claude Code 编程壁垒把企业市场向一边倾斜。",
+          "source": "钛媒体"
+        },
+        {
+          "tag": "🌍 算力 · GOOGLE",
+          "headline": "Google Cloud Next '26 · 发布 TPU 8t/8i 双芯片 + Agent 平台",
+          "summary": "第八代 TPU 训练与推理首次拆分。Gemini Enterprise Agent Platform 新增 Memory Bank 与 Agent Simulation 功能。Google 今年资本支出 1850 亿美元 — 全面围剿企业 AI。",
+          "source": "新浪财经 / Bloomberg"
+        },
+        {
+          "tag": "🏠 突破 · 自变量",
+          "headline": "全球首个 世界统一模型 具身智能基础模型 WALL-B 发布",
+          "summary": "把视觉、语言、动作、触觉、物理预测融入同一网络联合训练。35 天后搭载 WALL-B 的新一代机器人将首批入驻真实家庭。理解世界 而非 模仿动作。",
+          "source": "深圳新闻网"
+        }
+      ]
+    },
+    {
+      "issue": "001",
+      "date": "2026-04-23",
+      "weekday": "周四",
+      "weekdayEn": "Thursday",
+      "type": "daily",
+      "specialLabel": "创刊号",
+      "file": "ai_daily_2026_04_23.html",
+      "stories": [
+        {
+          "tag": "🚀 头条 · SPACEX × CURSOR",
+          "headline": "SpaceX 拿下 600 亿$ 收购 Cursor 的 二选一 选项",
+          "summary": "SpaceX 可在今年晚些时候以 600 亿美元全资收购 Cursor，或选择支付 100 亿美元作为合作费。双方将整合 SpaceX 自研的 Colossus 超算（算力宣称相当于 100 万颗 H100）。",
+          "source": "21 世纪经济报道"
+        },
+        {
+          "tag": "⚡ 模型 · OPENAI",
+          "headline": "ChatGPT Images 2.0 公测 — 图像模型从 玩具 转向 生产工具",
+          "summary": "在指令遵循、物体精准放置与密集文本渲染上有大幅进步，视觉审美更接近经过设计的稿件、而非典型的 AI 感。市场开始把图像模型当作真正的设计与营销工具来评估。",
+          "source": "新浪财经"
+        },
+        {
+          "tag": "⚖️ 全球首例 · 美国",
+          "headline": "美国佛州对 OpenAI 启动刑事调查 — AI 第一次进入刑案",
+          "summary": "佛罗里达州检察官针对 OpenAI 及 ChatGPT 启动刑事调查，称其在 2025 年校园枪击案中存在潜在作用。美国首例将人工智能纳入刑事调查的案件。",
+          "source": "证券时报网"
+        },
+        {
+          "tag": "🏃 突破 · 北京亦庄",
+          "headline": "人形机器人半马 50 分 26 秒 · 超越人类世界纪录",
+          "summary": "北京荣耀 闪电 夺冠，超过乌干达选手基普利莫今年 3 月里斯本半马的 57 分 20 秒男子半马世界纪录。相比去年机器人冠军 2 小时 40 分，一年内进步超过 1 小时 50 分钟。",
+          "source": "新浪 / 千龙网"
+        },
+        {
+          "tag": "👓 硬件 · 华为",
+          "headline": "华为 AI 眼镜发布 · 35.5 克 · 所见即所拍 所问即所答",
+          "summary": "首款鸿蒙 AI 眼镜，12 小时综合续航。光学镜款 2499 元、太阳镜款 2899 元，4 月 25 日开售。鸿蒙系统协同能力是它对 Meta Ray-Ban 的核心差异化叙事。",
+          "source": "深圳新闻网"
+        }
+      ]
+    }
+  ]
+}

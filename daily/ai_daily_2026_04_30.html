@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 · 2026.04.30</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=JetBrains+Mono:wght@400;500;700&family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0d0b;
+    --ink-2: #161410;
+    --paper: #f4ecdb;
+    --paper-2: #e8dfc9;
+    --muted: #8a8275;
+    --rule: #2a2620;
+    --signal: #ff4d1f;
+    --signal-2: #ffb454;
+    --tan: #c9a679;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink); color: var(--paper);
+    font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
+    font-weight: 300; line-height: 1.65; letter-spacing: 0.01em; overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255, 77, 31, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 90%, rgba(201, 166, 121, 0.035) 0%, transparent 50%);
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .masthead { border-bottom: 1px solid var(--rule); padding: 32px 0 24px; position: relative; }
+  .masthead-grid { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 32px; }
+  .edition { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .edition strong { color: var(--paper); font-weight: 500; }
+  .logo { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 38px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; text-align: center; font-variation-settings: "opsz" 144; }
+  .logo .accent { color: var(--signal); font-style: italic; font-weight: 600; }
+  .weather { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-align: right; line-height: 1.7; }
+  .weather .pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--signal); margin-right: 6px; animation: pulse 2s infinite; vertical-align: middle; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 77, 31, 0.5); }
+    50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(255, 77, 31, 0); }
+  }
+  .hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule); position: relative; }
+  .hero-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal); }
+  .hero-meta::before { content: ''; width: 40px; height: 1px; background: var(--signal); }
+  .hero h1 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: clamp(48px, 8vw, 96px); font-weight: 400; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 32px; font-variation-settings: "opsz" 144, "SOFT" 50; }
+  .hero h1 em { font-style: italic; font-weight: 600; color: var(--signal-2); }
+  .hero-lede { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.5; color: var(--paper-2); max-width: 680px; font-weight: 400; }
+  .date-block { position: absolute; top: 80px; right: 32px; text-align: right; font-family: 'JetBrains Mono', monospace; }
+  .date-block .day { font-family: 'Fraunces', serif; font-size: 120px; font-weight: 800; line-height: 0.9; color: var(--paper); font-variation-settings: "opsz" 144; letter-spacing: -0.05em; }
+  .date-block .month { font-size: 12px; letter-spacing: 0.2em; color: var(--muted); margin-top: 8px; }
+  .ticker { background: var(--ink-2); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); overflow: hidden; padding: 14px 0; position: relative; }
+  .ticker-track { display: flex; gap: 48px; white-space: nowrap; animation: scroll 60s linear infinite; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.05em; color: var(--paper-2); }
+  .ticker-track span { display: inline-flex; align-items: center; gap: 12px; }
+  .ticker-track .dot { color: var(--signal); font-size: 8px; }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .section { padding: 80px 0 40px; border-bottom: 1px solid var(--rule); }
+  .section-head { display: grid; grid-template-columns: 280px 1fr; gap: 48px; margin-bottom: 48px; align-items: start; }
+  .section-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--signal); margin-bottom: 12px; }
+  .section-title { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 56px; font-weight: 400; line-height: 0.95; letter-spacing: -0.03em; font-variation-settings: "opsz" 144; }
+  .section-title em { font-style: italic; color: var(--tan); font-weight: 600; }
+  .section-intro { font-family: 'Fraunces', serif; font-size: 17px; line-height: 1.6; color: var(--muted); padding-top: 16px; border-top: 1px solid var(--rule); }
+  .stories { display: grid; grid-template-columns: repeat(12, 1fr); gap: 32px; }
+  .story { grid-column: span 6; padding: 28px; background: linear-gradient(180deg, rgba(255,255,255,0.015) 0%, transparent 100%); border: 1px solid var(--rule); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; }
+  .story::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 1px; background: var(--signal); transition: width 0.6s ease; }
+  .story:hover { background: linear-gradient(180deg, rgba(255, 77, 31, 0.04) 0%, transparent 100%); border-color: rgba(255, 77, 31, 0.3); transform: translateY(-2px); }
+  .story:hover::before { width: 100%; }
+  .story.feature { grid-column: span 12; padding: 48px; background: linear-gradient(135deg, rgba(255, 77, 31, 0.06) 0%, rgba(201, 166, 121, 0.02) 100%); border-color: rgba(255, 77, 31, 0.25); }
+  .story.feature::after { content: 'FEATURED'; position: absolute; top: 24px; right: 24px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--signal); border: 1px solid var(--signal); padding: 4px 10px; }
+  .story-tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: var(--signal); margin-bottom: 16px; text-transform: uppercase; }
+  .story h3 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 26px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 16px; color: var(--paper); font-variation-settings: "opsz" 144; }
+  .story.feature h3 { font-size: 42px; line-height: 1.05; max-width: 90%; }
+  .story p { font-size: 15px; line-height: 1.7; color: var(--paper-2); margin-bottom: 20px; font-weight: 300; }
+  .story.feature p { font-family: 'Fraunces', serif; font-size: 19px; max-width: 720px; }
+  .story-meta { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 20px; border-top: 1px solid var(--rule); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.05em; }
+  .source { color: var(--muted); }
+  .source strong { color: var(--paper); font-weight: 500; }
+  .read-more { color: var(--signal); text-decoration: none; border: 1px solid var(--rule); padding: 6px 12px; transition: all 0.3s; white-space: nowrap; }
+  .read-more:hover { background: var(--signal); color: var(--ink); border-color: var(--signal); }
+  .story.span-4 { grid-column: span 4; }
+  .story.span-8 { grid-column: span 8; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--ink-2); }
+  .stat { padding: 40px 32px; border-right: 1px solid var(--rule); }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-family: 'Fraunces', serif; font-size: 56px; font-weight: 800; line-height: 1; color: var(--signal-2); letter-spacing: -0.04em; margin-bottom: 8px; font-variation-settings: "opsz" 144; }
+  .stat-num .unit { font-size: 22px; color: var(--paper); font-weight: 400; margin-left: 4px; }
+  .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; line-height: 1.4; }
+  .footer { padding: 80px 0 60px; text-align: center; border-top: 1px solid var(--rule); margin-top: 40px; }
+  .footer-mark { font-family: 'Fraunces', serif; font-style: italic; font-size: 28px; color: var(--paper); margin-bottom: 16px; font-variation-settings: "opsz" 144; }
+  .footer-mark .accent { color: var(--signal); }
+  .footer p { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+  .footer .divider { width: 60px; height: 1px; background: var(--signal); margin: 24px auto; }
+  @media (max-width: 900px) {
+    .wrap { padding: 0 20px; }
+    .masthead-grid { grid-template-columns: 1fr; gap: 16px; text-align: center; }
+    .weather { text-align: center; }
+    .date-block { position: static; text-align: left; margin-top: 32px; }
+    .date-block .day { font-size: 80px; }
+    .hero { padding: 48px 0 40px; }
+    .hero h1 { font-size: 44px; }
+    .hero-lede { font-size: 18px; }
+    .section-head { grid-template-columns: 1fr; gap: 16px; }
+    .section-title { font-size: 36px; }
+    .story, .story.feature { grid-column: span 12 !important; padding: 24px; }
+    .story.feature h3 { font-size: 28px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat { border-right: none; border-bottom: 1px solid var(--rule); padding: 28px 20px; }
+    .stat-num { font-size: 40px; }
+    .stat:nth-child(odd) { border-right: 1px solid var(--rule); }
+  }
+  @media (max-width: 500px) {
+    .stats { grid-template-columns: 1fr; }
+    .stat { border-right: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-grid">
+      <div class="edition">VOL. <strong>I</strong> · NO. <strong>006</strong></div>
+      <div class="logo">信号 <span class="accent">/ Signal</span></div>
+      <div class="weather"><span class="pulse"></span>LIVE · 30 APR 2026<br>晴 · 洛杉矶 · 25°C</div>
+    </div>
+  </div>
+</header>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span><span class="dot">●</span> ChatGPT Go 8美元订阅 · 目标用户 1.12 亿</span>
+    <span><span class="dot">●</span> 英伟达 Nemotron 3 Nano Omni 推理效率 9 倍</span>
+    <span><span class="dot">●</span> Outlook Agentic Copilot 全面升级</span>
+    <span><span class="dot">●</span> 英伟达市值突破 5.28 万亿$ 全球第一</span>
+    <span><span class="dot">●</span> 软银 5000 亿$ 数据中心项目推进</span>
+    <span><span class="dot">●</span> 谷歌印度 150 亿$ AI 中心落地</span>
+    <span><span class="dot">●</span> 阿里通义"妙呀"AI 潮玩平台上线</span>
+    <span><span class="dot">●</span> 前 DeepMind 研究员公司种子轮 11 亿$</span>
+    <span><span class="dot">●</span> ChatGPT Go 8美元订阅 · 目标用户 1.12 亿</span>
+    <span><span class="dot">●</span> 英伟达 Nemotron 3 Nano Omni 推理效率 9 倍</span>
+    <span><span class="dot">●</span> Outlook Agentic Copilot 全面升级</span>
+    <span><span class="dot">●</span> 英伟达市值突破 5.28 万亿$ 全球第一</span>
+    <span><span class="dot">●</span> 软银 5000 亿$ 数据中心项目推进</span>
+    <span><span class="dot">●</span> 谷歌印度 150 亿$ AI 中心落地</span>
+    <span><span class="dot">●</span> 阿里通义"妙呀"AI 潮玩平台上线</span>
+    <span><span class="dot">●</span> 前 DeepMind 研究员公司种子轮 11 亿$</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-meta">今日要闻 · TODAY'S BRIEFING</div>
+    <h1>OpenAI 把订阅价砍到 8 美元 —<br>这不是促销,是<em>追击</em>。</h1>
+    <p class="hero-lede">
+      DeepSeek 把 API 价格打到 0.02 元的余震还没散去，OpenAI 4 月 28 日推出 8 美元/月的 ChatGPT Go — 比 20 美元的 Plus 砍了 60%，目标用户 1.12 亿。同一天，英伟达发布推理效率 9 倍的 Nemotron 3 Nano Omni、市值突破 5.28 万亿美元成为全球第一。AI 行业正在两条战线同时进入"打价格 + 打效率"的肉搏战。
+    </p>
+    <div class="date-block"><div class="day">30</div><div class="month">APRIL · MMXXVI</div></div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">8<span class="unit">$/月</span></div><div class="stat-label">ChatGPT Go 订阅价<br>较 Plus 砍 60%</div></div>
+  <div class="stat"><div class="stat-num">9<span class="unit">倍</span></div><div class="stat-label">Nemotron 3 Nano Omni<br>推理效率提升</div></div>
+  <div class="stat"><div class="stat-num">5.28<span class="unit">万亿$</span></div><div class="stat-label">英伟达市值<br>全球第一</div></div>
+  <div class="stat"><div class="stat-num">11<span class="unit">亿$</span></div><div class="stat-label">前 DeepMind 研究员公司<br>种子轮估值 51 亿</div></div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 01</div><h2 class="section-title">大模型<em>风暴</em></h2></div>
+      <p class="section-intro">订阅价、推理效率、企业 Agent — 巨头同时在三条战线打肉搏战。算力侧"船大难掉头"开始反攻应用侧的"船小好抢市场"。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">⚡ 头条 · OpenAI ChatGPT Go</div>
+        <h3>OpenAI 推出 8 美元/月 ChatGPT Go · 目标用户 1.12 亿 · 与甲骨文绑定云端</h3>
+        <p>
+          4 月 28 日，OpenAI 推出每月 8 美元的 ChatGPT Go 入门级订阅，比 20 美元的 Plus 砍了 60%。目标用户规模 1.12 亿 — 通过模型蒸馏、量化、动态资源调度等技术手段降低运营成本。同时与甲骨文达成战略合作优化云基础设施。Anthropic 的 Claude 3 用户翻倍（3 月 DAU 份额 0.8% → 1.8%）、Gemini DAU 份额升至 16.5%、字节豆包付费用户破 1000 万 — 这是 OpenAI 在面对 Anthropic 企业端反超后，从"价格端"反咬一口。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>钛媒体 Edge AI Daily</strong> · 2026.04.29</span>
+          <a class="read-more" href="https://www.tmtpost.com/7971378.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-8">
+        <div class="story-tag">🚀 推理效率 · 英伟达</div>
+        <h3>Nemotron 3 Nano Omni 发布 · 三模态统一处理 · 效率提升 9 倍</h3>
+        <p>
+          4 月 28 日，英伟达推出 Nemotron 3 Nano Omni 多模态模型，采用统一架构直接融合视觉、音频与语言三种输入数据，推理效率较前代提升 9 倍 — 填补了边缘端高效多模态模型的空白。这是英伟达在 GTC 之外，把"边缘 AI 模型"推向"具身智能落地"的关键一步。配合英伟达本周市值突破 5.28 万亿美元成为全球第一（CUDA 生态 400 万开发者），算力底层已经形成完整闭环。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>钛媒体</strong> · 2026.04.28</span>
+          <a class="read-more" href="https://www.tmtpost.com/7971378.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">📧 Agent · 微软</div>
+        <h3>Outlook 升级 Agentic Copilot</h3>
+        <p>
+          4 月 27 日，微软升级 Outlook Agentic Copilot — 从辅助写作转向主动任务管理。覆盖全球 1000 余家大型企业。处理邮件 / 日程时间下降 35%+，会议协调时间下降 42%。布鲁金斯学会预测此类工具能让企业整体生产力提升 15-20%。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>钛媒体</strong></span>
+          <a class="read-more" href="https://www.tmtpost.com/7971378.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">📊 Anthropic 加速</div>
+        <h3>Anthropic ARR 300 亿 · 客户翻倍</h3>
+        <p>
+          Anthropic 4 月 28 日披露 — 年化收入 300 亿美元（较 2025 年底 90 亿暴涨）首次反超 OpenAI；年支出超 100 万美元的企业客户已突破 1000 家，较 2 月的 500 家翻一番。CFO Krishna Rao 表示与谷歌、博通的合作是为了支撑客户群持续扩张。受此影响，博通股价盘后涨 3.6%。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>钛媒体 AI Article</strong></span>
+          <a class="read-more" href="https://www.tmtpost.com/agent/ai-article/15132" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">⚠️ 收益递减 · OpenAI</div>
+        <h3>市场分析师警告 GPT-6 对 C 端"收益递减"</h3>
+        <p>
+          OpenAI 完成代号 Spud 模型预训练（即将发布的 GPT-6），计划再投 80-100 亿美元基建。但分析师警告 — 面对 Anthropic 与谷歌的竞争，该模型对普通消费者的边际效用或受"收益递减法则"影响。配合上周市场传出"IPO 关键阶段未达营收/用户目标"，OpenAI 资本叙事承压。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>钛媒体 AI Article</strong></span>
+          <a class="read-more" href="https://www.tmtpost.com/agent/ai-article/14445" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 02</div><h2 class="section-title">资本<em>潮汐</em></h2></div>
+      <p class="section-intro">软银 5000 亿、谷歌 150 亿、英伟达 5.28 万亿 — 算力基建支出再次刷新历史，但前 DeepMind 研究员的种子轮也能拿 11 亿。资本两极都在燃烧。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">💰 头条 · 算力大基建</div>
+        <h3>软银 5000 亿 · 谷歌印度 150 亿 · 全球算力基础设施竞争白热化</h3>
+        <p>
+          4 月 28-29 日，三家巨头同步刷新算力基建支出 — 软银 5000 亿美元 AI 数据中心项目推进；谷歌宣布在印度投资 150 亿美元建设 AI 中心；英伟达市值突破 5.28 万亿美元，过去 12 个月涨幅 100.5%，主要受益于全球 AI 基础设施建设浪潮。OpenAI 已锁定超 8 GW 算力，2030 年 30 GW 远期目标对应投资 8000-16000 亿美元。摩根大通预测 — 2026 年全球 AI 资本支出将从 2025 年 4500 亿涨到 7250 亿美元。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>钛媒体 Edge AI Daily</strong> · 2026.04.29</span>
+          <a class="read-more" href="https://www.tmtpost.com/7971378.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🌱 种子轮 · DeepMind 系</div>
+        <h3>前 DeepMind 研究员新公司种子轮 11 亿美元 · 估值 51 亿</h3>
+        <p>
+          4 月 28 日，前谷歌 DeepMind 研究员创办的新公司完成种子轮融资 11 亿美元，估值 51 亿美元 — 巨头集体参投。这是 2026 年顶级 AI 人才创业公司又一个"天价种子轮"案例 — 顶级 talent 在天使阶段就可以拿到独角兽估值。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>钛媒体</strong></span>
+          <a class="read-more" href="https://www.tmtpost.com/7971378.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">📈 集中度 · Dealroom</div>
+        <h3>三家巨头吃掉全球 AI 融资 60%</h3>
+        <p>
+          Dealroom 统计 — 2026 年至今全球 AI 企业融资总额 2805 亿美元创历史纪录，仅 OpenAI、Anthropic、xAI 三家就募资超 1700 亿美元（占比超 60%）。英伟达持续战略投资 OpenAI、Anthropic、xAI 头部三家 — 通过股权与算力供应双绑定锁住生态。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>钛媒体 Edge AI Daily</strong></span>
+          <a class="read-more" href="https://www.tmtpost.com/7965078.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 03</div><h2 class="section-title">监管<em>边界</em></h2></div>
+      <p class="section-intro">欧盟强令谷歌开放安卓 AI 生态 — 这是大模型时代第一次正式针对"AI 系统垄断"的反垄断动作。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">🇪🇺 头条 · 欧盟反垄断</div>
+        <h3>欧盟强令谷歌六个月内开放安卓 AI 生态 · Gemini 面临直接竞争</h3>
+        <p>
+          欧盟委员会要求谷歌在六个月内拆除安卓系统中限制第三方 AI 服务访问核心功能的技术障碍 — 允许 OpenAI 的 GPT、Meta 的 Llama 等竞争对手获得与 Gemini 同等的系统资源优先级和 API 接口访问权限。同时要求谷歌向竞争对手共享匿名搜索数据 — 这些覆盖数亿用户行为模式的数据是训练 AI 模型的关键资源。麦肯锡 2024 报告显示约 60% 的初创公司因缺乏高质量训练数据而难以与巨头抗衡。这是大模型时代对"AI 系统垄断"的第一次硬监管。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>钛媒体 Edge AI Daily</strong> · 2026.04.24</span>
+          <a class="read-more" href="https://www.tmtpost.com/7965078.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🇨🇳 国内 · 网信办</div>
+        <h3>《生成式 AI 服务管理规定（修订版）》征求意见</h3>
+        <p>
+          国家网信办近日发布《生成式人工智能服务管理规定（修订版征求意见稿）》— 明确要求 AI 服务提供者审核生成内容、标注 AI 生成标识、禁止生成虚假信息或侵权内容。预计 2026 年下半年正式实施。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>知乎专栏</strong></span>
+          <a class="read-more" href="https://zhuanlan.zhihu.com/p/2025390002230555538" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🛡️ 国际 · 网安预警</div>
+        <h3>IMF 总裁警告金融体系面对 AI 风险</h3>
+        <p>
+          继 Anthropic Claude Mythos 模型被披露能识别软件漏洞后，IMF 总裁格奥尔基耶娃公开表态 — "我们迫切希望各方更加重视在 AI 时代维护金融稳定所必需的监管防线。"美国财政部长贝森特已紧急召集主要金融机构通报相关风险。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新华网</strong></span>
+          <a class="read-more" href="https://www.news.cn/world/20260415/32d43564f9d14844b788147f52645a37/c.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 04</div><h2 class="section-title">具身智能<em>商业化</em></h2></div>
+      <p class="section-intro">资本不再普降甘霖，开始精准滴灌"全栈 + 大脑"。中美第一梯队差距继续拉开 — 美国头部估值已达 3000 亿元。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">🌎 头条 · Figure D 轮</div>
+        <h3>Figure AI 估值 480 亿$ · Amazon 2 万台仓库部署确认 — 人形机器人估值天花板再刷新</h3>
+        <p>
+          Figure AI 完成 D 轮融资，估值 480 亿美元 — 人形机器人公司历史最高。Amazon 2 万台仓库部署正在执行中。产能数据 — 月产 1200 台，Q4 目标 5000 台/月。Figure 03 原型在操作和导航基准上比 02 快 50%。Q1 全球机器人融资累计超 30 亿美元（SkildAI 14 亿 + Mind Robotics 5 亿 + Figure 等）。中国第一梯队估值约 420 亿元（宇树），美国第一梯队 3000 亿元 — 差距仍在拉开，但中国具身智能赛道 Q1 已披露融资 200 亿元、同比+60%。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>SimonAKing 行业总结</strong> · 2026.04.20</span>
+          <a class="read-more" href="https://simonaking.com/blog/ai-products-2026-q1/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🧠 路线分化 · 大脑派</div>
+        <h3>资本"精准滴灌全栈大脑公司"已成共识</h3>
+        <p>
+          一线投资人本周共识 — 单纯比拼本体硬件和运动控制的竞赛"或许已经基本结束"。资本开始精准滴灌"大脑为核 + 全栈布局"的公司。Skild AI、Sunday、Generalist 等专攻智能上限的大脑玩家成为新宠。具身原生（Generalist）VS 渐进式（VLA）的两条路线之争开始白热化。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>量子位 Qbitai</strong></span>
+          <a class="read-more" href="https://www.qbitai.com/2026/04/402388.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">📊 数据竞赛 · 数据三巨头</div>
+        <h3>它石 4.55 亿$ + 光轮 5.5 亿订单 + 京东 60 万采集大军</h3>
+        <p>
+          具身智能 Q1 三大数据事件：它石智航 4.55 亿美元 Pre-A 创赛道单轮纪录；光轮智能成全球首个具身数据独角兽，Q1 5.5 亿元订单；京东发动 10 万员工 + 50 万社会人员采集团队。"数据已成为具身智能突破落地瓶颈的核心变量"是行业最新共识。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>36 氪 / AI 价值官</strong></span>
+          <a class="read-more" href="https://36kr.com/p/3778948463522569" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 05</div><h2 class="section-title">硬件与<em>新物种</em></h2></div>
+      <p class="section-intro">阿里通义"妙呀"AI 潮玩平台、AI 聊天机器人 MAU 6.95 亿 · 总入口效应已显现。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">🧸 头条 · 阿里通义 × 大麦</div>
+        <h3>"妙呀"AI 潮玩设计平台上线 — 设计周期从 60 天压到 7-10 天</h3>
+        <p>
+          大麦娱乐与阿里通义联合推出"妙呀"AI 潮玩设计平台，基于 Wan2.7 大模型实现多模态生成 — 把传统 60-90 天的潮玩设计流程压缩到 7-10 天，生成速度比传统工具快 3-5 倍，3D 模型生成准确率超 85%。麦肯锡报告显示，潮玩产品传统开发周期 60-90 天、设计环节占比超 40%；全球潮玩市场规模预计 2025 年达 450 亿美元 — 这是 AI 在创意产业落地的第一个完整案例。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>钛媒体 Edge AI Daily</strong> · 2026.04.24</span>
+          <a class="read-more" href="https://www.tmtpost.com/7965078.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">📱 总入口</div>
+        <h3>AI 聊天机器人 App 端 MAU 6.95 亿 · 替代效应显现</h3>
+        <p>
+          2026 年 3 月，AI 聊天机器人在 App 端 MAU 达 6.95 亿，较去年 12 月增长 61.89%；远超 AI 搜索引擎 1.38 亿。AI 写作 / 设计 / 办公等单功能赛道开始增长放缓甚至负增长 — 通用型聊天入口对垂类产品的"替代效应"已经显现。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新京报 AI 研究院</strong></span>
+          <a class="read-more" href="https://finance.sina.cn/stock/jdts/2026-04-27/detail-inhvxpih9153468.d.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🎬 AI for Health</div>
+        <h3>每周 2.3 亿人在 AI 平台咨询健康问题</h3>
+        <p>
+          全球 AI 医疗健康市场快速发展，2026 年预计市场规模 560 亿美元；每周超 2.3 亿人在 AI 平台询问健康问题。OpenAI 与英伟达深度合作推动 AI 代理向企业级知识工作渗透 — AI 已经在医疗、潮玩、办公全方位展开渗透。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>钛媒体 Edge AI Daily</strong></span>
+          <a class="read-more" href="https://www.tmtpost.com/7965078.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 06</div><h2 class="section-title">数据<em>读图</em></h2></div>
+      <p class="section-intro">本月最后一份"读图" — 三组数字定义这一周。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-4">
+        <div class="story-tag">💸 双向价格战</div>
+        <h3>OpenAI 砍 60% · DeepSeek 降 90%</h3>
+        <p>
+          OpenAI ChatGPT Go 砍 60%（20→8 美元）；DeepSeek API 输入价过去 7 天降 90%（缓存命中至 0.02 元/百万 token）。AI 应用层"价格血战"全面打响 — 闭源用订阅、开源用 API，两条战线同时降。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>钛媒体 / 界面新闻</strong></span>
+          <a class="read-more" href="https://www.tmtpost.com/7971378.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">🏗️ 算力开支</div>
+        <h3>2026 全球 AI 资本支出 7250 亿$</h3>
+        <p>
+          摩根大通 CEO 戴蒙预测 — 全球 AI 相关资本支出将从 2025 年的 4500 亿美元增长到 2026 年的 7250 亿美元，同比增 61%。其中算力基础设施占比超 60%。AI 行业的"算力引力井"还在加深。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>钛媒体</strong></span>
+          <a class="read-more" href="https://www.tmtpost.com/7965078.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">🤝 工程师协同</div>
+        <h3>谷歌 75% 新代码由 AI 生成</h3>
+        <p>
+          谷歌内部应用 AI 生成代码比例从 2024.10 的 25% → 2025 秋 50% → 当前 75%。Meta 创意部门目标 2026 H1 让 65% 工程师 75% 代码由 AI 编写。Snap 65% 新代码 AI 生成。"AI 编程"已经从工具变成了岗位 KPI。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>InfoQ</strong></span>
+          <a class="read-more" href="https://www.infoq.cn/article/JqSF1ckIU0gIx4OOByUD" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-mark">信号 <span class="accent">/</span> Signal</div>
+    <div class="divider"></div>
+    <p>第 006 期 · 2026 年 4 月 30 日 · 周四</p>
+    <p style="margin-top:8px;">本期收录 4.27 — 4.30 共 17 条 AI 相关动态</p>
+  </div>
+</footer>
+
+</body>
+</html>

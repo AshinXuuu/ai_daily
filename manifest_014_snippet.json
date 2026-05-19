@@ -1,0 +1,40 @@
+{
+  "issue": "014",
+  "date": "2026-05-15",
+  "weekday": "周五",
+  "weekdayEn": "Friday",
+  "type": "daily",
+  "file": "ai_daily_2026_05_15.html",
+  "stories": [
+    {
+      "tag": "⚡ 资本头条 · CEREBRAS",
+      "headline": "Cerebras 上市首日 +68% · 市值 $950 亿、年度最大科技 IPO 落地",
+      "summary": "5 月 14 日 Cerebras Systems 登陆纳斯达克：发行价 $185（突破初始 $115–125 区间）、开盘 $350、收盘 $311.07，单日 +68%，市值锁定 $950 亿，是 2026 年迄今最大的美股科技 IPO，募资 $55 亿。2025 年营收 $5.1 亿 / +76%、净利润首次转正至 $2.38 亿。8 个月前私募估值仅 $81 亿，挂牌就把价签贴到 12 倍。即便客户高度集中、仍属亏损刚转正，投资人愿意入场 — 因为 Cerebras 是 Nvidia 之外唯一能做 wafer-scale 巨型芯片的玩家。算力叙事正从「GPU 牌照争夺」转向「系统级供应链稀缺」，这场 IPO 也是 OpenAI / SpaceX 之前给 AI IPO 大潮的试水第一弹。",
+      "source": "CNBC / Bloomberg / TechCrunch"
+    },
+    {
+      "tag": "⚙️ 编程 AGENT · GROK BUILD",
+      "headline": "xAI 发布 Grok Build · 命令行编程 Agent 正面挑战 Claude Code",
+      "summary": "5 月 14 日 xAI 上线第一款 agentic 编程产品 Grok Build — CLI 形态，支持规划模式、并行 sub-agent、代码仓库集成，能规划项目、写改文件、执行 shell、按自然语言把应用造出来。新订阅档 Grok SuperHeavy 定价 $299/月（前 6 个月 $99 促销），同步面向公测。xAI 总裁明说短期目标就是追上 Claude Code — 这是马斯克最罕见的一次公开认怂。Claude Code、GitHub Copilot CLI、Gemini CLI 是同代选手，现在多了 Grok。命令行正在成为 AI 真正的下一个浏览器 — 谁拿下开发者的 terminal，谁就拿下软件的入口。",
+      "source": "Bloomberg / TechCrunch"
+    },
+    {
+      "tag": "🇨🇳 国产融资 · DEEPSEEK",
+      "headline": "DeepSeek 首轮募 500 亿元 · 估值 3500 亿、梁文锋自掏 200 亿",
+      "summary": "长期坚持「不融资、不商业化、不路演」的 DeepSeek 启动首轮外部股权融资 — 募资 500 亿元人民币、投后估值 3500 亿（约 $515 亿）。梁文锋个人出资 200 亿，外部募 300 亿；国家集成电路产业投资基金洽谈领投，腾讯、阿里、多家国资跟投。估值在 4 月初还是 $1000 亿，5 月 9 日锁死 $515 亿 — 21 天翻 5 倍。V4.1 定档 6 月。这是国产 AI 单轮融资纪录，也意味着「拒绝资本」的 DeepSeek 终于上桌 — 中美 AI 资本叙事不再是两套独立规则。",
+      "source": "新浪财经 / 量子位 / 21世纪经济报道"
+    },
+    {
+      "tag": "🏢 行业重排 · CISCO",
+      "headline": "Cisco 季度营收 $158 亿创新高 · 同步官宣裁员 4000 人、钱挪去 AI 与网安",
+      "summary": "5 月 13 日 Cisco 公布 FY26 Q3 — 单季营收 $158 亿、调整后 EPS $1.06，双双超华尔街预期。同份内部信里宣布全球裁员 4000 人（约 5% 员工），从 5 月 14 日起陆续通知。理由不是收入压力，而是「主动重塑成本结构，把更多人力和资金投到 AI、网络安全、数据中心芯片」。股价当日大涨 +15%。这是 AI 时代典型的「双轨财报」 — 创纪录的营收、创纪录的裁员，同步发生在同一家公司里。AI 反噬不是「机器人接管」式叙事，而是企业资金流的悄悄重定向。",
+      "source": "TechCrunch / CNBC / Fox Business"
+    },
+    {
+      "tag": "💼 资本胁迫 · XAI",
+      "headline": "马斯克要求 SpaceX 投行强制订阅 Grok · Goldman / JPM / MS 已签",
+      "summary": "Bloomberg 报道：马斯克要求所有参与 SpaceX 上市（目标估值 $1.75 万亿）的银行、律所、审计、咨询机构购买 Grok 订阅。Bank of America、Citigroup、Goldman Sachs、JPMorgan Chase、Morgan Stanley 已签字，部分进一步同意把 Grok 接入内部 IT 系统，单笔潜在合同价值数千万美元。但 Apollo、Valor、MS 的员工承认极少真用 — 在金融场景下被一致认为不如 OpenAI / Anthropic。这是 SaaS 商业史上罕见的「捆绑买路」 — 给 AI 产品力差距找资本端补丁，也给 xAI 在 SpaceX IPO 前抢一波营收叙事。",
+      "source": "Bloomberg / Seeking Alpha / The Japan Times"
+    }
+  ]
+},

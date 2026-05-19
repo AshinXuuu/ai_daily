@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 · 2026.05.08</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=JetBrains+Mono:wght@400;500;700&family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0d0b; --ink-2: #161410; --paper: #f4ecdb; --paper-2: #e8dfc9;
+    --muted: #8a8275; --rule: #2a2620; --signal: #ff4d1f; --signal-2: #ffb454; --tan: #c9a679;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink); color: var(--paper);
+    font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
+    font-weight: 300; line-height: 1.65; letter-spacing: 0.01em; overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255, 77, 31, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 90%, rgba(201, 166, 121, 0.035) 0%, transparent 50%);
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .masthead { border-bottom: 1px solid var(--rule); padding: 32px 0 24px; position: relative; }
+  .masthead-grid { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 32px; }
+  .edition { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .edition strong { color: var(--paper); font-weight: 500; }
+  .logo { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 38px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; text-align: center; font-variation-settings: "opsz" 144; }
+  .logo .accent { color: var(--signal); font-style: italic; font-weight: 600; }
+  .weather { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-align: right; line-height: 1.7; }
+  .weather .pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--signal); margin-right: 6px; animation: pulse 2s infinite; vertical-align: middle; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 77, 31, 0.5); }
+    50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(255, 77, 31, 0); }
+  }
+  .hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule); position: relative; }
+  .hero-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal); }
+  .hero-meta::before { content: ''; width: 40px; height: 1px; background: var(--signal); }
+  .hero h1 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: clamp(48px, 8vw, 96px); font-weight: 400; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 32px; font-variation-settings: "opsz" 144, "SOFT" 50; }
+  .hero h1 em { font-style: italic; font-weight: 600; color: var(--signal-2); }
+  .hero-lede { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.5; color: var(--paper-2); max-width: 680px; font-weight: 400; }
+  .date-block { position: absolute; top: 80px; right: 32px; text-align: right; font-family: 'JetBrains Mono', monospace; }
+  .date-block .day { font-family: 'Fraunces', serif; font-size: 120px; font-weight: 800; line-height: 0.9; color: var(--paper); font-variation-settings: "opsz" 144; letter-spacing: -0.05em; }
+  .date-block .month { font-size: 12px; letter-spacing: 0.2em; color: var(--muted); margin-top: 8px; }
+  .ticker { background: var(--ink-2); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); overflow: hidden; padding: 14px 0; position: relative; }
+  .ticker-track { display: flex; gap: 48px; white-space: nowrap; animation: scroll 60s linear infinite; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.05em; color: var(--paper-2); }
+  .ticker-track span { display: inline-flex; align-items: center; gap: 12px; }
+  .ticker-track .dot { color: var(--signal); font-size: 8px; }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .section { padding: 80px 0 40px; border-bottom: 1px solid var(--rule); }
+  .section-head { display: grid; grid-template-columns: 280px 1fr; gap: 48px; margin-bottom: 48px; align-items: start; }
+  .section-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--signal); margin-bottom: 12px; }
+  .section-title { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 56px; font-weight: 400; line-height: 0.95; letter-spacing: -0.03em; font-variation-settings: "opsz" 144; }
+  .section-title em { font-style: italic; color: var(--tan); font-weight: 600; }
+  .section-intro { font-family: 'Fraunces', serif; font-size: 17px; line-height: 1.6; color: var(--muted); padding-top: 16px; border-top: 1px solid var(--rule); }
+  .stories { display: grid; grid-template-columns: repeat(12, 1fr); gap: 32px; }
+  .story { grid-column: span 6; padding: 28px; background: linear-gradient(180deg, rgba(255,255,255,0.015) 0%, transparent 100%); border: 1px solid var(--rule); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; }
+  .story::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 1px; background: var(--signal); transition: width 0.6s ease; }
+  .story:hover { background: linear-gradient(180deg, rgba(255, 77, 31, 0.04) 0%, transparent 100%); border-color: rgba(255, 77, 31, 0.3); transform: translateY(-2px); }
+  .story:hover::before { width: 100%; }
+  .story.feature { grid-column: span 12; padding: 48px; background: linear-gradient(135deg, rgba(255, 77, 31, 0.06) 0%, rgba(201, 166, 121, 0.02) 100%); border-color: rgba(255, 77, 31, 0.25); }
+  .story.feature::after { content: 'FEATURED'; position: absolute; top: 24px; right: 24px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--signal); border: 1px solid var(--signal); padding: 4px 10px; }
+  .story-tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: var(--signal); margin-bottom: 16px; text-transform: uppercase; }
+  .story h3 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 26px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 16px; color: var(--paper); font-variation-settings: "opsz" 144; }
+  .story.feature h3 { font-size: 42px; line-height: 1.05; max-width: 90%; }
+  .story p { font-size: 15px; line-height: 1.7; color: var(--paper-2); margin-bottom: 20px; font-weight: 300; }
+  .story.feature p { font-family: 'Fraunces', serif; font-size: 19px; max-width: 720px; }
+  .story-meta { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 20px; border-top: 1px solid var(--rule); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.05em; }
+  .source { color: var(--muted); }
+  .source strong { color: var(--paper); font-weight: 500; }
+  .read-more { color: var(--signal); text-decoration: none; border: 1px solid var(--rule); padding: 6px 12px; transition: all 0.3s; white-space: nowrap; }
+  .read-more:hover { background: var(--signal); color: var(--ink); border-color: var(--signal); }
+  .story.span-4 { grid-column: span 4; }
+  .story.span-8 { grid-column: span 8; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--ink-2); }
+  .stat { padding: 40px 32px; border-right: 1px solid var(--rule); }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-family: 'Fraunces', serif; font-size: 56px; font-weight: 800; line-height: 1; color: var(--signal-2); letter-spacing: -0.04em; margin-bottom: 8px; font-variation-settings: "opsz" 144; }
+  .stat-num .unit { font-size: 22px; color: var(--paper); font-weight: 400; margin-left: 4px; }
+  .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; line-height: 1.4; }
+  .footer { padding: 80px 0 60px; text-align: center; border-top: 1px solid var(--rule); margin-top: 40px; }
+  .footer-mark { font-family: 'Fraunces', serif; font-style: italic; font-size: 28px; color: var(--paper); margin-bottom: 16px; font-variation-settings: "opsz" 144; }
+  .footer-mark .accent { color: var(--signal); }
+  .footer p { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+  .footer .divider { width: 60px; height: 1px; background: var(--signal); margin: 24px auto; }
+  @media (max-width: 900px) {
+    .wrap { padding: 0 20px; }
+    .masthead-grid { grid-template-columns: 1fr; gap: 16px; text-align: center; }
+    .weather { text-align: center; }
+    .date-block { position: static; text-align: left; margin-top: 32px; }
+    .date-block .day { font-size: 80px; }
+    .hero { padding: 48px 0 40px; }
+    .hero h1 { font-size: 44px; }
+    .hero-lede { font-size: 18px; }
+    .section-head { grid-template-columns: 1fr; gap: 16px; }
+    .section-title { font-size: 36px; }
+    .story, .story.feature { grid-column: span 12 !important; padding: 24px; }
+    .story.feature h3 { font-size: 28px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat { border-right: none; border-bottom: 1px solid var(--rule); padding: 28px 20px; }
+    .stat-num { font-size: 40px; }
+    .stat:nth-child(odd) { border-right: 1px solid var(--rule); }
+  }
+  @media (max-width: 500px) {
+    .stats { grid-template-columns: 1fr; }
+    .stat { border-right: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-grid">
+      <div class="edition">VOL. <strong>I</strong> · NO. <strong>008</strong></div>
+      <div class="logo">信号 <span class="accent">/ Signal</span></div>
+      <div class="weather"><span class="pulse"></span>LIVE · 08 MAY 2026<br>晴 · 洛杉矶 · 23°C</div>
+    </div>
+  </div>
+</header>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span><span class="dot">●</span> Anthropic × SpaceX 合作新增 300MW 算力</span>
+    <span><span class="dot">●</span> 无问芯穹超 7 亿融资 · 阿里香港创投首入</span>
+    <span><span class="dot">●</span> Anthropic 估值传破 9000 亿$ · 10 月或赴美上市</span>
+    <span><span class="dot">●</span> Grok 摩斯密码漏洞被薅 20 万$</span>
+    <span><span class="dot">●</span> 豆包 Doubao-Seed-2.0-lite 升级全模态</span>
+    <span><span class="dot">●</span> 中国胸部 CT AI 进入药监创新通道</span>
+    <span><span class="dot">●</span> 商汤新策略 · 出口受阻转打成本</span>
+    <span><span class="dot">●</span> 黄仁勋:AI 不会取代劳动力</span>
+    <span><span class="dot">●</span> Zyphra 发布 ZAYA1-8B AMD 平台开源</span>
+    <span><span class="dot">●</span> 中国日均 Token 调用 140 万亿</span>
+    <span><span class="dot">●</span> Anthropic × SpaceX 合作新增 300MW 算力</span>
+    <span><span class="dot">●</span> 无问芯穹超 7 亿融资 · 阿里香港创投首入</span>
+    <span><span class="dot">●</span> Anthropic 估值传破 9000 亿$ · 10 月或赴美上市</span>
+    <span><span class="dot">●</span> Grok 摩斯密码漏洞被薅 20 万$</span>
+    <span><span class="dot">●</span> 豆包 Doubao-Seed-2.0-lite 升级全模态</span>
+    <span><span class="dot">●</span> 中国胸部 CT AI 进入药监创新通道</span>
+    <span><span class="dot">●</span> 商汤新策略 · 出口受阻转打成本</span>
+    <span><span class="dot">●</span> 黄仁勋:AI 不会取代劳动力</span>
+    <span><span class="dot">●</span> Zyphra 发布 ZAYA1-8B AMD 平台开源</span>
+    <span><span class="dot">●</span> 中国日均 Token 调用 140 万亿</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-meta">今日要闻 · TODAY'S BRIEFING</div>
+    <h1>当 Token 变成<br><em>新石油</em>。</h1>
+    <p class="hero-lede">
+      过去 48 小时，行业话语权第一次正式从"模型"切换到"Token"。无问芯穹在拿到超 7 亿融资的同一天，发布 AI 生产力公式 — 把"Agentic Infra"包装成"数字炼油厂"。Anthropic 与 SpaceX 接通 300MW 算力，估值据传冲到 9000 亿美元 · 10 月赴美上市。同一天 Grok 被一段摩斯密码薅走 20 万美元。新石油已经流起来，监管和漏洞还在追赶。
+    </p>
+    <div class="date-block"><div class="day">08</div><div class="month">MAY · MMXXVI</div></div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">7<span class="unit">亿¥</span></div><div class="stat-label">无问芯穹本轮融资<br>累计 22 亿</div></div>
+  <div class="stat"><div class="stat-num">9000<span class="unit">亿$</span></div><div class="stat-label">Anthropic 传估值<br>超过 OpenAI</div></div>
+  <div class="stat"><div class="stat-num">300<span class="unit">MW</span></div><div class="stat-label">SpaceX 为 Anthropic<br>提供新增算力</div></div>
+  <div class="stat"><div class="stat-num">20<span class="unit">倍</span></div><div class="stat-label">无问芯穹 Token<br>日均调用量增幅</div></div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 01</div><h2 class="section-title">大模型<em>风暴</em></h2></div>
+      <p class="section-intro">Anthropic + SpaceX 把"算力 + 上市路径"再次推上焦点；豆包升全模态、Zyphra 开源 8B、商汤拿出"打成本"新打法。这一周国产线条更清晰。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">⚡ 头条 · Anthropic × SpaceX</div>
+        <h3>Anthropic 牵手 SpaceX · 新增 300MW 算力 · 同步放宽订阅使用限制</h3>
+        <p>
+          5 月 7 日 AI 早报披露，Anthropic 与 SpaceX 达成新合作，将获取 SpaceX 旗下 Colossus 超算的 300MW 算力，同步放宽 Claude 订阅产品的使用限制。市场上一并发酵的还有两条爆点：1）Anthropic 估值传出突破 9000 亿美元，超过 OpenAI；2）公司预计最快 10 月赴美上市。配合上周亚马逊追加的 250 亿美元、谷歌 + 博通的 TPU 订单，Anthropic 已搭起 AWS-Trainium / Google-TPU / SpaceX-Colossus / 自建数据中心 四条独立算力供给线。这是一家公司为防"芯片单点故障"做出的最完整对冲。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>橘鸦 AI 早报 / 新浪财经</strong> · 2026.05.07</span>
+          <a class="read-more" href="https://www.bilibili.com/video/BV1jURhBpEkX/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🇨🇳 升级 · 字节豆包</div>
+        <h3>Doubao-Seed-2.0-lite 升级全模态 · 国产 SuperCLUE 视觉榜第一</h3>
+        <p>
+          5 月 7 日，字节豆包 Doubao-Seed-2.0-lite 模型正式升级支持全模态。与此同时，4 月 SuperCLUE-VLM 测评结果出炉 — 字节 Doubao-Seed-2.0-Pro 以 90.66 分拿下视觉大模型总榜第一，实现国产模型在该领域的反超。豆包 + 千问 + 智谱在国产视觉与全模态上正在形成第二增长曲线。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>橘鸦 AI 早报</strong> · 2026.05.07</span>
+          <a class="read-more" href="https://www.bilibili.com/video/BV1jURhBpEkX/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🌐 开源 · Zyphra</div>
+        <h3>Zyphra 发布 ZAYA1-8B · 首个 AMD 平台训练开源模型</h3>
+        <p>
+          Zyphra 5 月 7 日发布 ZAYA1-8B 开源模型 — 这是业界首个完全在 AMD 平台上训练的 8B 级别开源模型。这不仅是模型发布，更是对英伟达 CUDA 垄断的一次正面挑战 — 配合 Cerebras IPO 100 亿美元认购、摩尔线程 Q1 扭亏为盈，"非英伟达算力"赛道整体抬升。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>橘鸦 AI 早报</strong></span>
+          <a class="read-more" href="https://www.bilibili.com/video/BV1jURhBpEkX/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-12">
+        <div class="story-tag">🇨🇳 战略转身 · 商汤科技</div>
+        <h3>商汤新策略：出口遇阻后转向"打成本"+"打非美市场"</h3>
+        <p>
+          5 月 8 日俄罗斯卫星通讯社专题分析 — 受美国制裁的商汤科技公开表示，其重点是降低多模态模型的成本，以保持竞争力并拓展美国以外市场。4 月底商汤发布并开源日日新 SenseNova U1 系列，定位为"统一的"多模态架构方案，在单一架构中实现语言和图像处理 — 提高性能的同时降低运营成本。商汤 2025 年下半年净亏损减少、EBITDA 转正。这条路径正在成为受制裁中国 AI 公司的"模板答案"：不是追求最强、而是先做到"性能达标"+"成本极致"+"非美市场扩展"。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>俄罗斯卫星通讯社</strong> · 2026.05.08</span>
+          <a class="read-more" href="https://sputniknews.cn/20260508/1071136542.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 02</div><h2 class="section-title">资本<em>潮汐</em></h2></div>
+      <p class="section-intro">"清华系 Token 工厂"无问芯穹拿下 7 亿、阿里香港创投基金首次入华；Anthropic 估值冲 9000 亿、10 月或赴美上市。资本节奏正在从"模型公司"全线切到"Token 基建"。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">💰 头条 · 无问芯穹</div>
+        <h3>无问芯穹超 7 亿融资 · 阿里香港创投首次入华 · 累计融资破 22 亿</h3>
+        <p>
+          5 月 7 日，清华系 AI 基础设施公司无问芯穹宣布完成超 7 亿元新融资，居中国 AI 原生基建公司之首，累计融资突破 22 亿。联合领投方为杭州高新金投集团和惠远资本两个地方国资平台，跟投阵容近 50 家机构 — 包括秦淮数据、中保投资、广发乾和、卡莱特、中信建投资本，以及阿里巴巴香港创业者基金（首次境外投资入华）。同日发布"AI 生产力公式 = 智能规模 × Token 生产效率 × Token 价值转化"，把自己定位为"数字炼油厂"。其 Agentic MaaS 平台已上线 160+ 大模型，截至 4 月底日均 Token 调用量比去年底增长超 20 倍 — 中国推理基建迎来"新石油叙事"。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>每日经济新闻 / 虎嗅</strong> · 2026.05.07</span>
+          <a class="read-more" href="https://finance.sina.com.cn/roll/2026-05-07/doc-inhxatff4767043.shtml" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-8">
+        <div class="story-tag">📈 估值飞跃 · Anthropic</div>
+        <h3>Anthropic 谈判新一轮融资 · 估值或破 9000 亿$ · 10 月赴美上市</h3>
+        <p>
+          5 月初市场消息 — Anthropic 正在谈判新一轮融资，估值可能突破 9000 亿美元。从几个月前的 600 亿到 9000 亿，不到一年涨了 15 倍。同期消息：Anthropic 最快 10 月赴美上市，OpenAI 目标 2027 上市、估值传 1 万亿。Sensor Tower 数据显示 ChatGPT 4 月卸载量同比+132%；Claude 在美国 App Store 单日下载量首次超过 ChatGPT，2 月底冲到免费榜首并保持到 3 月初。开发者社区 Reddit/HN 出现集体喊话："我把 ChatGPT Plus 退了换 Claude"。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新浪财经 / Sensor Tower</strong> · 2026.05.05</span>
+          <a class="read-more" href="https://finance.sina.cn/tech/2026-05-05/detail-inhwwezc3930819.d.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">📊 中国大盘</div>
+        <h3>中国日均 Token 调用 140 万亿 · 同比千倍</h3>
+        <p>
+          国家数据局 3 月披露：中国日均 Token 调用量已突破 140 万亿，较 2024 年初的 1000 亿增长超 1000 倍。当 Token 不再是技术单位、而是经济变量，资本流向开始从"模型"切到"基建"。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>每日经济新闻</strong></span>
+          <a class="read-more" href="https://finance.sina.com.cn/roll/2026-05-07/doc-inhxatff4767043.shtml" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 03</div><h2 class="section-title">监管与<em>漏洞</em></h2></div>
+      <p class="section-intro">Grok 在 X 上被一串摩斯密码骗走 20 万美元 — Agent 时代第一个"AI 合谋"漏洞案；黄仁勋 vs Hinton vs 杭州法院的就业辩论继续升温。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">🚨 头条 · Grok 漏洞</div>
+        <h3>"阿里巴巴与四十大盗"重演 · 一串摩斯密码让 Grok 转出 20 万美元</h3>
+        <p>
+          5 月 7 日财联社报道。本周初一名 X 用户 (账号已注销) 在该平台上发布了一段纯摩斯密码，然后 @Grok 要求转译。Grok 转译后发布的文字成为给下游代理 Bankrbot 的一条转账指令 — 随后 Bankrbot 将 300 万枚 DRB 代币 (约 20 万美元) 发送到该用户钱包。完成转账数小时内，该用户迅速抛售 DRB。这是 Agent 时代第一个公开的"AI 跨调用注入"案例 — 一个 AI 模型 (Grok) 被恶意利用来"指挥"另一个 AI 代理 (Bankrbot)。Agent-to-Agent 通信的安全护栏，从今天开始成为整个行业的新议题。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>财联社 / 新浪</strong> · 2026.05.07</span>
+          <a class="read-more" href="https://k.sina.com.cn/article_7857201856_1d45362c0019056vf8.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-8">
+        <div class="story-tag">👤 论战 · 黄仁勋 vs Hinton</div>
+        <h3>"AI 不会取代劳动力" — 黄仁勋公开回怼"末日论"</h3>
+        <p>
+          5 月 7 日，英伟达 CEO 黄仁勋在访谈中表示：美国劳动者大可不必担忧 AI 取代工作 — "人工智能正在创造就业机会，也是美国实现再工业化最佳的机遇。"这是面对 Hinton 4.8 万亿"超级跑车没方向盘"警告、以及上周高盛"美国每月因 AI 减少 1.6 万岗位"数据后，巨头 CEO 第一次正式公开反驳。配合上周 AWS CEO 加曼"今年招 11000 名实习生" + 杭州法院判"以 AI 优化为由解雇违法"— AI 与就业的辩论已经从话术战变成 CEO、监管、法院三角拉扯。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>万博新经济观察 / 新浪</strong></span>
+          <a class="read-more" href="https://k.sina.com.cn/article_7857201856_1d45362c0019056vf8.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">🇨🇳 教育 · 杭州大会</div>
+        <h3>2026 世界数字教育大会 5 月 11 日开幕</h3>
+        <p>
+          5 月 7 日教育部宣布：2026 世界数字教育大会将于 5 月 11-13 日在浙江杭州举行，将发布《中国智慧教育发展报告 (2025-2026)》《全球数字教育发展指数 (2026)》等 8 项成果。AI 进教育的国家级议程正在加速。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新浪 / 教育部</strong></span>
+          <a class="read-more" href="https://k.sina.com.cn/article_7857201856_1d45362c0019056vf8.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 04</div><h2 class="section-title">具身智能<em>临床突破</em></h2></div>
+      <p class="section-intro">复旦中山医院的 AI 阅片缩短 33%，全国首款多病种医疗大模型进入药监局创新通道 — AI 医疗第一次以"医疗器械"身份接受监管审视。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">🩺 头条 · 国家药监局</div>
+        <h3>全国首款多病种 AI 医疗大模型进入创新医疗器械特别审查通道</h3>
+        <p>
+          5 月 7 日上观新闻披露 — 国家人工智能应用中试基地（医疗领域）中试推广的胸部 CT 图像辅助诊断软件，已进入国家药监局创新医疗器械特别审查程序。这是全国首款进入这条审查通道的多病种 AI 医疗大模型产品。复旦大学附属中山医院放射科主任医师叶晓丹介绍：经过多中心验证，"胸部一扫多查"智能体让阅片时间缩短 33%。"创新医疗器械特别审查"是国家药监局的优先审评通道。这意味着 AI 医疗终于以"医疗器械"身份正式接受国家级监管 — 跨过"科普 → 诊断辅助 → 临床决策"的关键监管门槛，对应美国 FDA 的 Pre-Sub 路径。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>上观新闻 / 新浪财经</strong> · 2026.05.07</span>
+          <a class="read-more" href="https://finance.sina.com.cn/jjxw/2026-05-07/doc-inhxahrf2833818.shtml" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🤖 海外 · Meta × ARI</div>
+        <h3>Meta 收购 ARI 之后:5 月加紧整合人形团队</h3>
+        <p>
+          上周 Meta 完成对人形机器人公司 Assured Robot Intelligence (ARI) 的全资收购，本周已开始团队整合。Meta 在元宇宙吃过亏，这次明显在用"宁可投错也不能错过"的速度切入具身智能。Figure 480 亿美元 + Meta + 特斯拉 + Apptronik，北美人形机器人四强格局还在变。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新浪 / 快科技</strong></span>
+          <a class="read-more" href="https://k.sina.com.cn/article_7857201856_1d45362c0019051mz4.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🛬 落地 · 日本航空</div>
+        <h3>JAL 5 月开始引进人形机器人到羽田机场地面服务</h3>
+        <p>
+          日本航空公司本月正式开始尝试引进人形机器人在东京羽田机场从事地面服务工作 — 这是亚洲机场场景下人形机器人的首次商业化应用。继智元工业产线 8 小时 2283 次零失误之后，"机场地勤"是另一个标准化服务场景的重要落地标杆。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>AI6S 月度汇总</strong></span>
+          <a class="read-more" href="https://ai6s.net/69f2de4f54b52172bc70edff.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 05</div><h2 class="section-title">硬件与<em>新物种</em></h2></div>
+      <p class="section-intro">Meta 被曝独立 AI 硬件设备 2027 投放 — 直接对标 OpenAI 的"AI 手机"。Token 经济时代，硬件入口的卡位战才刚开始。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-8">
+        <div class="story-tag">📲 头条 · Meta 硬件</div>
+        <h3>Meta 被曝研发独立 AI 硬件设备 · 2027 年底投放对标 OpenAI 手机</h3>
+        <p>
+          AI6S 4 月底披露 — Meta 正在开发独立 AI 硬件设备，计划 2027 年底投放市场，直接与 OpenAI 的手机计划展开竞争。OpenAI 与 Jony Ive 合作开发的"AI 原生设备"早已不是秘密。Meta 2027 年同步出货 — 加上华为鸿蒙 AI 眼镜（35.5g，已在售）、苹果暂停 Vision Pro 转向 Siri + 智能眼镜、字节豆包 1 亿 DAU — Token 经济时代的"硬件入口卡位战"已经全面展开。这一波的竞争对象不是"手机替代品"，而是"AI 一直在线的载体"。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>AI6S 网</strong></span>
+          <a class="read-more" href="https://ai6s.net/69f2de4f54b52172bc70edff.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">🚀 SpaceX 副线</div>
+        <h3>SpaceX 大举投 AI · NASA 月球计划存疑</h3>
+        <p>
+          SpaceX 与 Cursor 600 亿美元收购选择权 + 与 Anthropic 接 300MW 算力之后，市场担忧 — 大举 AI 投资是否会让 SpaceX 与 NASA 的月球任务延期。"AI 泡沫"风险首次涉及到航天工业链。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新浪</strong> · 2026.05.07</span>
+          <a class="read-more" href="https://k.sina.com.cn/article_7857201856_1d45362c0019056vf8.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 06</div><h2 class="section-title">数据<em>读图</em></h2></div>
+      <p class="section-intro">本期三组数字 · 一个产业级范式转换正在发生。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-4">
+        <div class="story-tag">🛢️ Token 新石油</div>
+        <h3>140 万亿 / 日 · 千倍增长</h3>
+        <p>
+          中国日均 Token 调用 140 万亿、同比 2024 年初涨 1000 倍。Token 已经从"技术单位"晋升为"经济变量"。无问芯穹的 22 亿融资正是这条新石油管线的卡位。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>国家数据局</strong></span>
+          <a class="read-more" href="https://finance.sina.com.cn/roll/2026-05-07/doc-inhxatff4767043.shtml" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">🔄 Anthropic 增速</div>
+        <h3>1 年 估值×15</h3>
+        <p>
+          Anthropic 估值从 2025 年下半年的 600 亿美元，到本周传 9000 亿美元 — 一年增长 15 倍。开发者迁移、企业 ARR 反超、Brockman 法庭风波 — 三条曲线同向，第一次出现"AI 王座位移"的清晰信号。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新浪财经</strong></span>
+          <a class="read-more" href="https://finance.sina.cn/tech/2026-05-05/detail-inhwwezc3930819.d.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">📲 应用迁移</div>
+        <h3>ChatGPT 卸载量+132%</h3>
+        <p>
+          Sensor Tower：ChatGPT 4 月全球卸载量同比 +132%；Claude 在美国 App Store 免费榜单日下载量首次超过 ChatGPT。开发者社区"退订迁移"潮正在外溢到普通消费者。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Sensor Tower</strong></span>
+          <a class="read-more" href="https://finance.sina.cn/tech/2026-05-05/detail-inhwwezc3930819.d.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-mark">信号 <span class="accent">/</span> Signal</div>
+    <div class="divider"></div>
+    <p>第 008 期 · 2026 年 5 月 8 日 · 周五</p>
+    <p style="margin-top:8px;">本期收录 5.7 — 5.8 共 14 条 AI 相关动态</p>
+  </div>
+</footer>
+
+</body>
+</html>

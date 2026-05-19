@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>信号 / Signal · AI 日报</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=JetBrains+Mono:wght@400;500;700&family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0d0b; --ink-2: #161410; --paper: #f4ecdb; --paper-2: #e8dfc9;
+    --muted: #8a8275; --rule: #2a2620; --signal: #ff4d1f; --signal-2: #ffb454; --tan: #c9a679;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink); color: var(--paper);
+    font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
+    font-weight: 300; line-height: 1.65; letter-spacing: 0.01em; overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255, 77, 31, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 90%, rgba(201, 166, 121, 0.035) 0%, transparent 50%);
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .masthead { border-bottom: 1px solid var(--rule); padding: 24px 0; }
+  .masthead-grid { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 32px; }
+  .edition { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .edition strong { color: var(--paper); font-weight: 500; }
+  .logo { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 32px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; text-align: center; font-variation-settings: "opsz" 144; }
+  .logo .accent { color: var(--signal); font-style: italic; font-weight: 600; }
+  .meta-right { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-align: right; line-height: 1.7; }
+  .meta-right .pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--signal); margin-right: 6px; animation: pulse 2s infinite; vertical-align: middle; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 77, 31, 0.5); }
+    50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(255, 77, 31, 0); }
+  }
+  .hero { padding: 64px 0 48px; border-bottom: 1px solid var(--rule); }
+  .hero-meta {
+    display: flex; align-items: center; gap: 16px; margin-bottom: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal);
+  }
+  .hero-meta::before { content: ''; width: 40px; height: 1px; background: var(--signal); }
+  .hero h1 {
+    font-family: 'Fraunces', 'Noto Serif SC', serif;
+    font-size: clamp(40px, 6.5vw, 76px); font-weight: 400;
+    line-height: 0.98; letter-spacing: -0.04em;
+    margin-bottom: 24px;
+    font-variation-settings: "opsz" 144; max-width: 940px;
+  }
+  .hero h1 em { font-style: italic; font-weight: 600; color: var(--signal-2); }
+  .hero-lede { font-family: 'Fraunces', serif; font-size: 19px; line-height: 1.55; color: var(--paper-2); max-width: 680px; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--rule); background: var(--ink-2); }
+  .stat { padding: 28px 24px; border-right: 1px solid var(--rule); }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Fraunces', serif; font-size: 40px; font-weight: 800;
+    line-height: 1; color: var(--signal-2);
+    letter-spacing: -0.04em; margin-bottom: 6px;
+    font-variation-settings: "opsz" 144;
+  }
+  .stat-num .unit { font-size: 17px; color: var(--paper); font-weight: 400; margin-left: 4px; }
+  .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; line-height: 1.4; }
+  .timeline { padding: 64px 0; }
+  .timeline-head {
+    display: grid; grid-template-columns: 280px 1fr; gap: 48px;
+    margin-bottom: 56px; align-items: end;
+  }
+  .timeline-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--signal); margin-bottom: 10px; }
+  .timeline-title { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 48px; font-weight: 400; line-height: 0.95; letter-spacing: -0.03em; font-variation-settings: "opsz" 144; }
+  .timeline-title em { font-style: italic; color: var(--tan); font-weight: 600; }
+  .timeline-intro { font-family: 'Fraunces', serif; font-size: 16px; line-height: 1.6; color: var(--muted); padding-bottom: 8px; }
+  .day {
+    display: grid; grid-template-columns: 220px 1fr;
+    gap: 56px; padding: 48px 0;
+    border-top: 1px solid var(--rule);
+    position: relative;
+  }
+  .day:last-child { border-bottom: 1px solid var(--rule); }
+  .day.today {
+    background: linear-gradient(90deg, rgba(255, 77, 31, 0.04) 0%, transparent 60%);
+    margin: 0 -32px; padding: 48px 32px;
+  }
+  .day.today::before {
+    content: 'TODAY';
+    position: absolute; top: 24px; right: 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.2em;
+    color: var(--signal); border: 1px solid var(--signal);
+    padding: 4px 10px;
+  }
+  .day.weekly::before {
+    content: 'WEEKLY';
+    position: absolute; top: 24px; right: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.2em;
+    color: var(--tan); border: 1px solid var(--tan);
+    padding: 4px 10px;
+  }
+  .day-meta { position: sticky; top: 32px; align-self: start; }
+  .day-date {
+    font-family: 'Fraunces', serif; font-size: 76px; font-weight: 800;
+    line-height: 0.85; color: var(--paper);
+    letter-spacing: -0.05em; font-variation-settings: "opsz" 144;
+  }
+  .day.today .day-date { color: var(--signal-2); }
+  .day-month { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: var(--muted); margin-top: 8px; }
+  .day-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--signal); margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--rule); }
+  .day-week { font-family: 'Fraunces', serif; font-style: italic; font-size: 14px; color: var(--muted); margin-top: 6px; }
+  .day-cta {
+    display: inline-block; margin-top: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.08em;
+    color: var(--signal); text-decoration: none;
+    border: 1px solid var(--rule); padding: 8px 14px;
+    transition: all 0.3s;
+  }
+  .day-cta:hover { background: var(--signal); color: var(--ink); border-color: var(--signal); }
+  .day-stories { display: flex; flex-direction: column; gap: 0; }
+  .story-item {
+    padding: 22px 0; border-bottom: 1px dashed var(--rule);
+    display: grid; grid-template-columns: 32px 1fr; gap: 16px; align-items: start;
+  }
+  .story-item:first-child { padding-top: 4px; }
+  .story-item:last-child { border-bottom: none; }
+  .story-index { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.05em; color: var(--signal); padding-top: 4px; font-weight: 500; }
+  .story-content { min-width: 0; }
+  .story-tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.15em; color: var(--tan); text-transform: uppercase; margin-bottom: 6px; }
+  .story-headline { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 21px; font-weight: 600; line-height: 1.25; letter-spacing: -0.01em; margin-bottom: 8px; color: var(--paper); font-variation-settings: "opsz" 96; }
+  .day.today .story-headline { font-size: 22px; }
+  .story-summary { font-size: 14px; line-height: 1.65; color: var(--paper-2); font-weight: 300; margin-bottom: 8px; max-width: 700px; }
+  .story-source { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.05em; color: var(--muted); }
+  .story-source a {
+    color: var(--signal); text-decoration: none; margin-left: 8px;
+    border-bottom: 1px dotted var(--rule); padding-bottom: 1px;
+    transition: border-color 0.3s;
+  }
+  .story-source a:hover { border-bottom-color: var(--signal); }
+  .loading {
+    padding: 80px 0; text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; letter-spacing: 0.15em;
+    color: var(--muted); text-transform: uppercase;
+  }
+  .loading-pulse {
+    display: inline-block; width: 8px; height: 8px;
+    border-radius: 50%; background: var(--signal);
+    margin: 0 6px; animation: pulse 1.4s infinite;
+  }
+  .error {
+    padding: 60px 32px; text-align: center;
+    border: 1px solid var(--rule); margin: 32px 0;
+    background: var(--ink-2);
+  }
+  .error-title { font-family: 'Fraunces', serif; font-style: italic; font-size: 22px; color: var(--signal); margin-bottom: 12px; }
+  .error-msg { font-size: 14px; color: var(--paper-2); line-height: 1.6; max-width: 520px; margin: 0 auto; }
+  .error code { font-family: 'JetBrains Mono', monospace; background: var(--ink); padding: 2px 6px; color: var(--signal-2); border-radius: 2px; }
+  .footer { padding: 64px 0 56px; text-align: center; border-top: 1px solid var(--rule); margin-top: 32px; }
+  .footer-mark { font-family: 'Fraunces', serif; font-style: italic; font-size: 26px; color: var(--paper); margin-bottom: 12px; font-variation-settings: "opsz" 144; }
+  .footer-mark .accent { color: var(--signal); }
+  .footer p { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+  .footer .divider { width: 60px; height: 1px; background: var(--signal); margin: 20px auto; }
+  @media (max-width: 900px) {
+    .wrap { padding: 0 20px; }
+    .masthead-grid { grid-template-columns: 1fr; gap: 12px; text-align: center; }
+    .meta-right { text-align: center; }
+    .hero { padding: 40px 0 32px; }
+    .hero h1 { font-size: 36px; }
+    .hero-lede { font-size: 16px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat { border-right: none; border-bottom: 1px solid var(--rule); padding: 24px 18px; }
+    .stat-num { font-size: 32px; }
+    .stat:nth-child(odd) { border-right: 1px solid var(--rule); }
+    .timeline-head { grid-template-columns: 1fr; gap: 12px; }
+    .timeline-title { font-size: 32px; }
+    .day { grid-template-columns: 1fr; gap: 24px; padding: 36px 0; }
+    .day.today { padding: 36px 20px; margin: 0 -20px; }
+    .day-meta { position: static; }
+    .day-date { font-size: 56px; }
+    .day.today::before, .day.weekly::before { top: 16px; right: 20px; }
+    .story-item { grid-template-columns: 24px 1fr; gap: 12px; padding: 18px 0; }
+    .story-headline { font-size: 18px; }
+    .day.today .story-headline { font-size: 19px; }
+  }
+  @media (max-width: 500px) {
+    .stats { grid-template-columns: 1fr; }
+    .stat { border-right: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-grid">
+      <div class="edition">AI 日 报 · <strong>DAILY</strong></div>
+      <div class="logo">信号 <span class="accent">/ Signal</span></div>
+      <div class="meta-right" id="masthead-meta">
+        <span class="pulse"></span>LOADING...<br>&nbsp;
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-meta">编辑部 · TEAM CHANNEL</div>
+    <h1>每天 5 分钟<br>读懂 AI 行业<em>正在发生什么</em>。</h1>
+    <p class="hero-lede">
+      按天精读 · 每天 3-5 条最关键的 AI 信号。覆盖大模型、资本、监管、具身智能、硬件、数据六大维度。点任一条进原文，点日期进当日完整日报。
+    </p>
+  </div>
+</section>
+
+<div class="stats" id="stats-container">
+  <div class="stat"><div class="stat-num">—<span class="unit">期</span></div><div class="stat-label">已发布日报</div></div>
+  <div class="stat"><div class="stat-num">—<span class="unit">天</span></div><div class="stat-label">覆盖时间跨度</div></div>
+  <div class="stat"><div class="stat-num">—<span class="unit">+</span></div><div class="stat-label">精读核心动态</div></div>
+  <div class="stat"><div class="stat-num">6<span class="unit">类</span></div><div class="stat-label">固定主题板块</div></div>
+</div>
+
+<section class="timeline">
+  <div class="wrap">
+    <div class="timeline-head">
+      <div>
+        <div class="timeline-num">时 间 线 / TIMELINE</div>
+        <h2 class="timeline-title">按天<em>精读</em></h2>
+      </div>
+      <p class="timeline-intro">
+        从今日往回追溯。每天摘录 3-5 条最值得知道的动态。如需查看某一天的完整日报，点左侧"完整一期 →"。
+      </p>
+    </div>
+    <div id="timeline-container">
+      <div class="loading">
+        加载中<span class="loading-pulse"></span><span class="loading-pulse" style="animation-delay:0.2s"></span><span class="loading-pulse" style="animation-delay:0.4s"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-mark">信号 <span class="accent">/</span> Signal</div>
+    <div class="divider"></div>
+    <p>团队内部 AI 日报 · 持续更新</p>
+    <p style="margin-top:8px;">由 Claude 协助生成 · 仅供内部参考</p>
+  </div>
+</footer>
+
+<script>
+const MONTH_MAP = {
+  '01':'JAN','02':'FEB','03':'MAR','04':'APR','05':'MAY','06':'JUN',
+  '07':'JUL','08':'AUG','09':'SEP','10':'OCT','11':'NOV','12':'DEC'
+};
+
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+}
+
+function renderStat(num, unit, label) {
+  return `<div class="stat"><div class="stat-num">${num}<span class="unit">${unit}</span></div><div class="stat-label">${label}</div></div>`;
+}
+
+function renderDay(issue, isToday) {
+  const dateParts = issue.date.split('-');
+  const monthEn = MONTH_MAP[dateParts[1]] || dateParts[1];
+
+  let dayClass = 'day';
+  if (isToday) dayClass += ' today';
+  if (issue.type === 'weekly') dayClass += ' weekly';
+
+  let issueLabel = `NO. ${issue.issue}`;
+  if (issue.specialLabel) issueLabel += ` · ${issue.specialLabel}`;
+
+  let weekLabel = issue.dateRange ? issue.dateRange : `${issue.weekday || ''} · ${issue.weekdayEn || ''}`;
+
+  const stories = (issue.stories || []).map((s, i) => {
+    const idx = String(i + 1).padStart(2, '0');
+    const fileLink = `daily/${issue.file}`;
+    return `
+      <div class="story-item">
+        <div class="story-index">${idx}</div>
+        <div class="story-content">
+          <div class="story-tag">${escapeHtml(s.tag)}</div>
+          <div class="story-headline">${escapeHtml(s.headline)}</div>
+          <p class="story-summary">${escapeHtml(s.summary)}</p>
+          <div class="story-source">来源 · ${escapeHtml(s.source)}<a href="${fileLink}">深读 ↗</a></div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  return `
+    <article class="${dayClass}">
+      <div class="day-meta">
+        <div class="day-date">${dateParts[2]}</div>
+        <div class="day-month">${monthEn} · MMXXVI</div>
+        <div class="day-num">${escapeHtml(issueLabel)}</div>
+        <div class="day-week">${escapeHtml(weekLabel)}</div>
+        <a class="day-cta" href="daily/${issue.file}">完整一期 →</a>
+      </div>
+      <div class="day-stories">${stories}</div>
+    </article>
+  `;
+}
+
+function renderError(msg) {
+  return `
+    <div class="error">
+      <div class="error-title">数据加载失败</div>
+      <div class="error-msg">${msg}</div>
+    </div>
+  `;
+}
+
+async function loadAndRender() {
+  try {
+    const response = await fetch('daily/manifest.json?t=' + Date.now());
+    if (!response.ok) throw new Error('HTTP ' + response.status);
+    const data = await response.json();
+
+    const lastDate = data.issues[0]?.date || '—';
+    const lastDateFmt = lastDate.replace(/-/g, '.');
+    document.getElementById('masthead-meta').innerHTML =
+      '<span class="pulse"></span>UPDATED · ' + lastDateFmt + '<br>共 ' + data.issues.length + ' 期 · 持续更新';
+
+    const totalStories = data.issues.reduce((sum, i) => sum + (i.stories?.length || 0), 0);
+    const earliest = data.issues[data.issues.length - 1]?.date;
+    let dayCount = 0;
+    if (earliest && lastDate) {
+      const ms = new Date(lastDate) - new Date(earliest);
+      dayCount = Math.round(ms / (1000 * 60 * 60 * 24)) + 1;
+    }
+    document.getElementById('stats-container').innerHTML =
+      renderStat(data.issues.length, '期', '已发布日报') +
+      renderStat(dayCount, '天', '覆盖时间跨度') +
+      renderStat(totalStories, '+', '精读核心动态') +
+      renderStat(6, '类', '固定主题板块');
+
+    const timelineHtml = data.issues.map((issue, i) => renderDay(issue, i === 0)).join('');
+    document.getElementById('timeline-container').innerHTML = timelineHtml;
+
+  } catch (err) {
+    document.getElementById('timeline-container').innerHTML = renderError(
+      '无法加载 <code>daily/manifest.json</code>。请确认该文件存在且为合法 JSON。<br><br><small>错误信息：' + escapeHtml(err.message) + '</small>'
+    );
+  }
+}
+
+loadAndRender();
+</script>
+
+</body>
+</html>

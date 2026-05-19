@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 · 2026.05.12</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=JetBrains+Mono:wght@400;500;700&family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0d0b; --ink-2: #161410; --paper: #f4ecdb; --paper-2: #e8dfc9;
+    --muted: #8a8275; --rule: #2a2620; --signal: #ff4d1f; --signal-2: #ffb454; --tan: #c9a679;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink); color: var(--paper);
+    font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
+    font-weight: 300; line-height: 1.65; letter-spacing: 0.01em; overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255, 77, 31, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 90%, rgba(201, 166, 121, 0.035) 0%, transparent 50%);
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .masthead { border-bottom: 1px solid var(--rule); padding: 32px 0 24px; position: relative; }
+  .masthead-grid { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 32px; }
+  .edition { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .edition strong { color: var(--paper); font-weight: 500; }
+  .logo { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 38px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; text-align: center; font-variation-settings: "opsz" 144; }
+  .logo .accent { color: var(--signal); font-style: italic; font-weight: 600; }
+  .weather { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-align: right; line-height: 1.7; }
+  .weather .pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--signal); margin-right: 6px; animation: pulse 2s infinite; vertical-align: middle; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 77, 31, 0.5); }
+    50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(255, 77, 31, 0); }
+  }
+  .hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule); position: relative; }
+  .hero-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal); }
+  .hero-meta::before { content: ''; width: 40px; height: 1px; background: var(--signal); }
+  .hero h1 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: clamp(48px, 8vw, 96px); font-weight: 400; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 32px; font-variation-settings: "opsz" 144, "SOFT" 50; }
+  .hero h1 em { font-style: italic; font-weight: 600; color: var(--signal-2); }
+  .hero-lede { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.5; color: var(--paper-2); max-width: 680px; font-weight: 400; }
+  .date-block { position: absolute; top: 80px; right: 32px; text-align: right; font-family: 'JetBrains Mono', monospace; }
+  .date-block .day { font-family: 'Fraunces', serif; font-size: 120px; font-weight: 800; line-height: 0.9; color: var(--paper); font-variation-settings: "opsz" 144; letter-spacing: -0.05em; }
+  .date-block .month { font-size: 12px; letter-spacing: 0.2em; color: var(--muted); margin-top: 8px; }
+  .ticker { background: var(--ink-2); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); overflow: hidden; padding: 14px 0; position: relative; }
+  .ticker-track { display: flex; gap: 48px; white-space: nowrap; animation: scroll 60s linear infinite; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.05em; color: var(--paper-2); }
+  .ticker-track span { display: inline-flex; align-items: center; gap: 12px; }
+  .ticker-track .dot { color: var(--signal); font-size: 8px; }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .section { padding: 80px 0 40px; border-bottom: 1px solid var(--rule); }
+  .section-head { display: grid; grid-template-columns: 280px 1fr; gap: 48px; margin-bottom: 48px; align-items: start; }
+  .section-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--signal); margin-bottom: 12px; }
+  .section-title { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 56px; font-weight: 400; line-height: 0.95; letter-spacing: -0.03em; font-variation-settings: "opsz" 144; }
+  .section-title em { font-style: italic; color: var(--tan); font-weight: 600; }
+  .section-intro { font-family: 'Fraunces', serif; font-size: 17px; line-height: 1.6; color: var(--muted); padding-top: 16px; border-top: 1px solid var(--rule); }
+  .stories { display: grid; grid-template-columns: repeat(12, 1fr); gap: 32px; }
+  .story { grid-column: span 6; padding: 28px; background: linear-gradient(180deg, rgba(255,255,255,0.015) 0%, transparent 100%); border: 1px solid var(--rule); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; }
+  .story::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 1px; background: var(--signal); transition: width 0.6s ease; }
+  .story:hover { background: linear-gradient(180deg, rgba(255, 77, 31, 0.04) 0%, transparent 100%); border-color: rgba(255, 77, 31, 0.3); transform: translateY(-2px); }
+  .story:hover::before { width: 100%; }
+  .story.feature { grid-column: span 12; padding: 48px; background: linear-gradient(135deg, rgba(255, 77, 31, 0.06) 0%, rgba(201, 166, 121, 0.02) 100%); border-color: rgba(255, 77, 31, 0.25); }
+  .story.feature::after { content: 'FEATURED'; position: absolute; top: 24px; right: 24px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--signal); border: 1px solid var(--signal); padding: 4px 10px; }
+  .story-tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: var(--signal); margin-bottom: 16px; text-transform: uppercase; }
+  .story h3 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 26px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 16px; color: var(--paper); font-variation-settings: "opsz" 144; }
+  .story.feature h3 { font-size: 42px; line-height: 1.05; max-width: 90%; }
+  .story p { font-size: 15px; line-height: 1.7; color: var(--paper-2); margin-bottom: 20px; font-weight: 300; }
+  .story.feature p { font-family: 'Fraunces', serif; font-size: 19px; max-width: 720px; }
+  .story-meta { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 20px; border-top: 1px solid var(--rule); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.05em; }
+  .source { color: var(--muted); }
+  .source strong { color: var(--paper); font-weight: 500; }
+  .read-more { color: var(--signal); text-decoration: none; border: 1px solid var(--rule); padding: 6px 12px; transition: all 0.3s; white-space: nowrap; }
+  .read-more:hover { background: var(--signal); color: var(--ink); border-color: var(--signal); }
+  .story.span-4 { grid-column: span 4; }
+  .story.span-8 { grid-column: span 8; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--ink-2); }
+  .stat { padding: 40px 32px; border-right: 1px solid var(--rule); }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-family: 'Fraunces', serif; font-size: 56px; font-weight: 800; line-height: 1; color: var(--signal-2); letter-spacing: -0.04em; margin-bottom: 8px; font-variation-settings: "opsz" 144; }
+  .stat-num .unit { font-size: 22px; color: var(--paper); font-weight: 400; margin-left: 4px; }
+  .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; line-height: 1.4; }
+  .footer { padding: 80px 0 60px; text-align: center; border-top: 1px solid var(--rule); margin-top: 40px; }
+  .footer-mark { font-family: 'Fraunces', serif; font-style: italic; font-size: 28px; color: var(--paper); margin-bottom: 16px; font-variation-settings: "opsz" 144; }
+  .footer-mark .accent { color: var(--signal); }
+  .footer p { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+  .footer .divider { width: 60px; height: 1px; background: var(--signal); margin: 24px auto; }
+  @media (max-width: 900px) {
+    .wrap { padding: 0 20px; }
+    .masthead-grid { grid-template-columns: 1fr; gap: 16px; text-align: center; }
+    .weather { text-align: center; }
+    .date-block { position: static; text-align: left; margin-top: 32px; }
+    .date-block .day { font-size: 80px; }
+    .hero { padding: 48px 0 40px; }
+    .hero h1 { font-size: 44px; }
+    .hero-lede { font-size: 18px; }
+    .section-head { grid-template-columns: 1fr; gap: 16px; }
+    .section-title { font-size: 36px; }
+    .story, .story.feature { grid-column: span 12 !important; padding: 24px; }
+    .story.feature h3 { font-size: 28px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat { border-right: none; border-bottom: 1px solid var(--rule); padding: 28px 20px; }
+    .stat-num { font-size: 40px; }
+    .stat:nth-child(odd) { border-right: 1px solid var(--rule); }
+  }
+  @media (max-width: 500px) {
+    .stats { grid-template-columns: 1fr; }
+    .stat { border-right: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-grid">
+      <div class="edition">VOL. <strong>I</strong> · NO. <strong>011</strong></div>
+      <div class="logo">信号 <span class="accent">/ Signal</span></div>
+      <div class="weather"><span class="pulse"></span>LIVE · 12 MAY 2026<br>晴 · 洛杉矶 · 23°C</div>
+    </div>
+  </div>
+</header>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span><span class="dot">●</span> OpenAI 成立 Deployment Company · 40 亿$ 起步</span>
+    <span><span class="dot">●</span> TPG / Bain / 麦肯锡 19 家同入局</span>
+    <span><span class="dot">●</span> OpenAI 收购 Tomoro · 150 名前线工程师</span>
+    <span><span class="dot">●</span> 百度文心 5.1 发布 · 成本仅业界 6%</span>
+    <span><span class="dot">●</span> 文心 5.1 LMArena 搜索榜国内第一</span>
+    <span><span class="dot">●</span> Anthropic 推 10 个金融智能体</span>
+    <span><span class="dot">●</span> Claude 加载项落地 Excel / PPT / Word</span>
+    <span><span class="dot">●</span> Cloudflare 一次性裁员 1100 · 16 年首次</span>
+    <span><span class="dot">●</span> 五角大楼签下 8 家 · Anthropic 缺席</span>
+    <span><span class="dot">●</span> Meta 收购 ARI · 入局通用人形</span>
+    <span><span class="dot">●</span> 维他动力 5 亿 Pre-A · 大头量产 500 台</span>
+    <span><span class="dot">●</span> OpenAI 成立 Deployment Company · 40 亿$ 起步</span>
+    <span><span class="dot">●</span> TPG / Bain / 麦肯锡 19 家同入局</span>
+    <span><span class="dot">●</span> OpenAI 收购 Tomoro · 150 名前线工程师</span>
+    <span><span class="dot">●</span> 百度文心 5.1 发布 · 成本仅业界 6%</span>
+    <span><span class="dot">●</span> 文心 5.1 LMArena 搜索榜国内第一</span>
+    <span><span class="dot">●</span> Anthropic 推 10 个金融智能体</span>
+    <span><span class="dot">●</span> Claude 加载项落地 Excel / PPT / Word</span>
+    <span><span class="dot">●</span> Cloudflare 一次性裁员 1100 · 16 年首次</span>
+    <span><span class="dot">●</span> 五角大楼签下 8 家 · Anthropic 缺席</span>
+    <span><span class="dot">●</span> Meta 收购 ARI · 入局通用人形</span>
+    <span><span class="dot">●</span> 维他动力 5 亿 Pre-A · 大头量产 500 台</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-meta">今日要闻 · TODAY'S BRIEFING</div>
+    <h1>卖模型不够。<br>OpenAI 自己开了一家<em>咨询公司</em>。</h1>
+    <p class="hero-lede">
+      5 月 11 日，OpenAI 宣布成立 OpenAI Deployment Company（"部署公司"），首笔 40 亿美元资金到位 — TPG 牵头，贝恩资本、布鲁克菲尔德联手领投，麦肯锡、凯捷、贝恩咨询、高盛、软银等 19 家全球投资 / 咨询 / 系统集成商联合入局。同步收购应用 AI 咨询公司 Tomoro，把 150 名"前线部署工程师"打包并入。"模型公司向企业服务转型"已经不是隐喻 — 它现在是一个独立法人。
+    </p>
+    <div class="date-block"><div class="day">12</div><div class="month">MAY · MMXXVI</div></div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">40<span class="unit">亿$</span></div><div class="stat-label">OpenAI Deployment Co.<br>首轮资金 · 19 家入局</div></div>
+  <div class="stat"><div class="stat-num">6<span class="unit">%</span></div><div class="stat-label">文心 5.1 预训练成本<br>仅同规模业界水平的</div></div>
+  <div class="stat"><div class="stat-num">1100<span class="unit">人</span></div><div class="stat-label">Cloudflare 一次性裁员<br>16 年来公司首次</div></div>
+  <div class="stat"><div class="stat-num">5<span class="unit">亿¥</span></div><div class="stat-label">维他动力 Pre-A<br>大头机器狗启动量产</div></div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 01</div><h2 class="section-title">模型公司开始<em>派工程师</em></h2></div>
+      <p class="section-intro">OpenAI 把咨询业务做成独立法人、Anthropic 把 Claude 嵌进 Excel、百度把训练成本压到业界 6%。卖 token 的逻辑正在被三条不同的曲线同时改写。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">⚡ 头条 · OPENAI DEPLOYMENT CO.</div>
+        <h3>OpenAI 成立"部署公司" · 40 亿美元起步、19 家机构入局、收购 Tomoro 并入 150 名前线工程师</h3>
+        <p>
+          5 月 11 日，OpenAI 宣布成立 OpenAI Deployment Company — 一家专门负责"把 AI 部署进客户业务流"的独立合资企业。OpenAI 控股，TPG 牵头领投，贝恩资本、布鲁克菲尔德为联合首席创始合伙人；B Capital、BBVA、Emergence、高盛、软银、Warburg Pincus、WCAS 同期入局；咨询/集成商一侧拉来麦肯锡、凯捷、贝恩咨询。首轮资金 40 亿美元、Axios 与 Bloomberg 估值口径已被推到 100-140 亿美元。同步公告：收购应用 AI 咨询公司 Tomoro，并入约 150 名 Forward Deployed Engineers。OpenAI 现在不再只是给企业卖 API — 它派人下场重写客户的工作流。这个动作把"模型公司是不是会被服务商吃掉"的老问题，反过来回答了一遍。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>OpenAI / Axios</strong> · 2026.05.11</span>
+          <a class="read-more" href="https://openai.com/index/openai-launches-the-deployment-company/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🏦 攻进华尔街 · ANTHROPIC</div>
+        <h3>Anthropic 推 10 套金融智能体 · Claude 加载项落地 Excel / PPT / Word / Outlook</h3>
+        <p>
+          5 月 5 日，Anthropic 在与摩根大通 CEO Jamie Dimon 同台后宣布 — 推出 10 套面向金融服务的"开箱即用"智能体模板（投行 pitchbook、KYC 审查、月末关账等高耗时工作流），并通过 Microsoft 365 加载项把 Claude 直接嵌入 Excel、PowerPoint、Word（Outlook 即将上线）。同期发布 Claude Opus 4.7，在 Vals AI 金融 Agent 榜以 64.37% 居首；同时与 Moody's 形成数据合作。OpenAI 派工程师下场的同一周，Anthropic 把工程师装进 Office 工具栏 — 两条不同的"模型嵌入企业"路径。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Fortune / Anthropic</strong> · 2026.05.05</span>
+          <a class="read-more" href="https://fortune.com/2026/05/05/anthropic-wall-street-financial-services-agents-jamie-dimon/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🇨🇳 国产追赶 · 百度文心</div>
+        <h3>文心 5.1 发布 · 预训练成本仅业界 6%、LMArena 搜索榜国内第一</h3>
+        <p>
+          5 月 9 日，百度发布新一代基础大模型文心 5.1。技术亮点是"多维弹性预训练"— 同规模模型的预训练成本被压到业界约 6%。性能层面：在 LMArena 搜索榜以 1223 分位列国内第一、全球第四，是唯一上榜国产模型；4 月 30 日的 Preview 版在 LMArena 文本榜以 1476 分超越 GPT-5.5、DeepSeek-V4-Pro。文心 5.1 把 5.0 的总参数压缩至约 1/3、激活参数压至约 1/2，Agent / 创意写作 / 推理三项同步上台阶。已在千帆模型广场与文心一言官网同步开放。在 DeepSeek 拿到 500 亿融资的同周，百度用"成本曲线"另辟一条路。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>量子位 / 新浪科技</strong> · 2026.05.09</span>
+          <a class="read-more" href="https://www.qbitai.com/2026/05/414496.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 02</div><h2 class="section-title">工位与<em>五角大楼</em></h2></div>
+      <p class="section-intro">Cloudflare 一周内裁掉 1100 个岗位、CEO 直言"AI 让它们过时"；同周国防部签下 8 家 AI 巨头、把 Anthropic 留在门外。AI 重画的不只是产品路线 — 还在改组织和军队。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">⚡ 工位 · CLOUDFLARE</div>
+        <h3>Cloudflare 一次性裁员 1100 人 · 16 年来公司首次、内部 AI 使用三个月暴增 600%</h3>
+        <p>
+          5 月 7-8 日，Cloudflare 在 Q1 财报当日宣布裁员约 1100 人 — 占总员工约 6%（首批批量裁撤），是公司创立 16 年来第一次大规模裁员。背景反差强烈：Q1 营收 6.398 亿美元、同比 +34%、创单季新高；股价当日下跌 24%。CEO Matthew Prince 与联合创始人 Michelle Zatlyn 在内部信里直言 — 公司过去三个月内部 AI 调用量增长超过 600%，"今天的动作不是降本、不是绩效裁员，而是重新定义高速增长公司在 Agentic AI 时代如何创造价值"。被裁员工工资延续到 2026 年底、医保延续 + 期权加速行权。Prince 同时承诺 2027 年总员工数仍会超过 2026 年任意时点 — 这是一次"内部业务结构换班"，不是萎缩。Cloudflare 是第一个把"AI 取代部分岗位"摆上财报会的硅谷一线公司。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>TechCrunch / CNBC</strong> · 2026.05.08</span>
+          <a class="read-more" href="https://techcrunch.com/2026/05/08/cloudflare-says-ai-made-1100-jobs-obsolete-even-as-revenue-hit-a-record-high/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-12">
+        <div class="story-tag">🛡️ 五角大楼 · DOD × 8 家</div>
+        <h3>国防部签下 Google / Nvidia / OpenAI / Microsoft / AWS / Oracle / SpaceX / Reflection · Anthropic 落榜</h3>
+        <p>
+          5 月 1 日，美国国防部宣布与 8 家 AI 公司签订机密网络（IL6 / IL7 安全级）部署协议 — Google、Nvidia、Reflection、SpaceX、OpenAI、Microsoft、Oracle、AWS 全部入榜，唯独缺席 Anthropic。背景是几个月前 Trump 政府以 Anthropic 不接受"全部合法用途（含自主武器与大规模监控）"条款为由切断合作，并把 Anthropic 列为"供应链风险"标签 — 这是过去只用于敌对国家关联企业的标签。Anthropic 起诉行政部门、加州联邦法官上月已临时阻断该禁令。一句话：Anthropic 在 4 月密集拿到 Google 400 亿、SpaceX Colossus 1 算力之后，5 月反过来在政府订单一线被击穿。"再也不会只依赖一家 AI 厂商" — 国防部官员的原话现在落到了对手身上。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>CNN Business / The Hill</strong> · 2026.05.01</span>
+          <a class="read-more" href="https://www.cnn.com/2026/05/01/tech/pentagon-ai-anthropic" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 03</div><h2 class="section-title">机器<em>下产线</em></h2></div>
+      <p class="section-intro">Meta 把一支 20 人具身团队收进超级智能实验室；维他动力的"大头"机器狗 5 亿 Pre-A 落地、500 台首批量产已发货。具身 AI 这一边：钱和铁同时落地。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">🤖 收编 · META × ARI</div>
+        <h3>Meta 收购 ARI · 入局通用人形机器人、并入超级智能实验室</h3>
+        <p>
+          5 月 1-3 日，Meta 完成对机器人 AI 初创公司 Assured Robot Intelligence（ARI）的全资收购 — 团队约 20 人，分布于纽约与圣地亚哥，整体并入 Meta 超级智能实验室、与去年成立的机器人工作室协同。ARI 的核心方向是"为通用人形机器人构建基础模型"，让机器人能完成包括家务在内的体力劳动；联合创始人 Lerrel Pinto（NYU 教授、Fauna Robotics 联创、上月被 Amazon 收购）与 Xiaolong Wang（前 NVIDIA 研究员、UCSD 副教授）。这是 Meta 在具身智能上继 Tesla / Google / Nvidia 之后的正面押注 — 大模型公司的下一个战场是"会动的模型"。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新浪科技 / 智源社区</strong> · 2026.05.03</span>
+          <a class="read-more" href="https://finance.sina.com.cn/stock/t/2026-05-04/doc-inhwrxaz0555401.shtml" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🐕 量产 · 维他动力</div>
+        <h3>维他动力近 5 亿元 Pre-A 落地 · "大头 BoBo"机器狗 500 台首批量产发货</h3>
+        <p>
+          5 月 8 日，维他动力（Vbot）宣布完成近 5 亿元 Pre-A 轮融资 — 东方嘉富、华泰紫金、复星锐正联合领投，刷新全球消费级具身智能赛道单笔融资最高纪录。同日首款产品"超能机器狗 大头 BoBo"启动量产交付：首批 500 台已下线发货，5 月计划交付超 1500 台、6 月产能拉到 2500 台 +。产品定价 12988 元、主打"无需遥控自主跟随"、搭载 128 TOPS 算力。下一步：从四足跨向全尺寸人形，研发方向锁定"手足一体界模型 + Agentic OS"。这是中国第一台真正"端到端走出实验室"的消费级具身智能产品。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>钛媒体 / IT 之家</strong> · 2026.05.08</span>
+          <a class="read-more" href="https://www.tmtpost.com/7983653.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 04</div><h2 class="section-title">数据<em>读图</em></h2></div>
+      <p class="section-intro">三组数字定义本期：服务化、组织重塑、产业链。OpenAI 的咨询估值、Cloudflare 的财报反差、国内具身赛道的资金体量。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-4">
+        <div class="story-tag">💼 14 倍</div>
+        <h3>OpenAI Deployment Co. 估值 140 亿美元</h3>
+        <p>
+          OpenAI 自家持有控股权、首笔投入 40 亿美元 — Axios 援引知情人士消息将其估值定到 140 亿美元（14×PSR 量级）。"模型公司给自己开咨询公司"的玩法，第一次拿到 PE 主流定价模板。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Axios</strong></span>
+          <a class="read-more" href="https://www.axios.com/2026/05/11/openai-deployco-private-equity" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">📉 -24% 股价</div>
+        <h3>Cloudflare 财报当日下跌 24%</h3>
+        <p>
+          Q1 营收创单季新高 6.398 亿、同比 +34%；同日宣布裁员 1100。股价单日 -24% — 市场没有奖励"用 AI 优化人手"的叙事，而是给出风险贴现。这是 2026 年第一份"AI 提效但岗位被替代"的财报样本。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>CNBC</strong></span>
+          <a class="read-more" href="https://www.cnbc.com/2026/05/07/cloudflare-net-q1-2026-stock-earnings-layoffs.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">🦾 345 亿元</div>
+        <h3>国内具身智能 4 个月吸金 345 亿</h3>
+        <p>
+          截至 4 月 10 日，2026 年国内具身智能赛道披露融资 122 起、规模约 345 亿元 — 头部 25 亿 / 20 亿元单笔频出，资金从整机向关节模组、传感器、Agentic OS 全产业链渗透。维他动力 5 亿 Pre-A 只是一片瓦。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新浪财经 / 机器人大讲堂</strong></span>
+          <a class="read-more" href="https://finance.sina.com.cn/jjxw/2026-05-05/doc-inhwwezc3952105.shtml" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-mark">信号 <span class="accent">/</span> Signal</div>
+    <div class="divider"></div>
+    <p>第 011 期 · 2026 年 5 月 12 日 · 周二</p>
+    <p style="margin-top:8px;">本期收录 5.1 — 5.12 共 10 条 AI 相关动态</p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 · 2026.04.24</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=JetBrains+Mono:wght@400;500;700&family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0d0b;
+    --ink-2: #161410;
+    --paper: #f4ecdb;
+    --paper-2: #e8dfc9;
+    --muted: #8a8275;
+    --rule: #2a2620;
+    --signal: #ff4d1f;
+    --signal-2: #ffb454;
+    --tan: #c9a679;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
+    font-weight: 300;
+    line-height: 1.65;
+    letter-spacing: 0.01em;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255, 77, 31, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 90%, rgba(201, 166, 121, 0.035) 0%, transparent 50%);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ====== MASTHEAD ====== */
+  .masthead {
+    border-bottom: 1px solid var(--rule);
+    padding: 32px 0 24px;
+    position: relative;
+  }
+
+  .masthead-grid {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .edition {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .edition strong { color: var(--paper); font-weight: 500; }
+
+  .logo {
+    font-family: 'Fraunces', 'Noto Serif SC', serif;
+    font-size: 38px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    text-align: center;
+    font-variation-settings: "opsz" 144;
+  }
+
+  .logo .accent {
+    color: var(--signal);
+    font-style: italic;
+    font-weight: 600;
+  }
+
+  .weather {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-align: right;
+    line-height: 1.7;
+  }
+
+  .weather .pulse {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--signal);
+    margin-right: 6px;
+    animation: pulse 2s infinite;
+    vertical-align: middle;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 77, 31, 0.5); }
+    50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(255, 77, 31, 0); }
+  }
+
+  /* ====== HERO ====== */
+  .hero {
+    padding: 80px 0 60px;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--signal);
+  }
+
+  .hero-meta::before {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: var(--signal);
+  }
+
+  .hero h1 {
+    font-family: 'Fraunces', 'Noto Serif SC', serif;
+    font-size: clamp(48px, 8vw, 96px);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    margin-bottom: 32px;
+    font-variation-settings: "opsz" 144, "SOFT" 50;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 600;
+    color: var(--signal-2);
+  }
+
+  .hero-lede {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--paper-2);
+    max-width: 680px;
+    font-weight: 400;
+  }
+
+  .date-block {
+    position: absolute;
+    top: 80px;
+    right: 32px;
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .date-block .day {
+    font-family: 'Fraunces', serif;
+    font-size: 120px;
+    font-weight: 800;
+    line-height: 0.9;
+    color: var(--paper);
+    font-variation-settings: "opsz" 144;
+    letter-spacing: -0.05em;
+  }
+
+  .date-block .month {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+
+  /* ====== TICKER ====== */
+  .ticker {
+    background: var(--ink-2);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    overflow: hidden;
+    padding: 14px 0;
+    position: relative;
+  }
+
+  .ticker-track {
+    display: flex;
+    gap: 48px;
+    white-space: nowrap;
+    animation: scroll 60s linear infinite;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    color: var(--paper-2);
+  }
+
+  .ticker-track span {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .ticker-track .dot {
+    color: var(--signal);
+    font-size: 8px;
+  }
+
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ====== SECTIONS ====== */
+  .section {
+    padding: 80px 0 40px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .section-head {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+    align-items: start;
+  }
+
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--signal);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Fraunces', 'Noto Serif SC', serif;
+    font-size: 56px;
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    font-variation-settings: "opsz" 144;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--tan);
+    font-weight: 600;
+  }
+
+  .section-intro {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--muted);
+    padding-top: 16px;
+    border-top: 1px solid var(--rule);
+  }
+
+  /* ====== STORY GRID ====== */
+  .stories {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 32px;
+  }
+
+  .story {
+    grid-column: span 6;
+    padding: 28px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.015) 0%, transparent 100%);
+    border: 1px solid var(--rule);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .story::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--signal);
+    transition: width 0.6s ease;
+  }
+
+  .story:hover {
+    background: linear-gradient(180deg, rgba(255, 77, 31, 0.04) 0%, transparent 100%);
+    border-color: rgba(255, 77, 31, 0.3);
+    transform: translateY(-2px);
+  }
+
+  .story:hover::before { width: 100%; }
+
+  .story.feature {
+    grid-column: span 12;
+    padding: 48px;
+    background: linear-gradient(135deg, rgba(255, 77, 31, 0.06) 0%, rgba(201, 166, 121, 0.02) 100%);
+    border-color: rgba(255, 77, 31, 0.25);
+  }
+
+  .story.feature::after {
+    content: 'FEATURED';
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--signal);
+    border: 1px solid var(--signal);
+    padding: 4px 10px;
+  }
+
+  .story-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--signal);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+
+  .story h3 {
+    font-family: 'Fraunces', 'Noto Serif SC', serif;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
+    color: var(--paper);
+    font-variation-settings: "opsz" 144;
+  }
+
+  .story.feature h3 { font-size: 42px; line-height: 1.05; max-width: 90%; }
+
+  .story p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--paper-2);
+    margin-bottom: 20px;
+    font-weight: 300;
+  }
+
+  .story.feature p {
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    max-width: 720px;
+  }
+
+  .story-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+  }
+
+  .source {
+    color: var(--muted);
+  }
+
+  .source strong { color: var(--paper); font-weight: 500; }
+
+  .read-more {
+    color: var(--signal);
+    text-decoration: none;
+    border: 1px solid var(--rule);
+    padding: 6px 12px;
+    transition: all 0.3s;
+    white-space: nowrap;
+  }
+
+  .read-more:hover {
+    background: var(--signal);
+    color: var(--ink);
+    border-color: var(--signal);
+  }
+
+  .story.span-4 { grid-column: span 4; }
+  .story.span-8 { grid-column: span 8; }
+
+  /* ====== STAT BLOCK ====== */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    background: var(--ink-2);
+  }
+
+  .stat {
+    padding: 40px 32px;
+    border-right: 1px solid var(--rule);
+  }
+
+  .stat:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: 'Fraunces', serif;
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--signal-2);
+    letter-spacing: -0.04em;
+    margin-bottom: 8px;
+    font-variation-settings: "opsz" 144;
+  }
+
+  .stat-num .unit {
+    font-size: 22px;
+    color: var(--paper);
+    font-weight: 400;
+    margin-left: 4px;
+  }
+
+  .stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  /* ====== FOOTER ====== */
+  .footer {
+    padding: 80px 0 60px;
+    text-align: center;
+    border-top: 1px solid var(--rule);
+    margin-top: 40px;
+  }
+
+  .footer-mark {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 28px;
+    color: var(--paper);
+    margin-bottom: 16px;
+    font-variation-settings: "opsz" 144;
+  }
+
+  .footer-mark .accent { color: var(--signal); }
+
+  .footer p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .footer .divider {
+    width: 60px;
+    height: 1px;
+    background: var(--signal);
+    margin: 24px auto;
+  }
+
+  @media (max-width: 900px) {
+    .wrap { padding: 0 20px; }
+    .masthead-grid { grid-template-columns: 1fr; gap: 16px; text-align: center; }
+    .weather { text-align: center; }
+    .date-block { position: static; text-align: left; margin-top: 32px; }
+    .date-block .day { font-size: 80px; }
+    .hero { padding: 48px 0 40px; }
+    .hero h1 { font-size: 44px; }
+    .hero-lede { font-size: 18px; }
+    .section-head { grid-template-columns: 1fr; gap: 16px; }
+    .section-title { font-size: 36px; }
+    .story, .story.feature { grid-column: span 12 !important; padding: 24px; }
+    .story.feature h3 { font-size: 28px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat { border-right: none; border-bottom: 1px solid var(--rule); padding: 28px 20px; }
+    .stat-num { font-size: 40px; }
+    .stat:nth-child(odd) { border-right: 1px solid var(--rule); }
+  }
+
+  @media (max-width: 500px) {
+    .stats { grid-template-columns: 1fr; }
+    .stat { border-right: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============= MASTHEAD ============= -->
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-grid">
+      <div class="edition">
+        VOL. <strong>I</strong> · NO. <strong>002</strong>
+      </div>
+      <div class="logo">
+        信号 <span class="accent">/ Signal</span>
+      </div>
+      <div class="weather">
+        <span class="pulse"></span>LIVE · 24 APR 2026<br>
+        晴 · 洛杉矶 · 21°C
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============= TICKER ============= -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span><span class="dot">●</span> 白宫指控中国"蒸馏"美国 AI 模型</span>
+    <span><span class="dot">●</span> 自变量 B 轮 20 亿 · 小米红杉领投</span>
+    <span><span class="dot">●</span> Google 发布 TPU 8t/8i 双芯片</span>
+    <span><span class="dot">●</span> Anthropic ARR 突破 300 亿美元</span>
+    <span><span class="dot">●</span> OpenAI 工作空间助手公测</span>
+    <span><span class="dot">●</span> Meta 被曝监控员工键鼠训练 AI</span>
+    <span><span class="dot">●</span> 特斯拉车机接入豆包 + DeepSeek</span>
+    <span><span class="dot">●</span> 福布斯 AI 50 榜单公布</span>
+    <span><span class="dot">●</span> 白宫指控中国"蒸馏"美国 AI 模型</span>
+    <span><span class="dot">●</span> 自变量 B 轮 20 亿 · 小米红杉领投</span>
+    <span><span class="dot">●</span> Google 发布 TPU 8t/8i 双芯片</span>
+    <span><span class="dot">●</span> Anthropic ARR 突破 300 亿美元</span>
+    <span><span class="dot">●</span> OpenAI 工作空间助手公测</span>
+    <span><span class="dot">●</span> Meta 被曝监控员工键鼠训练 AI</span>
+    <span><span class="dot">●</span> 特斯拉车机接入豆包 + DeepSeek</span>
+    <span><span class="dot">●</span> 福布斯 AI 50 榜单公布</span>
+  </div>
+</div>
+
+<!-- ============= HERO ============= -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-meta">今日要闻 · TODAY'S BRIEFING</div>
+    <h1>白宫把"蒸馏"<br>写进了<em>外交备忘录</em>。</h1>
+    <p class="hero-lede">
+      当训练一个模型的最短路径是"问另一个模型"，知识产权的边界开始重新定义。今天，白宫科技政策办公室把它升级成了国家安全议题。同一天，企业市场上 Anthropic 把 OpenAI 的份额从 50 压到了 27，Google 把突击队开进了自己内部代码库。
+    </p>
+    <div class="date-block">
+      <div class="day">24</div>
+      <div class="month">APRIL · MMXXVI</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= STATS ============= -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-num">300<span class="unit">亿$</span></div>
+    <div class="stat-label">Anthropic ARR<br>正式超越 OpenAI</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">73<span class="unit">%</span></div>
+    <div class="stat-label">企业新增 AI 支出<br>流向 Anthropic</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">20<span class="unit">亿¥</span></div>
+    <div class="stat-label">自变量 B 轮融资<br>小米 + 红杉领投</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">2283<span class="unit">次</span></div>
+    <div class="stat-label">机器人工业产线<br>8小时 · 零失误</div>
+  </div>
+</div>
+
+<!-- ============= SECTION 1 ============= -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-num">章 节 / 01</div>
+        <h2 class="section-title">大模型<em>风暴</em></h2>
+      </div>
+      <p class="section-intro">
+        Google 在拉斯维加斯年度大会连发三招 — TPU 新硬件、Agent 新平台、内部代码突击队。Anthropic 在编程战场的壁垒，让对手必须加速。
+      </p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">⚡ 焦点 · Anthropic vs OpenAI</div>
+        <h3>Anthropic ARR 突破 300 亿美元，正式反超 OpenAI</h3>
+        <p>
+          截至 2026 年 4 月，Anthropic 年化收入（ARR）从 2025 年底的约 90 亿美元增长至 300 亿美元 — 4 个月 3 倍增速。OpenAI 同期 ARR 约 240-250 亿美元。更震撼的是增量战场：据 Ramp 数据，企业首次购买 AI 服务的新增资金中，73% 流向 Anthropic，OpenAI 份额降至 27%。10 周前这个数字还是 50/50。Claude Code 的编程壁垒正在把企业市场向一边倾斜。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>钛媒体</strong> · 2026.04.24</span>
+          <a class="read-more" href="https://www.tmtpost.com/7952140.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-8">
+        <div class="story-tag">🏢 企业战役 · Google Cloud</div>
+        <h3>Google 连发 Agent 平台、TPU 新芯片、Workspace 升级，全面围剿企业 AI 市场</h3>
+        <p>
+          4 月 22-23 日，Alphabet 在拉斯维加斯年度大会上连发多款工具：Gemini Enterprise Agent Platform 新增 Memory Bank 与 Agent Simulation 功能；发布新一代 TPU 8t（训练）与 TPU 8i（推理）双版本芯片；推出 Projects 平台整合 Workspace、OneDrive 与聊天记录。目标直指 OpenAI 与 Anthropic — 后者 Cowork 产品正在抢企业员工的钱包，谷歌今年资本支出将达 1850 亿美元，必须证明这笔钱花得值。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新浪财经 / Bloomberg</strong> · 2026.04.23</span>
+          <a class="read-more" href="https://finance.sina.com.cn/roll/2026-04-23/doc-inhvmvzh5117602.shtml" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">🎖️ 突击队 · Google 内部</div>
+        <h3>布林亲自督战：Coding 战役开始</h3>
+        <p>
+          Claude Opus 4.7 发布四天后，Google DeepMind 组建突击队，聚焦内部代码库训练。布林要求所有 Gemini 工程师"必须果断转向追赶 Agent 技术"，复杂任务强制使用内部智能体工具。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>OFweek AI</strong></span>
+          <a class="read-more" href="https://www.ofweek.com/ai/2026-04/ART-201717-8110-30685610.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">💻 产品 · OpenAI</div>
+        <h3>OpenAI 推出工作空间助手，正式切入企业协作</h3>
+        <p>
+          4 月 23 日，OpenAI 向商务版、企业版、教育版用户开放"工作空间助手"研究预览。主打的是企业员工每天约 1.8 小时（占工作时间 22%）的信息搜索与整理效率问题 — 支持 50+ 文档并行上下文，100 毫秒内语义检索企业文档库。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>钛媒体 Edge AI Daily</strong></span>
+          <a class="read-more" href="https://www.tmtpost.com/7963745.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🇨🇳 产品 · 阿里</div>
+        <h3>"千问小酒窝"发布：统一数字人入口</h3>
+        <p>
+          阿里巴巴 4 月 22 日发布生态级 AI 助手"千问小酒窝"，作为阿里千问 AI 的统一数字人形象。做规划、解难题、订餐、买票、打车，都可以在对话中完成。未来将进入阿里整个生态应用。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>钛媒体早报</strong></span>
+          <a class="read-more" href="https://www.tmtpost.com/fm/7963650.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============= SECTION 2 ============= -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-num">章 节 / 02</div>
+        <h2 class="section-title">资本<em>潮汐</em></h2>
+      </div>
+      <p class="section-intro">
+        一家具身智能公司拿到四家互联网巨头的连续加注。福布斯 AI 50 总融资 3056 亿美元里，两家独角兽拿走了 80%。
+      </p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">💰 融资 · 自变量机器人</div>
+        <h3>自变量拿下 B 轮近 20 亿：集齐字节、美团、阿里、小米四家巨头</h3>
+        <p>
+          4 月 21 日发布会上，自变量机器人 CEO 王潜证实公司刚完成近 20 亿元 B 轮融资，由小米战投与红杉中国联合领投。自此，自变量成为国内唯一同时获得字节、美团、阿里、小米投资的具身智能企业 — 融资路径"A 轮美团、A+ 阿里、A++ 字节、B 轮小米"。2026 年以来，国内具身智能赛道已披露融资总额接近 200 亿元，百亿估值公司增至 13 家。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>每日经济新闻</strong> · 2026.04.23</span>
+          <a class="read-more" href="https://finance.sina.com.cn/roll/2026-04-23/doc-inhvkyvy4234463.shtml" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-8">
+        <div class="story-tag">📊 榜单 · Forbes</div>
+        <h3>2026 福布斯 AI 50 发布：OpenAI 与 Anthropic 拿走 80% 的钱</h3>
+        <p>
+          4 月 23 日发布的 2026 福布斯 AI 50 榜单显示，上榜企业总融资额 3056 亿美元，其中 OpenAI 与 Anthropic 累计 2426 亿美元，占 80%。OpenAI 年化收入 250 亿美元，Anthropic 300 亿美元。估值 293 亿美元的 Cursor 正被迫创新求存 — 它刚刚被 SpaceX 盯上。榜单中还有 Thinking Machine Labs（Mira Murati，融资 20 亿）、World Labs（李飞飞，融资 10 亿+）。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>36 氪</strong> · 2026.04.23</span>
+          <a class="read-more" href="https://36kr.com/p/3776372335477512" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">☁️ 合作 · Google Cloud</div>
+        <h3>Thinking Machines 押注 Google 云</h3>
+        <p>
+          谷歌云与 Mira Murati 的 Thinking Machines 达成数十亿美元合作，提供 Nvidia GB300 芯片（性能提升 50%、功耗 1400W）及全套云服务。初创公司越来越依赖云厂商基础设施，避免自建数据中心。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>钛媒体</strong></span>
+          <a class="read-more" href="https://www.tmtpost.com/7963745.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============= SECTION 3 ============= -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-num">章 节 / 03</div>
+        <h2 class="section-title">监管<em>的火线</em></h2>
+      </div>
+      <p class="section-intro">
+        白宫第一次正式把"模型蒸馏"写进国家安全备忘录，Meta 被曝用键鼠数据训练 AI。规则和技术的摩擦从今天开始明面化。
+      </p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">🚨 头条 · 美国白宫</div>
+        <h3>白宫正式指控中国"大规模蒸馏"美国前沿 AI — 外交议题升级</h3>
+        <p>
+          4 月 24 日，白宫科技政策办公室主任迈克尔·克拉齐奥斯在社交媒体发布备忘录，称"美国政府掌握的信息表明，外国实体 — 主要是位于中国的实体 — 正在蓄意开展大规模行动，以'蒸馏'美国前沿 AI 系统"。备忘录指责"这些协同行动利用数万个代理账户逃避检测，使用越狱技术泄露专有信息"。中国驻华盛顿大使馆回应反对"毫无根据的指控"。这是继 2 月 Anthropic 发文指控 DeepSeek 等中国公司建立 2.4 万虚假账户蒸馏 Claude 之后，政府层面第一次正式介入 — 知识蒸馏从商业争议正式上升到国家安全议题。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>俄罗斯卫星通讯社 / 路透社</strong> · 2026.04.24</span>
+          <a class="read-more" href="https://sputniknews.cn/20260424/1070941959.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">👀 争议 · Meta</div>
+        <h3>Meta 被曝在员工电脑安装追踪软件，训练自动执行 AI</h3>
+        <p>
+          4 月 22 日曝出的内部备忘录显示，Meta 正在其美国员工电脑上安装新的追踪软件，记录鼠标移动、点击和敲击键盘的操作，用于训练 AI 模型。目标是构建能自主执行工作任务的 AI 智能体 — 但也引发大量白领对工作监控的担忧。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>钛媒体早报</strong></span>
+          <a class="read-more" href="https://www.tmtpost.com/fm/7963650.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🇨🇳 政策 · 工信部</div>
+        <h3>《人形机器人与具身智能标准体系 (2026 版)》出台</h3>
+        <p>
+          工信部出台新版标准体系，从核心技术攻关、产业链完善，到场景规模化落地、产业生态构建，搭建起全产业链顶层标准。具身智能被正式纳入与量子科技、6G、生物制造并列的国家重点培育未来产业。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>广州日报大洋网</strong></span>
+          <a class="read-more" href="https://news.dayoo.com/china/202604/23/139997_54951653.htm" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============= SECTION 4 ============= -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-num">章 节 / 04</div>
+        <h2 class="section-title">具身智能<em>进家门</em></h2>
+      </div>
+      <p class="section-intro">
+        35 天后，搭载世界模型的机器人住进真实家庭。8 小时产线作业 2283 次零失误。这个行业正在从"看起来会动"跨过"能被信任"的门槛。
+      </p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">🏠 突破 · 自变量机器人</div>
+        <h3>全球首个"世界统一模型架构"具身智能基础模型 WALL-B 发布</h3>
+        <p>
+          4 月 21 日，自变量在深圳发布全球首个基于世界统一模型架构的具身智能基础模型 WALL-B。新模型打破此前 VLA（视觉-语言-动作）架构的信息损耗问题，将视觉、语言、动作、触觉、物理预测融入同一个网络联合训练，实现真实环境自主迭代。35 天后，搭载 WALL-B 的新一代机器人将首批入驻真实家庭。联合创始人王昊的一句话点破关键 —"机器人知道把盘子放桌上，却未必知道半个盘子悬空意味着即将摔碎"，WALL-B 要解决的正是"理解世界"而非"模仿动作"。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>深圳新闻网</strong> · 2026.04.23</span>
+          <a class="read-more" href="https://www.sznews.com/news/content/2026-04/23/content_32025391.htm" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🏭 里程碑 · 智元机器人</div>
+        <h3>精灵 G2 在工业产线 8 小时 2283 次任务零失误</h3>
+        <p>
+          智元机器人精灵 G2 在江西南昌一家平板制造工厂的 8 小时连续作业直播中，精准完成 2283 次抓取、测试、放置任务，无一失误。这是全球首个具身智能工业产线规模化落地。就在上月底，智元刚达成行业内首个累计 1 万台机器人下线里程碑。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新浪 / 上观</strong> · 2026.04.23</span>
+          <a class="read-more" href="http://sh.sina.com.cn/news/k/2026-04-23/detail-inhvmvzk8853149.shtml" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🌍 出海 · 中联重科</div>
+        <h3>具身智能操作系统 Robot Ops 汉诺威首秀</h3>
+        <p>
+          4 月 20 日，中联重科旗下中科云谷在汉诺威工业博览会全球首发具身智能操作系统 Robot Ops，以"数据、软件、智能体三位一体"架构搭载四大核心模块，实现闭环迭代效率提升 50% 以上，可广泛适配人形机器人、工业机器人、工程机械、自动驾驶。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新浪财经</strong> · 2026.04.23</span>
+          <a class="read-more" href="https://finance.sina.com.cn/jjxw/2026-04-23/doc-inhvnnwy4944213.shtml" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-12">
+        <div class="story-tag">📊 产业观察 · 深圳</div>
+        <h3>FAIR plus 2026 机器人全产业链接会：500+ 企业聚集，行业从"技术竞速"转向"量产攻坚"</h3>
+        <p>
+          4 月 22 日深圳 FAIR plus 2026 链接会吸引超 500 家产业链上下游企业，展现出具身智能从技术探索走向场景深耕。越疆科技自研"空弈-VLA"大模型做到毫米级力控；腾讯 Robotics X 展示具身智能开放平台。更有数据显示 — 截至 2025 年，国内人形机器人整机企业超 140 家、产品超 330 款，智元、宇树、优必选出货量全球前三；我国人形机器人产业规模达 166.3 亿元，"十五五"时期机器人产业总规模有望破 4000 亿元。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>深圳新闻网</strong> · 2026.04.23</span>
+          <a class="read-more" href="https://www.sznews.com/news/content/2026-04/23/content_32025389.htm" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============= SECTION 5 ============= -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-num">章 节 / 05</div>
+        <h2 class="section-title">硬件与<em>新物种</em></h2>
+      </div>
+      <p class="section-intro">
+        汽车变成第一个真正落地的具身智能入口 — 中国车企开始在"大脑 + 本体"上和机器人公司同台竞争。
+      </p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-8">
+        <div class="story-tag">🚗 战略 · 千里科技</div>
+        <h3>"千里联盟"成立 · ASD 4.0 引入"世界模型"体系</h3>
+        <p>
+          千里科技发布"AI+车"最新成果，推出基于"世界模型"体系的千里智驾 ASD 4.0 系统。董事长印奇指出，2026 年有望成为 AGI 元年，汽车是当下最具规模化落地潜力的具身智能赛道。截至 3 月 31 日，已有 17 款车型、合计 46 万辆车搭载其智驾技术，辅助驾驶激活率达 92%。预测 2026 年底搭载量将突破百万，2028 年挑战 800 万辆。现场演示中，搭载"千里超级智能体+ASD 4.0"的极氪 8X 可处理"鬼探头"、窄路会车等极端路况，甚至能主动识别路边店铺并提供交互建议。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>科技日报</strong> · 2026.04.23</span>
+          <a class="read-more" href="https://www.stdaily.com/web/gdxw/2026-04/23/content_506995.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">🗣️ 入华 · Tesla</div>
+        <h3>特斯拉车机接入豆包 + DeepSeek</h3>
+        <p>
+          4 月 22 日，特斯拉车机语音系统通过火山引擎同时接入字节跳动"豆包大模型"和深度求索"DeepSeek Chat"。这是特斯拉 2013 年进入中国以来车机语音助手的一次大更新，也是国产大模型在跨国主机厂的首次正式上车。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新浪财经</strong></span>
+          <a class="read-more" href="https://finance.sina.com.cn/jjxw/2026-04-22/doc-inhvkiye6187765.shtml" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============= SECTION 6 ============= -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-num">章 节 / 06</div>
+        <h2 class="section-title">数据<em>读图</em></h2>
+      </div>
+      <p class="section-intro">
+        三个关键数字 — 份额反超、市场规模、翻番速度。数据比叙事诚实。
+      </p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-4">
+        <div class="story-tag">🔄 市场份额</div>
+        <h3>B 端新增资金 73% 流向 Anthropic</h3>
+        <p>
+          据 Ramp 监测，2026 年 3 月企业首次购买 AI 服务的新增资金中，Anthropic 占 73%、OpenAI 27%。10 周前还是 50/50，更早 60:40。企业智能体市场 Anthropic 约 40%、OpenAI 27%。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>钛媒体</strong></span>
+          <a class="read-more" href="https://www.tmtpost.com/7952140.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">🌏 市场规模</div>
+        <h3>2025 年全球具身智能 44.4 亿美元</h3>
+        <p>
+          我国人形机器人产业规模 166.3 亿元，"十五五"期间机器人产业总规模有望突破 4000 亿元，稳居全球首位。全球共 140+ 家整机企业，330+ 款产品。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>21 世纪经济报道</strong></span>
+          <a class="read-more" href="https://www.21jingji.com/article/20260423/herald/dfcf3aa26bea266da6692ba6e382b8a7.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">📈 指数加速</div>
+        <h3>AI 翻番速度缩短至 3-4 个月</h3>
+        <p>
+          Claude Opus 4.5 与 GPT-5.2 之后，能力翻番周期再加速。有研究员给出今年智能爆炸概率比核电站严重事故容忍阈值高 4-6 个数量级。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>澎湃新闻</strong></span>
+          <a class="read-more" href="https://m.thepaper.cn/newsDetail_forward_33017146" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============= FOOTER ============= -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-mark">信号 <span class="accent">/</span> Signal</div>
+    <div class="divider"></div>
+    <p>第 002 期 · 2026 年 4 月 24 日 · 周五</p>
+    <p style="margin-top:8px;">本期收录 4.21 — 4.24 共 16 条 AI 相关动态</p>
+  </div>
+</footer>
+
+</body>
+</html>

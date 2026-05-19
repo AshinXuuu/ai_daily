@@ -1,0 +1,40 @@
+{
+  "issue": "015",
+  "date": "2026-05-18",
+  "weekday": "周一",
+  "weekdayEn": "Monday",
+  "type": "daily",
+  "file": "ai_daily_2026_05_18.html",
+  "stories": [
+    {
+      "tag": "⚡ 头条 · OPENAI DEPLOYCO",
+      "headline": "OpenAI 联手 19 家投行咨询砸 $40 亿建 DeployCo · 同步收 Tomoro 把 150 名工程师塞进去",
+      "summary": "5 月 11 日 OpenAI 官宣 OpenAI Deployment Company（DeployCo）— 一只由 OpenAI 主导、19 家全球资管 / 咨询 / 集成商共同发起的「企业 AI 落地公司」，初始投入 $40 亿。TPG 领投，Advent / Bain Capital / Brookfield 联合创始合伙人；Goldman Sachs、SoftBank、Warburg Pincus、Bain & Company、Capgemini、McKinsey 跟投入伙。同日收购 AI 咨询公司 Tomoro，把约 150 名 Forward Deployed Engineer 直接塞进 DeployCo 第一波编制。这是 OpenAI 第一次明确承认 — 仅卖 API 撑不起 $1 万亿估值，下一阶段：派工程师上门改流程、按结果收钱。模型公司正在变成咨询所。",
+      "source": "OpenAI / PYMNTS / eWeek / TechCrunch"
+    },
+    {
+      "tag": "🧬 SELF-IMPROVING AI · RECURSIVE",
+      "headline": "Recursive Superintelligence 出隐身 · $6.5 亿、估值 $46.5 亿，要做会改自己代码的 AI",
+      "summary": "5 月 13 日伦敦初创 Recursive Superintelligence 出隐身：单轮拿 $6.5 亿、估值 $46.5 亿，GV 与 Greycroft 联合领投，Nvidia、AMD、Conviction、Index 跟投。CEO 为前 Salesforce 首席科学家 Richard Socher、CTO 为 UCL 教授 + 前 DeepMind 研究员 Tim Rocktäschel，团队不到 30 人。目标极端浪漫 — 训练能分析自身性能、识别弱点、然后改写自己代码的 AI；术语称「Level 1 自治训练」，公开发布定 2026 年中。这是 OpenAI / Anthropic 主流路线之外，资本第一次大额下注「让 AI 改自己」 — 继 LeCun 的 AMI Labs 之后，跨大西洋阵营的第二次真正意义上的「另一条路」融资。",
+      "source": "TechCrunch / Tech.eu / SiliconANGLE / TFN"
+    },
+    {
+      "tag": "🛡️ AI 安全 · CLAUDE MYTHOS / AISI",
+      "headline": "英国 AISI 实测 Claude Mythos Preview · 73% 通关专家级 CTF · 3/10 跑通 32 步企业网络全链路",
+      "summary": "英国 AI Security Institute 5 月中旬发布对 Anthropic Claude Mythos Preview 的官方网络安全评测 — 这只是 Claude Opus 之上的非公开前沿模型，仅向 Project Glasswing 联盟（AWS、Apple、Microsoft、Google、CrowdStrike、Palo Alto 等）开放。AISI 测出：Mythos 在专家级 CTF 上 73% 一次通关；32 步企业网络模拟攻击（侦察→横向移动→域控接管，正常需 20 小时红队工时）里 10 次尝试 3 次完整跑通、平均完成 22 / 32 步。Anthropic 同步披露 Mythos 已在主流系统识别出数千个 0-day，包括 OpenBSD 一个 27 年的老 bug。Frontier AI 安全评估第一次给出「能 / 不能」的二元答案。",
+      "source": "UK AISI / Anthropic Red / CNBC / CyberScoop"
+    },
+    {
+      "tag": "🤝 企业咨询 · ANTHROPIC × PWC",
+      "headline": "Anthropic 拉 PwC 全员上 Claude · 顾问也被「Forward Deployed」",
+      "summary": "5 月 14 日 Anthropic 与 PwC 官宣合作：PwC 全球 30 万名顾问、审计师、咨询师全员部署 Claude，并把它做成 PwC 内部交付、客户尽调、并购执行、企业流程重塑的核心 AI。Anthropic 自身也在跟 IBM Consulting、Deloitte、KPMG、Accenture 谈类似交易。这是 Claude for Legal、Financial Services、Small Business 之后的第四条「行业切片 + 咨询绑定」战线。当模型公司开始绑定四大会计师事务所，意思是：模型公司学会把销售外包给咨询公司 — 既绕开自己直销的成本，也把 AI 渗透从「试点」直接变成「全员强制」。同周 Anthropic 还与盖茨基金会签 $2 亿全球卫生 AI 合作。",
+      "source": "Anthropic / Air Street Press / DistillIntelligence"
+    },
+    {
+      "tag": "🇨🇳 国产大模型 · 百度",
+      "headline": "百度文心 5.1 上线 · LMArena 搜索榜国产第一、全球第 4",
+      "summary": "5 月 13 日百度在 Create 2026 开发者大会发布文心 5.1 — 预训练成本仅为业界同体量模型的约 6%，综合能力升级。第三方榜单 LMArena 搜索榜文心 5.1 拿到 1223 分，国内第一、全球第 4，是目前唯一进前十的中国模型。已在百度千帆模型市场与官网同步开放企业 / 开发者调用。低成本预训练这件事比榜单更值得记 — 当 OpenAI、Anthropic 还在堆 H100 / B200 集群，国产侧已经在把「算力效率」做成另一种武器。DeepSeek 之后的第二个标志性「省钱叙事」样本。",
+      "source": "量子位 / 百度智能云"
+    }
+  ]
+},

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 · 2026.04.28</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=JetBrains+Mono:wght@400;500;700&family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0d0b;
+    --ink-2: #161410;
+    --paper: #f4ecdb;
+    --paper-2: #e8dfc9;
+    --muted: #8a8275;
+    --rule: #2a2620;
+    --signal: #ff4d1f;
+    --signal-2: #ffb454;
+    --tan: #c9a679;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
+    font-weight: 300;
+    line-height: 1.65;
+    letter-spacing: 0.01em;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255, 77, 31, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 90%, rgba(201, 166, 121, 0.035) 0%, transparent 50%);
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .masthead { border-bottom: 1px solid var(--rule); padding: 32px 0 24px; position: relative; }
+  .masthead-grid { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 32px; }
+  .edition { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .edition strong { color: var(--paper); font-weight: 500; }
+  .logo { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 38px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; text-align: center; font-variation-settings: "opsz" 144; }
+  .logo .accent { color: var(--signal); font-style: italic; font-weight: 600; }
+  .weather { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-align: right; line-height: 1.7; }
+  .weather .pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--signal); margin-right: 6px; animation: pulse 2s infinite; vertical-align: middle; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 77, 31, 0.5); }
+    50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(255, 77, 31, 0); }
+  }
+  .hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule); position: relative; }
+  .hero-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal); }
+  .hero-meta::before { content: ''; width: 40px; height: 1px; background: var(--signal); }
+  .hero h1 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: clamp(48px, 8vw, 96px); font-weight: 400; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 32px; font-variation-settings: "opsz" 144, "SOFT" 50; }
+  .hero h1 em { font-style: italic; font-weight: 600; color: var(--signal-2); }
+  .hero-lede { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.5; color: var(--paper-2); max-width: 680px; font-weight: 400; }
+  .date-block { position: absolute; top: 80px; right: 32px; text-align: right; font-family: 'JetBrains Mono', monospace; }
+  .date-block .day { font-family: 'Fraunces', serif; font-size: 120px; font-weight: 800; line-height: 0.9; color: var(--paper); font-variation-settings: "opsz" 144; letter-spacing: -0.05em; }
+  .date-block .month { font-size: 12px; letter-spacing: 0.2em; color: var(--muted); margin-top: 8px; }
+  .ticker { background: var(--ink-2); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); overflow: hidden; padding: 14px 0; position: relative; }
+  .ticker-track { display: flex; gap: 48px; white-space: nowrap; animation: scroll 60s linear infinite; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.05em; color: var(--paper-2); }
+  .ticker-track span { display: inline-flex; align-items: center; gap: 12px; }
+  .ticker-track .dot { color: var(--signal); font-size: 8px; }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .section { padding: 80px 0 40px; border-bottom: 1px solid var(--rule); }
+  .section-head { display: grid; grid-template-columns: 280px 1fr; gap: 48px; margin-bottom: 48px; align-items: start; }
+  .section-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--signal); margin-bottom: 12px; }
+  .section-title { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 56px; font-weight: 400; line-height: 0.95; letter-spacing: -0.03em; font-variation-settings: "opsz" 144; }
+  .section-title em { font-style: italic; color: var(--tan); font-weight: 600; }
+  .section-intro { font-family: 'Fraunces', serif; font-size: 17px; line-height: 1.6; color: var(--muted); padding-top: 16px; border-top: 1px solid var(--rule); }
+  .stories { display: grid; grid-template-columns: repeat(12, 1fr); gap: 32px; }
+  .story { grid-column: span 6; padding: 28px; background: linear-gradient(180deg, rgba(255,255,255,0.015) 0%, transparent 100%); border: 1px solid var(--rule); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; }
+  .story::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 1px; background: var(--signal); transition: width 0.6s ease; }
+  .story:hover { background: linear-gradient(180deg, rgba(255, 77, 31, 0.04) 0%, transparent 100%); border-color: rgba(255, 77, 31, 0.3); transform: translateY(-2px); }
+  .story:hover::before { width: 100%; }
+  .story.feature { grid-column: span 12; padding: 48px; background: linear-gradient(135deg, rgba(255, 77, 31, 0.06) 0%, rgba(201, 166, 121, 0.02) 100%); border-color: rgba(255, 77, 31, 0.25); }
+  .story.feature::after { content: 'FEATURED'; position: absolute; top: 24px; right: 24px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--signal); border: 1px solid var(--signal); padding: 4px 10px; }
+  .story-tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: var(--signal); margin-bottom: 16px; text-transform: uppercase; }
+  .story h3 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 26px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 16px; color: var(--paper); font-variation-settings: "opsz" 144; }
+  .story.feature h3 { font-size: 42px; line-height: 1.05; max-width: 90%; }
+  .story p { font-size: 15px; line-height: 1.7; color: var(--paper-2); margin-bottom: 20px; font-weight: 300; }
+  .story.feature p { font-family: 'Fraunces', serif; font-size: 19px; max-width: 720px; }
+  .story-meta { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 20px; border-top: 1px solid var(--rule); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.05em; }
+  .source { color: var(--muted); }
+  .source strong { color: var(--paper); font-weight: 500; }
+  .read-more { color: var(--signal); text-decoration: none; border: 1px solid var(--rule); padding: 6px 12px; transition: all 0.3s; white-space: nowrap; }
+  .read-more:hover { background: var(--signal); color: var(--ink); border-color: var(--signal); }
+  .story.span-4 { grid-column: span 4; }
+  .story.span-8 { grid-column: span 8; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--ink-2); }
+  .stat { padding: 40px 32px; border-right: 1px solid var(--rule); }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-family: 'Fraunces', serif; font-size: 56px; font-weight: 800; line-height: 1; color: var(--signal-2); letter-spacing: -0.04em; margin-bottom: 8px; font-variation-settings: "opsz" 144; }
+  .stat-num .unit { font-size: 22px; color: var(--paper); font-weight: 400; margin-left: 4px; }
+  .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; line-height: 1.4; }
+  .footer { padding: 80px 0 60px; text-align: center; border-top: 1px solid var(--rule); margin-top: 40px; }
+  .footer-mark { font-family: 'Fraunces', serif; font-style: italic; font-size: 28px; color: var(--paper); margin-bottom: 16px; font-variation-settings: "opsz" 144; }
+  .footer-mark .accent { color: var(--signal); }
+  .footer p { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+  .footer .divider { width: 60px; height: 1px; background: var(--signal); margin: 24px auto; }
+  @media (max-width: 900px) {
+    .wrap { padding: 0 20px; }
+    .masthead-grid { grid-template-columns: 1fr; gap: 16px; text-align: center; }
+    .weather { text-align: center; }
+    .date-block { position: static; text-align: left; margin-top: 32px; }
+    .date-block .day { font-size: 80px; }
+    .hero { padding: 48px 0 40px; }
+    .hero h1 { font-size: 44px; }
+    .hero-lede { font-size: 18px; }
+    .section-head { grid-template-columns: 1fr; gap: 16px; }
+    .section-title { font-size: 36px; }
+    .story, .story.feature { grid-column: span 12 !important; padding: 24px; }
+    .story.feature h3 { font-size: 28px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat { border-right: none; border-bottom: 1px solid var(--rule); padding: 28px 20px; }
+    .stat-num { font-size: 40px; }
+    .stat:nth-child(odd) { border-right: 1px solid var(--rule); }
+  }
+  @media (max-width: 500px) {
+    .stats { grid-template-columns: 1fr; }
+    .stat { border-right: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-grid">
+      <div class="edition">VOL. <strong>I</strong> · NO. <strong>004</strong></div>
+      <div class="logo">信号 <span class="accent">/ Signal</span></div>
+      <div class="weather"><span class="pulse"></span>LIVE · 28 APR 2026<br>晴 · 洛杉矶 · 23°C</div>
+    </div>
+  </div>
+</header>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span><span class="dot">●</span> 时代周刊 AI 十大影响力榜出炉</span>
+    <span><span class="dot">●</span> 阿里千问下载破 10 亿次</span>
+    <span><span class="dot">●</span> DeepSeek API 输入价再降至 1/10</span>
+    <span><span class="dot">●</span> 无界动力天使轮 2 亿$</span>
+    <span><span class="dot">●</span> V4 Vibe Code Benchmark 开源第一</span>
+    <span><span class="dot">●</span> 智谱赴港 IPO · 中国 LLM 第一股</span>
+    <span><span class="dot">●</span> 豆包 DAU 突破 1 亿</span>
+    <span><span class="dot">●</span> 摩尔线程 Q1 净利扭亏为盈</span>
+    <span><span class="dot">●</span> 时代周刊 AI 十大影响力榜出炉</span>
+    <span><span class="dot">●</span> 阿里千问下载破 10 亿次</span>
+    <span><span class="dot">●</span> DeepSeek API 输入价再降至 1/10</span>
+    <span><span class="dot">●</span> 无界动力天使轮 2 亿$</span>
+    <span><span class="dot">●</span> V4 Vibe Code Benchmark 开源第一</span>
+    <span><span class="dot">●</span> 智谱赴港 IPO · 中国 LLM 第一股</span>
+    <span><span class="dot">●</span> 豆包 DAU 突破 1 亿</span>
+    <span><span class="dot">●</span> 摩尔线程 Q1 净利扭亏为盈</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-meta">今日要闻 · TODAY'S BRIEFING</div>
+    <h1>跑分热度散去后,<br>留下的是<em>账本</em>。</h1>
+    <p class="hero-lede">
+      DeepSeek V4 发布第三天，第一波真实评测出炉 — 代码竞技场开源第一，但和 GPT-5.5 在 Agent 端到端任务上还有距离。同一时刻，《时代》周刊 AI 十大榜出炉，阿里千问下载破 10 亿，宇树年赚 6 亿、优必选年亏 7 亿 — 同样的赛道，账本却是两份。这一轮发布周后，行业要看的不是参数，是商业。
+    </p>
+    <div class="date-block"><div class="day">28</div><div class="month">APRIL · MMXXVI</div></div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">10<span class="unit">亿+</span></div><div class="stat-label">阿里千问<br>开源模型累计下载</div></div>
+  <div class="stat"><div class="stat-num">9<span class="unit">亿</span></div><div class="stat-label">ChatGPT<br>周活跃用户</div></div>
+  <div class="stat"><div class="stat-num">93.5<span class="unit">分</span></div><div class="stat-label">DeepSeek V4-Pro-Max<br>LiveCodeBench 得分</div></div>
+  <div class="stat"><div class="stat-num">2<span class="unit">亿$</span></div><div class="stat-label">无界动力<br>天使轮累计</div></div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 01</div><h2 class="section-title">大模型<em>风暴</em></h2></div>
+      <p class="section-intro">三天前的同框 — 第一波实测、价格再砍、华尔街共识陆续浮现。基准跑分的故事讲完，进入"账本"的章节。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">⚡ 头条 · DeepSeek V4 实测</div>
+        <h3>V4 实测出炉：代码竞技场开源第一，但 Agent 端到端任务仍被 GPT-5.5 压制</h3>
+        <p>
+          V4 发布三天后，第三方测评陆续出炉。Vals AI 的 Vibe Code Benchmark 中，V4 以"压倒性优势"拿下开源第一，击败 Gemini 3.1 Pro 等闭源前沿；LiveCodeBench 上 V4-Pro-Max 得 93.5，超过 GPT-5.4（91.7）。但 Build Fast with AI 的"宝可梦战斗引擎"端到端测试中，Opus 4.7 与 V4 都未能完成功能闭环 — 只有 GPT-5.5 跑通。"使用体验优于 Sonnet 4.5，交付质量接近 Opus 4.6 非思考模式" — DeepSeek 自己的克制评估，反而成为最准的注脚。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新浪财经 / TechWeb</strong> · 2026.04.27</span>
+          <a class="read-more" href="https://finance.sina.com.cn/stock/t/2026-04-27/doc-inhvxpif2375877.shtml" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-8">
+        <div class="story-tag">💸 价格屠夫 · DeepSeek</div>
+        <h3>4 月 26 日起 V4 输入缓存价再降到 1/10 · Pro 限时 2.5 折</h3>
+        <p>
+          DeepSeek 全系列 API 服务输入缓存命中价格降至原价 1/10，V4-Pro 在 5 月 5 日前再叠加 2.5 折限时优惠 — 缓存命中价压到 0.025 元/百万 token。同期 GPT-5.5 Pro 加权平均输入价 30 美元/百万 token、输出 180 美元 — V4 Pro 价格仅其约 1/3。"价格屠夫"再度出手，国产算力链条直接受益，A 股算力硬件、PCB 概念走强。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>界面新闻</strong> · 2026.04.27</span>
+          <a class="read-more" href="https://www.jiemian.com/article/14333863.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">🔧 国产协同</div>
+        <h3>FlagOS 适配 V4-Flash 至 8 款国产芯片</h3>
+        <p>
+          华为昇腾、寒武纪、摩尔线程之外，FlagOS 平台已完成 V4-Flash 在 8 款以上国产 AI 芯片上的全量适配，正在推进 V4-Pro 多芯片迁移 — 国产算力进入"模算协同"阶段。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新浪财经</strong></span>
+          <a class="read-more" href="https://finance.sina.com.cn/jjxw/2026-04-27/doc-inhvxhzk9231755.shtml" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🏆 榜单 · 时代周刊</div>
+        <h3>《时代》2026 AI 十大影响力机构出炉</h3>
+        <p>
+          OpenAI、阿里巴巴、亚马逊领衔。OpenAI 估值 8520 亿美元，ChatGPT 周活超 9 亿；阿里千问开源系列下载破 10 亿，成全球最受欢迎开源模型；亚马逊 Rainier 项目使用近 50 万颗自研 Trainium2 芯片。其他入选：Meta、Anthropic、Mistral、Hugging Face、字节豆包、智谱（GLM-5 跑在华为芯片上）。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>俄罗斯卫星通讯社</strong> · 2026.04.28</span>
+          <a class="read-more" href="https://sputniknews.cn/20260428/1070998858.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🇭🇰 上市 · 智谱</div>
+        <h3>智谱赴港 IPO，中国大模型第一股</h3>
+        <p>
+          《时代》榜单同时披露 — 智谱已成为中国首家在香港完成 IPO 的大语言模型公司。报道指出其 GLM-5 模型在某些参数上超越了 Gemini 3 Pro，并且运行在华为处理器上。这是国产 LLM 走入二级市场的标志事件。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>俄罗斯卫星通讯社</strong></span>
+          <a class="read-more" href="https://sputniknews.cn/20260428/1070998858.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 02</div><h2 class="section-title">资本<em>潮汐</em></h2></div>
+      <p class="section-intro">具身智能继续滚雪球，但同样的赛道下账本截然不同 — 宇树年赚 6 亿、优必选年亏 7 亿。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">💰 融资 · 无界动力</div>
+        <h3>无界动力天使轮累计破 2 亿美元 · 远景战略合作 5 亿元出海</h3>
+        <p>
+          4 月 27 日，通用具身智能机器人公司无界动力宣布完成天使++轮融资，由远景科技集团与北京市人工智能产业投资基金联合投资，红杉、线性、高瓴、BV 百度等老股东跟投；天使+++轮接近完成，互联网产业资本与顶级美元/人民币基金参与，天使轮累计超 2 亿美元。同时与远景达成超 5 亿元面向海外的战略合作 — 覆盖欧洲、亚洲多国的风光储与 AIDC 部署。CEO 张玉峰提出"原生世界模型 + 强化学习"路线，在天使轮就拿到这个金额，是行业内罕见的"重注押大脑"案例。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新浪科技 TechWeb</strong> · 2026.04.27</span>
+          <a class="read-more" href="https://finance.sina.com.cn/tech/roll/2026-04-27/doc-inhvxhzn7850208.shtml" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">📊 账本 · 机器人双星</div>
+        <h3>宇树一年赚 6 亿，优必选一年亏 7 亿 — 同赛道两本账</h3>
+        <p>
+          宇树科技 2025 年实现规模化盈利，营收同比增长 335% 至 17.08 亿元，净利约 6 亿；人形机器人出货超 5500 台稳居全球第一。优必选 2025 年收入 20.01 亿（同比 +53.3%），但仍年亏约 7 亿。两家估值都已迈过百亿，但商业化路径完全分叉。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新浪财经</strong> · 2026.04.27</span>
+          <a class="read-more" href="https://finance.sina.com.cn/jjxw/2026-04-27/doc-inhvxhzk9231755.shtml" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">📈 拐点 · 摩尔线程</div>
+        <h3>摩尔线程 Q1 净利 2935 万元，扭亏为盈</h3>
+        <p>
+          国产 GPU 厂商摩尔线程发布 2026 Q1 财报，净利润 2935.92 万元，同比扭亏为盈。这是继寒武纪之后，又一家走到盈利拐点的国产 GPU 公司。摩尔线程旗舰 GPU MTT S5000 已完成 DeepSeek-V4-Flash Day 0 适配。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新浪科技</strong></span>
+          <a class="read-more" href="https://finance.sina.com.cn/tech/roll/2026-04-27/doc-inhvxhzn7850208.shtml" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 03</div><h2 class="section-title">监管<em>新章</em></h2></div>
+      <p class="section-intro">白宫蒸馏案在国际舆论场上发酵 — 美国开发者反过来力挺 DeepSeek 的"架构创新"，把"恐慌叙事"打回去。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-8">
+        <div class="story-tag">🌍 反弹 · 美国开发者</div>
+        <h3>Replit CEO 反击白宫蒸馏说：V4 是真正的架构创新，与"蒸馏"无关</h3>
+        <p>
+          白宫"蒸馏备忘录"发布几天后，Replit CEO Amjad Masad 在公开评论 V4 时给出强烈反击 — 他高度评价 V4 的注意力压缩与长上下文效率提升是"真正的架构创新"，并认为美国政客在渲染"中国蒸馏恐慌"的同时，中国科学家却在真诚分享真实的 AI 突破，V4 的架构创新与训练数据蒸馏完全无关，开源使所有人都能受益。这是这场国际舆论战中第一次出现来自美国头部开发者社区的明确反向声音。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>东方财富 / TechWeb</strong> · 2026.04.26</span>
+          <a class="read-more" href="https://caifuhao.eastmoney.com/news/20260426234414824462550" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">🛡️ 漏洞 · 中国方案</div>
+        <h3>中国提出 AI 挖漏洞新方案</h3>
+        <p>
+          全球紧张"AI 挖漏洞"叙事下，中国学界与产业界本周提出"AI 安全检测"新框架。这一方向正在成为继伦理审查之后又一个监管热点 — 与白宫蒸馏案、国安部数据投毒预警形成"三线博弈"。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新浪财经</strong></span>
+          <a class="read-more" href="https://finance.sina.com.cn/stock/t/2026-04-27/doc-inhvxpif2375877.shtml" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 04</div><h2 class="section-title">具身智能<em>下产线</em></h2></div>
+      <p class="section-intro">中国具身智能头部已出现"百亿俱乐部" — 13 家估值过百亿，但 60% 还在亏钱。京东用"60 万采集大军"重新定义了入场方式。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">📦 入场 · 京东</div>
+        <h3>京东动用 60 万人采集团队 — 切入具身智能"中间层"</h3>
+        <p>
+          京东本周阶段性发布具身智能进展：发布行业首个具身数据全链路基础设施，发动 10 万员工 + 50 万社会人员的采集队伍，建成全球规模最大具身数据采集中心。这是一条"横跨四条路线的混合数据路线"，避开本体与大脑的红海，用供应链逻辑切入产业链中间层。配套的 JoyInside 具身智能平台已与近百家家电家居品牌、超 40 个机器人/AI 玩具品牌合作。京东零售条线 2026 年目标：助力机器人品牌伙伴销售额破 100 亿。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>36 氪 / AI 价值官</strong> · 2026.04.24</span>
+          <a class="read-more" href="https://36kr.com/p/3778948463522569" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">📊 阵营 · 百亿俱乐部</div>
+        <h3>13 家具身智能企业估值破百亿元</h3>
+        <p>
+          截至 4 月底，国内具身智能"百亿俱乐部"已有 13-14 家：宇树科技、银河通用、智元、星海图、千寻智能、智平方、自变量、云深处、众擎、星动纪元、灵心巧手、擎朗智能、帕西尼。Q1 一季度披露融资超 50 起、累计 200 亿元，同比增长近 60%。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新浪财经</strong></span>
+          <a class="read-more" href="https://finance.sina.com.cn/roll/2026-04-16/doc-inhurtwn3009953.shtml" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">📐 数据稀缺</div>
+        <h3>全球高质量具身数据 50 万小时 — 不足 LLM 训练 1/2 万</h3>
+        <p>
+          截至 2026 年初，全球高质量真实物理交互数据总量仅约 50 万小时，不足大语言模型训练数据的两万分之一。"数据跟着本体走"导致每换一台机器人就要重新采集 — 这是行业最棘手的"结构失衡"，也是京东切入的精准空隙。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>36 氪 / AI 价值官</strong></span>
+          <a class="read-more" href="https://36kr.com/p/3778948463522569" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 05</div><h2 class="section-title">硬件与<em>新物种</em></h2></div>
+      <p class="section-intro">字节豆包 DAU 突破 1 亿，把"AI 助手"从硅谷叙事拽入大众生活。这是 AI 在 to-C 端最具体的渗透曲线。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-8">
+        <div class="story-tag">📱 大众化 · 字节</div>
+        <h3>豆包春节期间 DAU 破 1 亿、WAU 超 1.55 亿 — 中国成最早 AI 助手大规模用户化的国家</h3>
+        <p>
+          《时代》周刊 2026 AI 十大影响力榜单同时披露 — 字节跳动开发的 AI 助手豆包，在 2026 年春节期间日活跃用户突破 1 亿，周活跃用户超过 1.55 亿。《时代》评价 — 凭借豆包，中国成为最早实现 AI 助手大规模应用的国家之一。这是 to-C 用户量级的一次跨越，也意味着"AI 助手"在普通中文用户中已完成"渠道铺设"。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>俄罗斯卫星通讯社</strong> · 2026.04.28</span>
+          <a class="read-more" href="https://sputniknews.cn/20260428/1070998858.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">🛒 消费 · 阿里</div>
+        <h3>千问下载破 10 亿 · 开源系列全球最受欢迎</h3>
+        <p>
+          《时代》指出，阿里千问开源 AI 模型的下载量已突破 10 亿。这一开源模型家族已成为全球最受欢迎的开源模型系列，影响力远超中国本土。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>俄罗斯卫星通讯社</strong></span>
+          <a class="read-more" href="https://sputniknews.cn/20260428/1070998858.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 06</div><h2 class="section-title">数据<em>读图</em></h2></div>
+      <p class="section-intro">三组对比 — 价格、能力差距、用户量级。每一组都比一句口号有力。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-4">
+        <div class="story-tag">💰 价差</div>
+        <h3>V4 Pro vs GPT-5.5 Pro 价差 17 倍</h3>
+        <p>
+          OpenRouter 数据 — GPT-5.5 Pro 加权输入价 30 美元/百万 token、输出 180 美元；DeepSeek V4 Pro 输入 1 元、输出 2-12 元。V4 Pro 价格仅 GPT-5.5 Pro 约 1/17 — 这是开源对闭源最大尺度的价差。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>界面新闻</strong></span>
+          <a class="read-more" href="https://www.jiemian.com/article/14333863.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">⏱️ 时差</div>
+        <h3>V4 自评落后前沿 3-6 个月</h3>
+        <p>
+          DeepSeek 官方在 V4 技术报告中明确写明 — V4 能力水平仍落后 GPT-5.4 与 Gemini-3.1-Pro，"发展轨迹大约滞后前沿闭源模型 3 至 6 个月"。这是一份难得的"克制版自评"。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>53AI 知识库</strong></span>
+          <a class="read-more" href="https://www.53ai.com/news/LargeLanguageModel/2026042415879.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">👥 用户量</div>
+        <h3>ChatGPT 9 亿 WAU vs 豆包 1.55 亿 WAU</h3>
+        <p>
+          ChatGPT 周活跃用户数已超过 9 亿，豆包周活跃用户超过 1.55 亿。前者覆盖全球，后者集中在中文市场。AI 助手的"全球普及阶段"和"中国普及阶段"，正在以两条不同的速度展开。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>俄罗斯卫星通讯社</strong></span>
+          <a class="read-more" href="https://sputniknews.cn/20260428/1070998858.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-mark">信号 <span class="accent">/</span> Signal</div>
+    <div class="divider"></div>
+    <p>第 004 期 · 2026 年 4 月 28 日 · 周二</p>
+    <p style="margin-top:8px;">本期收录 4.26 — 4.28 共 16 条 AI 相关动态</p>
+  </div>
+</footer>
+
+</body>
+</html>

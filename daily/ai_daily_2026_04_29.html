@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 · 2026.04.29</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=JetBrains+Mono:wght@400;500;700&family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0d0b;
+    --ink-2: #161410;
+    --paper: #f4ecdb;
+    --paper-2: #e8dfc9;
+    --muted: #8a8275;
+    --rule: #2a2620;
+    --signal: #ff4d1f;
+    --signal-2: #ffb454;
+    --tan: #c9a679;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink); color: var(--paper);
+    font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
+    font-weight: 300; line-height: 1.65; letter-spacing: 0.01em;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255, 77, 31, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 90%, rgba(201, 166, 121, 0.035) 0%, transparent 50%);
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .masthead { border-bottom: 1px solid var(--rule); padding: 32px 0 24px; position: relative; }
+  .masthead-grid { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 32px; }
+  .edition { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .edition strong { color: var(--paper); font-weight: 500; }
+  .logo { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 38px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; text-align: center; font-variation-settings: "opsz" 144; }
+  .logo .accent { color: var(--signal); font-style: italic; font-weight: 600; }
+  .weather { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-align: right; line-height: 1.7; }
+  .weather .pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--signal); margin-right: 6px; animation: pulse 2s infinite; vertical-align: middle; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 77, 31, 0.5); }
+    50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(255, 77, 31, 0); }
+  }
+  .hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule); position: relative; }
+  .hero-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal); }
+  .hero-meta::before { content: ''; width: 40px; height: 1px; background: var(--signal); }
+  .hero h1 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: clamp(48px, 8vw, 96px); font-weight: 400; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 32px; font-variation-settings: "opsz" 144, "SOFT" 50; }
+  .hero h1 em { font-style: italic; font-weight: 600; color: var(--signal-2); }
+  .hero-lede { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.5; color: var(--paper-2); max-width: 680px; font-weight: 400; }
+  .date-block { position: absolute; top: 80px; right: 32px; text-align: right; font-family: 'JetBrains Mono', monospace; }
+  .date-block .day { font-family: 'Fraunces', serif; font-size: 120px; font-weight: 800; line-height: 0.9; color: var(--paper); font-variation-settings: "opsz" 144; letter-spacing: -0.05em; }
+  .date-block .month { font-size: 12px; letter-spacing: 0.2em; color: var(--muted); margin-top: 8px; }
+  .ticker { background: var(--ink-2); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); overflow: hidden; padding: 14px 0; position: relative; }
+  .ticker-track { display: flex; gap: 48px; white-space: nowrap; animation: scroll 60s linear infinite; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.05em; color: var(--paper-2); }
+  .ticker-track span { display: inline-flex; align-items: center; gap: 12px; }
+  .ticker-track .dot { color: var(--signal); font-size: 8px; }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .section { padding: 80px 0 40px; border-bottom: 1px solid var(--rule); }
+  .section-head { display: grid; grid-template-columns: 280px 1fr; gap: 48px; margin-bottom: 48px; align-items: start; }
+  .section-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--signal); margin-bottom: 12px; }
+  .section-title { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 56px; font-weight: 400; line-height: 0.95; letter-spacing: -0.03em; font-variation-settings: "opsz" 144; }
+  .section-title em { font-style: italic; color: var(--tan); font-weight: 600; }
+  .section-intro { font-family: 'Fraunces', serif; font-size: 17px; line-height: 1.6; color: var(--muted); padding-top: 16px; border-top: 1px solid var(--rule); }
+  .stories { display: grid; grid-template-columns: repeat(12, 1fr); gap: 32px; }
+  .story { grid-column: span 6; padding: 28px; background: linear-gradient(180deg, rgba(255,255,255,0.015) 0%, transparent 100%); border: 1px solid var(--rule); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; }
+  .story::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 1px; background: var(--signal); transition: width 0.6s ease; }
+  .story:hover { background: linear-gradient(180deg, rgba(255, 77, 31, 0.04) 0%, transparent 100%); border-color: rgba(255, 77, 31, 0.3); transform: translateY(-2px); }
+  .story:hover::before { width: 100%; }
+  .story.feature { grid-column: span 12; padding: 48px; background: linear-gradient(135deg, rgba(255, 77, 31, 0.06) 0%, rgba(201, 166, 121, 0.02) 100%); border-color: rgba(255, 77, 31, 0.25); }
+  .story.feature::after { content: 'FEATURED'; position: absolute; top: 24px; right: 24px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--signal); border: 1px solid var(--signal); padding: 4px 10px; }
+  .story-tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: var(--signal); margin-bottom: 16px; text-transform: uppercase; }
+  .story h3 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 26px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 16px; color: var(--paper); font-variation-settings: "opsz" 144; }
+  .story.feature h3 { font-size: 42px; line-height: 1.05; max-width: 90%; }
+  .story p { font-size: 15px; line-height: 1.7; color: var(--paper-2); margin-bottom: 20px; font-weight: 300; }
+  .story.feature p { font-family: 'Fraunces', serif; font-size: 19px; max-width: 720px; }
+  .story-meta { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 20px; border-top: 1px solid var(--rule); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.05em; }
+  .source { color: var(--muted); }
+  .source strong { color: var(--paper); font-weight: 500; }
+  .read-more { color: var(--signal); text-decoration: none; border: 1px solid var(--rule); padding: 6px 12px; transition: all 0.3s; white-space: nowrap; }
+  .read-more:hover { background: var(--signal); color: var(--ink); border-color: var(--signal); }
+  .story.span-4 { grid-column: span 4; }
+  .story.span-8 { grid-column: span 8; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--ink-2); }
+  .stat { padding: 40px 32px; border-right: 1px solid var(--rule); }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-family: 'Fraunces', serif; font-size: 56px; font-weight: 800; line-height: 1; color: var(--signal-2); letter-spacing: -0.04em; margin-bottom: 8px; font-variation-settings: "opsz" 144; }
+  .stat-num .unit { font-size: 22px; color: var(--paper); font-weight: 400; margin-left: 4px; }
+  .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; line-height: 1.4; }
+  .footer { padding: 80px 0 60px; text-align: center; border-top: 1px solid var(--rule); margin-top: 40px; }
+  .footer-mark { font-family: 'Fraunces', serif; font-style: italic; font-size: 28px; color: var(--paper); margin-bottom: 16px; font-variation-settings: "opsz" 144; }
+  .footer-mark .accent { color: var(--signal); }
+  .footer p { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+  .footer .divider { width: 60px; height: 1px; background: var(--signal); margin: 24px auto; }
+  @media (max-width: 900px) {
+    .wrap { padding: 0 20px; }
+    .masthead-grid { grid-template-columns: 1fr; gap: 16px; text-align: center; }
+    .weather { text-align: center; }
+    .date-block { position: static; text-align: left; margin-top: 32px; }
+    .date-block .day { font-size: 80px; }
+    .hero { padding: 48px 0 40px; }
+    .hero h1 { font-size: 44px; }
+    .hero-lede { font-size: 18px; }
+    .section-head { grid-template-columns: 1fr; gap: 16px; }
+    .section-title { font-size: 36px; }
+    .story, .story.feature { grid-column: span 12 !important; padding: 24px; }
+    .story.feature h3 { font-size: 28px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat { border-right: none; border-bottom: 1px solid var(--rule); padding: 28px 20px; }
+    .stat-num { font-size: 40px; }
+    .stat:nth-child(odd) { border-right: 1px solid var(--rule); }
+  }
+  @media (max-width: 500px) {
+    .stats { grid-template-columns: 1fr; }
+    .stat { border-right: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-grid">
+      <div class="edition">VOL. <strong>I</strong> · NO. <strong>005</strong></div>
+      <div class="logo">信号 <span class="accent">/ Signal</span></div>
+      <div class="weather"><span class="pulse"></span>LIVE · 29 APR 2026<br>晴 · 洛杉矶 · 24°C</div>
+    </div>
+  </div>
+</header>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span><span class="dot">●</span> DeepSeek 两天两次降价 · 0.02 元/百万 token</span>
+    <span><span class="dot">●</span> Q1 全球 VC 总额 3309 亿$ 创新高</span>
+    <span><span class="dot">●</span> 市场消息 · OpenAI IPO 关键期未达营收目标</span>
+    <span><span class="dot">●</span> 阿里 HappyHorse 突袭上线 · 让奥特曼马斯克"开撕"</span>
+    <span><span class="dot">●</span> 五一视界 SimOne 4.0 世界模型升级</span>
+    <span><span class="dot">●</span> 昇视唯盛获韩国现代投资焊接 Agent</span>
+    <span><span class="dot">●</span> Agent 模型价格锚被打穿</span>
+    <span><span class="dot">●</span> 中方禁止外资收购 Manus</span>
+    <span><span class="dot">●</span> DeepSeek 两天两次降价 · 0.02 元/百万 token</span>
+    <span><span class="dot">●</span> Q1 全球 VC 总额 3309 亿$ 创新高</span>
+    <span><span class="dot">●</span> 市场消息 · OpenAI IPO 关键期未达营收目标</span>
+    <span><span class="dot">●</span> 阿里 HappyHorse 突袭上线 · 让奥特曼马斯克"开撕"</span>
+    <span><span class="dot">●</span> 五一视界 SimOne 4.0 世界模型升级</span>
+    <span><span class="dot">●</span> 昇视唯盛获韩国现代投资焊接 Agent</span>
+    <span><span class="dot">●</span> Agent 模型价格锚被打穿</span>
+    <span><span class="dot">●</span> 中方禁止外资收购 Manus</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-meta">今日要闻 · TODAY'S BRIEFING</div>
+    <h1>0.02 元一百万词。<br>这是 Agent 锚的<em>葬礼</em>。</h1>
+    <p class="hero-lede">
+      DeepSeek 两天里降了两次价 — 百万 token 输入费降到 2 分钱，调用量 24 小时内飙了近 4 倍。Agent 模型的"价格锚"被打穿，下游所有按 token 计费的产品和创业公司，今天醒来都在重算自己的单位经济模型。同一天，市场传出 OpenAI 在 IPO 关键阶段未达营收和用户目标 — 资本侧的精彩开始反向流动。
+    </p>
+    <div class="date-block"><div class="day">29</div><div class="month">APRIL · MMXXVI</div></div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">0.02<span class="unit">元</span></div><div class="stat-label">V4-Flash 缓存命中<br>百万 token 输入价</div></div>
+  <div class="stat"><div class="stat-num">3,309<span class="unit">亿$</span></div><div class="stat-label">2026 Q1 全球 VC<br>创历史新高</div></div>
+  <div class="stat"><div class="stat-num">4<span class="unit">倍</span></div><div class="stat-label">DeepSeek 调用量<br>24 小时内增幅</div></div>
+  <div class="stat"><div class="stat-num">8.5<span class="unit">亿</span></div><div class="stat-label">中国 AI 应用<br>3 月月活总规模</div></div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 01</div><h2 class="section-title">大模型<em>风暴</em></h2></div>
+      <p class="section-intro">阿里突袭上线"HappyHorse"、DeepSeek 接连降价、OpenAI 营收承压 — Agent 时代的"船小好掉头"开始反过来咬"船大资本重"的人。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">⚡ 头条 · DeepSeek 价格战</div>
+        <h3>两天两次降价 · 百万 token 输入 2 分钱 · 调用量 24 小时内涨近 4 倍</h3>
+        <p>
+          继 4 月 26 日把全系列 API 输入缓存价降到 1/10 之后，DeepSeek 27 日再降一刀 — V4-Pro 限时 2.5 折叠加，缓存命中价压到 0.025 元/百万 token；V4-Flash 输入低至 0.02 元。这是 Agent 模型"价格锚"第一次被彻底打穿 — 同期 GPT-5.5 Pro 加权输入 30 美元/百万 token、输出 180 美元，价差超过 17 倍。36 氪监测显示 DeepSeek 调用量在 24 小时内飙升近 4 倍。所有按 token 计费的下游产品，今天都在重算单位经济模型。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>36 氪 / 界面新闻</strong> · 2026.04.28</span>
+          <a class="read-more" href="https://www.36kr.com/newsflashes" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-8">
+        <div class="story-tag">🐎 突袭 · 阿里 HappyHorse</div>
+        <h3>阿里 HappyHorse 突然上线，实测让马斯克与奥特曼"法庭开撕"还手搓 GTA 6</h3>
+        <p>
+          4 月 28 日深夜，阿里突然上线全新 AI 产品"HappyHorse"，发布形式低调但功能炸裂 — 实测中可以让马斯克和奥特曼在虚拟法庭上互相起诉、辩论；甚至可以"手搓"出 GTA 6 风格的可玩游戏 demo。被 36 氪头条称为"阿里千问之外的另一张牌"。这是阿里在豆包、夸克之后又一次试图建立"AI 应用入口"的尝试 — 国内 AI 应用入口卡位战进入新一轮。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>36 氪</strong> · 2026.04.28</span>
+          <a class="read-more" href="https://www.36kr.com/newsflashes" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">⚠️ 营收警报 · OpenAI</div>
+        <h3>市场消息 · IPO 关键期未达核心营收/用户目标</h3>
+        <p>
+          4 月 28 日，市场流出消息 — OpenAI 在冲刺 IPO 的关键阶段未达核心营收及用户目标。这与上月 1220 亿美元天价融资形成强烈反差。Anthropic 同期 ARR 反超 OpenAI，企业新增 73% 流向 Anthropic — 资本叙事开始出现裂痕。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新浪财经</strong></span>
+          <a class="read-more" href="https://www.36kr.com/newsflashes" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-12">
+        <div class="story-tag">📊 应用图谱 · 新京报 AI 研究院</div>
+        <h3>《2026 春季 AI 应用竞争力报告》：豆包连续 9 期居首，中国 MAU 总规模超 8.5 亿</h3>
+        <p>
+          4 月 24 日新京报 AI 研究院联合 Xsignal 在春季论坛发布报告 — 中国 AI 应用月活用户总规模 3 月已超 8.5 亿，过去一年同比增长 81.71%。"全媒介之星"榜上豆包连续 9 期居首；DeepSeek、夸克、即梦 AI、千问、腾讯元宝交替轮动 2-5 名。腰部 AI 应用声量被持续挤压，竞争向"头部大厂 + 创企新势力"两端集中。海外加速收束到商业化路径，国内则继续推动 AI 应用走向国民级基础设施。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新京报 / 新浪财经</strong> · 2026.04.27</span>
+          <a class="read-more" href="https://finance.sina.cn/stock/jdts/2026-04-27/detail-inhvxpih9153468.d.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 02</div><h2 class="section-title">资本<em>潮汐</em></h2></div>
+      <p class="section-intro">Q1 全球 VC 创纪录的 3309 亿美元里，10 笔巨型 AI 交易拿走超 60%。"资本集中度"达到 SaaS 时代以来从未有过的水平。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">📊 头条 · KPMG Q1 报告</div>
+        <h3>2026 Q1 全球 VC 总额 3309 亿美元 · 10 笔巨型 AI 交易吃掉 60% 以上</h3>
+        <p>
+          KPMG《Venture Pulse Q1'26》报告 4 月 27 日发布 — 2026 Q1 全球风险投资总额 3309 亿美元，创历史最高，较 2025 Q4 的 1286 亿美元增长超 1.5 倍。AI 大额融资是主要推动力。单笔超 20 亿美元的"巨型交易"达 10 笔，总额 2060 亿美元，占全球 VC 总投资超 60%。头部案例：OpenAI 1220 亿、Anthropic 306 亿、xAI 200 亿、Waymo 160 亿、Databricks 70 亿。区域上，美洲投资 2701 亿美元（占全球超 80%），美国新增 66 家 AI 独角兽；亚洲 318 亿美元为 12 季度新高。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>KPMG / 新浪财经</strong> · 2026.04.27</span>
+          <a class="read-more" href="https://finance.sina.com.cn/jjxw/2026-04-27/doc-inhvxpia9020221.shtml" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">💰 融资 · 昇视唯盛</div>
+        <h3>焊接具身智能公司昇视唯盛获韩国现代投资</h3>
+        <p>
+          专注焊接垂直场景的具身智能机器人公司"昇视唯盛"完成数千万元 A+ 轮融资。本轮由韩国现代、微光创投联合投资 — 这是 2026 年首批由韩国主机厂直接投资国内具身智能创业公司的案例。资金主要用于"具身大脑"研发与软硬件迭代。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>36 氪</strong> · 2026.04.28</span>
+          <a class="read-more" href="https://www.36kr.com/newsflashes" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🌐 监管 · Manus</div>
+        <h3>中方禁止外资收购 Manus</h3>
+        <p>
+          4 月 28 日，36 氪报道"中方禁止外资收购 Manus"。Manus 是 2025 年红极一时的国产 AI Agent 创业公司。这条消息折射出政府对"明星 AI 资产"的"国家队优先"立场，也预示着外资在中国 AI 收购窗口将持续收紧。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>36 氪 8 点 1 氪</strong></span>
+          <a class="read-more" href="https://www.36kr.com/newsflashes" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 03</div><h2 class="section-title">监管<em>边界</em></h2></div>
+      <p class="section-intro">DeepSeek 价格战刚把市场打穿，监管线又开始向资本入场画边界 — 国家队优先、外资收紧。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-8">
+        <div class="story-tag">⚖️ 战略管控 · 国务院</div>
+        <h3>外资在中国 AI 资产并购窗口持续收紧</h3>
+        <p>
+          继上月对部分 AI 训练数据出境管理收紧之后，本周中国监管层再次明确 — Manus 等明星 AI 资产被禁止外资收购。结合 4 月 22 日工信部十部门《人工智能科技伦理审查与服务办法（试行）》、4 月 21 日国安部"数据投毒"产业链预警，中国式"AI 治理三件套"已成型 — 资本边界、伦理边界、安全边界同时收紧。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>36 氪 / 综合</strong> · 2026.04.28</span>
+          <a class="read-more" href="https://www.36kr.com/newsflashes" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">🇨🇳 后续 · 蒸馏案</div>
+        <h3>白宫蒸馏备忘录后续：行业评论分化</h3>
+        <p>
+          白宫"模型蒸馏"指控发酵进入第二周。相比 Replit CEO 力挺 V4 是"真正架构创新"的强势反击，更多美国分析师开始呼吁"建立透明的训练芯片审计机制"。这场争论正在跨过情绪期，走向技术性博弈。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>东方财富 / TechWeb</strong></span>
+          <a class="read-more" href="https://caifuhao.eastmoney.com/news/20260426234414824462550" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 04</div><h2 class="section-title">具身智能<em>世界模型</em></h2></div>
+      <p class="section-intro">仿真平台从"渲染游戏"升级到"训练物理 AI"。世界模型成为本周具身智能领域最显眼的竞争词。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">🌍 头条 · 五一视界 SimOne 4.0</div>
+        <h3>SimOne 4.0 发布：世界模型 + VLA 双底座 · 与英伟达 Omniverse 深度融合</h3>
+        <p>
+          4 月 28 日，五一视界 SimOne 4.0 先行版正式发布，以世界模型与 VLA（视觉-语言-动作）为技术底座，全面重构升级 — 覆盖数据、训练、推理、验证、交付五大核心环节。SimOne 4.0 已与英伟达 Omniverse NuRec 深度融合，构建从真实数据采集 → 神经场景重建 → 闭环仿真执行的完整数据驱动流程。从 2017 年第一代仿真平台到今天的世界模型底座，9 年的迭代恰好踩在了具身智能从"渲染"到"训练"的转折点。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>36 氪</strong> · 2026.04.28</span>
+          <a class="read-more" href="https://www.36kr.com/newsflashes" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🏭 数据 · 千寻智能</div>
+        <h3>千寻智能：累计 20 万小时真实交互数据</h3>
+        <p>
+          千寻智能本周披露 — 已累计获取超 20 万小时真实交互数据，预计 2026 年突破 100 万小时。在全球高质量具身数据总量仅 50 万小时的基线上，千寻一家就占了 40%。从"讲故事"转向"抢数据"，是具身智能行业本周最重要的产业拐点。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>魔珐星云 / CSDN</strong></span>
+          <a class="read-more" href="https://xingyun3d.csdn.net/69edbfca54b52172bc701e1b.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🤖 出海 · 昇视唯盛</div>
+        <h3>韩国现代为何押注一个焊接 Agent 创业公司</h3>
+        <p>
+          韩国现代选择投资焊接具身智能公司昇视唯盛 — 不投本体、不投大脑，押注的是"垂直场景 Agent"的工程化能力。这是 2026 年具身智能"赛道再细分"的新信号 — 主机厂不再追"全能型机器人"，而是直接订购"焊接师傅 / 装配师傅 / 喷涂师傅"。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>36 氪</strong></span>
+          <a class="read-more" href="https://www.36kr.com/newsflashes" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 05</div><h2 class="section-title">硬件与<em>新物种</em></h2></div>
+      <p class="section-intro">DeepSeek 把价格打穿、阿里突袭出招、HappyHorse 想抢入口 — AI 应用进入"国民级争夺"的下半场。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-8">
+        <div class="story-tag">📲 入口战 · 阿里</div>
+        <h3>阿里 HappyHorse 上线意味着什么</h3>
+        <p>
+          阿里在 4 月发布"千问小酒窝"统一数字人入口之后，不到一周再次推出 HappyHorse — 这次走的是"轻松好玩、社交转发"的路线。让用户惊讶的功能不是参数（多少 B / MoE），而是"让奥特曼和马斯克在虚拟法庭互撕"这种娱乐化场景。中国 AI 应用入口的卡位战，正在从"严肃工具"转向"娱乐 + 严肃"双轨并行 — 字节豆包擅长前者，阿里在试图打造后者。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>36 氪头条</strong></span>
+          <a class="read-more" href="https://www.36kr.com/newsflashes" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">🛒 黏性 · 猫箱</div>
+        <h3>猫箱用户日均 2 小时 · 黏性最强 AI 应用</h3>
+        <p>
+          字节系细分赛道 AI 应用"猫箱"（AI 虚拟角色）月活规模不算大，但用户日均使用时长超 2 小时，大幅领先所有 AI 应用。这是 to-C AI 应用市场最有趣的反差 — 头部声量集中在工具型，但黏性王者反而在情感陪伴型。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新京报 AI 研究院</strong></span>
+          <a class="read-more" href="https://finance.sina.cn/stock/jdts/2026-04-27/detail-inhvxpih9153468.d.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 06</div><h2 class="section-title">数据<em>读图</em></h2></div>
+      <p class="section-intro">三组数字，定义本周资本地图。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-4">
+        <div class="story-tag">💸 价差</div>
+        <h3>V4-Flash vs GPT-5.5 Pro 价差 1500 倍</h3>
+        <p>
+          V4-Flash 缓存命中输入价 0.02 元/百万 token；GPT-5.5 Pro 加权输入 30 美元/百万 token（约 215 元）。两者价差超 10000 倍 — 缓存命中场景对开发者来说，几乎免费。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>界面新闻 / 36 氪</strong></span>
+          <a class="read-more" href="https://www.jiemian.com/article/14333863.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">📈 集中度</div>
+        <h3>10 笔巨型交易吃掉全球 VC 60%+</h3>
+        <p>
+          KPMG Q1 报告 — 单笔超 20 亿美元的"巨型交易"10 笔合计 2060 亿，占全球 VC 投资 60% 以上。中小项目的资金窗口正在被前所未有地挤压。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新浪财经</strong></span>
+          <a class="read-more" href="https://finance.sina.com.cn/jjxw/2026-04-27/doc-inhvxpia9020221.shtml" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    
+      <article class="story span-4">
+        <div class="story-tag">📊 渗透</div>
+        <h3>中国 AI 应用 MAU 8.5 亿 · 同比+82%</h3>
+        <p>
+          中国 AI 应用 MAU 总规模 3 月超 8.5 亿，同比增长 81.71%。这是任何一个赛道在任何时代都罕见的"用户渗透加速度"。AI 已经过了"破圈"线，正在成为基础设施。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新京报 AI 研究院</strong></span>
+          <a class="read-more" href="https://finance.sina.cn/stock/jdts/2026-04-27/detail-inhvxpih9153468.d.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-mark">信号 <span class="accent">/</span> Signal</div>
+    <div class="divider"></div>
+    <p>第 005 期 · 2026 年 4 月 29 日 · 周三</p>
+    <p style="margin-top:8px;">本期收录 4.27 — 4.29 共 14 条 AI 相关动态</p>
+  </div>
+</footer>
+
+</body>
+</html>
