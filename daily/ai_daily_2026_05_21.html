@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 · 2026.05.21</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=JetBrains+Mono:wght@400;500;700&family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0d0b; --ink-2: #161410; --paper: #f4ecdb; --paper-2: #e8dfc9;
+    --muted: #8a8275; --rule: #2a2620; --signal: #ff4d1f; --signal-2: #ffb454; --tan: #c9a679;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink); color: var(--paper);
+    font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
+    font-weight: 300; line-height: 1.65; letter-spacing: 0.01em; overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255, 77, 31, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 90%, rgba(201, 166, 121, 0.035) 0%, transparent 50%);
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .masthead { border-bottom: 1px solid var(--rule); padding: 32px 0 24px; position: relative; }
+  .masthead-grid { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 32px; }
+  .edition { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .edition strong { color: var(--paper); font-weight: 500; }
+  .logo { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 38px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; text-align: center; font-variation-settings: "opsz" 144; }
+  .logo .accent { color: var(--signal); font-style: italic; font-weight: 600; }
+  .weather { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-align: right; line-height: 1.7; }
+  .weather .pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--signal); margin-right: 6px; animation: pulse 2s infinite; vertical-align: middle; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 77, 31, 0.5); }
+    50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(255, 77, 31, 0); }
+  }
+  .hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule); position: relative; }
+  .hero-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal); }
+  .hero-meta::before { content: ''; width: 40px; height: 1px; background: var(--signal); }
+  .hero h1 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: clamp(48px, 8vw, 96px); font-weight: 400; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 32px; font-variation-settings: "opsz" 144, "SOFT" 50; }
+  .hero h1 em { font-style: italic; font-weight: 600; color: var(--signal-2); }
+  .hero-lede { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.5; color: var(--paper-2); max-width: 680px; font-weight: 400; }
+  .date-block { position: absolute; top: 80px; right: 32px; text-align: right; font-family: 'JetBrains Mono', monospace; }
+  .date-block .day { font-family: 'Fraunces', serif; font-size: 120px; font-weight: 800; line-height: 0.9; color: var(--paper); font-variation-settings: "opsz" 144; letter-spacing: -0.05em; }
+  .date-block .month { font-size: 12px; letter-spacing: 0.2em; color: var(--muted); margin-top: 8px; }
+  .ticker { background: var(--ink-2); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); overflow: hidden; padding: 14px 0; position: relative; }
+  .ticker-track { display: flex; gap: 48px; white-space: nowrap; animation: scroll 60s linear infinite; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.05em; color: var(--paper-2); }
+  .ticker-track span { display: inline-flex; align-items: center; gap: 12px; }
+  .ticker-track .dot { color: var(--signal); font-size: 8px; }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .section { padding: 80px 0 40px; border-bottom: 1px solid var(--rule); }
+  .section-head { display: grid; grid-template-columns: 280px 1fr; gap: 48px; margin-bottom: 48px; align-items: start; }
+  .section-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--signal); margin-bottom: 12px; }
+  .section-title { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 56px; font-weight: 400; line-height: 0.95; letter-spacing: -0.03em; font-variation-settings: "opsz" 144; }
+  .section-title em { font-style: italic; color: var(--tan); font-weight: 600; }
+  .section-intro { font-family: 'Fraunces', serif; font-size: 17px; line-height: 1.6; color: var(--muted); padding-top: 16px; border-top: 1px solid var(--rule); }
+  .stories { display: grid; grid-template-columns: repeat(12, 1fr); gap: 32px; }
+  .story { grid-column: span 6; padding: 28px; background: linear-gradient(180deg, rgba(255,255,255,0.015) 0%, transparent 100%); border: 1px solid var(--rule); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; }
+  .story::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 1px; background: var(--signal); transition: width 0.6s ease; }
+  .story:hover { background: linear-gradient(180deg, rgba(255, 77, 31, 0.04) 0%, transparent 100%); border-color: rgba(255, 77, 31, 0.3); transform: translateY(-2px); }
+  .story:hover::before { width: 100%; }
+  .story.feature { grid-column: span 12; padding: 48px; background: linear-gradient(135deg, rgba(255, 77, 31, 0.06) 0%, rgba(201, 166, 121, 0.02) 100%); border-color: rgba(255, 77, 31, 0.25); }
+  .story.feature::after { content: 'FEATURED'; position: absolute; top: 24px; right: 24px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--signal); border: 1px solid var(--signal); padding: 4px 10px; }
+  .story-tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: var(--signal); margin-bottom: 16px; text-transform: uppercase; }
+  .story h3 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 26px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 16px; color: var(--paper); font-variation-settings: "opsz" 144; }
+  .story.feature h3 { font-size: 42px; line-height: 1.05; max-width: 90%; }
+  .story p { font-size: 15px; line-height: 1.7; color: var(--paper-2); margin-bottom: 20px; font-weight: 300; }
+  .story.feature p { font-family: 'Fraunces', serif; font-size: 19px; max-width: 720px; }
+  .story-meta { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 20px; border-top: 1px solid var(--rule); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.05em; }
+  .source { color: var(--muted); }
+  .source strong { color: var(--paper); font-weight: 500; }
+  .read-more { color: var(--signal); text-decoration: none; border: 1px solid var(--rule); padding: 6px 12px; transition: all 0.3s; white-space: nowrap; }
+  .read-more:hover { background: var(--signal); color: var(--ink); border-color: var(--signal); }
+  .story.span-4 { grid-column: span 4; }
+  .story.span-8 { grid-column: span 8; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--ink-2); }
+  .stat { padding: 40px 32px; border-right: 1px solid var(--rule); }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-family: 'Fraunces', serif; font-size: 56px; font-weight: 800; line-height: 1; color: var(--signal-2); letter-spacing: -0.04em; margin-bottom: 8px; font-variation-settings: "opsz" 144; }
+  .stat-num .unit { font-size: 22px; color: var(--paper); font-weight: 400; margin-left: 4px; }
+  .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; line-height: 1.4; }
+  .footer { padding: 80px 0 60px; text-align: center; border-top: 1px solid var(--rule); margin-top: 40px; }
+  .footer-mark { font-family: 'Fraunces', serif; font-style: italic; font-size: 28px; color: var(--paper); margin-bottom: 16px; font-variation-settings: "opsz" 144; }
+  .footer-mark .accent { color: var(--signal); }
+  .footer p { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+  .footer .divider { width: 60px; height: 1px; background: var(--signal); margin: 24px auto; }
+  @media (max-width: 900px) {
+    .wrap { padding: 0 20px; }
+    .masthead-grid { grid-template-columns: 1fr; gap: 16px; text-align: center; }
+    .weather { text-align: center; }
+    .date-block { position: static; text-align: left; margin-top: 32px; }
+    .date-block .day { font-size: 80px; }
+    .hero { padding: 48px 0 40px; }
+    .hero h1 { font-size: 44px; }
+    .hero-lede { font-size: 18px; }
+    .section-head { grid-template-columns: 1fr; gap: 16px; }
+    .section-title { font-size: 36px; }
+    .story, .story.feature { grid-column: span 12 !important; padding: 24px; }
+    .story.feature h3 { font-size: 28px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat { border-right: none; border-bottom: 1px solid var(--rule); padding: 28px 20px; }
+    .stat-num { font-size: 40px; }
+    .stat:nth-child(odd) { border-right: 1px solid var(--rule); }
+  }
+  @media (max-width: 500px) {
+    .stats { grid-template-columns: 1fr; }
+    .stat { border-right: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-grid">
+      <div class="edition">VOL. <strong>I</strong> · NO. <strong>017</strong></div>
+      <div class="logo">信号 <span class="accent">/ Signal</span></div>
+      <div class="weather"><span class="pulse"></span>LIVE · 21 MAY 2026<br>晴 · 洛杉矶 · 24°C</div>
+    </div>
+  </div>
+</header>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span><span class="dot">●</span> Gemini 3.5 Flash 发布 · 编码超自家 3.1 Pro、速度快 4 倍</span>
+    <span><span class="dot">●</span> Gemini Spark 登场 · 7×24 小时常驻 Agent 替你干活</span>
+    <span><span class="dot">●</span> Gemini Omni · 文本/图像/音频/视频一口气生成可编辑视频</span>
+    <span><span class="dot">●</span> Android XR 智能眼镜秋季发售 · 三星/高通造、Warby Parker 设计</span>
+    <span><span class="dot">●</span> Google AI Ultra 砍到 $100/月 · 改按「算力消耗」计费</span>
+    <span><span class="dot">●</span> Karpathy 转投 Anthropic · 加入预训练团队</span>
+    <span><span class="dot">●</span> KPMG 全员接入 Claude · 27.6 万人、Digital Gateway 上线</span>
+    <span><span class="dot">●</span> 阿里 Qwen3.7-Max 发布 · 多项基准超 DeepSeek-V4 / Claude Opus 4.6</span>
+    <span><span class="dot">●</span> 百度文心 5.1 · 预训练成本仅业界同规模 6%</span>
+    <span><span class="dot">●</span> arXiv TriMem · Agent 记忆超越「原子事实」三层并存</span>
+    <span><span class="dot">●</span> Gemini 3.5 Flash 发布 · 编码超自家 3.1 Pro、速度快 4 倍</span>
+    <span><span class="dot">●</span> Gemini Spark 登场 · 7×24 小时常驻 Agent 替你干活</span>
+    <span><span class="dot">●</span> Gemini Omni · 文本/图像/音频/视频一口气生成可编辑视频</span>
+    <span><span class="dot">●</span> Android XR 智能眼镜秋季发售 · 三星/高通造、Warby Parker 设计</span>
+    <span><span class="dot">●</span> Google AI Ultra 砍到 $100/月 · 改按「算力消耗」计费</span>
+    <span><span class="dot">●</span> Karpathy 转投 Anthropic · 加入预训练团队</span>
+    <span><span class="dot">●</span> KPMG 全员接入 Claude · 27.6 万人、Digital Gateway 上线</span>
+    <span><span class="dot">●</span> 阿里 Qwen3.7-Max 发布 · 多项基准超 DeepSeek-V4 / Claude Opus 4.6</span>
+    <span><span class="dot">●</span> 百度文心 5.1 · 预训练成本仅业界同规模 6%</span>
+    <span><span class="dot">●</span> arXiv TriMem · Agent 记忆超越「原子事实」三层并存</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-meta">今日要闻 · TODAY'S BRIEFING</div>
+    <h1>聊天到此为止。<br>AI 开始<em>替你上班</em>。</h1>
+    <p class="hero-lede">
+      洛杉矶 5 月 19-20 日，Google I/O 把整场 keynote 押在一个词上：Agent。新模型 Gemini 3.5 Flash 在编码与智能体基准上全面超过自家旗舰 3.1 Pro，内部测试里能从零搭出一套操作系统，速度还快 4 倍、成本不到一半；它已成为 Gemini App 与搜索 AI 模式的全球默认模型，并驱动一只 7×24 小时常驻的个人 Agent「Spark」。同一天，AI Ultra 月费从 $250 砍到 $100。AI 从"回答问题"正式转向"替你把活干完"——而这，恰恰是 2026 年所有大厂叙事的同一个转弯。
+    </p>
+    <div class="date-block"><div class="day">21</div><div class="month">MAY · MMXXVI</div></div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">76.2<span class="unit">%</span></div><div class="stat-label">Gemini 3.5 Flash · Terminal-Bench 2.1<br>编码基准超自家旗舰 3.1 Pro</div></div>
+  <div class="stat"><div class="stat-num">100<span class="unit">$/月</span></div><div class="stat-label">Google AI Ultra 新起步价<br>原 $250 档降为 $200 · 改按算力计费</div></div>
+  <div class="stat"><div class="stat-num">69.7<span class="unit">分</span></div><div class="stat-label">阿里 Qwen3.7-Max · TerminalBench 2.0<br>超 DeepSeek-V4 / 官方称反超 Claude Opus 4.6</div></div>
+  <div class="stat"><div class="stat-num">6<span class="unit">%</span></div><div class="stat-label">百度文心 5.1 预训练成本占业界同规模<br>登顶 LMArena 国内搜索榜</div></div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 01</div><h2 class="section-title">Agent <em>正式上工</em></h2></div>
+      <p class="section-intro">Google I/O 两天 keynote 只讲一件事：让模型自己干活。Gemini 3.5 Flash 全面压过自家旗舰，Spark 把 Agent 做成 7×24 常驻，连 AI Ultra 都降价抢入口——聊天框时代正式翻篇。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">⚡ 头条 · GOOGLE I/O</div>
+        <h3>Gemini 3.5 Flash 发布 · 编码与智能体全面超自家旗舰 3.1 Pro · 内部测试能从零搭一套操作系统</h3>
+        <p>
+          5 月 19 日 Google I/O 开幕，DeepMind 首席技术官 Koray Kavukcuoglu 给出定调：Gemini 3.5 Flash 在"几乎所有基准"上超过上一代旗舰 3.1 Pro —— Terminal-Bench 2.1 编码 76.2%、GDPval-AA 智能体 1656 Elo、MCP Atlas 工具调用 83.6%、CharXiv 多模态 84.2%；输出速度比其他前沿模型快 4 倍，另有一版同质量但快 12 倍。它能连续自主跑数小时、遇到需要判断或授权的节点才停下来问人，内部测试里甚至从零搭出一套操作系统。Flash 与智能体 IDE「Antigravity 2.0」同步共研，现已是 Gemini App 与搜索 AI 模式的全球默认模型，并驱动 7×24 的 Spark；下个月登场的 3.5 Pro 将充当"规划者"、把 Flash 当子智能体调度。这一步的潜台词很清楚：Google 不再把 AI 当聊天框卖，而是当"会自己干活的同事"卖 —— 下一代竞争的计价单位，从"答得多准"变成"干得多完整"。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>TechCrunch / Google DeepMind / 9to5Google</strong> · 2026.05.19</span>
+          <a class="read-more" href="https://techcrunch.com/2026/05/19/with-gemini-3-5-flash-google-bets-its-next-ai-wave-on-agents-not-chatbots/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🤖 常驻智能体 · GEMINI SPARK</div>
+        <h3>Gemini Spark · 7×24 小时常驻个人 Agent，替你跑长任务</h3>
+        <p>
+          I/O 同台亮相的 Spark，是 Gemini 从"答问助手"变"主动同事"的关键一跃 —— 它跑在 Google Cloud 的专属虚拟机上、不用开着电脑也能 7×24 运行，先打通 Gmail、Docs 等 Workspace，夏天起经 MCP 接入第三方工具。配套的 Daily Brief 会把日程、邮件、待办梳成一份晨报，下周先向美区 AI Ultra 开放。把 Agent 做成"后台进程"而非"对话窗口"，这正是 3.5 Flash 速度优势的落点：让多个智能体并行跑数小时，而不是陪你聊天。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>9to5Google / TechCrunch</strong> · 2026.05.19</span>
+          <a class="read-more" href="https://9to5google.com/2026/05/19/gemini-app-google-io-2026/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🎬 多模态 + 硬件 · GOOGLE I/O</div>
+        <h3>Gemini Omni 把视频生成做进对话 · XR 眼镜秋季上市 · AI Ultra 降到 $100</h3>
+        <p>
+          除了模型，Google 把边界又推了一圈：Gemini Omni 接受图像/音频/视频/文本输入、直接产出可对话编辑的视频（被业界叫做"视频版 NanoBanana"），进了 Flow 与 YouTube Shorts；首批 Android XR「智能眼镜」秋季发售，三星 + 高通制造、Gentle Monster 与 Warby Parker 设计外形，安卓 / iPhone 都能配对。最实在的一刀砍在价格 —— AI Ultra 月费从 $250 降到 $100，并改用"按算力消耗"而非"按次数"计费。模型、硬件、定价同时出手，Google 这次要的是"无处不在"。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>9to5Google / TechRadar / Tom's Guide</strong> · 2026.05.19</span>
+          <a class="read-more" href="https://9to5google.com/2026/05/19/google-io-2026-news/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 02</div><h2 class="section-title">聚光灯<em>之外</em></h2></div>
+      <p class="section-intro">就在 Google 开全年最响发布会的同一天，Anthropic 悄悄挖走 OpenAI 联合创始人 Karpathy、把 Claude 铺进 KPMG 27.6 万人，并公开重申坚持无广告。最贵的资源，从来不在台上。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">🧲 人才地震 · ANTHROPIC</div>
+        <h3>OpenAI 联合创始人 Karpathy 加入 Anthropic · 入预训练团队、用 Claude 加速预训练研究</h3>
+        <p>
+          就在 Google 开全年最响发布会的同一天（5 月 19 日），Andrej Karpathy 在 X 上官宣加入 Anthropic。这位 OpenAI 创始成员、前特斯拉 AI 总监（主导 Autopilot 视觉，又是"vibe coding"一词的发明者），本周直接进 Anthropic 的预训练团队 —— 也就是为 Claude 灌入核心知识与能力的那条最底层产线，并将牵头一个"用 Claude 自己来加速预训练研究"的新团队。他说："未来几年 LLM 前沿会格外关键，我很兴奋回到 R&D。" Axios 称这是 Anthropic 在顶级人才争夺战里的一次"重大胜利"。当行业天天谈千亿融资和算力，真正稀缺的其实是能把前沿往前推一寸的那几十号人 —— 而这一手，Anthropic 偏偏选在对手最热闹的日子落下。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Axios / X @karpathy</strong> · 2026.05.19</span>
+          <a class="read-more" href="https://www.axios.com/2026/05/19/anthropic-openai-karpathy-andrej-claude" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🏢 企业落地 · KPMG × CLAUDE</div>
+        <h3>KPMG 全员接入 Claude · 27.6 万人、Digital Gateway 上线</h3>
+        <p>
+          同样在 5 月 19 日，四大之一的 KPMG 与 Anthropic 签下全球联盟：把 Claude 嵌进其客户交付平台 Digital Gateway，27.6 万名员工获得 Claude 全套能力，首批聚焦税务客户与私募基金，客户可在平台里实时搭建智能体工作流。这是"企业把 Claude 当基础设施"而非"员工偷偷用 ChatGPT"的信号 —— Google 在台上抢消费者，Anthropic 在台下把模型焊进世界最大专业服务机构的生产流程里。两条增长曲线，两种打法。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Anthropic / KPMG</strong> · 2026.05.19</span>
+          <a class="read-more" href="https://www.anthropic.com/news/anthropic-kpmg" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🛡️ 立场 · ANTHROPIC</div>
+        <h3>Anthropic 重申 Claude 永不接广告 · "广告激励与真正有用的助手不相容"</h3>
+        <p>
+          在所有人都在抢用户注意力的这一周，Anthropic 反向表态：Claude 产品坚持无广告，理由是"广告的激励机制，与一个真正以用户利益为先的 AI 助手天然冲突"。当对手把 AI 塞进购物车、搜索框、收件箱、把"停留时长"做成指标，Anthropic 选择把"不靠你多看一眼赚钱"写成产品原则。这不只是道德姿态 —— 它其实在为"企业愿意把敏感工作交给谁"这件事，提前立信用。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Anthropic</strong> · 2026.05</span>
+          <a class="read-more" href="https://www.anthropic.com/news/claude-is-a-space-to-think" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 03</div><h2 class="section-title">另一张<em>牌桌</em></h2></div>
+      <p class="section-intro">美国大厂热闹的当口，阿里 5 月 20 日甩出 Qwen3.7-Max、多项基准反超 Claude Opus 4.6，百度文心 5.1 用 6% 的成本登顶搜索榜 —— 国产军团在另一张牌桌上各自加注。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">🐉 国产旗舰 · 阿里 QWEN</div>
+        <h3>阿里 Qwen3.7-Max 发布 · 多项基准反超 DeepSeek-V4 与 Claude Opus 4.6</h3>
+        <p>
+          5 月 20 日阿里云峰会，通义千问甩出 Qwen3.7 系列、旗舰 Qwen3.7-Max 压轴：TerminalBench 2.0 编码 69.7（超 DeepSeek-V4-ProMax 的 67.9），SWE-Pro 60.6、SciCode 53.5，并在一次连续 35 小时、逾 1000 次工具调用的实验里跑通端到端任务。官方口径里它在多项基准上反超 Claude Opus 4.6，跻身全球前十五、国产第一。当海外把叙事押在"Agent 能跑多久"，国产旗舰直接拿"35 小时不掉线"应战 —— 这张牌桌的比拼，正在从参数转向耐力。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新浪科技 / IT之家 / 腾讯新闻</strong> · 2026.05.20</span>
+          <a class="read-more" href="https://finance.sina.com.cn/tech/roll/2026-05-20/doc-inhyphnp1790590.shtml" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">💴 性价比 · 百度文心 5.1</div>
+        <h3>百度文心 5.1 发布 · 预训练成本仅业界同规模 6%、登顶国内搜索榜</h3>
+        <p>
+          百度新一代基础模型文心 5.1 用上"多维弹性预训练"，号称只花同规模模型约 6% 的预训练成本就拿到领先效果，并登上 LMArena 搜索榜国内第一。和阿里拼"耐力"不同，百度押的是"单位智能的成本" —— 在算力被海外巨头用千亿美元堆高的当下，把训练成本压到零头，是国产路线给出的另一种答案。当 Google 把 AI Ultra 降到 $100 抢入口，中国厂商在更上游的训练账本上做同一道"降价"题。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>量子位 / 网易科技</strong> · 2026.05</span>
+          <a class="read-more" href="https://www.qbitai.com/2026/05/414496.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 04</div><h2 class="section-title">记忆与<em>技能</em></h2></div>
+      <p class="section-intro">当模型变成公共品，真正的私产是"怎么记"和"怎么拼"。arXiv 把 Agent 记忆推进到三层并存，GitHub 这周登顶的还是一水儿的 skills 仓库。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">📄 ARXIV · TRIMEM</div>
+        <h3>TriMem · Agent 记忆超越"原子事实"，三层粒度并存</h3>
+        <p>
+          arXiv 2605.19952：一篇关于终身 Agent 记忆的新作 TriMem 提出，别再只存"原子事实" —— 它让三种粒度共存：原始对话片段保真、抽取的原子事实供检索、再合成"画像"做深层推理，并用 TextGrad 反馈迭代优化抽取与画像的提示词。这条线接上了上期的 MemReread：2026 上半年，Agent 记忆的研究焦点已从"存什么"转向"分几层存、何时回头看"。模型上下文再大，也敌不过一套会自己整理记忆的结构 —— 这正是 Spark、Claude 这些常驻 Agent 下半场的胜负手。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>arXiv</strong> · 2026.05</span>
+          <a class="read-more" href="https://arxiv.org/abs/2605.19952" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">💎 GITHUB TRENDING · SKILLS</div>
+        <h3>GitHub 本周榜单 · mattpocock/skills 登顶、everything-claude-code 从 14 蹿到 4</h3>
+        <p>
+          这周 GitHub Trending 几乎被"skills"刷屏：mattpocock/skills 一周加 1618 星冲上第一，everything-claude-code 从第 14 蹿到第 4，前 20 名里至少 5 个名字带"skills"、另有 3+ 个属 Claude Code 生态。没人在炫新模型权重，全在炫"怎么把现成模型拼成自己的工作流"。和文心拼成本、Qwen 拼耐力对照看：当模型变成公共品，开发者用 star 投票投出的私产，是 prompt、skill 与上下文工程。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>DEV Community / OSSInsight</strong> · 2026.05</span>
+          <a class="read-more" href="https://dev.to/yanceyxin/github-weekly-trending-repositories-report-2g68" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-mark">信号 <span class="accent">/</span> Signal</div>
+    <div class="divider"></div>
+    <p>第 017 期 · 2026 年 5 月 21 日 · 周四</p>
+    <p style="margin-top:8px;">本期收录 5.18 — 5.21 共 10 条 AI 相关动态</p>
+  </div>
+</footer>
+
+</body>
+</html>

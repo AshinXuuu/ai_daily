@@ -148,13 +148,27 @@ PY
 
 ## 第十步：自动推送到 GitHub（必做）
 
-调用本地的发布脚本 — 它会自动把今天的 HTML 复制到仓库 `daily/`、把 snippet 插到 `daily/manifest.json` 最前面、commit 并 push。
+调用本地的发布脚本 — 它会自动把 snippet 插到 `daily/manifest.json` 最前面、commit 并 push。
 
 ```bash
-bash /Users/ashin/code/ai_daily/publish.sh
+cd /Users/ashin/Desktop/日报/AI日报/AI新闻日报 && ./publish.sh
 ```
 
-成功输出会以 `🎉 完成 → https://github.com/AshinXuuu/ai_daily` 结尾。
+成功输出会以 `✅ 完成。Vercel 会自动重新部署。` 结尾，并显示 commit hash。
+
+### 已知环境（2026.05.19 起）
+
+- 仓库：[github.com/AshinXuuu/ai_daily](https://github.com/AshinXuuu/ai_daily)
+- 远端 origin：`git@github.com:AshinXuuu/ai_daily.git`（SSH 已 OK）
+- git user：`AshinXuuu` / `ashinxu@yeah.net`
+- 首次 init 已完成（commit `7b9f4ee` · 第 001–016 期）—— 以后只跑 `./publish.sh` 即可
+
+### 注意 · Cowork 沙盒限制
+
+如果当前运行环境是 **Cowork sandbox**（路径含 `/sessions/.../mnt/Desktop/`），git 在 `~/Desktop` 下会因为 macOS 沙盒 unlink 限制无法 commit（会卡在 `.git/index.lock` 不能删）。这种情况下：
+1. **不要尝试** `git init` / `git commit` / `rm -rf .git` — 都会留下半残文件
+2. **正常运行 `./publish.sh`** —— 第 1-3 步（merge manifest）能跑通，第 4-5 步（git）会自然失败并打印「不是 git 仓库 / Operation not permitted」
+3. 在最终报告里贴出错误日志，提示 ashin 去自己的 Terminal 跑一次 push
 
 如果脚本报错（找不到文件、git push 失败等），把错误信息原样贴在最终报告里，但**不要自己尝试 git 命令**修复 — 让 ashin 看到日志再决定。
 

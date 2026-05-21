@@ -2,46 +2,6 @@
   "_comment": "信号/Signal AI 日报清单 · 每天只需要在 issues 数组顶部插入一项新的对象。最新的在最上面。",
   "issues": [
     {
-      "issue": "017",
-      "date": "2026-05-21",
-      "weekday": "周四",
-      "weekdayEn": "Thursday",
-      "type": "daily",
-      "file": "ai_daily_2026_05_21.html",
-      "stories": [
-        {
-          "tag": "⚡ 头条 · GOOGLE I/O",
-          "headline": "Gemini 3.5 Flash 发布 · 编码与智能体全面超自家旗舰 3.1 Pro · 内部测试能从零搭一套操作系统",
-          "summary": "5 月 19 日 Google I/O 开幕，DeepMind 首席技术官 Kavukcuoglu 定调：Gemini 3.5 Flash 在「几乎所有基准」上超过上代旗舰 3.1 Pro —— Terminal-Bench 2.1 编码 76.2%、MCP Atlas 工具调用 83.6%、CharXiv 多模态 84.2%，输出速度快 4 倍（另有一版快 12 倍）。它能连续自主跑数小时、内部测试甚至从零搭出一套操作系统，与智能体 IDE「Antigravity 2.0」共研，现已是 Gemini App 与搜索 AI 模式全球默认模型、并驱动 7×24 的 Spark。Google 不再把 AI 当聊天框卖，而是当「会自己干活的同事」卖。",
-          "source": "TechCrunch / Google DeepMind / 9to5Google"
-        },
-        {
-          "tag": "🧲 人才地震 · ANTHROPIC",
-          "headline": "OpenAI 联合创始人 Karpathy 加入 Anthropic · 入预训练团队、用 Claude 加速预训练研究",
-          "summary": "就在 Google 开全年最响发布会的同一天（5 月 19 日），Andrej Karpathy 官宣加入 Anthropic。这位 OpenAI 创始成员、前特斯拉 AI 总监、「vibe coding」一词的发明者，本周直接进 Anthropic 预训练团队 —— 为 Claude 灌入核心能力的最底层产线，并将牵头一个「用 Claude 自己加速预训练研究」的新团队。他说「未来几年 LLM 前沿会格外关键」。Axios 称这是 Anthropic 在顶级人才争夺战里的一次「重大胜利」。当行业天天谈千亿融资和算力，真正稀缺的是能把前沿往前推一寸的那几十号人 —— 这一手偏偏选在对手最热闹的日子落下。",
-          "source": "Axios / X @karpathy"
-        },
-        {
-          "tag": "🤖 常驻智能体 · GEMINI SPARK",
-          "headline": "Gemini Spark · 7×24 小时常驻个人 Agent，替你跑长任务",
-          "summary": "I/O 同台亮相的 Spark，是 Gemini 从「答问助手」变「主动同事」的关键一跃 —— 它跑在 Google Cloud 专属虚拟机上、不用开着电脑也能 7×24 运行，先打通 Gmail、Docs 等 Workspace，夏天起经 MCP 接入第三方工具。配套 Daily Brief 会把日程、邮件、待办梳成晨报，下周先向美区 AI Ultra 开放。把 Agent 做成「后台进程」而非「对话窗口」，正是 3.5 Flash 速度优势的落点：让多个智能体并行跑数小时，而不是陪你聊天。",
-          "source": "9to5Google / TechCrunch"
-        },
-        {
-          "tag": "🐉 国产旗舰 · 阿里 QWEN",
-          "headline": "阿里 Qwen3.7-Max 发布 · 多项基准反超 DeepSeek-V4 与 Claude Opus 4.6",
-          "summary": "5 月 20 日阿里云峰会，通义千问甩出 Qwen3.7 系列、旗舰 Qwen3.7-Max 压轴：TerminalBench 2.0 编码 69.7（超 DeepSeek-V4-ProMax 的 67.9），SWE-Pro 60.6、SciCode 53.5，并在一次连续 35 小时、逾 1000 次工具调用的实验里跑通端到端任务。官方口径里它在多项基准上反超 Claude Opus 4.6，跻身全球前十五、国产第一。当海外把叙事押在「Agent 能跑多久」，国产旗舰直接拿「35 小时不掉线」应战 —— 这张牌桌的比拼，正从参数转向耐力。",
-          "source": "新浪科技 / IT之家 / 腾讯新闻"
-        },
-        {
-          "tag": "🏢 企业落地 · KPMG × CLAUDE",
-          "headline": "KPMG 全员接入 Claude · 27.6 万人、Digital Gateway 上线",
-          "summary": "同样在 5 月 19 日，四大之一的 KPMG 与 Anthropic 签下全球联盟：把 Claude 嵌进客户交付平台 Digital Gateway，27.6 万名员工获得 Claude 全套能力，首批聚焦税务客户与私募基金，客户可在平台里实时搭建智能体工作流。这是「企业把 Claude 当基础设施」而非「员工偷偷用 ChatGPT」的信号 —— Google 在台上抢消费者，Anthropic 在台下把模型焊进世界最大专业服务机构的生产流程里。两条增长曲线，两种打法。",
-          "source": "Anthropic / KPMG"
-        }
-      ]
-    },
-    {
       "issue": "016",
       "date": "2026-05-19",
       "weekday": "周二",
