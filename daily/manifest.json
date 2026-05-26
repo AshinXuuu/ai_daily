@@ -2,6 +2,46 @@
   "_comment": "信号/Signal AI 日报清单 · 每天只需要在 issues 数组顶部插入一项新的对象。最新的在最上面。",
   "issues": [
     {
+      "issue": "018",
+      "date": "2026-05-26",
+      "weekday": "周二",
+      "weekdayEn": "Tuesday",
+      "type": "daily",
+      "file": "ai_daily_2026_05_26.html",
+      "stories": [
+        {
+          "tag": "💰 头条 · ANTHROPIC",
+          "headline": "Anthropic 新一轮 $30B+ 即将敲定 · 估值跨过 $900B、为上轮 5 倍",
+          "summary": "5 月 22 日彭博独家：Anthropic 最快下周敲定新一轮融资，规模 300 亿美元以上、估值超 9000 亿美元 —— 比 3 月那轮的 1830 亿翻五倍。Sequoia、Dragoneer、Altimeter、Greenoaks 联合领投、每家约 20 亿，Founders Fund、General Catalyst 等老股东跟投。这笔钱有现实账单等着接 —— 同月 Anthropic 与 xAI 签下 $1.25B/月的 Colossus 算力大单（五年 450 亿），Q2 营收预期翻倍到 109 亿、首次盈利季提前两年到来。9000 亿不只是估值刻度，是把「押多少钱、买多少时间」写得很清楚的一笔账。",
+          "source": "Bloomberg / Reuters"
+        },
+        {
+          "tag": "🧮 数学突破 · OPENAI",
+          "headline": "OpenAI 推理模型独立破解 80 年悬案 · 反例直接终结 Erdős 单位距离猜想主流方向",
+          "summary": "5 月 20 日 OpenAI 官方放出研究里程碑：一只内部通用推理模型 —— 不是为数学定制、不是搜索式辅证器 —— 独立给出「Erdős 单位距离猜想」的反例。八十年间数学界默认最优排布像方格点阵，模型找到一族新构造，比方格多出一个多项式量级的对数，证明被普林斯顿 Noga Alon 等数学家验证通过。OpenAI 强调三点：「首次 AI 自主求解开放数学问题」、「出自通用模型」、「反例是该方向的可验证终结」。当模型能输出连人类专家都未察觉的新构造，数学研究第一次出现「AI 提议、人类核验」的新工作流。",
+          "source": "OpenAI / TechCrunch"
+        },
+        {
+          "tag": "⚡ 算力大单 · XAI × ANTHROPIC",
+          "headline": "Anthropic 每月付 $1.25B 给 xAI · 五年 $45B Colossus 大单",
+          "summary": "5 月 20 日 SpaceX IPO 文件把内幕翻出：Anthropic 将以每月 12.5 亿美元、五年合计 450 亿美元向马斯克阵营购买 Colossus I+II 集群算力 —— 200,000+ 张 NVIDIA GPU、数百兆瓦电力。Anthropic 算力负责人 Tom Brown 早前确认该批算力主要用于推理；5 月 6 月按比例 ramp-up，任何一方可 90 天通知终止。这桩交易最大反差点：政治立场截然不同的两家公司，被同一道物理约束 —— 电、芯片、机架 —— 拽到同一张桌子上。AI 的「水电时代」正式入账，单位是「每月十个亿」。",
+          "source": "TechCrunch / Axios / xAI"
+        },
+        {
+          "tag": "🛰️ 神秘新厂 · HARK",
+          "headline": "Hark · Brett Adcock 第三家公司 $700M A 轮 · 估值 $6B、还没公布要做什么",
+          "summary": "5 月 21 日，Brett Adcock（Figure.AI、Archer 创始人）的新公司 Hark 宣布完成 7 亿美元 A 轮，估值 60 亿、Parkway Venture 领投，NVIDIA、AMD、Intel、Qualcomm 风险部门，加上 ARK、Salesforce Ventures、Brookfield 全员到齐。Hark 自定位为「个人智能通用接口」，要造会主动开口、带视觉与记忆的多模态系统加配套硬件，70 人团队、新签 B200 数据中心，首批模型今夏发布。耐人寻味的是产品演示一帧没放出 —— 头部 VC 用 7 亿赌「看不到的 PPT」，本身就是当下 AI 投资气压的写照。",
+          "source": "TechCrunch / BusinessWire"
+        },
+        {
+          "tag": "🪪 内容溯源 · OPENAI",
+          "headline": "OpenAI 加入 C2PA、给 ChatGPT 图像加上 SynthID 水印",
+          "summary": "5 月 19 日 OpenAI 宣布加入 C2PA 指导委员会、并与 Google 合作把 SynthID 不可见水印嵌入 ChatGPT、API、Codex 生成的图片，同时上线公开核验工具，扫描图片是否带 C2PA 元数据或 SynthID 信号。C2PA 提供可读元数据但易被截图丢失，SynthID 在像素里嵌入信号、可扛过截图、缩放、压缩。Google 同步把该方案原生集成进 Search 与 Chrome —— 这是两家最大模型厂第一次在「出生证 + 隐形指纹」双层架构上对齐。AI 内容真伪将不再是事后审稿议题，而进入浏览器与搜索引擎的默认通路。",
+          "source": "OpenAI / The Next Web"
+        }
+      ]
+    },
+    {
       "issue": "017",
       "date": "2026-05-21",
       "weekday": "周四",
