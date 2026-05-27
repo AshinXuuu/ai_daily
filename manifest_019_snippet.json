@@ -1,0 +1,40 @@
+{
+  "issue": "019",
+  "date": "2026-05-27",
+  "weekday": "周三",
+  "weekdayEn": "Wednesday",
+  "type": "daily",
+  "file": "ai_daily_2026_05_27.html",
+  "stories": [
+    {
+      "tag": "🛡️ 头条 · ANTHROPIC × SOC",
+      "headline": "Claude 一口气接进 28 个安全合规栈 · Compliance API 把对话流给 IT",
+      "summary": "5 月 25 日 Anthropic 宣布 Claude 同时打通 28 个企业安全合规平台 —— CrowdStrike、Palo Alto、Microsoft、Okta、Zscaler、Datadog、Wiz、Proofpoint、Rubrik 等悉数在列，覆盖 DLP、SASE、SIEM、身份治理、AI 可观测六大类。配套上线的 Claude Compliance API 把企业内对话内容、上传文件、登录与配置事件日志一次性交给 IT；Managed Agents 同步支持自建沙箱与私有 MCP。SOC 工作流第一次允许 AI 进来 —— 比任何模型分数都更接近「AI 真的上桌了」。",
+      "source": "SecurityWeek / Help Net Security"
+    },
+    {
+      "tag": "🤖 后台代理 · GEMINI SPARK",
+      "headline": "Gemini Spark 全美 AI Ultra 用户解锁 · Google 的 24/7 云端代理上桌",
+      "summary": "Google I/O 预告的 Gemini Spark 完成第二步：5 月 19 日开放内测、5 月 26 日扩展到全美 AI Ultra 订阅者（订阅价同期从 $250 降到 $100/月）。Spark 跑在 Google 服务器上、不依赖本地设备，可在 Gmail 与第三方应用代你按按钮。底层是 Gemini 3.5 + Antigravity 2.0 长任务调度框架。暑期路线表预告 SMS/邮件下任务、自建子代理、白名单内自动支付。Spark 想抢的不是搜索框，而是「你不在的时候谁替你做事」这件长期被自动化外包的位置。",
+      "source": "TechCrunch / TechTimes"
+    },
+    {
+      "tag": "📊 算力电表 · NVIDIA",
+      "headline": "NVIDIA Q1 FY27 营收 $81.6B · 数据中心占 92%、Q2 指引 $91B",
+      "summary": "5 月 20 日 NVIDIA 公布 2027 财年一季度业绩：营收 816 亿美元，同比 +85%、环比 +20%；数据中心 752 亿创纪录，同比 +92%，占公司营收 92%（一年前 80%）。GAAP 毛利率 74.9%。公司加码 800 亿美元股票回购、季度股息从 1 美分提到 25 美分；Q2 指引 910 亿（不含中国 DC）。Blackwell 300 是主推力，Hyperscale 占 DC 一半，AI Clouds、企业与主权客户占另一半。模型层所有故事，归根到底要从 NVDA 9 成数据中心毛利里走完。",
+      "source": "NVIDIA / Reuters"
+    },
+    {
+      "tag": "🪓 组织重装 · META",
+      "headline": "Meta 同日裁 8000 转 7000 · Alexandr Wang 的 Superintelligence Labs 第一刀",
+      "summary": "5 月 20 日 Meta 单日通知裁员约 8000 人（约占总员工 10%）、同时把 7000 名员工划进新成立的 Superintelligence Labs 四个 AI 单元，由前 Scale AI 创始人、新任首席 AI 官 Alexandr Wang 统辖。Meta 1 月已把 2026 资本开支上调 73% 至 1350 亿美元用于「超级智能」。此次是结构性换队形 —— 把传统业务条线人手压下去、AI 条线抬上来，且预告下半年还有新一轮。「做不做 AI」在 Meta 内部不是问题，「用什么队形做 AI」才是。",
+      "source": "Bloomberg / SiliconANGLE"
+    },
+    {
+      "tag": "🇨🇳 国产新一轮 · DEEPSEEK",
+      "headline": "DeepSeek 推进 500 亿融资 · V4.1 定档 6 月 · V4-Pro API 永久降价至 1/4",
+      "summary": "国内一周的主轴落在 DeepSeek 身上：首轮融资规模约 500 亿元人民币、估值锁在 3500 亿（约 515 亿美元），国家集成电路产业投资基金被传洽谈领投，梁文锋个人将出资约 200 亿，目的之一是建立期权激励解决人才流失。产品端：V4.1 已定档 6 月发布，V4-Pro API 在 5 月 31 日 2.5 折优惠结束后将「永久降价」至原价 1/4。海外把 Token 卖出新石油价，国内把它定回水费价 —— 2026 国内大模型的节奏：估值喊到顶、价格压到底、模型再追一档。",
+      "source": "IT之家 / 量子位"
+    }
+  ]
+},

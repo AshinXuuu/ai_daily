@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 · 2026.05.27</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=JetBrains+Mono:wght@400;500;700&family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0d0b; --ink-2: #161410; --paper: #f4ecdb; --paper-2: #e8dfc9;
+    --muted: #8a8275; --rule: #2a2620; --signal: #ff4d1f; --signal-2: #ffb454; --tan: #c9a679;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink); color: var(--paper);
+    font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
+    font-weight: 300; line-height: 1.65; letter-spacing: 0.01em; overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255, 77, 31, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 90%, rgba(201, 166, 121, 0.035) 0%, transparent 50%);
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .masthead { border-bottom: 1px solid var(--rule); padding: 32px 0 24px; position: relative; }
+  .masthead-grid { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 32px; }
+  .edition { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .edition strong { color: var(--paper); font-weight: 500; }
+  .logo { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 38px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; text-align: center; font-variation-settings: "opsz" 144; }
+  .logo .accent { color: var(--signal); font-style: italic; font-weight: 600; }
+  .weather { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-align: right; line-height: 1.7; }
+  .weather .pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--signal); margin-right: 6px; animation: pulse 2s infinite; vertical-align: middle; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 77, 31, 0.5); }
+    50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(255, 77, 31, 0); }
+  }
+  .hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule); position: relative; }
+  .hero-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal); }
+  .hero-meta::before { content: ''; width: 40px; height: 1px; background: var(--signal); }
+  .hero h1 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: clamp(48px, 8vw, 96px); font-weight: 400; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 32px; font-variation-settings: "opsz" 144, "SOFT" 50; }
+  .hero h1 em { font-style: italic; font-weight: 600; color: var(--signal-2); }
+  .hero-lede { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.5; color: var(--paper-2); max-width: 680px; font-weight: 400; }
+  .date-block { position: absolute; top: 80px; right: 32px; text-align: right; font-family: 'JetBrains Mono', monospace; }
+  .date-block .day { font-family: 'Fraunces', serif; font-size: 120px; font-weight: 800; line-height: 0.9; color: var(--paper); font-variation-settings: "opsz" 144; letter-spacing: -0.05em; }
+  .date-block .month { font-size: 12px; letter-spacing: 0.2em; color: var(--muted); margin-top: 8px; }
+  .ticker { background: var(--ink-2); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); overflow: hidden; padding: 14px 0; position: relative; }
+  .ticker-track { display: flex; gap: 48px; white-space: nowrap; animation: scroll 60s linear infinite; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.05em; color: var(--paper-2); }
+  .ticker-track span { display: inline-flex; align-items: center; gap: 12px; }
+  .ticker-track .dot { color: var(--signal); font-size: 8px; }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .section { padding: 80px 0 40px; border-bottom: 1px solid var(--rule); }
+  .section-head { display: grid; grid-template-columns: 280px 1fr; gap: 48px; margin-bottom: 48px; align-items: start; }
+  .section-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--signal); margin-bottom: 12px; }
+  .section-title { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 56px; font-weight: 400; line-height: 0.95; letter-spacing: -0.03em; font-variation-settings: "opsz" 144; }
+  .section-title em { font-style: italic; color: var(--tan); font-weight: 600; }
+  .section-intro { font-family: 'Fraunces', serif; font-size: 17px; line-height: 1.6; color: var(--muted); padding-top: 16px; border-top: 1px solid var(--rule); }
+  .stories { display: grid; grid-template-columns: repeat(12, 1fr); gap: 32px; }
+  .story { grid-column: span 6; padding: 28px; background: linear-gradient(180deg, rgba(255,255,255,0.015) 0%, transparent 100%); border: 1px solid var(--rule); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; }
+  .story::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 1px; background: var(--signal); transition: width 0.6s ease; }
+  .story:hover { background: linear-gradient(180deg, rgba(255, 77, 31, 0.04) 0%, transparent 100%); border-color: rgba(255, 77, 31, 0.3); transform: translateY(-2px); }
+  .story:hover::before { width: 100%; }
+  .story.feature { grid-column: span 12; padding: 48px; background: linear-gradient(135deg, rgba(255, 77, 31, 0.06) 0%, rgba(201, 166, 121, 0.02) 100%); border-color: rgba(255, 77, 31, 0.25); }
+  .story.feature::after { content: 'FEATURED'; position: absolute; top: 24px; right: 24px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--signal); border: 1px solid var(--signal); padding: 4px 10px; }
+  .story-tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: var(--signal); margin-bottom: 16px; text-transform: uppercase; }
+  .story h3 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 26px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 16px; color: var(--paper); font-variation-settings: "opsz" 144; }
+  .story.feature h3 { font-size: 42px; line-height: 1.05; max-width: 90%; }
+  .story p { font-size: 15px; line-height: 1.7; color: var(--paper-2); margin-bottom: 20px; font-weight: 300; }
+  .story.feature p { font-family: 'Fraunces', serif; font-size: 19px; max-width: 720px; }
+  .story-meta { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 20px; border-top: 1px solid var(--rule); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.05em; }
+  .source { color: var(--muted); }
+  .source strong { color: var(--paper); font-weight: 500; }
+  .read-more { color: var(--signal); text-decoration: none; border: 1px solid var(--rule); padding: 6px 12px; transition: all 0.3s; white-space: nowrap; }
+  .read-more:hover { background: var(--signal); color: var(--ink); border-color: var(--signal); }
+  .story.span-4 { grid-column: span 4; }
+  .story.span-8 { grid-column: span 8; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--ink-2); }
+  .stat { padding: 40px 32px; border-right: 1px solid var(--rule); }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-family: 'Fraunces', serif; font-size: 56px; font-weight: 800; line-height: 1; color: var(--signal-2); letter-spacing: -0.04em; margin-bottom: 8px; font-variation-settings: "opsz" 144; }
+  .stat-num .unit { font-size: 22px; color: var(--paper); font-weight: 400; margin-left: 4px; }
+  .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; line-height: 1.4; }
+  .footer { padding: 80px 0 60px; text-align: center; border-top: 1px solid var(--rule); margin-top: 40px; }
+  .footer-mark { font-family: 'Fraunces', serif; font-style: italic; font-size: 28px; color: var(--paper); margin-bottom: 16px; font-variation-settings: "opsz" 144; }
+  .footer-mark .accent { color: var(--signal); }
+  .footer p { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+  .footer .divider { width: 60px; height: 1px; background: var(--signal); margin: 24px auto; }
+  /* ===== 平板 / 小笔记本 ===== */
+  @media (max-width: 900px) {
+    .wrap { padding: 0 20px; }
+    .masthead { padding: 24px 0 20px; }
+    .masthead-grid { grid-template-columns: 1fr; gap: 14px; text-align: center; }
+    .weather { text-align: center; }
+    .logo { font-size: 34px; }
+    .hero { padding: 44px 0 36px; }
+    .hero-meta { margin-bottom: 24px; }
+    .hero h1 { font-size: 42px; line-height: 1.05; margin-bottom: 24px; }
+    .hero-lede { font-size: 17px; }
+    .date-block { position: static; text-align: left; margin-top: 24px; }
+    .date-block .day { font-size: 72px; }
+    .section { padding: 56px 0 32px; }
+    .section-head { grid-template-columns: 1fr; gap: 14px; margin-bottom: 36px; }
+    .section-title { font-size: 36px; }
+    .stories { gap: 20px; }
+    .story, .story.feature { grid-column: span 12 !important; padding: 22px; }
+    .story.feature { padding: 26px; }
+    .story.feature::after { top: 16px; right: 16px; }
+    .story h3 { font-size: 22px; }
+    .story.feature h3 { font-size: 26px; max-width: 100%; }
+    .story p { font-size: 14.5px; }
+    .story.feature p { font-size: 16.5px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat { border-right: none; border-bottom: 1px solid var(--rule); padding: 26px 18px; }
+    .stat-num { font-size: 40px; }
+    .stat:nth-child(odd) { border-right: 1px solid var(--rule); }
+    .ticker-track { gap: 32px; font-size: 11px; }
+  }
+
+  /* ===== 手机 ===== */
+  @media (max-width: 600px) {
+    .wrap { padding: 0 16px; }
+    .logo { font-size: 28px; }
+    .edition, .weather { font-size: 10px; letter-spacing: 0.12em; }
+    .hero { padding: 32px 0 28px; }
+    .hero-meta { margin-bottom: 20px; font-size: 10px; }
+    .hero h1 { font-size: 32px; line-height: 1.08; margin-bottom: 20px; }
+    .hero-lede { font-size: 15.5px; line-height: 1.6; }
+    .date-block { margin-top: 20px; }
+    .date-block .day { font-size: 56px; }
+    .date-block .month { font-size: 10px; }
+    .section { padding: 44px 0 24px; }
+    .section-head { margin-bottom: 28px; }
+    .section-title { font-size: 28px; }
+    .section-num { font-size: 10px; }
+    .section-intro { font-size: 15px; line-height: 1.55; padding-top: 14px; }
+    .stories { gap: 16px; }
+    .story, .story.feature { padding: 20px; }
+    .story-tag { font-size: 9.5px; margin-bottom: 12px; }
+    .story h3 { font-size: 20px; margin-bottom: 12px; }
+    .story.feature h3 { font-size: 22px; }
+    .story p { font-size: 14px; line-height: 1.65; }
+    .story.feature p { font-size: 15px; }
+    .story-meta { flex-direction: column; align-items: flex-start; gap: 10px; padding-top: 14px; font-size: 10px; }
+    .source { line-height: 1.45; }
+    .read-more { font-size: 10px; padding: 5px 10px; }
+    .stat { padding: 22px 16px; }
+    .stat-num { font-size: 36px; }
+    .stat-num .unit { font-size: 15px; }
+    .stat-label { font-size: 10px; line-height: 1.35; }
+    .ticker-track { gap: 24px; font-size: 10.5px; animation-duration: 45s; }
+    .footer { padding: 56px 0 40px; }
+    .footer-mark { font-size: 24px; }
+  }
+
+  /* ===== 窄屏手机 ===== */
+  @media (max-width: 420px) {
+    .wrap { padding: 0 14px; }
+    .hero h1 { font-size: 28px; }
+    .hero-lede { font-size: 15px; }
+    .section-title { font-size: 24px; }
+    .stats { grid-template-columns: 1fr; }
+    .stat { border-right: none !important; padding: 20px 14px; }
+    .story, .story.feature { padding: 18px; }
+    .story h3, .story.feature h3 { font-size: 19px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-grid">
+      <div class="edition">VOL. <strong>I</strong> · NO. <strong>019</strong></div>
+      <div class="logo">信号 <span class="accent">/ Signal</span></div>
+      <div class="weather"><span class="pulse"></span>LIVE · 27 MAY 2026<br>多云转晴 · 洛杉矶 · 21°C</div>
+    </div>
+  </div>
+</header>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span><span class="dot">●</span> Anthropic 接进 28 个安全合规栈 · 上线 Compliance API</span>
+    <span><span class="dot">●</span> Gemini Spark 全美 AI Ultra 用户解锁 · 24/7 后台跑</span>
+    <span><span class="dot">●</span> NVIDIA Q1 营收 $81.6B · 数据中心占 92%</span>
+    <span><span class="dot">●</span> Meta 同日裁 8000、转岗 7000 进 Superintelligence Labs</span>
+    <span><span class="dot">●</span> 白宫推迟 AI 行政令 · 怕踩到自己刹车</span>
+    <span><span class="dot">●</span> DeepSeek 500 亿融资 · V4.1 6 月发布 · V4-Pro 永久降价</span>
+    <span><span class="dot">●</span> CodeGraph 一周 +14K 星 · GitHub Trending #2</span>
+    <span><span class="dot">●</span> arXiv · TriMem 三层记忆架构对齐 LLM Agent</span>
+    <span><span class="dot">●</span> NVIDIA 加码回购 $80B · 季度股息提至 25 美分</span>
+    <span><span class="dot">●</span> Anthropic 接进 28 个安全合规栈 · 上线 Compliance API</span>
+    <span><span class="dot">●</span> Gemini Spark 全美 AI Ultra 用户解锁 · 24/7 后台跑</span>
+    <span><span class="dot">●</span> NVIDIA Q1 营收 $81.6B · 数据中心占 92%</span>
+    <span><span class="dot">●</span> Meta 同日裁 8000、转岗 7000 进 Superintelligence Labs</span>
+    <span><span class="dot">●</span> 白宫推迟 AI 行政令 · 怕踩到自己刹车</span>
+    <span><span class="dot">●</span> DeepSeek 500 亿融资 · V4.1 6 月发布 · V4-Pro 永久降价</span>
+    <span><span class="dot">●</span> CodeGraph 一周 +14K 星 · GitHub Trending #2</span>
+    <span><span class="dot">●</span> arXiv · TriMem 三层记忆架构对齐 LLM Agent</span>
+    <span><span class="dot">●</span> NVIDIA 加码回购 $80B · 季度股息提至 25 美分</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-meta">今日要闻 · TODAY'S BRIEFING</div>
+    <h1>Claude 进了<em>合规架</em>。<br>Spark 跑起了<em>后台</em>。</h1>
+    <p class="hero-lede">
+      5 月 25–26 日 Anthropic 一口气把 Claude 接进 28 个安全合规平台、上线 Claude Compliance API —— CrowdStrike、Palo Alto、Microsoft、Okta、Wiz 都在名单上，对话内容、登录、配置改动全部流回企业 SOC。同一周 Google 的 Gemini Spark 从内测扩展到全美 AI Ultra 用户：一只云端永远开机、能在第三方应用里动手的 24/7 代理。AI 一边把「老板看得见」做完，一边把「自己在跑」做实 —— 这是 demo 时代谢幕之后，真正交付的两条主线。
+    </p>
+    <div class="date-block"><div class="day">27</div><div class="month">MAY · MMXXVI</div></div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">28<span class="unit">家</span></div><div class="stat-label">Claude 一次性接进的安全合规平台<br>Compliance API 同步上线 · 5 月 25</div></div>
+  <div class="stat"><div class="stat-num">81.6<span class="unit">B$</span></div><div class="stat-label">NVIDIA Q1 FY27 营收纪录<br>同比 +85% · 数据中心占 92%</div></div>
+  <div class="stat"><div class="stat-num">8000<span class="unit">/7000</span></div><div class="stat-label">Meta 同日裁员 / 转岗到 AI 比例<br>新组 Superintelligence Labs 第一刀</div></div>
+  <div class="stat"><div class="stat-num">14<span class="unit">K★/周</span></div><div class="stat-label">CodeGraph 一周 GitHub Star 涨幅<br>本地代码知识图谱冲上 Trending #2</div></div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 01</div><h2 class="section-title">进<em>合规架</em></h2></div>
+      <p class="section-intro">企业 IT 一直在等一件事 —— 用 Claude 能不能像用 Slack、Office 一样被审计、被锁权限、被纳入 SOC。这周 Anthropic 把这件事一次性补完，签字盖章。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">🛡️ 头条 · ANTHROPIC × SOC</div>
+        <h3>Claude 一口气接进 28 个安全合规栈 · Compliance API 把对话流给 IT</h3>
+        <p>
+          5 月 25 日 Anthropic 宣布 Claude 同时打通 28 个企业安全合规平台 —— CrowdStrike、Palo Alto Networks、Microsoft、Okta、Zscaler、Netskope、Cloudflare、Datadog、Fortinet、Wiz、SailPoint、Proofpoint、Rubrik、Tenable、Trellix、Varonis、IBM 等悉数在列；覆盖 DLP、SASE、SIEM、身份治理、电子取证、AI 可观测 6 大类。配套上线的 Claude Compliance API 把两条最敏感的数据流交给企业自己 —— Enterprise 内的对话内容、上传文件与项目，以及登录、管理动作、配置变更的事件日志。Claude Managed Agents 同步支持自建沙箱与私有 MCP，连"代理在客户的网络里跑"也成立。这是过去一年 IT 部门反复要求、产品端反复迟疑的那一刀：当模型能力被默认接受，真正分胜负的是"它怎么被治理"。Claude 不再是某个团队偷偷用的工具，而是 CIO 能写进合规清单的一项软件。SOC 工作流第一次允许 AI 进来 —— 这比任何模型分数都更接近"AI 真的上桌了"。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>SecurityWeek / Help Net Security</strong> · 2026.05.25</span>
+          <a class="read-more" href="https://www.securityweek.com/anthropic-expands-claudes-enterprise-security-reach-with-28-new-integrations/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 02</div><h2 class="section-title">总在<em>场</em></h2></div>
+      <p class="section-intro">代理的赛点不再是「能干一件事」，而是「能不掉线」。Google 把 Spark 推到全美 AI Ultra 用户、24 小时跑；NVIDIA 用一份季报告诉你它要烧多少电 —— 一份代理在线，一份代理的电表。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">🤖 后台代理 · GEMINI SPARK</div>
+        <h3>Gemini Spark 全美 AI Ultra 用户解锁 · Google 的 24/7 云端代理上桌</h3>
+        <p>
+          Google I/O 上预告的 Gemini Spark 本周完成第二步：5 月 19 日开放内测、5 月 26 日扩展到全美 AI Ultra 订阅者（订阅价同步从 $250 降到 $100/月）。Spark 不是又一个对话框 —— 它在 Google 服务器上一直开机、不依赖手机或笔记本开着，可在 Gmail、第三方应用里"代你按按钮"。底层是 Gemini 3.5 模型 + Antigravity 2.0 这套长任务调度框架，前者出意图，后者跑工具。Google 公布的暑期路线表里更狠：直接给 Spark 发短信或邮件下任务、创建子代理、在你给的预算与商家白名单里完成支付。Spark 想抢的不是搜索框，而是"你不在的时候谁在替你做事"这件长期被外包给"自动化工具"的工作。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>TechCrunch / TechTimes</strong> · 2026.05.25</span>
+          <a class="read-more" href="https://techcrunch.com/2026/05/19/google-introduces-gemini-spark-a-24-7-agentic-assistant-with-gmail-integration/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">📊 算力电表 · NVIDIA</div>
+        <h3>NVIDIA Q1 FY27 营收 $81.6B · 数据中心占 92%、Q2 指引 $91B</h3>
+        <p>
+          5 月 20 日 NVIDIA 公布 2027 财年一季度业绩：营收 816 亿美元，同比 +85%、环比 +20%，超分析师预期的 788.6 亿；数据中心营收 752 亿美元创纪录，同比 +92%，占公司总营收 92% —— 一年前该项还是 80%。GAAP 毛利率 74.9%。公司同时宣布加码 800 亿美元股票回购、把季度股息从 1 美分一口气提到 25 美分，Q2 指引 910 亿（不含来自中国的数据中心营收）。Blackwell 300 仍是主推力，Hyperscale 占 DC 一半、剩下一半来自 AI Clouds、企业与主权客户。这份季报是 AI 基建侧最直接的对账单：账上有人花、有人在等货、有人愿意继续投入；而模型层的所有故事，归根到底要从 NVDA 的 9 成数据中心毛利里走完。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>NVIDIA / Reuters</strong> · 2026.05.20</span>
+          <a class="read-more" href="https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000051/q1fy27pr.htm" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 03</div><h2 class="section-title">政策松手 · 巨头<em>换队形</em></h2></div>
+      <p class="section-intro">华盛顿把刹车收回、Meta 把组织拆了重装。两个动作背后是同一种判断 —— 想跑赢的人，不能再让流程拖住自己。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">🏛️ 监管收手 · WHITE HOUSE</div>
+        <h3>白宫推迟"AI 行政令" · Trump 直言"不想踩到自己刹车"</h3>
+        <p>
+          5 月 21 日，Trump 在最后一刻撤下一份原本要签的 AI 行政令。该令本要求重要模型在上线前向联邦提供"最多 90 天的预审视窗"、建立政府与 AI 实验室的合作通道、强化关键基础设施防护。撤回的理由直白："美国在 AI 上领先中国和全世界，我不想做任何会挡住这条领先的事。"对比同期欧盟把 AI Act 高危条款推迟 16 个月、北京继续推进"备案+服务管理"轨道，三方监管在向同一个方向修正 —— 给企业更多空间，把责任放到事后追责与具体场景。这一天起，"先合规再上线"在美国基本被收回；模型厂的窗口被进一步打开，但每一次出错的政治账单也由此更重。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>NBC News / CNBC</strong> · 2026.05.21</span>
+          <a class="read-more" href="https://www.nbcnews.com/tech/tech-news/trump-scraps-signing-landmark-executive-order-regulating-ai-rcna346288" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🪓 组织重装 · META</div>
+        <h3>Meta 同日裁 8000 转 7000 · Alexandr Wang 的 Superintelligence Labs 第一刀</h3>
+        <p>
+          5 月 20 日 Meta 单日通知裁员约 8000 人、约占员工总数 10%，同时把 7000 名员工划进新成立的 Superintelligence Labs 旗下四个 AI 单元（产品代理、应用、模型、基础）—— 由新任首席 AI 官 Alexandr Wang（Scale AI 创始人）统辖。Meta 1 月已把 2026 资本开支上调 73% 至 1350 亿美元用于"超级智能"建设；这次组织动作明确把人头预算和资本开支对齐。和过往"末位淘汰"不一样，这一轮是结构性换队形 —— 把传统业务条线人手压下去、把 AI 条线人手抬上来，且预告下半年还会有新一轮。"做不做 AI" 在 Meta 内部已不是问题，"用什么队形做 AI"才是。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Bloomberg / SiliconANGLE</strong> · 2026.05.20</span>
+          <a class="read-more" href="https://www.bloomberg.com/news/articles/2026-05-18/meta-moves-7-000-workers-into-ai-roles-ahead-of-job-cuts" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 04</div><h2 class="section-title">价格战 · 开源 · <em>记忆</em></h2></div>
+      <p class="section-intro">海外讲治理，国内讲价格。同一周 DeepSeek 拍板永久降价 + 500 亿融资 + V4.1 排到 6 月；GitHub 把第二把交椅给了 CodeGraph；arXiv 上一份"记忆三层架构"把 Agent 长期话题再推一步。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">🇨🇳 国产新一轮 · DEEPSEEK</div>
+        <h3>DeepSeek 推进 500 亿融资 · V4.1 定档 6 月 · V4-Pro API 永久降价至 1/4</h3>
+        <p>
+          国内一周的主轴落在 DeepSeek 身上：首轮融资规模约 500 亿元人民币、估值锁在 3500 亿（约 515 亿美元）；国家集成电路产业投资基金被传洽谈领投，梁文锋个人将出资约 200 亿，融资目的之一是建立期权激励解决人才流失。产品端动作同步打开 —— V4.1 已定档 6 月发布，V4-Pro API 在 5 月 31 日"2.5 折优惠"结束后将正式调整为原定价的 1/4，即官方说法的"永久降价"。海外把 Token 卖出新石油价格，国内则把它定回水费价。中国大模型的 2026 节奏：估值喊到顶、价格压到底、模型再追一档。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>IT之家 / 量子位</strong> · 2026.05</span>
+          <a class="read-more" href="https://www.qbitai.com/2026/05/414432.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">💎 GITHUB TRENDING · CODEGRAPH</div>
+        <h3>CodeGraph 一周 +14K 星 · "本地知识图谱"成为编码代理新底座</h3>
+        <p>
+          上一期把 Skills 与本地知识图谱列为信号，本周直接被市场放大 —— colbymchenry/codegraph 单日 +2,434 星、5 月 23 日冲到 GitHub Trending #2，一周累计 +14,100 星，是被追踪 AI 仓库里同窗口最快的增长。CodeGraph 是给 Claude Code、Codex CLI、Cursor、OpenCode、Hermes Agent 用的本地预索引代码图谱，主打 token 少 59%、响应快 49%、工具调用减 70%（七个真实项目实测）、全部跑在本地、不要 API Key。Trending 前 10 里 6 个走本地优先路线、3 个是"可验证 Skills"。代理的下半场不在云端模型谁更快，而在你这台电脑上能不能记得住。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>AIToolly / GitHub Trending</strong> · 2026.05.23</span>
+          <a class="read-more" href="https://github.com/colbymchenry/codegraph" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">📄 ARXIV · 记忆三层架构</div>
+        <h3>TriMem · 「原始对话 + 原子事实 + 综合画像」三段式重写 Agent 记忆</h3>
+        <p>
+          5 月 19 日 arXiv 2605.19952：一份名为 TriMem 的工作主张抛弃"只存原子事实"的主流路径 —— 在长期对话场景里，把记忆同时按三种粒度并存：原始对话片段（保真）、抽取出的原子事实（用于检索）、合成出的角色画像（用于深度推理）。构造提示通过 TextGrad 从答案反馈持续优化。在 LoCoMo、PerLTQA 两个跨多骨干评测集上稳定胜过强基线。读它的方式不止于"又一个记忆方法"——把它叠加在 2605.21768 Memory-R2（用 RL 公平归因长期记忆操作）一起看：当代理跑得久、操作多、还要被审计，"记什么、怎么记、怎么用"会取代上下文长度，成为下一年模型差异化的真正分水岭。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>arXiv 2605.19952 · TMLR</strong> · 2026.05.19</span>
+          <a class="read-more" href="https://arxiv.org/abs/2605.19952" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🌐 国内浏览器 · 360</div>
+        <h3>360 AI 浏览器全量升级 · 4 亿用户被一次性带进"AI 浏览"</h3>
+        <p>
+          5 月 26 日 360 对其浏览器产品线做全量升级，宣布 4 亿用户正式进入"AI 浏览"阶段。和 Comet、Arc 走极客小众路线不同，360 押的是"已有装机量直接换上 AI 内核"的强转身。意义在于：当 Gemini Spark 把云端代理推到全美 Ultra 用户、Anthropic 把 Claude 接进 SOC，国内同一周回应的是"浏览器入口先 AI 化"——以浏览器为壳承载日常代理任务，与桌面 OS 端的 Claude Desktop、ChatGPT App 路径互补。代理之争的下一站不止云端，桌面入口在中美两边各换姿势再上一次。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>网易科技</strong> · 2026.05.26</span>
+          <a class="read-more" href="https://www.163.com/dy/article/KSG2C57C05567I2C.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-mark">信号 <span class="accent">/</span> Signal</div>
+    <div class="divider"></div>
+    <p>第 019 期 · 2026 年 5 月 27 日 · 周三</p>
+    <p style="margin-top:8px;">本期收录 5.19 — 5.27 共 9 条 AI 相关动态</p>
+  </div>
+</footer>
+
+</body>
+</html>
