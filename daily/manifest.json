@@ -2,6 +2,46 @@
   "_comment": "信号/Signal AI 日报清单 · 每天只需要在 issues 数组顶部插入一项新的对象。最新的在最上面。",
   "issues": [
     {
+      "issue": "020",
+      "date": "2026-05-28",
+      "weekday": "周四",
+      "weekdayEn": "Thursday",
+      "type": "daily",
+      "file": "ai_daily_2026_05_28.html",
+      "stories": [
+        {
+          "tag": "💰 头条 · COGNITION × DEVIN",
+          "headline": "Cognition 完成 $1B D 轮 · 估值跳到 $26B · Devin 写了自家 90% 的代码",
+          "summary": "5 月 27 日 Cognition 宣布完成 10 亿美元 D 轮，投后估值定格 260 亿美元，由 Lux Capital、General Catalyst、8VC 共同领投，距上一轮 102 亿仅 9 个月，估值翻 2.5 倍。让人替它出钱的不只是 Devin 的 4.92 亿美元 ARR 和「连续 6 个月环比 +50%」的企业用量，更刺眼的是公司自爆「我们超 90% 的代码由 Devin 写」。客户名单上写着 Citi、Mercedes-Benz、Goldman Sachs、Dell、Santander。代码代理把这一年的三段路走完 —— 从 demo 到客户合同，到月度增量，再到替投资人讲自己的故事。",
+          "source": "Cognition Blog / Bloomberg / TechCrunch"
+        },
+        {
+          "tag": "🏛️ ERP 联姻 · SAP × ANTHROPIC",
+          "headline": "SAP Sapphire 宣布 Claude 经 MCP 接进 S/4HANA、SuccessFactors、Ariba",
+          "summary": "5 月 13 日 SAP 在 Sapphire 揭幕「Autonomous Enterprise」战略，把 Claude 通过 Model Context Protocol 接进 SAP Business AI Platform，并经 Joule 入口接入 S/4HANA、SuccessFactors、Ariba。200+ 业务代理覆盖财务结账、HR 答询、采购改单等具体动作，全部在 SAP 已有的审批、政策、合规框架内执行。SAP 出数十万 ERP 客户、Anthropic 出推理能力 —— Claude 与 SAP 一年内从子模块小范围接入，扩到整条 ERP 主干。",
+          "source": "SAP News / ERP Today"
+        },
+        {
+          "tag": "🛠️ 平台升档 · ANTHROPIC MANAGED AGENTS",
+          "headline": "Claude Managed Agents 新增「做梦 + 多代理编排 + 结果回调 + Webhook」",
+          "summary": "5 月 13 日 Code with Claude 上 Anthropic 一次性补齐 Managed Agents：dreaming（代理跑完任务给自己写备忘录，下一只代理接手读取学习）、多代理编排（多代理共享上下文协同处理一个任务）、outcomes（结构化结果而非仅文本）、webhook（运行结果可推回客户系统触发下一步）。配套是 Claude Code 与 Opus API 限额抬升、加上 5 月 25 日发布的 28 家安全合规栈接入。代理跑得起来已经成立，下半场是「跑得久、跑得多、能被审计」。",
+          "source": "InfoQ / Anthropic News"
+        },
+        {
+          "tag": "🌒 港股准备中 · MOONSHOT",
+          "headline": "月之暗面拆 VIE 启动港股 IPO 准备 · 三月内多轮融资累计超 $170 亿",
+          "summary": "5 月 20 日 Moonshot AI（月之暗面）通知股东启动 VIE 红筹架构拆除，明确将奔赴港交所。这是公司今年内态度的第三次变化：去年准备美股、3 月转向「暂不上市」、5 月直接进入港股拆架构阶段。窗口的另一面是融资节奏 —— 自 2 月以来连续完成多轮融资，累计规模超过 170 亿美元，投后估值传出冲向 180 亿美元上方。Kimi 从「长上下文 Demo」成长为现金牛，C 端订阅、API 调用、企业内嵌三条线并行收钱。",
+          "source": "新浪财经 / 36氪"
+        },
+        {
+          "tag": "🇨🇳 价格永久化 · DEEPSEEK V4-PRO",
+          "headline": "DeepSeek V4-Pro 75% 折扣由「促销」升级为「永久价」· 单 Token 价跌回水费档",
+          "summary": "5 月 22 日 DeepSeek 在 API Docs 上明确：V4-Pro 此前 2.5 折优惠价取消「促销」标识、升为永久价 —— 输入 $0.435/M tokens、cache hit $0.003625/M、输出 $0.87/M。叠加 V4-Pro 1.6T 参数 / 1M 上下文的能力曲线，单 token 实际价格压到与 V3.2 同档以下；V4.1 已定档 6 月发布、首轮 500 亿元融资同步推进。海外讲「代理跑起来值多少钱」，国内回答「让每万次调用的成本接近边际为零」。",
+          "source": "DeepSeek API Docs / 36氪"
+        }
+      ]
+    },
+    {
       "issue": "019",
       "date": "2026-05-27",
       "weekday": "周三",

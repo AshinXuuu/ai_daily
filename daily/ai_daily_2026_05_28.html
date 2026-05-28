@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 · 2026.05.28</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=JetBrains+Mono:wght@400;500;700&family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0d0b; --ink-2: #161410; --paper: #f4ecdb; --paper-2: #e8dfc9;
+    --muted: #8a8275; --rule: #2a2620; --signal: #ff4d1f; --signal-2: #ffb454; --tan: #c9a679;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink); color: var(--paper);
+    font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
+    font-weight: 300; line-height: 1.65; letter-spacing: 0.01em; overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255, 77, 31, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 90%, rgba(201, 166, 121, 0.035) 0%, transparent 50%);
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .masthead { border-bottom: 1px solid var(--rule); padding: 32px 0 24px; position: relative; }
+  .masthead-grid { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 32px; }
+  .edition { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .edition strong { color: var(--paper); font-weight: 500; }
+  .logo { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 38px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; text-align: center; font-variation-settings: "opsz" 144; }
+  .logo .accent { color: var(--signal); font-style: italic; font-weight: 600; }
+  .weather { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-align: right; line-height: 1.7; }
+  .weather .pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--signal); margin-right: 6px; animation: pulse 2s infinite; vertical-align: middle; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 77, 31, 0.5); }
+    50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(255, 77, 31, 0); }
+  }
+  .hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule); position: relative; }
+  .hero-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal); }
+  .hero-meta::before { content: ''; width: 40px; height: 1px; background: var(--signal); }
+  .hero h1 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: clamp(48px, 8vw, 96px); font-weight: 400; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 32px; font-variation-settings: "opsz" 144, "SOFT" 50; }
+  .hero h1 em { font-style: italic; font-weight: 600; color: var(--signal-2); }
+  .hero-lede { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.5; color: var(--paper-2); max-width: 680px; font-weight: 400; }
+  .date-block { position: absolute; top: 80px; right: 32px; text-align: right; font-family: 'JetBrains Mono', monospace; }
+  .date-block .day { font-family: 'Fraunces', serif; font-size: 120px; font-weight: 800; line-height: 0.9; color: var(--paper); font-variation-settings: "opsz" 144; letter-spacing: -0.05em; }
+  .date-block .month { font-size: 12px; letter-spacing: 0.2em; color: var(--muted); margin-top: 8px; }
+  .ticker { background: var(--ink-2); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); overflow: hidden; padding: 14px 0; position: relative; }
+  .ticker-track { display: flex; gap: 48px; white-space: nowrap; animation: scroll 60s linear infinite; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.05em; color: var(--paper-2); }
+  .ticker-track span { display: inline-flex; align-items: center; gap: 12px; }
+  .ticker-track .dot { color: var(--signal); font-size: 8px; }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .section { padding: 80px 0 40px; border-bottom: 1px solid var(--rule); }
+  .section-head { display: grid; grid-template-columns: 280px 1fr; gap: 48px; margin-bottom: 48px; align-items: start; }
+  .section-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--signal); margin-bottom: 12px; }
+  .section-title { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 56px; font-weight: 400; line-height: 0.95; letter-spacing: -0.03em; font-variation-settings: "opsz" 144; }
+  .section-title em { font-style: italic; color: var(--tan); font-weight: 600; }
+  .section-intro { font-family: 'Fraunces', serif; font-size: 17px; line-height: 1.6; color: var(--muted); padding-top: 16px; border-top: 1px solid var(--rule); }
+  .stories { display: grid; grid-template-columns: repeat(12, 1fr); gap: 32px; }
+  .story { grid-column: span 6; padding: 28px; background: linear-gradient(180deg, rgba(255,255,255,0.015) 0%, transparent 100%); border: 1px solid var(--rule); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; }
+  .story::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 1px; background: var(--signal); transition: width 0.6s ease; }
+  .story:hover { background: linear-gradient(180deg, rgba(255, 77, 31, 0.04) 0%, transparent 100%); border-color: rgba(255, 77, 31, 0.3); transform: translateY(-2px); }
+  .story:hover::before { width: 100%; }
+  .story.feature { grid-column: span 12; padding: 48px; background: linear-gradient(135deg, rgba(255, 77, 31, 0.06) 0%, rgba(201, 166, 121, 0.02) 100%); border-color: rgba(255, 77, 31, 0.25); }
+  .story.feature::after { content: 'FEATURED'; position: absolute; top: 24px; right: 24px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--signal); border: 1px solid var(--signal); padding: 4px 10px; }
+  .story-tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: var(--signal); margin-bottom: 16px; text-transform: uppercase; }
+  .story h3 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 26px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 16px; color: var(--paper); font-variation-settings: "opsz" 144; }
+  .story.feature h3 { font-size: 42px; line-height: 1.05; max-width: 90%; }
+  .story p { font-size: 15px; line-height: 1.7; color: var(--paper-2); margin-bottom: 20px; font-weight: 300; }
+  .story.feature p { font-family: 'Fraunces', serif; font-size: 19px; max-width: 720px; }
+  .story-meta { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 20px; border-top: 1px solid var(--rule); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.05em; }
+  .source { color: var(--muted); }
+  .source strong { color: var(--paper); font-weight: 500; }
+  .read-more { color: var(--signal); text-decoration: none; border: 1px solid var(--rule); padding: 6px 12px; transition: all 0.3s; white-space: nowrap; }
+  .read-more:hover { background: var(--signal); color: var(--ink); border-color: var(--signal); }
+  .story.span-4 { grid-column: span 4; }
+  .story.span-8 { grid-column: span 8; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--ink-2); }
+  .stat { padding: 40px 32px; border-right: 1px solid var(--rule); }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-family: 'Fraunces', serif; font-size: 56px; font-weight: 800; line-height: 1; color: var(--signal-2); letter-spacing: -0.04em; margin-bottom: 8px; font-variation-settings: "opsz" 144; }
+  .stat-num .unit { font-size: 22px; color: var(--paper); font-weight: 400; margin-left: 4px; }
+  .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; line-height: 1.4; }
+  .footer { padding: 80px 0 60px; text-align: center; border-top: 1px solid var(--rule); margin-top: 40px; }
+  .footer-mark { font-family: 'Fraunces', serif; font-style: italic; font-size: 28px; color: var(--paper); margin-bottom: 16px; font-variation-settings: "opsz" 144; }
+  .footer-mark .accent { color: var(--signal); }
+  .footer p { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+  .footer .divider { width: 60px; height: 1px; background: var(--signal); margin: 24px auto; }
+  /* ===== 平板 / 小笔记本 ===== */
+  @media (max-width: 900px) {
+    .wrap { padding: 0 20px; }
+    .masthead { padding: 24px 0 20px; }
+    .masthead-grid { grid-template-columns: 1fr; gap: 14px; text-align: center; }
+    .weather { text-align: center; }
+    .logo { font-size: 34px; }
+    .hero { padding: 44px 0 36px; }
+    .hero-meta { margin-bottom: 24px; }
+    .hero h1 { font-size: 42px; line-height: 1.05; margin-bottom: 24px; }
+    .hero-lede { font-size: 17px; }
+    .date-block { position: static; text-align: left; margin-top: 24px; }
+    .date-block .day { font-size: 72px; }
+    .section { padding: 56px 0 32px; }
+    .section-head { grid-template-columns: 1fr; gap: 14px; margin-bottom: 36px; }
+    .section-title { font-size: 36px; }
+    .stories { gap: 20px; }
+    .story, .story.feature { grid-column: span 12 !important; padding: 22px; }
+    .story.feature { padding: 26px; }
+    .story.feature::after { top: 16px; right: 16px; }
+    .story h3 { font-size: 22px; }
+    .story.feature h3 { font-size: 26px; max-width: 100%; }
+    .story p { font-size: 14.5px; }
+    .story.feature p { font-size: 16.5px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat { border-right: none; border-bottom: 1px solid var(--rule); padding: 26px 18px; }
+    .stat-num { font-size: 40px; }
+    .stat:nth-child(odd) { border-right: 1px solid var(--rule); }
+    .ticker-track { gap: 32px; font-size: 11px; }
+  }
+
+  /* ===== 手机 ===== */
+  @media (max-width: 600px) {
+    .wrap { padding: 0 16px; }
+    .logo { font-size: 28px; }
+    .edition, .weather { font-size: 10px; letter-spacing: 0.12em; }
+    .hero { padding: 32px 0 28px; }
+    .hero-meta { margin-bottom: 20px; font-size: 10px; }
+    .hero h1 { font-size: 32px; line-height: 1.08; margin-bottom: 20px; }
+    .hero-lede { font-size: 15.5px; line-height: 1.6; }
+    .date-block { margin-top: 20px; }
+    .date-block .day { font-size: 56px; }
+    .date-block .month { font-size: 10px; }
+    .section { padding: 44px 0 24px; }
+    .section-head { margin-bottom: 28px; }
+    .section-title { font-size: 28px; }
+    .section-num { font-size: 10px; }
+    .section-intro { font-size: 15px; line-height: 1.55; padding-top: 14px; }
+    .stories { gap: 16px; }
+    .story, .story.feature { padding: 20px; }
+    .story-tag { font-size: 9.5px; margin-bottom: 12px; }
+    .story h3 { font-size: 20px; margin-bottom: 12px; }
+    .story.feature h3 { font-size: 22px; }
+    .story p { font-size: 14px; line-height: 1.65; }
+    .story.feature p { font-size: 15px; }
+    .story-meta { flex-direction: column; align-items: flex-start; gap: 10px; padding-top: 14px; font-size: 10px; }
+    .source { line-height: 1.45; }
+    .read-more { font-size: 10px; padding: 5px 10px; }
+    .stat { padding: 22px 16px; }
+    .stat-num { font-size: 36px; }
+    .stat-num .unit { font-size: 15px; }
+    .stat-label { font-size: 10px; line-height: 1.35; }
+    .ticker-track { gap: 24px; font-size: 10.5px; animation-duration: 45s; }
+    .footer { padding: 56px 0 40px; }
+    .footer-mark { font-size: 24px; }
+  }
+
+  /* ===== 窄屏手机 ===== */
+  @media (max-width: 420px) {
+    .wrap { padding: 0 14px; }
+    .hero h1 { font-size: 28px; }
+    .hero-lede { font-size: 15px; }
+    .section-title { font-size: 24px; }
+    .stats { grid-template-columns: 1fr; }
+    .stat { border-right: none !important; padding: 20px 14px; }
+    .story, .story.feature { padding: 18px; }
+    .story h3, .story.feature h3 { font-size: 19px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-grid">
+      <div class="edition">VOL. <strong>I</strong> · NO. <strong>020</strong></div>
+      <div class="logo">信号 <span class="accent">/ Signal</span></div>
+      <div class="weather"><span class="pulse"></span>LIVE · 28 MAY 2026<br>晴间薄云 · 洛杉矶 · 23°C</div>
+    </div>
+  </div>
+</header>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span><span class="dot">●</span> Cognition 拿 $1B · 估值 $26B · 9 个月翻 2.5 倍</span>
+    <span><span class="dot">●</span> Devin ARR $492M · 90% 自家代码由 Devin 写</span>
+    <span><span class="dot">●</span> SAP × Anthropic · Claude 经 MCP 接进 S/4HANA</span>
+    <span><span class="dot">●</span> Claude Managed Agents · 做梦 / 多代理 / Webhook 齐发</span>
+    <span><span class="dot">●</span> Moonshot 拆 VIE · 港股 IPO 进入倒计时</span>
+    <span><span class="dot">●</span> 阶跃星辰 5 个月烧 171 亿 · 6 月底前递表港交所</span>
+    <span><span class="dot">●</span> DeepSeek V4-Pro · 75% 折扣升级为永久价</span>
+    <span><span class="dot">●</span> xAI Grok V9 Medium 训练完成 · Grok Build 改为日更</span>
+    <span><span class="dot">●</span> Hermes Agent · 12 周冲到 16 万 GitHub 星</span>
+    <span><span class="dot">●</span> arXiv 2605.02801 · 编排痕迹学多代理 RL</span>
+    <span><span class="dot">●</span> Cognition 拿 $1B · 估值 $26B · 9 个月翻 2.5 倍</span>
+    <span><span class="dot">●</span> Devin ARR $492M · 90% 自家代码由 Devin 写</span>
+    <span><span class="dot">●</span> SAP × Anthropic · Claude 经 MCP 接进 S/4HANA</span>
+    <span><span class="dot">●</span> Claude Managed Agents · 做梦 / 多代理 / Webhook 齐发</span>
+    <span><span class="dot">●</span> Moonshot 拆 VIE · 港股 IPO 进入倒计时</span>
+    <span><span class="dot">●</span> 阶跃星辰 5 个月烧 171 亿 · 6 月底前递表港交所</span>
+    <span><span class="dot">●</span> DeepSeek V4-Pro · 75% 折扣升级为永久价</span>
+    <span><span class="dot">●</span> xAI Grok V9 Medium 训练完成 · Grok Build 改为日更</span>
+    <span><span class="dot">●</span> Hermes Agent · 12 周冲到 16 万 GitHub 星</span>
+    <span><span class="dot">●</span> arXiv 2605.02801 · 编排痕迹学多代理 RL</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-meta">今日要闻 · TODAY'S BRIEFING</div>
+    <h1>代码<em>替自己融资</em>。<br>Devin 估值 9 个月<em>翻倍</em>。</h1>
+    <p class="hero-lede">
+      5 月 27 日 Cognition 宣布完成 10 亿美元 D 轮，投后估值锁在 260 亿美元 —— 距上一轮 102 亿仅过去 9 个月。让人替它出钱的不只是 Devin 的 4.92 亿美元 ARR 和"连续 6 个月环比 +50%"的企业用量，更刺眼的是公司自爆 ——「我们超过 90% 的代码现在是 Devin 写的」。代码代理这一年走完了三步路：先从 demo 走到客户合同，再从合同走到月度增量，今天它已经能替投资人写自己的故事。
+    </p>
+    <div class="date-block"><div class="day">28</div><div class="month">MAY · MMXXVI</div></div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">26<span class="unit">B$</span></div><div class="stat-label">Cognition 投后估值<br>9 个月翻 2.5 倍 · 5 月 27 D 轮</div></div>
+  <div class="stat"><div class="stat-num">492<span class="unit">M$</span></div><div class="stat-label">Devin 年化营收<br>企业月度用量连续 6 个月 +50%</div></div>
+  <div class="stat"><div class="stat-num">160<span class="unit">K★</span></div><div class="stat-label">Hermes Agent 12 周 GitHub 累计星<br>2026 增长最快开源代理框架</div></div>
+  <div class="stat"><div class="stat-num">171<span class="unit">亿¥</span></div><div class="stat-label">阶跃星辰 5 个月融资规模<br>6 月底前递表港交所</div></div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 01</div><h2 class="section-title">代码<em>开始自融资</em></h2></div>
+      <p class="section-intro">代码代理终于走到了"自己给自己讲故事"的阶段 —— ARR 上 4.9 亿、企业用量月增 50%、9 成代码由 AI 自写。Devin 这一轮的估值跳跃，是整条赛道在 2026 上半年最干净的一笔注脚。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">💰 头条 · COGNITION × DEVIN</div>
+        <h3>Cognition 完成 $1B D 轮 · 估值跳到 $26B · Devin 写了自家 90% 的代码</h3>
+        <p>
+          5 月 27 日，Cognition 宣布完成 10 亿美元 D 轮融资，投后估值定格 260 亿美元，由 Lux Capital、General Catalyst、8VC 共同领投，Ribbit Capital、Atreides、Layer Global 等新投资人加入，Founders Fund、Elad Gil、Alpha Wave、Bain Capital Ventures 等老股东跟投。距离去年 9 月 102 亿的 C 轮仅 9 个月，估值翻了 2.5 倍。叙事的支点是三个数字：Devin 年化营收 4.92 亿美元、企业用量连续 6 个月环比 +50%、公司亲口承认"我们超过 90% 的代码现在是由 Devin 写的"。客户名单上写着 Citi、Mercedes-Benz、Goldman Sachs、Elevance、Dell、Santander 与美国政府机构。这一轮把代码代理这条赛道从"能不能 work"的问题，推到"能不能继续翻倍"的问题。值得对照的是 —— 5 月 13 日 Anthropic 在 Code with Claude 给出 Managed Agents 的"做梦+多代理+Webhook"组合拳；5 月 14 日 xAI 推出 Grok Build CLI，并把发布节奏改成日更。三家头部代理产品在 2 周里同时升档，市场愿意为"能在企业里自己跑起来的代码"出溢价 —— 而 Devin 是这群里把数字晒得最透的一家。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Cognition Blog / Bloomberg / TechCrunch</strong> · 2026.05.27</span>
+          <a class="read-more" href="https://cognition.ai/blog/series-d" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 02</div><h2 class="section-title">Claude 进了<em>企业骨架</em></h2></div>
+      <p class="section-intro">SAP Sapphire 之后，Claude 不再只是一个被调用的对话框，而是被嵌进 ERP 这块企业最硬的骨架里；同周 Anthropic 把 Managed Agents 的"做梦+多代理+Webhook"补齐 —— AI 在企业里的位置，从"应用"换成了"操作系统层"。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">🏛️ ERP 联姻 · SAP × ANTHROPIC</div>
+        <h3>SAP Sapphire 宣布 Claude 经 MCP 接进 S/4HANA、SuccessFactors、Ariba</h3>
+        <p>
+          5 月 13 日 SAP 在 Sapphire 大会上揭幕「Autonomous Enterprise」战略，把 Claude 通过 Model Context Protocol（MCP）接进 SAP Business AI Platform，并经 Joule 入口接入 S/4HANA、SuccessFactors、Ariba。SAP 用 200+ 业务代理覆盖财务结账、HR 答询、采购订单改单、跨系统报销等具体动作；每一次代理动手，都仍在 SAP 已有的审批、政策、合规框架内执行。SAP 把 ERP 客户数（数十万）和 Anthropic 把 Claude 的推理能力放在一张表上：前者出"系统能改什么"的范围，后者出"应当怎么改"的判断。这是 Claude 与 SAP 此前在 SuccessFactors 上小范围接入的延续 —— 一年内从 SaaS 子模块，扩到整条 ERP 主干。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>SAP News / ERP Today</strong> · 2026.05.13</span>
+          <a class="read-more" href="https://news.sap.com/2026/05/sap-anthropic-to-bring-claude-sap-business-ai-platform/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🛠️ 平台升档 · ANTHROPIC MANAGED AGENTS</div>
+        <h3>Claude Managed Agents 新增"做梦+多代理编排+结果回调+Webhook"</h3>
+        <p>
+          5 月 13 日的 Code with Claude 上 Anthropic 把 Managed Agents 的能力面一次性补齐：dreaming（代理在跑完任务后给自己写"备忘录"，下一只代理接手时可读取学习）、多代理编排（多只代理共享同一上下文协同处理一个任务）、outcomes（每次跑完都附结构化结果而非仅文本）、webhook（运行结果可推回客户系统触发下一步）。配套是 Claude Code 与 Opus API 限额抬升、加上 5 月 25 日刚发布的 28 家安全合规栈接入。"代理跑得起来"已经成立，下半场是"代理跑得久、跑得多、能被审计" —— 这一周 Anthropic 把三件事一次性卡进路线图。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>InfoQ / Anthropic News</strong> · 2026.05.13</span>
+          <a class="read-more" href="https://www.infoq.com/news/2026/05/code-with-claude/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 03</div><h2 class="section-title">国产<em>抢上市表</em></h2></div>
+      <p class="section-intro">海外烧融资估值，国内同时间烧 IPO 时间表。Moonshot 在拆 VIE，阶跃星辰把 171 亿融资和 6 月递表绑在一起，DeepSeek 把降价从"促销"改成"永久" —— 三家走的不是一条路，但都赶在同一个夏天敲门。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">🌒 港股准备中 · MOONSHOT</div>
+        <h3>月之暗面拆 VIE 启动港股 IPO 准备 · 三月内多轮融资累计超 $170 亿</h3>
+        <p>
+          5 月 20 日，Moonshot AI（月之暗面）通知股东启动 VIE 红筹架构拆除，明确将奔赴港交所上市。这是公司今年内态度的第三次变化：去年还在准备美股，3 月转向"暂不上市"，5 月直接进入港股拆架构阶段。窗口的另一面是融资节奏 —— 自 2 月以来 Moonshot 连续完成多轮融资，累计规模超过 170 亿美元，投后估值传出冲向 180 亿美元上方。Kimi 这一年从"长上下文 Demo"成长为现金牛业务，C 端订阅、API 调用、企业内嵌三条线并行收钱。Moonshot 走港股的逻辑很直接：在港交所现有"特专科技+18C 章"通道里，AI 大模型公司是为数不多还能讲清增长曲线的标的，估值锚比美股清晰。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新浪财经 / 36氪</strong> · 2026.05.20</span>
+          <a class="read-more" href="https://finance.sina.com.cn/wm/2026-05-20/doc-inhypnuh2632353.shtml" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🚀 6 月递表 · 阶跃星辰</div>
+        <h3>阶跃星辰 5 个月烧 171 亿 · 计划 6 月 30 日前向港交所递表</h3>
+        <p>
+          5 月初的报道把阶跃星辰摆上首位：公司于 1 月完成超 5 亿元的 B+ 轮后，5 月已"接近完成"约 25 亿美元（约 170 亿元）的新一轮融资，5 个月之内连开两轮。4 月内部完成 VIE 拆除与股改，目前已锁定 6 月 30 日前向港交所递表 18C 章、年内挂牌的时间表。账本上 5 个月烧 171 亿，烧的不是模型训练成本本身，更是 IPO 倒计时的赛点 —— 在 Moonshot、智谱、MiniMax 已经先后上市或在准备的 2026，估值锚位将由谁先在港股拿到流通市值决定。资本面的中国大模型，正从"训练谁更强"转入"上市谁更快"。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>新浪财经 / 钛媒体</strong> · 2026.05.10</span>
+          <a class="read-more" href="https://www.tmtpost.com/7952134.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-12">
+        <div class="story-tag">🇨🇳 价格永久化 · DEEPSEEK V4-PRO</div>
+        <h3>DeepSeek V4-Pro 75% 折扣由"促销"升级为"永久价" · 单 Token 价跌回水费档</h3>
+        <p>
+          5 月 22 日 DeepSeek 在 API Docs 上明确：V4-Pro 此前 2.5 折"优惠价"将取消"促销"标识，调整为永久价 —— 输入价 $0.435/百万 tokens（cache miss）、cache hit $0.003625/百万、输出 $0.87/百万。叠加 V4-Pro 1.6T 参数 / 1M 上下文的能力曲线，单 token 实际价格被压到与 V3.2 同档以下；与之并行的是 V4.1 已定档 6 月发布、首轮 500 亿元融资同步推进。把这条与海外对照看 —— 同期 Cognition 用 26B 估值喊出"代码代理的天花板"、Anthropic 用 Managed Agents 把"代理治理"做完；中国队的回答是"把单价继续压低"。一边是"代理跑起来值多少钱"，一边是"让每万次调用的成本接近边际为零" —— 这是 2026 上半年最清楚的两条主线。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>DeepSeek API Docs / 36氪</strong> · 2026.05.22</span>
+          <a class="read-more" href="https://api-docs.deepseek.com/news/news260424" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 04</div><h2 class="section-title">开源代理 · <em>军备赛</em></h2></div>
+      <p class="section-intro">代理的故事到下半年开始分流 —— 有人去抢估值，有人去抢 GitHub 星，有人去发模型版本号。Hermes Agent 把开源代理的增长曲线再次抬上一个台阶，Grok V9 在 GPU 上跑完，arXiv 还在给"多代理 RL"补理论 —— 三条线，同一句话：代理是 2026 的标的，没人想错过。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">🚀 开源代理 · HERMES AGENT</div>
+        <h3>Hermes Agent 12 周冲到 ~16 万 GitHub 星 · 2026 最快开源代理框架</h3>
+        <p>
+          2 月 25 日上线的 Nous Research Hermes Agent，到 5 月已累计约 16 万 GitHub 星 —— 12 周内的增速比 OpenClaw 早期还快，成为 2026 上半年增长最快的开源代理框架。Hermes 的卖点不是"用了哪家模型"，而是"自我进化"：每完成一个任务，代理自我生成偏好对 + 经验回放，写回本地长期记忆，下一只代理可读取继承。配套的 v2026.5.16 版本继续打磨"代理之间共享技能"的协议。和 Cognition、Devin 走"闭源 API + 企业合同"路线相反，Hermes 押的是开源代理的群体效应：当任何人都能在本地跑出一只"会自我修复"的代理，闭源代理就必须靠场景与合规继续往企业里挖。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Dealroom / GitHub</strong> · 2026.05</span>
+          <a class="read-more" href="https://github.com/nousresearch/hermes-agent" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🤖 Grok V9 · xAI</div>
+        <h3>Grok V9 Medium 训练完成 · Grok Build 切到"日更"节奏</h3>
+        <p>
+          5 月 25 日 Elon Musk 确认 xAI 已完成新一代基础模型 Grok V9 Medium 的训练；5 月 14 日上线、$300/月 的 Grok Build CLI 同时把发布节奏改为"每日 release notes"，而非之前每周两次的迭代。这是 xAI 整合进"SpaceXAI" 一栏后的第一轮密集动作 —— Grok Build 是命令行里直接跑在项目目录上的代码代理，与 Devin、Claude Code 同台对位。模型层（V9 Medium）打底，CLI 层日更迭代，xAI 想抢的是开发者每天对"代码代理"的肌肉记忆。增长曲线是否真能跟上 Cognition / Anthropic，要看 V9 Heavy 何时合格出炉。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>eWeek / SQ Magazine</strong> · 2026.05.25</span>
+          <a class="read-more" href="https://www.eweek.com/news/xai-grok-build-coding-agent/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-12">
+        <div class="story-tag">📄 arXiv · 2605.02801</div>
+        <h3>"编排痕迹"做 RL · 给多代理系统补一个能学的奖励信号</h3>
+        <p>
+          5 月底 arXiv 2605.02801 提出 Orchestration Traces：把多代理系统的执行过程看作时间序列图 —— 子代理生成、任务派发、跨代理通信、工具调用、结果聚合、终止判定都记录为可学习事件，进而用 RL 直接在"编排痕迹"上做策略优化。这把上半年三类工作做了汇总：Anthropic 这周给出的"做梦+多代理"是工程基础设施；Cognition 给出的"90% 自家代码"是现实产物；这份工作给出的是"它们到底学到了什么"的可解释、可奖励信号。读法上，把它叠加在前期"Memory-R1"、"TriMem 三层记忆"系列一起看 —— 代理这一年走完的不是模型尺寸的曲线，而是"过程 / 记忆 / 学习"三件事的并发曲线。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>arXiv 2605.02801</strong> · 2026.05</span>
+          <a class="read-more" href="https://arxiv.org/abs/2605.02801" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-mark">信号 <span class="accent">/</span> Signal</div>
+    <div class="divider"></div>
+    <p>第 020 期 · 2026 年 5 月 28 日 · 周四</p>
+    <p style="margin-top:8px;">本期收录 5.13 — 5.27 共 9 条 AI 相关动态</p>
+  </div>
+</footer>
+
+</body>
+</html>
