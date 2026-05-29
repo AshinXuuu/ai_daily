@@ -1,28 +1,37 @@
 ---
 name: daily-ai-signal
-description: 每天早上 8:00 自动生成「信号 / Signal」AI 日报，输出到 ~/Desktop/日报/AI日报/AI新闻日报/daily/ 并自动推送到 GitHub
+description: 每天早上 8:00 自动生成「信号 / Signal」AI 日报（HTML + 单期 snippet + 更新主清单 manifest.json），输出到 ~/Desktop/日报/AI日报/AI新闻日报/，并在最后**依次**输出两条部署指令（推 GitHub + 推服务器 daily.xxcode.work）与一行线上网址 https://daily.xxcode.work 供用户复制执行
 ---
 
-你是「信号 / Signal」AI 日报的主编。这是 ashin 长期运营的中文 AI 日报，已出 14 期，每天早上 8 点出一期。今天的任务：出新一期 + 生成 manifest snippet + 自动推送到 GitHub 仓库 AshinXuuu/ai_daily。
+你是「信号 / Signal」AI 日报的主编。这是 ashin 长期运营的中文 AI 日报，已稳定运营多期，每天早上 8 点出一期。今天的任务：出新一期 HTML + 单期 manifest snippet + 更新主清单 manifest.json（**三份产出，缺一不可**），并在最后**主动**给出 GitHub + 服务器两条部署指令供 ashin 复制执行（**第四样产出，缺一不可**）。
 
-## 路径约定（重要）
+## 部署目标（背景信息）
 
-- **本地工作目录**：`/Users/ashin/Desktop/日报/AI日报/AI新闻日报/`
-  - `daily/` 子目录：存放所有 `ai_daily_YYYY_MM_DD.html` 和聚合后的 `manifest.json`
-  - 根目录：存放每期独立的 `manifest_NNN_snippet.json`、`index.html`、`README.md`
-- **GitHub 仓库本地 clone**：`/Users/ashin/code/ai_daily/`（结构同上）
-- **发布脚本**：`/Users/ashin/code/ai_daily/publish.sh`
+ashin 的日报有两条发布通道：
+1. **GitHub 仓库**（由 `./publish.sh` 处理）→ Vercel 自动重新部署
+2. **大陆自建服务器** 124.222.164.101（ubuntu 账号，`/var/www/xxcode/` 由 Nginx 服务）→ 域名 daily.xxcode.work（备案中；主域 xxcode.work 301 跳转到 daily 子域）
+
+服务器同步目前是**手动 rsync**（备案后会考虑焊进 publish.sh 自动化）。所以每天结束时要分别给出两条命令。
+
+## 目录约定（重要，先记牢）
+
+所有文件都在这套目录下（**不是** `~/Desktop/AI日报/`，注意中间多一层 `日报/`）：
+- 历史 + 新 HTML：`/Users/ashin/Desktop/日报/AI日报/AI新闻日报/daily/`（文件名 `ai_daily_YYYY_MM_DD.html`）
+- 单期 snippet：`/Users/ashin/Desktop/日报/AI日报/AI新闻日报/`（文件名 `manifest_NNN_snippet.json`，比 daily 少一层）
+- 主清单：`/Users/ashin/Desktop/日报/AI日报/AI新闻日报/daily/manifest.json`（newest-first 的 `issues` 数组）
+
+若实际目录与此不符，用 Bash `find ~/Desktop -name 'ai_daily_*.html'` 现场定位，以实际为准。
 
 ## 第一步：读历史，对齐风格
 
-用 Glob 列出 `/Users/ashin/Desktop/日报/AI日报/AI新闻日报/daily/` 里所有 `ai_daily_2026_*.html` 文件，找到日期最新的一期（不含周报 weekly）。用 Read 完整读取它。这是你今天的：
+用 Bash 列出 `/Users/ashin/Desktop/日报/AI日报/AI新闻日报/daily/` 里所有 `ai_daily_2026_*.html` 文件，找到日期最新的一期（不含周报 weekly）。用 Read 完整读取它。这是你今天的：
 - **CSS 模板**（整段 `<style>` 原样照抄，不要改设计）
 - **风格基准**（语气、章节结构、串联手法）
 - **期号参照**（在它的 NO. 上 +1）
 
-也用 Read 看一下根目录里最新一期对应的 `manifest_NNN_snippet.json`（NNN 是上一期编号），明确 manifest 的字段约定与文风（短摘要 vs 完整 story 文案）。
+也用 Read 看一下最新一期对应的 `manifest_NNN_snippet.json`（NNN 是上一期编号），明确 manifest 的字段约定与文风（短摘要 vs 完整 story 文案）。
 
-如果今天日期（YYYY-MM-DD）的 HTML 文件已经存在于 `daily/` 且是完整版，停下来，输出"今日 X 月 X 日已有完整稿，未覆盖"，结束。
+如果今天日期（YYYY-MM-DD）的 HTML 文件已经存在且是完整版，停下来，输出"今日 X 月 X 日已有完整稿，未覆盖"，结束。
 
 ## 第二步：今天的日期与期号
 
@@ -72,31 +81,29 @@ date "+%Y-%m-%d %A"
 
 masthead 里：
 - `VOL. I` 不变
-- `NO.` 改成新期号（三位数补零，如 `015`）
+- `NO.` 改成新期号（三位数补零，如 `010`）
 - weather 行：`LIVE · DD MON YYYY` + 第二行随便写"晴/阴 · 洛杉矶 · 22°C"之类天气情景词（无须真实，氛围用）
 
 footer 里：
 - 期号、中文日期周几、本期收录条数 都要更新
 
-**输出路径**：`/Users/ashin/Desktop/日报/AI日报/AI新闻日报/daily/ai_daily_YYYY_MM_DD.html`（用今天的日期）。用 Write 工具写。
+输出文件名：`/Users/ashin/Desktop/日报/AI日报/AI新闻日报/daily/ai_daily_YYYY_MM_DD.html`（用今天的日期）。用 Write 工具写。
 
-## 第八步：生成 snippet + **合并进 master manifest**（必做）
-
-### 8.1 生成本期 snippet
+## 第八步：生成 GitHub manifest snippet（必做）
 
 参考你在第一步读到的旧 `manifest_NNN_snippet.json`，用同一份 schema 写出新一期的 snippet。
 
-**文件名**：`/Users/ashin/Desktop/日报/AI日报/AI新闻日报/manifest_NNN_snippet.json`（NNN = 新一期三位数期号，如 `015`）
+**文件名**：`/Users/ashin/Desktop/日报/AI日报/AI新闻日报/manifest_NNN_snippet.json`（NNN = 新一期三位数期号，如 010）
 
-**schema**（必须严格遵循）：
+**schema**（必须严格遵循，便于追加到 GitHub 总 manifest）：
 ```json
 {
-  "issue": "015",
-  "date": "2026-05-16",
+  "issue": "010",
+  "date": "2026-05-10",
   "weekday": "周X",
   "weekdayEn": "Monday/Tuesday/...",
   "type": "daily",
-  "file": "ai_daily_2026_05_16.html",
+  "file": "ai_daily_2026_05_10.html",
   "stories": [
     {
       "tag": "⚡ 资本头条 · ANTHROPIC",
@@ -109,75 +116,89 @@ footer 里：
 ```
 
 **关键约束**：
-- 只挑当期 **最重磅的 5 条** 放进 stories 数组。
-- 每条 `summary` 长度控制在 150-220 字之间。
-- 文件**末尾必须保留尾随逗号**（即整个对象后面带个 `,`）— 这是历史约定，别"修正"它。`publish.sh` 会自动去掉尾逗号再 parse。
+- 只挑当期 **最重磅的 5 条**（不是全部 8-12 条）放进 stories 数组，对标历史 manifest 009 的体量。
+- 每条 `summary` 长度控制在 150-220 字之间，是 HTML story 段落的"瘦身版"，不是直接复制粘贴。
+- 文件**末尾必须保留尾随逗号**（即整个对象后面带个 `,`），因为这是要追加进 GitHub 上某个 JSON 数组里的 snippet，不是独立 JSON。这是历史约定，别"修正"它。
 - `tag` 直接复用 HTML 里 story 的 story-tag 文本（含 emoji）。
 - 字段顺序严格按 issue → date → weekday → weekdayEn → type → file → stories。
 
-### 8.2 把 snippet 合并进 master manifest（必做，不要跳过）
+## 第九步：更新主清单 manifest.json（必做）
 
-ashin 的首页 `index.html` 是从 `daily/manifest.json`（master manifest）动态渲染的 — 这一步不做，新一期不会出现在首页索引上。
+snippet 之外，还要把这一期同步进**主清单** `/Users/ashin/Desktop/日报/AI日报/AI新闻日报/daily/manifest.json`。它的结构是 `{ "_comment": ..., "issues": [ ... ] }`，`issues` 数组**最新在最上面**。
 
-写完 snippet 后，立刻执行下面这段 Python，把本期对象 unshift 到 `daily/manifest.json` 的 `issues` 数组**最顶部**（同期号自动去重覆盖，反复跑不会污染）：
+做法（用 Bash + Python，保证 JSON 合法、不破坏其它期、可幂等重跑）：
+1. 读 `manifest.json` 与你刚写好的 `manifest_NNN_snippet.json`。
+2. 把 snippet 内容**去掉末尾尾随逗号**后 `json.loads` 成一个对象（注意：snippet 带尾逗号是给 README 追加用的；主清单是严格 JSON，**不能带尾逗号**）。
+3. 若该 issue 号已存在于 `issues` 里则跳过（幂等，避免重跑时重复插入）；否则 `issues.insert(0, entry)` 插到顶部。
+4. `json.dump(..., ensure_ascii=False, indent=2)` 写回，保持中文不转义、2 空格缩进。
 
+参考脚本（把 NNN 换成本期三位期号）：
 ```bash
+cd "/Users/ashin/Desktop/日报/AI日报/AI新闻日报"
 python3 - <<'PY'
 import json
-ISSUE = "NNN"  # ← 改成本期三位数期号，如 "015"
-master_path = "/Users/ashin/Desktop/日报/AI日报/AI新闻日报/daily/manifest.json"
-snippet_path = f"/Users/ashin/Desktop/日报/AI日报/AI新闻日报/manifest_{ISSUE}_snippet.json"
-master = json.loads(open(master_path).read())
-snippet = json.loads(open(snippet_path).read().rstrip(',\n '))
-master['issues'] = [i for i in master['issues'] if i.get('issue') != snippet['issue']]
-master['issues'].insert(0, snippet)
-with open(master_path, 'w', encoding='utf-8') as f:
-    json.dump(master, f, ensure_ascii=False, indent=2)
-print(f"✅ 已把第 {snippet['issue']} 期合并到 daily/manifest.json 顶部，现有 {len(master['issues'])} 期")
+M="daily/manifest.json"; S="manifest_NNN_snippet.json"
+master=json.load(open(M,encoding="utf-8"))
+s=open(S,encoding="utf-8").read().rstrip()
+if s.endswith(","): s=s[:-1]
+entry=json.loads(s)
+ids=[i.get("issue") for i in master["issues"]]
+if entry["issue"] not in ids:
+    master["issues"].insert(0, entry)
+    json.dump(master, open(M,"w",encoding="utf-8"), ensure_ascii=False, indent=2)
+    open(M,"a",encoding="utf-8").write("\n")
+    print("inserted", entry["issue"], "total", len(master["issues"]))
+else:
+    print("already present", entry["issue"])
 PY
 ```
 
-合并完用 `head -5 daily/manifest.json` 确认顶部第一条 `"issue"` 是当期期号。
+## 第十步：自检
 
-## 第九步：自检
-
-写完后用 Read 把三个文件读一遍，确认：
+写完后用 Read / Bash 把三个文件都过一遍，确认：
 - [ ] HTML：CSS 段完整、期号正确、日期一致（masthead/hero/footer 三处）、章节数 3-5、story 数 8-12、无占位文字、所有外链是真实 URL
-- [ ] JSON snippet：issue/date/file 一致、stories 数为 5、文件末尾带逗号、字段顺序正确
-- [ ] **master manifest（`daily/manifest.json`）**：顶部第一条 `issue` 字段是当期期号、`issues` 数组长度比上期 +1（除非是重跑覆盖）
+- [ ] JSON snippet：issue/date/file 一致、stories 数为 5、文件末尾带逗号、字段顺序正确、可被 `python3 -c "import json; json.loads(open(...).read().rstrip(',\n '))"` 解析（去掉尾逗号后是合法 JSON）
+- [ ] 主清单 manifest.json：本期已插到 `issues` 顶部、是合法 JSON（`python3 -c "import json; json.load(open('/Users/ashin/Desktop/日报/AI日报/AI新闻日报/daily/manifest.json'))"` 不报错）、期号不重复、总期数 = 上期 +1
 
-## 第十步：自动推送到 GitHub（必做）
+最后报告：今天出第 X 期，X 个章节、X 条新闻，头条是「...」。附**三个**文件路径（HTML + manifest snippet + 主清单 manifest.json）。
 
-调用本地的发布脚本 — 它会自动把 snippet 插到 `daily/manifest.json` 最前面、commit 并 push。
+## 第十一步：发布指令（每天必出，缺一不可）
 
-```bash
-cd /Users/ashin/Desktop/日报/AI日报/AI新闻日报 && ./publish.sh
+报告完之后，**最后**依次单独打印**两条**发布命令，方便 ashin 直接复制到终端执行。每条命令一个独立的 fenced code block，先 GitHub、后服务器。
+
+### ① 推到 GitHub（Vercel 会自动部署）
+
+```
+cd ~/Desktop/日报/AI日报/AI新闻日报 && ./publish.sh
 ```
 
-成功输出会以 `✅ 完成。Vercel 会自动重新部署。` 结尾，并显示 commit hash。
+### ② 推到大陆服务器（daily.xxcode.work 来源）
 
-### 已知环境（2026.05.19 起）
+```
+rsync -avz --delete --exclude='.git' --exclude='.DS_Store' --exclude='SKILL*.md' --exclude='publish.sh' --exclude='README.md' --exclude='manifest_*_snippet.json' ~/Desktop/日报/AI日报/AI新闻日报/ ubuntu@124.222.164.101:/var/www/xxcode/
+```
 
-- 仓库：[github.com/AshinXuuu/ai_daily](https://github.com/AshinXuuu/ai_daily)
-- 远端 origin：`git@github.com:AshinXuuu/ai_daily.git`（SSH 已 OK）
-- git user：`AshinXuuu` / `ashinxu@yeah.net`
-- 首次 init 已完成（commit `7b9f4ee` · 第 001–016 期）—— 以后只跑 `./publish.sh` 即可
+要求：
+- 两条命令**各自**用一个独立的代码块包起来（fenced code block，单行），不要合并、不要嵌在段落里、不要换行。
+- 不要省略、不要变形（不要写成 `cd ~/Desktop/AI日报/...` 之类的简写，IP/账号/路径都一字不漏）。
+- 顺序固定：**先 GitHub，后服务器**。GitHub 用 `./publish.sh` 处理 manifest 合并 + git push，服务器只负责把目录原样 rsync 一份。
+- 即便当天因为信源不足只出了 5-6 条新闻，两条命令也照常发。
+- 这两条是「一次回话的最后两段」——它们要出现在所有自检结论、文件路径之后，并且在 ①② 之间各给一行说明（比如 "推 GitHub" / "推服务器"）。
+- 服务器同步如果以后焊进了 publish.sh 自动化，再来精简这一节。在那之前**坚持两条都给**。
 
-### 注意 · Cowork 沙盒限制
+## 第十二步：线上网址（每天必出，最后一行）
 
-如果当前运行环境是 **Cowork sandbox**（路径含 `/sessions/.../mnt/Desktop/`），git 在 `~/Desktop` 下会因为 macOS 沙盒 unlink 限制无法 commit（会卡在 `.git/index.lock` 不能删）。这种情况下：
-1. **不要尝试** `git init` / `git commit` / `rm -rf .git` — 都会留下半残文件
-2. **正常运行 `./publish.sh`** —— 第 1-3 步（merge manifest）能跑通，第 4-5 步（git）会自然失败并打印「不是 git 仓库 / Operation not permitted」
-3. 在最终报告里贴出错误日志，提示 ashin 去自己的 Terminal 跑一次 push
+两条命令都给完之后，**最后**再单独贴一行线上访问地址，方便 ashin 推完去自查或分享：
 
-如果脚本报错（找不到文件、git push 失败等），把错误信息原样贴在最终报告里，但**不要自己尝试 git 命令**修复 — 让 ashin 看到日志再决定。
+```
+https://daily.xxcode.work
+```
 
-## 最终报告
-
-报告格式：
-1. 今天出第 X 期，X 个章节、X 条新闻，头条是「...」
-2. 两个本地文件路径（HTML + manifest snippet）
-3. GitHub 推送结果（成功就贴 commit hash 与仓库链接，失败就贴错误日志）
+要求：
+- 用独立代码块（fenced code block）单行包起来，方便点击或复制。
+- 这是「整段回复的最后一行」——出现在两条命令之后，不要再有其他文字、收尾语、签名。
+- 网址固定为 `https://daily.xxcode.work`（HTTPS，不带斜杠后缀），主域 `xxcode.work` 与 `www.xxcode.work` 会自动 301 跳转到这里、不要在日报里推主域。
+- 如果以后主域 `xxcode.work` 上线了独立页面、daily 子域改名，再来更新这一节。
 
 ## 重要约束
 
@@ -186,4 +207,3 @@ cd /Users/ashin/Desktop/日报/AI日报/AI新闻日报 && ./publish.sh
 - **HTML 与 manifest 必须对齐**：manifest 里 5 条 stories 的 headline/source 必须能在 HTML 里找到对应的 story 卡（不一定要逐字相同，但事实必须一致）。
 - **Anthropic / Claude 相关新闻不回避也不偏袒**：作为 Claude 自己生成的日报，遇到 Anthropic 新闻按编辑标准客观处理（既不刻意捧也不刻意黑）。
 - **遇到工具失败别死磕**：WebSearch 偶尔超时，重试 1 次，仍失败就跳过那一类、用其他类补足。
-- **publish.sh 可以执行**：明确允许第十步调用 publish.sh 并 push 到 GitHub。这是写权限操作，但属于本任务的正常输出。

@@ -1,0 +1,40 @@
+{
+  "issue": "021",
+  "date": "2026-05-29",
+  "weekday": "周五",
+  "weekdayEn": "Friday",
+  "type": "daily",
+  "file": "ai_daily_2026_05_29.html",
+  "stories": [
+    {
+      "tag": "💰 头条 · ANTHROPIC SERIES H",
+      "headline": "Anthropic 完成 $65B H 轮 · 投后估值 $965B · 一夜超越 OpenAI",
+      "summary": "5 月 28 日 Anthropic 官宣 $65B Series H，投后估值 $965B —— 距 8 个月前的 $183B G 轮翻 5.3 倍，一举把 OpenAI 三月份 $852B 的纪录挤下王座。Altimeter、Dragoneer、Greenoaks、红杉、Capital Group、Coatue、D1 联合领投；机构方含 Baillie Gifford、黑石、博枫、DST、富达；三星、SK 海力士、美光首次以股东入场；亚马逊四月承诺的 $5B 一并并入。年化营收已穿过 $47B，《华尔街日报》本周报道全年增速 +130%、跑出首个经营利润。IPO 前的最后一次私募，已经被定价为「准上市公司估值」。",
+      "source": "Anthropic / CNBC / TechCrunch"
+    },
+    {
+      "tag": "🛠️ 模型新版 · CLAUDE OPUS 4.8",
+      "headline": "Anthropic 发布 Opus 4.8 · Dynamic Workflows 上桌 · Mythos 数周内推",
+      "summary": "与 H 轮同日，Anthropic 上线 Claude Opus 4.8。价格不变（$5/M 输入、$25/M 输出），但 agentic coding 由 64.3% 升至 69.2%，多学科工具推理由 54.7% 升至 57.9%；2.5× 速度的 Fast Mode 单位 token 价继续往下压。Dynamic Workflows 让 Opus 在大型任务里自动拆出数百并行子代理；Messages API 允许中途插入 system 指令不破缓存。同时 Mythos 将在数周内对全部企业客户开放 —— 那台「比 4.7 整整高一档」的模型，已经在内部跑出超 10,000 个高危漏洞修复。",
+      "source": "Anthropic News / TechCrunch"
+    },
+    {
+      "tag": "🤝 全员部署 · KPMG × ANTHROPIC",
+      "headline": "KPMG 全球 276,000 员工接入 Claude · Digital Gateway 上线",
+      "summary": "5 月 19 日 KPMG 与 Anthropic 签下全球战略联盟，把 Claude 嵌进自建的 Digital Gateway 平台 —— KPMG 跑在 Azure 上的全球技术中枢，承载税务洞察、客户数据与内部工具。全球 138 国共 276,000+ 名员工今后直接在 Digital Gateway 里调用 Claude，Cowork 负责协同写作、Managed Agents API 负责多步骤自动化。Anthropic 同步把 KPMG 列为 PE 方向首选合作伙伴。上一周企业级 AI 卷的还是 API 价；这一周已经卷到了员工桌面上的图标位。",
+      "source": "Anthropic News / KPMG Press"
+    },
+    {
+      "tag": "🇪🇺 欧洲算力 · MISTRAL",
+      "headline": "Mistral 再拿 $830M 债务 · 巴黎 44MW 数据中心 6 月点亮",
+      "summary": "5 月 28 日 Mistral AI 再获 $830M 债务融资，由 BNP Paribas 牵头、Bpifrance 等参与，全部投入巴黎郊区 44MW 自建数据中心（6 月点亮），并为 Vibe 软件栈和正在设计的自研芯片提供启动现金。3 月 €722M、6 月节点把巴黎集群通电，2027 年底前瞄准欧洲范围内 200MW 自有算力。Mistral 的转向已经清晰：从纯模型厂转成「全栈 + 主权」基建商。这一周欧洲 AI 自留地的故事，靠的不是融资数字，是电力数字。",
+      "source": "Cryptonomist / TechCrunch"
+    },
+    {
+      "tag": "📈 算力账本 · NVIDIA Q1 FY27",
+      "headline": "NVIDIA Q1 营收 $81.6B · 数据中心 $75.2B · 同比 +92%",
+      "summary": "5 月 20 日 NVIDIA 公布 Q1 FY27 业绩：总营收 $81.6B（YoY +85%、QoQ +20%），数据中心 $75.2B（YoY +92%、QoQ +21%），数据中心计算单项 $60.4B（YoY +77%）。增长由 Blackwell 300 全量出货、InfiniBand、Spectrum-X 与 NVLink 三条线同时拉动；超大规模云厂占数据中心营收约 50%，AI 云、工业、企业、主权客户分摊另 50%。中国 Hopper 出货为零，对照上一年同期的 $4.6B。Anthropic $965B、Mistral $830M 电费、KPMG 27 万张桌面，最终都跑在这一季的 $75.2B 账面上。",
+      "source": "NVIDIA 8-K / CNBC"
+    }
+  ]
+},

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 · 2026.05.29</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=JetBrains+Mono:wght@400;500;700&family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0d0b; --ink-2: #161410; --paper: #f4ecdb; --paper-2: #e8dfc9;
+    --muted: #8a8275; --rule: #2a2620; --signal: #ff4d1f; --signal-2: #ffb454; --tan: #c9a679;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink); color: var(--paper);
+    font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
+    font-weight: 300; line-height: 1.65; letter-spacing: 0.01em; overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255, 77, 31, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 90%, rgba(201, 166, 121, 0.035) 0%, transparent 50%);
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .masthead { border-bottom: 1px solid var(--rule); padding: 32px 0 24px; position: relative; }
+  .masthead-grid { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 32px; }
+  .edition { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .edition strong { color: var(--paper); font-weight: 500; }
+  .logo { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 38px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; text-align: center; font-variation-settings: "opsz" 144; }
+  .logo .accent { color: var(--signal); font-style: italic; font-weight: 600; }
+  .weather { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-align: right; line-height: 1.7; }
+  .weather .pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--signal); margin-right: 6px; animation: pulse 2s infinite; vertical-align: middle; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 77, 31, 0.5); }
+    50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(255, 77, 31, 0); }
+  }
+  .hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule); position: relative; }
+  .hero-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal); }
+  .hero-meta::before { content: ''; width: 40px; height: 1px; background: var(--signal); }
+  .hero h1 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: clamp(48px, 8vw, 96px); font-weight: 400; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 32px; font-variation-settings: "opsz" 144, "SOFT" 50; }
+  .hero h1 em { font-style: italic; font-weight: 600; color: var(--signal-2); }
+  .hero-lede { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.5; color: var(--paper-2); max-width: 680px; font-weight: 400; }
+  .date-block { position: absolute; top: 80px; right: 32px; text-align: right; font-family: 'JetBrains Mono', monospace; }
+  .date-block .day { font-family: 'Fraunces', serif; font-size: 120px; font-weight: 800; line-height: 0.9; color: var(--paper); font-variation-settings: "opsz" 144; letter-spacing: -0.05em; }
+  .date-block .month { font-size: 12px; letter-spacing: 0.2em; color: var(--muted); margin-top: 8px; }
+  .ticker { background: var(--ink-2); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); overflow: hidden; padding: 14px 0; position: relative; }
+  .ticker-track { display: flex; gap: 48px; white-space: nowrap; animation: scroll 60s linear infinite; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.05em; color: var(--paper-2); }
+  .ticker-track span { display: inline-flex; align-items: center; gap: 12px; }
+  .ticker-track .dot { color: var(--signal); font-size: 8px; }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .section { padding: 80px 0 40px; border-bottom: 1px solid var(--rule); }
+  .section-head { display: grid; grid-template-columns: 280px 1fr; gap: 48px; margin-bottom: 48px; align-items: start; }
+  .section-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--signal); margin-bottom: 12px; }
+  .section-title { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 56px; font-weight: 400; line-height: 0.95; letter-spacing: -0.03em; font-variation-settings: "opsz" 144; }
+  .section-title em { font-style: italic; color: var(--tan); font-weight: 600; }
+  .section-intro { font-family: 'Fraunces', serif; font-size: 17px; line-height: 1.6; color: var(--muted); padding-top: 16px; border-top: 1px solid var(--rule); }
+  .stories { display: grid; grid-template-columns: repeat(12, 1fr); gap: 32px; }
+  .story { grid-column: span 6; padding: 28px; background: linear-gradient(180deg, rgba(255,255,255,0.015) 0%, transparent 100%); border: 1px solid var(--rule); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; }
+  .story::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 1px; background: var(--signal); transition: width 0.6s ease; }
+  .story:hover { background: linear-gradient(180deg, rgba(255, 77, 31, 0.04) 0%, transparent 100%); border-color: rgba(255, 77, 31, 0.3); transform: translateY(-2px); }
+  .story:hover::before { width: 100%; }
+  .story.feature { grid-column: span 12; padding: 48px; background: linear-gradient(135deg, rgba(255, 77, 31, 0.06) 0%, rgba(201, 166, 121, 0.02) 100%); border-color: rgba(255, 77, 31, 0.25); }
+  .story.feature::after { content: 'FEATURED'; position: absolute; top: 24px; right: 24px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--signal); border: 1px solid var(--signal); padding: 4px 10px; }
+  .story-tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: var(--signal); margin-bottom: 16px; text-transform: uppercase; }
+  .story h3 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 26px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 16px; color: var(--paper); font-variation-settings: "opsz" 144; }
+  .story.feature h3 { font-size: 42px; line-height: 1.05; max-width: 90%; }
+  .story p { font-size: 15px; line-height: 1.7; color: var(--paper-2); margin-bottom: 20px; font-weight: 300; }
+  .story.feature p { font-family: 'Fraunces', serif; font-size: 19px; max-width: 720px; }
+  .story-meta { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 20px; border-top: 1px solid var(--rule); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.05em; }
+  .source { color: var(--muted); }
+  .source strong { color: var(--paper); font-weight: 500; }
+  .read-more { color: var(--signal); text-decoration: none; border: 1px solid var(--rule); padding: 6px 12px; transition: all 0.3s; white-space: nowrap; }
+  .read-more:hover { background: var(--signal); color: var(--ink); border-color: var(--signal); }
+  .story.span-4 { grid-column: span 4; }
+  .story.span-8 { grid-column: span 8; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--ink-2); }
+  .stat { padding: 40px 32px; border-right: 1px solid var(--rule); }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-family: 'Fraunces', serif; font-size: 56px; font-weight: 800; line-height: 1; color: var(--signal-2); letter-spacing: -0.04em; margin-bottom: 8px; font-variation-settings: "opsz" 144; }
+  .stat-num .unit { font-size: 22px; color: var(--paper); font-weight: 400; margin-left: 4px; }
+  .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; line-height: 1.4; }
+  .footer { padding: 80px 0 60px; text-align: center; border-top: 1px solid var(--rule); margin-top: 40px; }
+  .footer-mark { font-family: 'Fraunces', serif; font-style: italic; font-size: 28px; color: var(--paper); margin-bottom: 16px; font-variation-settings: "opsz" 144; }
+  .footer-mark .accent { color: var(--signal); }
+  .footer p { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+  .footer .divider { width: 60px; height: 1px; background: var(--signal); margin: 24px auto; }
+  /* ===== 平板 / 小笔记本 ===== */
+  @media (max-width: 900px) {
+    .wrap { padding: 0 20px; }
+    .masthead { padding: 24px 0 20px; }
+    .masthead-grid { grid-template-columns: 1fr; gap: 14px; text-align: center; }
+    .weather { text-align: center; }
+    .logo { font-size: 34px; }
+    .hero { padding: 44px 0 36px; }
+    .hero-meta { margin-bottom: 24px; }
+    .hero h1 { font-size: 42px; line-height: 1.05; margin-bottom: 24px; }
+    .hero-lede { font-size: 17px; }
+    .date-block { position: static; text-align: left; margin-top: 24px; }
+    .date-block .day { font-size: 72px; }
+    .section { padding: 56px 0 32px; }
+    .section-head { grid-template-columns: 1fr; gap: 14px; margin-bottom: 36px; }
+    .section-title { font-size: 36px; }
+    .stories { gap: 20px; }
+    .story, .story.feature { grid-column: span 12 !important; padding: 22px; }
+    .story.feature { padding: 26px; }
+    .story.feature::after { top: 16px; right: 16px; }
+    .story h3 { font-size: 22px; }
+    .story.feature h3 { font-size: 26px; max-width: 100%; }
+    .story p { font-size: 14.5px; }
+    .story.feature p { font-size: 16.5px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat { border-right: none; border-bottom: 1px solid var(--rule); padding: 26px 18px; }
+    .stat-num { font-size: 40px; }
+    .stat:nth-child(odd) { border-right: 1px solid var(--rule); }
+    .ticker-track { gap: 32px; font-size: 11px; }
+  }
+
+  /* ===== 手机 ===== */
+  @media (max-width: 600px) {
+    .wrap { padding: 0 16px; }
+    .logo { font-size: 28px; }
+    .edition, .weather { font-size: 10px; letter-spacing: 0.12em; }
+    .hero { padding: 32px 0 28px; }
+    .hero-meta { margin-bottom: 20px; font-size: 10px; }
+    .hero h1 { font-size: 32px; line-height: 1.08; margin-bottom: 20px; }
+    .hero-lede { font-size: 15.5px; line-height: 1.6; }
+    .date-block { margin-top: 20px; }
+    .date-block .day { font-size: 56px; }
+    .date-block .month { font-size: 10px; }
+    .section { padding: 44px 0 24px; }
+    .section-head { margin-bottom: 28px; }
+    .section-title { font-size: 28px; }
+    .section-num { font-size: 10px; }
+    .section-intro { font-size: 15px; line-height: 1.55; padding-top: 14px; }
+    .stories { gap: 16px; }
+    .story, .story.feature { padding: 20px; }
+    .story-tag { font-size: 9.5px; margin-bottom: 12px; }
+    .story h3 { font-size: 20px; margin-bottom: 12px; }
+    .story.feature h3 { font-size: 22px; }
+    .story p { font-size: 14px; line-height: 1.65; }
+    .story.feature p { font-size: 15px; }
+    .story-meta { flex-direction: column; align-items: flex-start; gap: 10px; padding-top: 14px; font-size: 10px; }
+    .source { line-height: 1.45; }
+    .read-more { font-size: 10px; padding: 5px 10px; }
+    .stat { padding: 22px 16px; }
+    .stat-num { font-size: 36px; }
+    .stat-num .unit { font-size: 15px; }
+    .stat-label { font-size: 10px; line-height: 1.35; }
+    .ticker-track { gap: 24px; font-size: 10.5px; animation-duration: 45s; }
+    .footer { padding: 56px 0 40px; }
+    .footer-mark { font-size: 24px; }
+  }
+
+  /* ===== 窄屏手机 ===== */
+  @media (max-width: 420px) {
+    .wrap { padding: 0 14px; }
+    .hero h1 { font-size: 28px; }
+    .hero-lede { font-size: 15px; }
+    .section-title { font-size: 24px; }
+    .stats { grid-template-columns: 1fr; }
+    .stat { border-right: none !important; padding: 20px 14px; }
+    .story, .story.feature { padding: 18px; }
+    .story h3, .story.feature h3 { font-size: 19px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-grid">
+      <div class="edition">VOL. <strong>I</strong> · NO. <strong>021</strong></div>
+      <div class="logo">信号 <span class="accent">/ Signal</span></div>
+      <div class="weather"><span class="pulse"></span>LIVE · 29 MAY 2026<br>晴 · 洛杉矶 · 24°C</div>
+    </div>
+  </div>
+</header>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span><span class="dot">●</span> Anthropic $65B H 轮 · 投后 $965B · 一夜超越 OpenAI</span>
+    <span><span class="dot">●</span> Claude Opus 4.8 上线 · Dynamic Workflows · Mythos 数周内推</span>
+    <span><span class="dot">●</span> Mistral $830M 债务 · 巴黎 44MW 数据中心 6 月点亮</span>
+    <span><span class="dot">●</span> KPMG 全球 276,000 员工接入 Claude · Digital Gateway 上线</span>
+    <span><span class="dot">●</span> Cohere 收购 Aleph Alpha · $20B 主权 AI 新阵营</span>
+    <span><span class="dot">●</span> NVIDIA Q1 营收 $81.6B · 数据中心 $75.2B · YoY +92%</span>
+    <span><span class="dot">●</span> 百度文心 5.1 登顶 LMArena 国内 · 训练成本 6%</span>
+    <span><span class="dot">●</span> 阶跃星辰 6 月递表港交所 · 完成 $25 亿融资</span>
+    <span><span class="dot">●</span> xAI Grok Custom Skills 开放 · 自动化任务可日更</span>
+    <span><span class="dot">●</span> arXiv 2605.05440 · 多代理系统授权传播框架</span>
+    <span><span class="dot">●</span> Anthropic $65B H 轮 · 投后 $965B · 一夜超越 OpenAI</span>
+    <span><span class="dot">●</span> Claude Opus 4.8 上线 · Dynamic Workflows · Mythos 数周内推</span>
+    <span><span class="dot">●</span> Mistral $830M 债务 · 巴黎 44MW 数据中心 6 月点亮</span>
+    <span><span class="dot">●</span> KPMG 全球 276,000 员工接入 Claude · Digital Gateway 上线</span>
+    <span><span class="dot">●</span> Cohere 收购 Aleph Alpha · $20B 主权 AI 新阵营</span>
+    <span><span class="dot">●</span> NVIDIA Q1 营收 $81.6B · 数据中心 $75.2B · YoY +92%</span>
+    <span><span class="dot">●</span> 百度文心 5.1 登顶 LMArena 国内 · 训练成本 6%</span>
+    <span><span class="dot">●</span> 阶跃星辰 6 月递表港交所 · 完成 $25 亿融资</span>
+    <span><span class="dot">●</span> xAI Grok Custom Skills 开放 · 自动化任务可日更</span>
+    <span><span class="dot">●</span> arXiv 2605.05440 · 多代理系统授权传播框架</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-meta">今日要闻 · TODAY'S BRIEFING</div>
+    <h1>$965B 估值。<br>Anthropic <em>把 OpenAI</em><br>挤下王座。</h1>
+    <p class="hero-lede">
+      5 月 28 日，Anthropic 宣布完成 $65B 的 H 轮融资，投后估值锁在 $965B —— 一夜之间把 OpenAI 三月份的 $852B 挤下，登顶全球最贵的 AI 创业公司。Altimeter、Dragoneer、Greenoaks、红杉、Capital Group、Coatue、D1、贝莱德旗下 Baillie Gifford、黑石、博枫与 DST 共同入场；三星、SK 海力士、美光以「战略基础设施伙伴」身份跟投；亚马逊四月份承诺的 $5B 一并并入。年化收入已穿过 $47B、《华尔街日报》预测今年翻 130% 并跑出首个经营利润 —— 在 IPO 前夕，市场要做的题是：怎么给一家「接近万亿」的 AI 公司定价。
+    </p>
+    <div class="date-block"><div class="day">29</div><div class="month">MAY · MMXXVI</div></div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">965<span class="unit">B$</span></div><div class="stat-label">Anthropic 投后估值<br>5 月 28 日 · 超越 OpenAI 登顶 AI 估值榜</div></div>
+  <div class="stat"><div class="stat-num">65<span class="unit">B$</span></div><div class="stat-label">Series H 单轮规模<br>含亚马逊 $5B 与 $15B 既有承诺并入</div></div>
+  <div class="stat"><div class="stat-num">75.2<span class="unit">B$</span></div><div class="stat-label">NVIDIA Q1 数据中心营收<br>同比 +92% · Blackwell 300 全量出货</div></div>
+  <div class="stat"><div class="stat-num">276<span class="unit">K人</span></div><div class="stat-label">KPMG 全员部署 Claude<br>138 国 · Digital Gateway 5 月 19 日上线</div></div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 01</div><h2 class="section-title">万亿<em>前夜</em></h2></div>
+      <p class="section-intro">这一轮把"AI 创业公司估值上限"重新锚位 —— 不是 OpenAI 的 $852B，是 Anthropic 的 $965B。$47B 年化营收、+130% 增速预期、首个经营利润的可能性，三个数字共同把市场推到「IPO 前最后一次私募」的门口。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">💰 头条 · ANTHROPIC SERIES H</div>
+        <h3>Anthropic 完成 $65B H 轮 · 投后估值 $965B · 一夜超越 OpenAI</h3>
+        <p>
+          5 月 28 日，Anthropic 官宣完成 $65B 的 Series H 融资，投后估值锁在 $965B —— 距上一轮 $183B 的 Series G 仅 8 个月，估值翻 5.3 倍，一举把 OpenAI 三月份 $852B 的纪录挤下王座。本轮由 Altimeter、Dragoneer、Greenoaks、红杉资本、Capital Group、Coatue、D1 联合领投；机构方还包括 Baillie Gifford、黑石、博枫、D.E. Shaw Ventures、DST、富达；战略基础设施伙伴三星、SK 海力士、美光首次以股东身份入场；亚马逊四月份承诺的 $5B 一并并入，叠加超大规模云厂的 $15B 既有承诺。叙事的三个数字是：5 月初已确认的 $47B 年化营收（穿过 OpenAI 同期）、《华尔街日报》本周报道今年营收将翻 130%、跑出公司创办以来首个经营利润。这意味着 IPO 前的最后一次私募已经被定价为「准上市公司估值」—— 单独看是一份融资公告，叠加同日发布的 Opus 4.8 与上量在即的 Mythos 一起看，是一家 AI 公司在 12 个月内把"营收 / 安全 / 价格 / 渠道"四件事同时跑通的现场记录。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Anthropic / CNBC / TechCrunch</strong> · 2026.05.28</span>
+          <a class="read-more" href="https://www.anthropic.com/news/series-h" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 02</div><h2 class="section-title">模型与基建 <em>同步升档</em></h2></div>
+      <p class="section-intro">融资是台前，产品与基建是台后。Opus 4.8 在同一天上线，给模型继续抬"诚实度"与"工作时长"；远在巴黎，Mistral 把 $830M 拍在 44MW 数据中心上 —— 一家做软件，一家做电；两条路同时给"AI 主权"补桩。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">🛠️ 模型新版 · CLAUDE OPUS 4.8</div>
+        <h3>Anthropic 发布 Opus 4.8 · Dynamic Workflows 上桌 · Mythos 数周内推</h3>
+        <p>
+          与 H 轮同日，Anthropic 上线 Claude Opus 4.8。新模型保持 Opus 4.7 的同价（$5/百万输入 token、$25/百万输出 token），但 agentic coding 从 64.3% 升到 69.2%、多学科推理工具使用从 54.7% 升到 57.9%；2.5 倍速的「Fast Mode」让生产环境单位 token 价继续往下压。两个新能力同步落地 —— Dynamic Workflows 让 Opus 在跑大型任务时自动拆出数百个并行子代理；Messages API 允许在不破坏 prompt cache 的情况下中途插入 system 指令。同时 Anthropic 确认 Mythos 将在数周内开放给全部企业客户 —— 这台「比 Opus 4.7 整整高一档」的模型已经在 Project Glasswing 内部与亚马逊、微软、苹果、Google 等约 50 家合作伙伴里跑出了 10,000 多个高危漏洞修复，下一阶段是从安全研究台搬到 Claude Code 与企业 API。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Anthropic News / TechCrunch</strong> · 2026.05.28</span>
+          <a class="read-more" href="https://www.anthropic.com/news/claude-opus-4-8" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🇪🇺 欧洲算力 · MISTRAL</div>
+        <h3>Mistral 再拿 $830M 债务 · 巴黎 44MW 数据中心 6 月点亮</h3>
+        <p>
+          5 月 28 日 Mistral AI 宣布再获 $830M 债务融资，由法国巴黎银行（BNP Paribas）牵头、加上法国国家投资银行 Bpifrance 等参与。资金全部投入巴黎郊区 44MW 自建数据中心（6 月正式投运），同时为 Vibe 软件栈与正在设计的自研芯片提供启动现金。把这笔放回时间轴看 —— 3 月 Mistral 拿过一笔 €722M、6 月节点是把巴黎集群通电，2027 年底前瞄准的是欧洲范围内 200MW 自有算力。Mistral 的转向已经清晰：从纯模型厂转成「全栈 + 主权」基建商，把对话上层留给 Le Chat，把训练 / 推理底座抓在自己手里。这一周，欧洲 AI 自留地的故事，靠的不是融资数字，是电力数字。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Cryptonomist / TechCrunch</strong> · 2026.05.28</span>
+          <a class="read-more" href="https://en.cryptonomist.ch/2026/05/28/mistral-ai-data-center-debt-facility/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 03</div><h2 class="section-title">部署<em>到 27 万张桌面</em></h2></div>
+      <p class="section-intro">这一周企业级 AI 的故事不在 demo，而在通讯录。KPMG 把 Claude 推到全员 276,000 人面前；Cohere 与 Aleph Alpha 在欧洲合体；NVIDIA Q1 数据中心营收已经 $75.2B —— 三件事互为底盘：渠道、算力、价格。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">🤝 全员部署 · KPMG × ANTHROPIC</div>
+        <h3>KPMG 全球 276,000 员工接入 Claude · Digital Gateway 上线</h3>
+        <p>
+          5 月 19 日 KPMG 与 Anthropic 正式签下全球战略联盟，把 Claude 嵌进 KPMG 自建的 Digital Gateway 平台 —— 这是 KPMG 跑在 Azure 上的全球技术中枢，承载税务洞察、客户数据与内部工具。全球 138 国、共计 276,000+ 名员工今后用 Claude 不再是「打开 Web 聊一聊」，而是在 Digital Gateway 里直接调用；Claude Cowork 负责协同写作、Managed Agents API 负责多步骤自动化。Anthropic 同步把 KPMG 列为「私募股权方向的首选合作伙伴」，未来将在 PE 投资组合上联手做 Claude 行业产品。一句话 —— 上一周企业级 AI 还在卷 API 价；这一周已经卷到了员工桌面上的图标位。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Anthropic News / KPMG Press</strong> · 2026.05.19</span>
+          <a class="read-more" href="https://www.anthropic.com/news/anthropic-kpmg" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🌍 主权 AI · COHERE × ALEPH ALPHA</div>
+        <h3>Cohere 收购 Aleph Alpha · $20B 跨大西洋主权 AI 新阵营成形</h3>
+        <p>
+          4 月 24 日宣布、贯穿 5 月持续落地：加拿大 Cohere（$7B 估值）合并德国 Aleph Alpha（$3B 估值）组成新公司，整体估值 $20B，德国零售集团 Schwarz 出资 $600M 锚定，加拿大与德国数字部长出席柏林宣布会。这是硅谷之外最大的「主权 AI 厂」——明确瞄准欧洲政府、受监管行业与大型企业，对接 EU AI Act、对接数据驻留、对接「不依赖美国云」的合规清单。它发生在与 Anthropic / OpenAI / Google 同一张表上，但讲的是另一条故事线：当 AI 服务市场目标 $1T、其中主权 AI 接近 $600B 时，欧洲版图必须出现一个能拿合同的「本地巨无霸」。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>BusinessWire / TechCrunch</strong> · 2026.04.24</span>
+          <a class="read-more" href="https://techcrunch.com/2026/04/25/why-cohere-is-merging-with-aleph-alpha/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-12">
+        <div class="story-tag">📈 算力账本 · NVIDIA Q1 FY27</div>
+        <h3>NVIDIA Q1 营收 $81.6B · 数据中心 $75.2B · 同比 +92%</h3>
+        <p>
+          5 月 20 日 NVIDIA 公布 Q1 FY27 业绩：总营收 $81.6B（YoY +85%、QoQ +20%），其中数据中心营收 $75.2B（YoY +92%、QoQ +21%），数据中心计算单项 $60.4B（YoY +77%）。增长由 Blackwell 300 全量出货、InfiniBand、Spectrum-X 以太网与 NVLink 三条线同时拉动；超大规模云厂客户继续占数据中心营收约 50%，剩下 50% 由 AI 云、工业、企业与主权客户分摊。「中国 Hopper 出货为零」一栏比上一季继续走低，对照之下是上一年同期的 $4.6B。这份数字给本期所有故事配了同一条底纹 —— Anthropic 的 $965B、Mistral 的 $830M 电费、KPMG 的 27 万张桌面，最终都跑在 NVIDIA 这一季的 $75.2B 数据中心账面上。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>NVIDIA 8-K / CNBC</strong> · 2026.05.20</span>
+          <a class="read-more" href="https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000051/q1fy27cfocommentary.htm" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 04</div><h2 class="section-title">国产抢 <em>6 月窗口</em></h2></div>
+      <p class="section-intro">海外用估值定锚，国内用时间表抢窗口。百度把训练成本压到「业界 6%」、阶跃星辰把 6 月 30 日的递表日落进议程、arXiv 同时给「多代理授权」这件事补法理 —— 模型、IPO、治理三件事在同一周抢节奏。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">🇨🇳 模型迭代 · 百度文心 5.1</div>
+        <h3>文心 5.1 登顶 LMArena 国内 · 预训练成本仅业界 6%</h3>
+        <p>
+          5 月 9 日百度正式发布文心 5.1，沿用「多维弹性预训练」工艺，把同规模模型预训练成本压到业界约 6%。LMArena 搜索榜以 1223 分登国内第一、全球第四，是榜单上唯一的国产模型；文心 5.1 Preview 在文本榜冲到 1476，国内第一，宣称在多项基准上超越 GPT-5.5 与 DeepSeek-V4-Pro。参数面被进一步收紧 —— 总参数压到前代 5.0 的约 1/3、激活参数压到约 1/2（5.0 体量为 2.4 万亿）。已在千帆模型广场与文心一言官网同步开放。把它和昨天 DeepSeek 永久价、与今天 Anthropic 的 $965B 估值放在一张表上 —— 海外靠估值讲资本故事、国内靠「同等效果下的成本曲线」讲产品故事，两条路径正在同一个夏天对撞。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>量子位 / 百度文心 Blog</strong> · 2026.05.09</span>
+          <a class="read-more" href="https://www.qbitai.com/2026/05/414496.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🚀 港股倒计时 · 阶跃星辰</div>
+        <h3>阶跃星辰完成 $25 亿融资 · 6 月 30 日前递表港交所</h3>
+        <p>
+          5 月 8 日，阶跃星辰宣布完成近 $25 亿美元（约 170 亿元）新一轮融资，投资人包括华勤、龙旗、豪威、中兴等产业方与香港投资管理公司（HKIC）。同周完成红筹架构拆除与股改，已锁定 6 月 30 日前向港交所递表 18C 章、目标估值 $100 亿美元、年内完成挂牌。把这一节点放进与昨天的 Moonshot 港股 IPO 时间表对照看 —— 2025 年阶跃星辰收入约 5 亿元，2026 年预期翻倍到约 12 亿元；融资规模与营收基数之间的差，本质就是「上市窗口」的市价。一句话总结：5 个月烧 171 亿，烧的不是训练成本，是 IPO 倒计时上的赛点。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>财新 / 钛媒体</strong> · 2026.05.08</span>
+          <a class="read-more" href="https://m.caixin.com/m/2026-05-08/102442074.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-12">
+        <div class="story-tag">📄 arXiv · 2605.05440</div>
+        <h3>多代理系统的「授权传播」· 把身份治理写进基础设施层</h3>
+        <p>
+          5 月底 arXiv 2605.05440《Authorization Propagation in Multi-Agent AI Systems: Identity Governance as Infrastructure》提出：当代理之间互相调用、互相代办时，原本静态的「人 → 系统」权限模型会塌陷，必须把「身份治理」当作基础设施层来做。论文把问题拆成三块 —— 传递式委托（A 委托 B 之后 B 又委托 C，授权链如何不失真）、聚合推断（多个代理同时拉一份数据，原始 token 权限如何回算）、时间有效性（代理任务跨小时甚至跨天时，旧令牌如何撤回与续约）。读法上 —— 把它跟本周 KPMG「276,000 人桌面跑 Claude」与 Anthropic Managed Agents 的多代理编排放在一起，这篇就是给企业级代理上量补一道法理：当代理跑得久、跑得多、跑进客户数据，治理不能再事后追加。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>arXiv 2605.05440</strong> · 2026.05</span>
+          <a class="read-more" href="https://arxiv.org/abs/2605.05440" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-mark">信号 <span class="accent">/</span> Signal</div>
+    <div class="divider"></div>
+    <p>第 021 期 · 2026 年 5 月 29 日 · 周五</p>
+    <p style="margin-top:8px;">本期收录 4.24 — 5.28 共 9 条 AI 相关动态</p>
+  </div>
+</footer>
+
+</body>
+</html>
