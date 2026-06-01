@@ -2,6 +2,46 @@
   "_comment": "信号/Signal AI 日报清单 · 每天只需要在 issues 数组顶部插入一项新的对象。最新的在最上面。",
   "issues": [
     {
+      "issue": "022",
+      "date": "2026-06-01",
+      "weekday": "周一",
+      "weekdayEn": "Monday",
+      "type": "daily",
+      "file": "ai_daily_2026_06_01.html",
+      "stories": [
+        {
+          "tag": "💰 头条 · COGNITION × DEVIN",
+          "headline": "Cognition 完成 $10 亿融资 · 投后 $260 亿 · Devin 自写 90% 代码",
+          "summary": "5 月 27 日，做出自主软件工程师 Devin 的 Cognition 完成超 $10 亿融资，投前 $250 亿、投后 $260 亿 —— 距 8 个月前 $102 亿那轮翻 2.5 倍。Lux Capital、General Catalyst、8VC 领投，Founders Fund、Ribbit 等加注。真正的故事在两个数字：Devin 年化营收已冲到 $4.92 亿，企业用量连 6 个月环比 +50%；客户含奔驰、NASA、高盛。而 Cognition 自家代码库，如今超 90% 由 Devin 自己写出。当 AI 写的代码养出更强的 AI、再接更多合同回头撑估值，投资人买的不再是软件，是一条自我繁殖的复利曲线。",
+          "source": "TechCrunch / Bloomberg"
+        },
+        {
+          "tag": "🟦 前沿更新 · GOOGLE I/O 2026",
+          "headline": "Gemini 3.5 Flash 价格腰斩 · Omni 多模态 · Spark 代理 · Gemma 4 开源",
+          "summary": "5 月 19 日 Google I/O，谷歌战线铺满：Gemini 3.5 Flash 以同级前沿「一半、个别近三分之一」的价格上桌，把「够用且便宜」做成默认；Gemini Omni 是新多模态家族，可从图像/音频/视频/文本任意组合生成与编辑视频；Gemini Spark 是塞进 Gemini App 的通用代理，能跨应用推理。更关键的是 Gemma 4 —— E2B/E4B/26B MoE/31B Dense 四个开源模型，专为推理与代理而造。潜台词清楚：当 OpenAI、Anthropic 把估值推上天，谷歌选择从「价格」与「开源」两端往下压，把前沿做成基础设施而非奢侈品。",
+          "source": "CNBC / Google DeepMind"
+        },
+        {
+          "tag": "🇨🇳 头条 · DEEPSEEK",
+          "headline": "DeepSeek 首轮融资约 500 亿 · 梁文锋自掏 200 亿 · V4.1 定档 6 月",
+          "summary": "沉默近五个月后，DeepSeek 把动作做满：据多方报道完成创纪录首轮融资约 500 亿元，估值在 4–5 月三周内从约 $100 亿飙到约 $500 亿、涨超 400%；大基金在洽谈入场，腾讯、阿里亦在桌上，梁文锋个人出资约 200 亿元领投。资金约六成砸算力采购、推进华为昇腾等国产芯片深度适配，下一代 V4.1 定档 6 月。海外 Cognition 用 ARR 讲复利、Google 用降价讲普及，DeepSeek 走第三条路 —— 用「国产算力 + 极致成本」叙事把效率公司顶到准头部估值。问题随之而来：融资追上一线、营收基数仍在路上，500 亿买的是技术，还是一张「6 月必须交卷」的门票。",
+          "source": "量子位 / 证券时报"
+        },
+        {
+          "tag": "📿 硬件新形态 · META",
+          "headline": "Meta 造 AI 吊坠 · 推「Wearables for Work」· H2 目标出货 1000 万台",
+          "summary": "5 月 30 日，据 The Information 看到的内部备忘录，Meta 正在研发一款 AI 吊坠、计划明年起测试，大概率脱胎于 2025 年底收购的 AI 设备公司 Limitless —— 那款吊坠可别在衣领或当项链戴，全天记录对话、自动转写、把日常交谈变成可检索的「记忆」。备忘录还透露 Meta 要扩充 AI 眼镜线、推出企业订阅「Wearables for Work」，并把 2026 下半年可穿戴出货目标定在 1000 万台。背景是 Reality Labs 一季度亏掉 $40 亿。当模型够强够便宜，下一场竞争就从「云里跑什么」挪到「身上戴什么」。",
+          "source": "The Information / TechCrunch"
+        },
+        {
+          "tag": "⭐ 开源现象 · OPENCLAW",
+          "headline": "OpenClaw 破 30.2 万星 · GitHub 史上最快 · 本地代理会自写技能",
+          "summary": "5 月中，开源项目 OpenClaw（前身 Clawdbot）以超过 302,000 星成为 GitHub 有史以来增长最快的项目。它是完全跑在本地设备上的个人 AI 助手，能把模型接进 WhatsApp、Signal、iMessage 等 50 多个集成；最大卖点是「会自己写新技能」、无须手写代码就能扩展能力。和同周 Gemma 4 开源、Open WebUI 与 Ollama 的本地推理潮放一起看，2026 年开源侧主线已清楚：不是单纯追参数，而是另辟「本地 + 私有 + 能动手」一条路。云端在卷估值，桌面这股力量在卷「归属感」—— 模型在谁机器上跑、数据在谁手里，正成为和「谁更强」同等重要的问题。",
+          "source": "OSSInsight / devFlokers"
+        }
+      ]
+    },
+    {
       "issue": "021",
       "date": "2026-05-29",
       "weekday": "周五",

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 · 2026.06.01</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=JetBrains+Mono:wght@400;500;700&family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0d0b; --ink-2: #161410; --paper: #f4ecdb; --paper-2: #e8dfc9;
+    --muted: #8a8275; --rule: #2a2620; --signal: #ff4d1f; --signal-2: #ffb454; --tan: #c9a679;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink); color: var(--paper);
+    font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
+    font-weight: 300; line-height: 1.65; letter-spacing: 0.01em; overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255, 77, 31, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 90%, rgba(201, 166, 121, 0.035) 0%, transparent 50%);
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .masthead { border-bottom: 1px solid var(--rule); padding: 32px 0 24px; position: relative; }
+  .masthead-grid { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 32px; }
+  .edition { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .edition strong { color: var(--paper); font-weight: 500; }
+  .logo { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 38px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; text-align: center; font-variation-settings: "opsz" 144; }
+  .logo .accent { color: var(--signal); font-style: italic; font-weight: 600; }
+  .weather { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-align: right; line-height: 1.7; }
+  .weather .pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--signal); margin-right: 6px; animation: pulse 2s infinite; vertical-align: middle; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 77, 31, 0.5); }
+    50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(255, 77, 31, 0); }
+  }
+  .hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule); position: relative; }
+  .hero-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal); }
+  .hero-meta::before { content: ''; width: 40px; height: 1px; background: var(--signal); }
+  .hero h1 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: clamp(48px, 8vw, 96px); font-weight: 400; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 32px; font-variation-settings: "opsz" 144, "SOFT" 50; }
+  .hero h1 em { font-style: italic; font-weight: 600; color: var(--signal-2); }
+  .hero-lede { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.5; color: var(--paper-2); max-width: 680px; font-weight: 400; }
+  .date-block { position: absolute; top: 80px; right: 32px; text-align: right; font-family: 'JetBrains Mono', monospace; }
+  .date-block .day { font-family: 'Fraunces', serif; font-size: 120px; font-weight: 800; line-height: 0.9; color: var(--paper); font-variation-settings: "opsz" 144; letter-spacing: -0.05em; }
+  .date-block .month { font-size: 12px; letter-spacing: 0.2em; color: var(--muted); margin-top: 8px; }
+  .ticker { background: var(--ink-2); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); overflow: hidden; padding: 14px 0; position: relative; }
+  .ticker-track { display: flex; gap: 48px; white-space: nowrap; animation: scroll 60s linear infinite; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.05em; color: var(--paper-2); }
+  .ticker-track span { display: inline-flex; align-items: center; gap: 12px; }
+  .ticker-track .dot { color: var(--signal); font-size: 8px; }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .section { padding: 80px 0 40px; border-bottom: 1px solid var(--rule); }
+  .section-head { display: grid; grid-template-columns: 280px 1fr; gap: 48px; margin-bottom: 48px; align-items: start; }
+  .section-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--signal); margin-bottom: 12px; }
+  .section-title { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 56px; font-weight: 400; line-height: 0.95; letter-spacing: -0.03em; font-variation-settings: "opsz" 144; }
+  .section-title em { font-style: italic; color: var(--tan); font-weight: 600; }
+  .section-intro { font-family: 'Fraunces', serif; font-size: 17px; line-height: 1.6; color: var(--muted); padding-top: 16px; border-top: 1px solid var(--rule); }
+  .stories { display: grid; grid-template-columns: repeat(12, 1fr); gap: 32px; }
+  .story { grid-column: span 6; padding: 28px; background: linear-gradient(180deg, rgba(255,255,255,0.015) 0%, transparent 100%); border: 1px solid var(--rule); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; }
+  .story::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 1px; background: var(--signal); transition: width 0.6s ease; }
+  .story:hover { background: linear-gradient(180deg, rgba(255, 77, 31, 0.04) 0%, transparent 100%); border-color: rgba(255, 77, 31, 0.3); transform: translateY(-2px); }
+  .story:hover::before { width: 100%; }
+  .story.feature { grid-column: span 12; padding: 48px; background: linear-gradient(135deg, rgba(255, 77, 31, 0.06) 0%, rgba(201, 166, 121, 0.02) 100%); border-color: rgba(255, 77, 31, 0.25); }
+  .story.feature::after { content: 'FEATURED'; position: absolute; top: 24px; right: 24px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--signal); border: 1px solid var(--signal); padding: 4px 10px; }
+  .story-tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: var(--signal); margin-bottom: 16px; text-transform: uppercase; }
+  .story h3 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 26px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 16px; color: var(--paper); font-variation-settings: "opsz" 144; }
+  .story.feature h3 { font-size: 42px; line-height: 1.05; max-width: 90%; }
+  .story p { font-size: 15px; line-height: 1.7; color: var(--paper-2); margin-bottom: 20px; font-weight: 300; }
+  .story.feature p { font-family: 'Fraunces', serif; font-size: 19px; max-width: 720px; }
+  .story-meta { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 20px; border-top: 1px solid var(--rule); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.05em; }
+  .source { color: var(--muted); }
+  .source strong { color: var(--paper); font-weight: 500; }
+  .read-more { color: var(--signal); text-decoration: none; border: 1px solid var(--rule); padding: 6px 12px; transition: all 0.3s; white-space: nowrap; }
+  .read-more:hover { background: var(--signal); color: var(--ink); border-color: var(--signal); }
+  .story.span-4 { grid-column: span 4; }
+  .story.span-8 { grid-column: span 8; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--ink-2); }
+  .stat { padding: 40px 32px; border-right: 1px solid var(--rule); }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-family: 'Fraunces', serif; font-size: 56px; font-weight: 800; line-height: 1; color: var(--signal-2); letter-spacing: -0.04em; margin-bottom: 8px; font-variation-settings: "opsz" 144; }
+  .stat-num .unit { font-size: 22px; color: var(--paper); font-weight: 400; margin-left: 4px; }
+  .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; line-height: 1.4; }
+  .footer { padding: 80px 0 60px; text-align: center; border-top: 1px solid var(--rule); margin-top: 40px; }
+  .footer-mark { font-family: 'Fraunces', serif; font-style: italic; font-size: 28px; color: var(--paper); margin-bottom: 16px; font-variation-settings: "opsz" 144; }
+  .footer-mark .accent { color: var(--signal); }
+  .footer p { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+  .footer .divider { width: 60px; height: 1px; background: var(--signal); margin: 24px auto; }
+  /* ===== 平板 / 小笔记本 ===== */
+  @media (max-width: 900px) {
+    .wrap { padding: 0 20px; }
+    .masthead { padding: 24px 0 20px; }
+    .masthead-grid { grid-template-columns: 1fr; gap: 14px; text-align: center; }
+    .weather { text-align: center; }
+    .logo { font-size: 34px; }
+    .hero { padding: 44px 0 36px; }
+    .hero-meta { margin-bottom: 24px; }
+    .hero h1 { font-size: 42px; line-height: 1.05; margin-bottom: 24px; }
+    .hero-lede { font-size: 17px; }
+    .date-block { position: static; text-align: left; margin-top: 24px; }
+    .date-block .day { font-size: 72px; }
+    .section { padding: 56px 0 32px; }
+    .section-head { grid-template-columns: 1fr; gap: 14px; margin-bottom: 36px; }
+    .section-title { font-size: 36px; }
+    .stories { gap: 20px; }
+    .story, .story.feature { grid-column: span 12 !important; padding: 22px; }
+    .story.feature { padding: 26px; }
+    .story.feature::after { top: 16px; right: 16px; }
+    .story h3 { font-size: 22px; }
+    .story.feature h3 { font-size: 26px; max-width: 100%; }
+    .story p { font-size: 14.5px; }
+    .story.feature p { font-size: 16.5px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat { border-right: none; border-bottom: 1px solid var(--rule); padding: 26px 18px; }
+    .stat-num { font-size: 40px; }
+    .stat:nth-child(odd) { border-right: 1px solid var(--rule); }
+    .ticker-track { gap: 32px; font-size: 11px; }
+  }
+
+  /* ===== 手机 ===== */
+  @media (max-width: 600px) {
+    .wrap { padding: 0 16px; }
+    .logo { font-size: 28px; }
+    .edition, .weather { font-size: 10px; letter-spacing: 0.12em; }
+    .hero { padding: 32px 0 28px; }
+    .hero-meta { margin-bottom: 20px; font-size: 10px; }
+    .hero h1 { font-size: 32px; line-height: 1.08; margin-bottom: 20px; }
+    .hero-lede { font-size: 15.5px; line-height: 1.6; }
+    .date-block { margin-top: 20px; }
+    .date-block .day { font-size: 56px; }
+    .date-block .month { font-size: 10px; }
+    .section { padding: 44px 0 24px; }
+    .section-head { margin-bottom: 28px; }
+    .section-title { font-size: 28px; }
+    .section-num { font-size: 10px; }
+    .section-intro { font-size: 15px; line-height: 1.55; padding-top: 14px; }
+    .stories { gap: 16px; }
+    .story, .story.feature { padding: 20px; }
+    .story-tag { font-size: 9.5px; margin-bottom: 12px; }
+    .story h3 { font-size: 20px; margin-bottom: 12px; }
+    .story.feature h3 { font-size: 22px; }
+    .story p { font-size: 14px; line-height: 1.65; }
+    .story.feature p { font-size: 15px; }
+    .story-meta { flex-direction: column; align-items: flex-start; gap: 10px; padding-top: 14px; font-size: 10px; }
+    .source { line-height: 1.45; }
+    .read-more { font-size: 10px; padding: 5px 10px; }
+    .stat { padding: 22px 16px; }
+    .stat-num { font-size: 36px; }
+    .stat-num .unit { font-size: 15px; }
+    .stat-label { font-size: 10px; line-height: 1.35; }
+    .ticker-track { gap: 24px; font-size: 10.5px; animation-duration: 45s; }
+    .footer { padding: 56px 0 40px; }
+    .footer-mark { font-size: 24px; }
+  }
+
+  /* ===== 窄屏手机 ===== */
+  @media (max-width: 420px) {
+    .wrap { padding: 0 14px; }
+    .hero h1 { font-size: 28px; }
+    .hero-lede { font-size: 15px; }
+    .section-title { font-size: 24px; }
+    .stats { grid-template-columns: 1fr; }
+    .stat { border-right: none !important; padding: 20px 14px; }
+    .story, .story.feature { padding: 18px; }
+    .story h3, .story.feature h3 { font-size: 19px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-grid">
+      <div class="edition">VOL. <strong>I</strong> · NO. <strong>022</strong></div>
+      <div class="logo">信号 <span class="accent">/ Signal</span></div>
+      <div class="weather"><span class="pulse"></span>LIVE · 01 JUN 2026<br>晴转多云 · 洛杉矶 · 23°C</div>
+    </div>
+  </div>
+</header>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span><span class="dot">●</span> Cognition $10 亿融资 · 投后 $260 亿 · Devin 写掉自家 90% 代码</span>
+    <span><span class="dot">●</span> Devin 年化营收 $4.92 亿 · 企业用量连 6 个月环比 +50%</span>
+    <span><span class="dot">●</span> Fireworks AI 洽谈新一轮 · 估值瞄准 $150 亿</span>
+    <span><span class="dot">●</span> Google I/O · Gemini 3.5 Flash 价格腰斩 · Omni 多模态 · Spark 代理</span>
+    <span><span class="dot">●</span> Gemma 4 开源四件套 · E2B/E4B/26B MoE/31B Dense</span>
+    <span><span class="dot">●</span> OpenClaw 破 30.2 万星 · GitHub 史上最快 · 本地代理会自写技能</span>
+    <span><span class="dot">●</span> DeepSeek 首轮融资 500 亿 · 梁文锋自掏 200 亿 · V4.1 定档 6 月</span>
+    <span><span class="dot">●</span> 月之暗面美团龙珠领投 · 半年累计 $39 亿 · 估值破 $200 亿</span>
+    <span><span class="dot">●</span> Meta 造 AI 吊坠 · Wearables for Work · H2 目标出货 1000 万台</span>
+    <span><span class="dot">●</span> arXiv · Ares 自适应推理 · 给代理「按需思考」省算力</span>
+    <span><span class="dot">●</span> Cognition $10 亿融资 · 投后 $260 亿 · Devin 写掉自家 90% 代码</span>
+    <span><span class="dot">●</span> Devin 年化营收 $4.92 亿 · 企业用量连 6 个月环比 +50%</span>
+    <span><span class="dot">●</span> Fireworks AI 洽谈新一轮 · 估值瞄准 $150 亿</span>
+    <span><span class="dot">●</span> Google I/O · Gemini 3.5 Flash 价格腰斩 · Omni 多模态 · Spark 代理</span>
+    <span><span class="dot">●</span> Gemma 4 开源四件套 · E2B/E4B/26B MoE/31B Dense</span>
+    <span><span class="dot">●</span> OpenClaw 破 30.2 万星 · GitHub 史上最快 · 本地代理会自写技能</span>
+    <span><span class="dot">●</span> DeepSeek 首轮融资 500 亿 · 梁文锋自掏 200 亿 · V4.1 定档 6 月</span>
+    <span><span class="dot">●</span> 月之暗面美团龙珠领投 · 半年累计 $39 亿 · 估值破 $200 亿</span>
+    <span><span class="dot">●</span> Meta 造 AI 吊坠 · Wearables for Work · H2 目标出货 1000 万台</span>
+    <span><span class="dot">●</span> arXiv · Ares 自适应推理 · 给代理「按需思考」省算力</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-meta">今日要闻 · TODAY'S BRIEFING</div>
+    <h1>$260 亿。<br>写代码的 AI，<em>开始<br>给自己估值</em>。</h1>
+    <p class="hero-lede">
+      5 月 27 日，做出自主软件工程师 Devin 的 Cognition 宣布完成超 $10 亿融资，投后估值 $260 亿 —— 距 8 个月前 $102 亿的上一轮，翻了 2.5 倍。Lux Capital、General Catalyst、8VC 联合领投，Founders Fund、Ribbit 等入场。真正让人停顿的不是估值，是两个数字：Devin 的年化营收已经冲到 $4.92 亿、企业用量连续 6 个月环比 +50%；而 Cognition 自家代码，如今 90% 由 Devin 自己写。当「写代码的 AI」开始给自己写代码、给自己赚营收、给自己撑估值，资本市场要回答的题就变了：你买的到底是一家软件公司，还是一台会自我繁殖的生产力机器。
+    </p>
+    <div class="date-block"><div class="day">01</div><div class="month">JUN · MMXXVI</div></div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">260<span class="unit">亿$</span></div><div class="stat-label">Cognition 投后估值<br>5 月 27 日 · 8 个月前还是 $102 亿</div></div>
+  <div class="stat"><div class="stat-num">4.92<span class="unit">亿$</span></div><div class="stat-label">Devin 年化营收 ARR<br>企业用量连 6 个月环比 +50%</div></div>
+  <div class="stat"><div class="stat-num">30.2<span class="unit">万★</span></div><div class="stat-label">OpenClaw GitHub 星标<br>史上最快破纪录的开源项目</div></div>
+  <div class="stat"><div class="stat-num">1000<span class="unit">万台</span></div><div class="stat-label">Meta 可穿戴目标出货<br>2026 下半年 · 含 AI 吊坠与新眼镜</div></div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 01</div><h2 class="section-title">会写代码的 <em>钱</em></h2></div>
+      <p class="section-intro">这一周资本集中砸向「会动手的 AI」。Cognition 把估值锚到 $260 亿，靠的不是 demo 而是 $4.92 亿 ARR；Fireworks 在底座侧接着加注 —— 一个卖代理、一个卖算力，coding 这条赛道的台前与台后同时涨价。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">💰 头条 · COGNITION × DEVIN</div>
+        <h3>Cognition 完成 $10 亿融资 · 投后 $260 亿 · Devin 自写 90% 代码</h3>
+        <p>
+          5 月 27 日，做出自主软件工程师 Devin 的 Cognition 宣布完成超 $10 亿融资，投前估值 $250 亿、投后 $260 亿 —— 距 8 个月前那轮 $4 亿融资、$102 亿投后估值，足足翻了 2.5 倍。本轮由 Lux Capital、General Catalyst、8VC 联合领投，老股东 Elad Gil、Founders Fund、Soma Capital 加注，Ribbit、Atreides、Layer Global 等新面孔入场。真正的故事在两个数字里：Devin 的年化营收已冲到 $4.92 亿，过去 6 个月企业用量连续环比 +50%；客户名单上挂着奔驰、NASA、高盛、桑坦德。最让人停顿的一笔 —— Cognition 自家代码库，如今超过 90% 由 Devin 自己写出。把它跟去年吞下 Windsurf 的动作连起来看：Cognition 不是在卖一个「编程助手」，是在证明一条递归曲线 —— AI 写的代码养出更强的 AI、更强的 AI 接更多企业合同、合同又回头喂养估值。当生产力工具开始自我繁殖，投资人买的就不再是软件，是复利。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>TechCrunch / Bloomberg</strong> · 2026.05.27</span>
+          <a class="read-more" href="https://techcrunch.com/2026/05/27/ai-coding-startup-cognition-raises-1b-at-25b-pre-money-valuation/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-12">
+        <div class="story-tag">🔥 推理底座 · FIREWORKS AI</div>
+        <h3>Fireworks AI 洽谈新一轮 · 估值瞄准 $150 亿</h3>
+        <p>
+          就在 Cognition 官宣同一天（5 月 27 日），帮企业跑开源与定制模型的推理平台 Fireworks AI 被曝正在洽谈新一轮融资，估值瞄向 $150 亿。两条新闻放在一张桌上读，刚好拼出 coding 赛道的上下两层 —— Cognition 在台前卖「会写代码的代理」，Fireworks 在台后卖「让这些代理跑得起来的推理算力」。代理用得越凶，底座的 token 消耗就越大；当 Devin 们的企业用量连月翻倍，承接这股流量的推理层自然跟着水涨船高。这一周资本没有押单点产品，而是顺着「代理 → 推理 → 算力」这条价值链，一层一层地把筹码加满。对照本期 Cognition 的 $260 亿，Fireworks 的 $150 亿是同一个故事的另一面：买代理的人，最终都得为它背后的算力买单。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Bloomberg</strong> · 2026.05.27</span>
+          <a class="read-more" href="https://www.bloomberg.com/news/articles/2026-05-27/fireworks-ai-in-talks-for-funding-at-15-billion-valuation" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 02</div><h2 class="section-title">前沿降价，<em>开源反扑</em></h2></div>
+      <p class="section-intro">闭源在比「便宜」，开源在比「自由」。Google I/O 把 Gemini 3.5 Flash 价格腰斩、还甩出开源的 Gemma 4；与此同时，一个叫 OpenClaw 的本地代理用 30 万星证明：用户要的不只是更强的云端模型，还有一个跑在自己机器上、能自己写技能的助手。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">🟦 前沿更新 · GOOGLE I/O 2026</div>
+        <h3>Gemini 3.5 Flash 价格腰斩 · Omni 多模态 · Spark 代理 · Gemma 4 开源</h3>
+        <p>
+          5 月 19 日 Google I/O，谷歌一口气把战线铺满：Gemini 3.5 Flash 以同级前沿模型「一半、个别场景近三分之一」的价格上桌，把「够用且便宜」这件事直接做成默认项；Gemini Omni 是新的多模态生成家族，可从图像、音频、视频、文本的任意组合里生成与编辑视频；Gemini Spark 则是塞进 Gemini App 的通用代理，能跨用户连接的各个应用做跨信息推理。更关键的一手是 Gemma 4 —— E2B、E4B、26B MoE、31B Dense 四个开源模型，专为推理与代理工作流而造。谷歌这套组合拳的潜台词很清楚：在 OpenAI 与 Anthropic 把估值推到天上的同时，它选择从「价格」和「开源」两端往下压成本，把前沿能力做成基础设施，而不是奢侈品。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>CNBC / Google DeepMind</strong> · 2026.05.19</span>
+          <a class="read-more" href="https://www.cnbc.com/2026/05/19/google-ai-ultra-gemini-spark-omni.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">⭐ 开源现象 · OPENCLAW</div>
+        <h3>OpenClaw 破 30.2 万星 · GitHub 史上最快 · 本地代理会自写技能</h3>
+        <p>
+          5 月中，开源项目 OpenClaw（前身 Clawdbot）以超过 302,000 星，成为 GitHub 有史以来增长最快的项目。它是一个完全跑在本地设备上的个人 AI 助手，能把模型接进 WhatsApp、Signal、iMessage 等 50 多个集成；最大卖点是「会自己写新技能」—— 无须用户手写代码就能扩展自身能力。把它和同一周 Gemma 4 的开源、Open WebUI 与 Ollama 的本地推理潮放在一起看，2026 年开源侧的主线已经很清楚：不是单纯追赶闭源的参数，而是另辟一条「本地 + 私有 + 能动手」的路。当云端前沿在卷估值，桌面上的这股力量在卷「归属感」—— 模型在谁的机器上跑、数据在谁手里、技能由谁定义，正在成为和「谁更强」同等重要的问题。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>OSSInsight / devFlokers</strong> · 2026.05</span>
+          <a class="read-more" href="https://ossinsight.io/trending/ai" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 03</div><h2 class="section-title">国产抢 <em>6 月发令枪</em></h2></div>
+      <p class="section-intro">海外用估值定锚，国内用融资 + 发布表抢节奏。沉默五个月的 DeepSeek 一把拉出 500 亿首轮、V4.1 定档 6 月；月之暗面靠美团续命冲 SOTA —— 两家一开源一闭源，把「6 月」做成了国产大模型的共同发令枪。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">🇨🇳 头条 · DEEPSEEK</div>
+        <h3>DeepSeek 首轮融资约 500 亿 · 梁文锋自掏 200 亿 · V4.1 定档 6 月</h3>
+        <p>
+          沉默近五个月后，DeepSeek 一把把动作做满：据多方报道，公司完成创纪录的首轮融资约 500 亿元，估值在 4–5 月短短三周内从约 $100 亿飙到约 $500 亿、涨幅超 400%；国家集成电路产业投资基金在洽谈入场，腾讯、阿里亦在桌上，创始人梁文锋个人出资约 200 亿元领投。资金去向写得很直白 —— 约六成砸算力采购、推进华为昇腾等国产芯片的深度适配，其余投向模型研发，下一代 V4.1 定档 6 月发布。把这条放进本期的版图：海外这边 Cognition 用 ARR 讲复利、Google 用降价讲普及，DeepSeek 走的是第三条路 —— 用「国产算力 + 极致成本」的叙事，把一家以效率闻名的公司，硬生生顶到了准头部估值的位置。问题也随之而来：当融资规模追上一线、营收基数却仍在路上，500 亿买的是技术，还是一张「6 月必须交卷」的赛点门票。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>量子位 / 证券时报</strong> · 2026.05</span>
+          <a class="read-more" href="https://www.qbitai.com/2026/05/414432.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-12">
+        <div class="story-tag">🌙 资本续命 · 月之暗面 KIMI</div>
+        <h3>月之暗面新一轮美团龙珠领投 · 半年累计 $39 亿 · 估值破 $200 亿</h3>
+        <p>
+          与 DeepSeek 隔空对垒的，是月之暗面。最新一轮由美团龙珠领投，公司半年内累计融资已超 $39 亿、最新估值越过 $200 亿，资金用于巩固模型 SOTA、算力储备与人才激励三件事。把它跟 DeepSeek 的 500 亿首轮并排看，国产第一梯队的「终局之战」轮廓越来越清楚 —— 一边是以开源 + 效率著称、靠国产算力适配讲故事的 DeepSeek，一边是靠互联网巨头持续输血、死守闭源 SOTA 高地的月之暗面；同时智谱的模型 API ARR 在 2026 年 3 月已达 17 亿元、同比增 60 倍，MiniMax 营收也在快速爬坡。海外靠估值排座次，国内这一仗拼的是「谁能在 6 月的发布窗口里，既拿得出模型、又撑得住烧钱表」。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>证券时报 / 36氪</strong> · 2026.05</span>
+          <a class="read-more" href="https://www.stcn.com/article/detail/3897797.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 04</div><h2 class="section-title">AI 穿上身，<em>互联网换主</em></h2></div>
+      <p class="section-intro">模型之外，承载它的「壳」也在变。Meta 想把 AI 做成挂在胸口的吊坠、随身记下你的一天；与此同时，AWS 与 Cloudflare 正为「机器流量超过人」重建互联网；而 arXiv 的一篇论文则在追问：当代理无处不在，怎么让它们「按需思考」别烧光算力。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">📿 硬件新形态 · META</div>
+        <h3>Meta 造 AI 吊坠 · 推「Wearables for Work」· H2 目标出货 1000 万台</h3>
+        <p>
+          5 月 30 日，据 The Information 看到的内部备忘录，Meta 正在研发一款 AI 吊坠，计划明年起测试。它大概率脱胎于 2025 年底被 Meta 收入囊中的 AI 设备创业公司 Limitless —— 那款吊坠可别在衣领或当项链戴，全天记录对话、自动转写、总结会议、把日常交谈变成可检索的「记忆」。备忘录还透露 Meta 要扩充 AI 眼镜产品线、推出面向企业的订阅服务「Wearables for Work」，并把 2026 下半年的可穿戴出货目标定在 1000 万台。背景是 Reality Labs 仅一季度就亏掉 $40 亿，扎克伯格急需一个能把 AI「戴在身上」的爆款。当模型够强够便宜，下一场竞争就从「云里跑什么」挪到了「身上戴什么」。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>The Information / TechCrunch</strong> · 2026.05.30</span>
+          <a class="read-more" href="https://techcrunch.com/2026/05/30/meta-is-reportedly-developing-an-ai-pendant/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🌐 基础设施 · AWS × CLOUDFLARE</div>
+        <h3>互联网正在为机器重建 · 非人流量将于 2027 上半年超过人</h3>
+        <p>
+          5 月 28 日 TechCrunch 一篇深度梳理点出一个正在发生的换主：随着 AI 代理从实验走向生产，AWS、Cloudflare 等正在重做云基础设施，去迎接一个「机器生成流量主导、而非人类用户主导」的互联网。Cloudflare 高级产品经理 Lai Yi Ohlsen 给出时间点 —— 非人类流量将在 2027 年上半年的某个时刻超过人类流量。把它接到本期的主线上：Cognition 的 Devin 在连月翻倍地跑、Gemini Spark 这类代理开始跨应用自动办事、OpenClaw 在每台桌面上常驻 —— 这些代理每一次调用都在往网络里灌「非人请求」。验证码、限速、鉴权、计费这套为人类设计的旧规则正在失效，互联网的底层协议层，正悄悄从「服务人」改写成「服务代理」。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>TechCrunch</strong> · 2026.05.28</span>
+          <a class="read-more" href="https://techcrunch.com/2026/05/28/the-internet-is-being-rebuilt-for-machines/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-12">
+        <div class="story-tag">📄 arXiv · ARES</div>
+        <h3>Ares：给 LLM 代理装上「按需思考」的油门 · 自适应推理省算力</h3>
+        <p>
+          当代理跑得越来越多、越来越久，一个朴素的成本问题浮上来：是不是每一步都值得让模型「深思熟虑」？arXiv 论文《Ares: Adaptive Reasoning Effort Selection for Efficient LLM Agents》给出的答案是「按需分配」—— 它让代理在执行前先做环境分析与规划，但把「思考的深度」做成一个可自适应调节的旋钮：简单步骤浅推理快速过，复杂决策才展开长链思维，从而在不牺牲任务成功率的前提下压低推理开销。把它放进本期的算力账本里读，意味深长：上游 Cognition、Fireworks 在拼命扩推理产能，下游研究者却在想办法让每一次推理「别浪费 token」。前者是把蛋糕做大，后者是把蛋糕切得更省 —— 在「代理无处不在」成为现实之后，效率不再是论文里的边角料，而是决定谁能规模化盈利的硬指标。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>arXiv 2603.07915</strong> · 2026</span>
+          <a class="read-more" href="https://arxiv.org/abs/2603.07915" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-mark">信号 <span class="accent">/</span> Signal</div>
+    <div class="divider"></div>
+    <p>第 022 期 · 2026 年 6 月 1 日 · 周一</p>
+    <p style="margin-top:8px;">本期收录 5.19 — 5.30 共 9 条 AI 相关动态</p>
+  </div>
+</footer>
+
+</body>
+</html>
