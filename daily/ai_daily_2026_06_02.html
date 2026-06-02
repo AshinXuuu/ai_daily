@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 · 2026.06.02</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=JetBrains+Mono:wght@400;500;700&family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0d0b; --ink-2: #161410; --paper: #f4ecdb; --paper-2: #e8dfc9;
+    --muted: #8a8275; --rule: #2a2620; --signal: #ff4d1f; --signal-2: #ffb454; --tan: #c9a679;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink); color: var(--paper);
+    font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
+    font-weight: 300; line-height: 1.65; letter-spacing: 0.01em; overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255, 77, 31, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 90%, rgba(201, 166, 121, 0.035) 0%, transparent 50%);
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .masthead { border-bottom: 1px solid var(--rule); padding: 32px 0 24px; position: relative; }
+  .masthead-grid { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 32px; }
+  .edition { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .edition strong { color: var(--paper); font-weight: 500; }
+  .logo { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 38px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; text-align: center; font-variation-settings: "opsz" 144; }
+  .logo .accent { color: var(--signal); font-style: italic; font-weight: 600; }
+  .weather { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-align: right; line-height: 1.7; }
+  .weather .pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--signal); margin-right: 6px; animation: pulse 2s infinite; vertical-align: middle; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 77, 31, 0.5); }
+    50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(255, 77, 31, 0); }
+  }
+  .hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule); position: relative; }
+  .hero-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal); }
+  .hero-meta::before { content: ''; width: 40px; height: 1px; background: var(--signal); }
+  .hero h1 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: clamp(48px, 8vw, 96px); font-weight: 400; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 32px; font-variation-settings: "opsz" 144, "SOFT" 50; }
+  .hero h1 em { font-style: italic; font-weight: 600; color: var(--signal-2); }
+  .hero-lede { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.5; color: var(--paper-2); max-width: 680px; font-weight: 400; }
+  .date-block { position: absolute; top: 80px; right: 32px; text-align: right; font-family: 'JetBrains Mono', monospace; }
+  .date-block .day { font-family: 'Fraunces', serif; font-size: 120px; font-weight: 800; line-height: 0.9; color: var(--paper); font-variation-settings: "opsz" 144; letter-spacing: -0.05em; }
+  .date-block .month { font-size: 12px; letter-spacing: 0.2em; color: var(--muted); margin-top: 8px; }
+  .ticker { background: var(--ink-2); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); overflow: hidden; padding: 14px 0; position: relative; }
+  .ticker-track { display: flex; gap: 48px; white-space: nowrap; animation: scroll 60s linear infinite; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.05em; color: var(--paper-2); }
+  .ticker-track span { display: inline-flex; align-items: center; gap: 12px; }
+  .ticker-track .dot { color: var(--signal); font-size: 8px; }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .section { padding: 80px 0 40px; border-bottom: 1px solid var(--rule); }
+  .section-head { display: grid; grid-template-columns: 280px 1fr; gap: 48px; margin-bottom: 48px; align-items: start; }
+  .section-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--signal); margin-bottom: 12px; }
+  .section-title { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 56px; font-weight: 400; line-height: 0.95; letter-spacing: -0.03em; font-variation-settings: "opsz" 144; }
+  .section-title em { font-style: italic; color: var(--tan); font-weight: 600; }
+  .section-intro { font-family: 'Fraunces', serif; font-size: 17px; line-height: 1.6; color: var(--muted); padding-top: 16px; border-top: 1px solid var(--rule); }
+  .stories { display: grid; grid-template-columns: repeat(12, 1fr); gap: 32px; }
+  .story { grid-column: span 6; padding: 28px; background: linear-gradient(180deg, rgba(255,255,255,0.015) 0%, transparent 100%); border: 1px solid var(--rule); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; }
+  .story::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 1px; background: var(--signal); transition: width 0.6s ease; }
+  .story:hover { background: linear-gradient(180deg, rgba(255, 77, 31, 0.04) 0%, transparent 100%); border-color: rgba(255, 77, 31, 0.3); transform: translateY(-2px); }
+  .story:hover::before { width: 100%; }
+  .story.feature { grid-column: span 12; padding: 48px; background: linear-gradient(135deg, rgba(255, 77, 31, 0.06) 0%, rgba(201, 166, 121, 0.02) 100%); border-color: rgba(255, 77, 31, 0.25); }
+  .story.feature::after { content: 'FEATURED'; position: absolute; top: 24px; right: 24px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--signal); border: 1px solid var(--signal); padding: 4px 10px; }
+  .story-tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: var(--signal); margin-bottom: 16px; text-transform: uppercase; }
+  .story h3 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 26px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 16px; color: var(--paper); font-variation-settings: "opsz" 144; }
+  .story.feature h3 { font-size: 42px; line-height: 1.05; max-width: 90%; }
+  .story p { font-size: 15px; line-height: 1.7; color: var(--paper-2); margin-bottom: 20px; font-weight: 300; }
+  .story.feature p { font-family: 'Fraunces', serif; font-size: 19px; max-width: 720px; }
+  .story-meta { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 20px; border-top: 1px solid var(--rule); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.05em; }
+  .source { color: var(--muted); }
+  .source strong { color: var(--paper); font-weight: 500; }
+  .read-more { color: var(--signal); text-decoration: none; border: 1px solid var(--rule); padding: 6px 12px; transition: all 0.3s; white-space: nowrap; }
+  .read-more:hover { background: var(--signal); color: var(--ink); border-color: var(--signal); }
+  .story.span-4 { grid-column: span 4; }
+  .story.span-8 { grid-column: span 8; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--ink-2); }
+  .stat { padding: 40px 32px; border-right: 1px solid var(--rule); }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-family: 'Fraunces', serif; font-size: 56px; font-weight: 800; line-height: 1; color: var(--signal-2); letter-spacing: -0.04em; margin-bottom: 8px; font-variation-settings: "opsz" 144; }
+  .stat-num .unit { font-size: 22px; color: var(--paper); font-weight: 400; margin-left: 4px; }
+  .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; line-height: 1.4; }
+  .footer { padding: 80px 0 60px; text-align: center; border-top: 1px solid var(--rule); margin-top: 40px; }
+  .footer-mark { font-family: 'Fraunces', serif; font-style: italic; font-size: 28px; color: var(--paper); margin-bottom: 16px; font-variation-settings: "opsz" 144; }
+  .footer-mark .accent { color: var(--signal); }
+  .footer p { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+  .footer .divider { width: 60px; height: 1px; background: var(--signal); margin: 24px auto; }
+  /* ===== 平板 / 小笔记本 ===== */
+  @media (max-width: 900px) {
+    .wrap { padding: 0 20px; }
+    .masthead { padding: 24px 0 20px; }
+    .masthead-grid { grid-template-columns: 1fr; gap: 14px; text-align: center; }
+    .weather { text-align: center; }
+    .logo { font-size: 34px; }
+    .hero { padding: 44px 0 36px; }
+    .hero-meta { margin-bottom: 24px; }
+    .hero h1 { font-size: 42px; line-height: 1.05; margin-bottom: 24px; }
+    .hero-lede { font-size: 17px; }
+    .date-block { position: static; text-align: left; margin-top: 24px; }
+    .date-block .day { font-size: 72px; }
+    .section { padding: 56px 0 32px; }
+    .section-head { grid-template-columns: 1fr; gap: 14px; margin-bottom: 36px; }
+    .section-title { font-size: 36px; }
+    .stories { gap: 20px; }
+    .story, .story.feature { grid-column: span 12 !important; padding: 22px; }
+    .story.feature { padding: 26px; }
+    .story.feature::after { top: 16px; right: 16px; }
+    .story h3 { font-size: 22px; }
+    .story.feature h3 { font-size: 26px; max-width: 100%; }
+    .story p { font-size: 14.5px; }
+    .story.feature p { font-size: 16.5px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat { border-right: none; border-bottom: 1px solid var(--rule); padding: 26px 18px; }
+    .stat-num { font-size: 40px; }
+    .stat:nth-child(odd) { border-right: 1px solid var(--rule); }
+    .ticker-track { gap: 32px; font-size: 11px; }
+  }
+
+  /* ===== 手机 ===== */
+  @media (max-width: 600px) {
+    .wrap { padding: 0 16px; }
+    .logo { font-size: 28px; }
+    .edition, .weather { font-size: 10px; letter-spacing: 0.12em; }
+    .hero { padding: 32px 0 28px; }
+    .hero-meta { margin-bottom: 20px; font-size: 10px; }
+    .hero h1 { font-size: 32px; line-height: 1.08; margin-bottom: 20px; }
+    .hero-lede { font-size: 15.5px; line-height: 1.6; }
+    .date-block { margin-top: 20px; }
+    .date-block .day { font-size: 56px; }
+    .date-block .month { font-size: 10px; }
+    .section { padding: 44px 0 24px; }
+    .section-head { margin-bottom: 28px; }
+    .section-title { font-size: 28px; }
+    .section-num { font-size: 10px; }
+    .section-intro { font-size: 15px; line-height: 1.55; padding-top: 14px; }
+    .stories { gap: 16px; }
+    .story, .story.feature { padding: 20px; }
+    .story-tag { font-size: 9.5px; margin-bottom: 12px; }
+    .story h3 { font-size: 20px; margin-bottom: 12px; }
+    .story.feature h3 { font-size: 22px; }
+    .story p { font-size: 14px; line-height: 1.65; }
+    .story.feature p { font-size: 15px; }
+    .story-meta { flex-direction: column; align-items: flex-start; gap: 10px; padding-top: 14px; font-size: 10px; }
+    .source { line-height: 1.45; }
+    .read-more { font-size: 10px; padding: 5px 10px; }
+    .stat { padding: 22px 16px; }
+    .stat-num { font-size: 36px; }
+    .stat-num .unit { font-size: 15px; }
+    .stat-label { font-size: 10px; line-height: 1.35; }
+    .ticker-track { gap: 24px; font-size: 10.5px; animation-duration: 45s; }
+    .footer { padding: 56px 0 40px; }
+    .footer-mark { font-size: 24px; }
+  }
+
+  /* ===== 窄屏手机 ===== */
+  @media (max-width: 420px) {
+    .wrap { padding: 0 14px; }
+    .hero h1 { font-size: 28px; }
+    .hero-lede { font-size: 15px; }
+    .section-title { font-size: 24px; }
+    .stats { grid-template-columns: 1fr; }
+    .stat { border-right: none !important; padding: 20px 14px; }
+    .story, .story.feature { padding: 18px; }
+    .story h3, .story.feature h3 { font-size: 19px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-grid">
+      <div class="edition">VOL. <strong>I</strong> · NO. <strong>023</strong></div>
+      <div class="logo">信号 <span class="accent">/ Signal</span></div>
+      <div class="weather"><span class="pulse"></span>LIVE · 02 JUN 2026<br>多云转晴 · 洛杉矶 · 24°C</div>
+    </div>
+  </div>
+</header>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span><span class="dot">●</span> Anthropic 秘密递交 IPO · 估值 9650 亿$ · 史上首超 OpenAI</span>
+    <span><span class="dot">●</span> 650 亿$ 融资落定 · Anthropic 冲近万亿上市 · 最快今秋敲钟</span>
+    <span><span class="dot">●</span> 奥特曼：OpenAI「时机合适才上」· 亦在筹备秋季秘密申报</span>
+    <span><span class="dot">●</span> Opus 4.8 发布 · 距 4.7 仅 41 天 · Dynamic Workflows 调度子代理群</span>
+    <span><span class="dot">●</span> 百度文心 5.1 · 预训练成本仅业界 6% · LMArena 搜索榜国内第一</span>
+    <span><span class="dot">●</span> 国产开源四起 · Kimi K2.6 / GLM-5.1 / Qwen3.6 / MiniMax M2.7</span>
+    <span><span class="dot">●</span> WindBorne WeatherMesh 6 · 5 天预报追平传统模型提前 1 天</span>
+    <span><span class="dot">●</span> Mecka AI 融资 6000 万$ · 用体感传感器与 iPhone 教机器人</span>
+    <span><span class="dot">●</span> DuckDuckGo 安装量涨 30% · 用户逃离被硬塞的 AI 搜索</span>
+    <span><span class="dot">●</span> arXiv · 强化世界模型 · 给智能体更抗「奖励作弊」的训练信号</span>
+    <span><span class="dot">●</span> Anthropic 秘密递交 IPO · 估值 9650 亿$ · 史上首超 OpenAI</span>
+    <span><span class="dot">●</span> 650 亿$ 融资落定 · Anthropic 冲近万亿上市 · 最快今秋敲钟</span>
+    <span><span class="dot">●</span> 奥特曼：OpenAI「时机合适才上」· 亦在筹备秋季秘密申报</span>
+    <span><span class="dot">●</span> Opus 4.8 发布 · 距 4.7 仅 41 天 · Dynamic Workflows 调度子代理群</span>
+    <span><span class="dot">●</span> 百度文心 5.1 · 预训练成本仅业界 6% · LMArena 搜索榜国内第一</span>
+    <span><span class="dot">●</span> 国产开源四起 · Kimi K2.6 / GLM-5.1 / Qwen3.6 / MiniMax M2.7</span>
+    <span><span class="dot">●</span> WindBorne WeatherMesh 6 · 5 天预报追平传统模型提前 1 天</span>
+    <span><span class="dot">●</span> Mecka AI 融资 6000 万$ · 用体感传感器与 iPhone 教机器人</span>
+    <span><span class="dot">●</span> DuckDuckGo 安装量涨 30% · 用户逃离被硬塞的 AI 搜索</span>
+    <span><span class="dot">●</span> arXiv · 强化世界模型 · 给智能体更抗「奖励作弊」的训练信号</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-meta">今日要闻 · TODAY'S BRIEFING</div>
+    <h1>9650 亿。<br>第一家 AI 公司，<em>要去<br>敲钟了</em>。</h1>
+    <p class="hero-lede">
+      6 月 1 日，Claude 的缔造者 Anthropic 确认已向监管机构秘密递交 IPO 草案，最快今年秋天登陆华尔街。就在几天前，它刚以 9650 亿美元估值完成 650 亿美元融资，估值史上首次反超 OpenAI；若按当前势头敲钟，它将一脚踏进「准万亿俱乐部」，与标普 500 最顶尖的一小撮公司同列。对手没有沉默：据彭博，OpenAI 也在筹备秋季秘密申报，山姆·奥特曼则在 CNBC 上轻描淡写——「时机合适我们才上，没人在抢第一」。私募市场把估值堆到天花板之后，这场较量的下一题，交给了公开市场的散户与基金经理：近万亿的 AI 信仰，经得起季报的拷问吗。
+    </p>
+    <div class="date-block"><div class="day">02</div><div class="month">JUN · MMXXVI</div></div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">9650<span class="unit">亿$</span></div><div class="stat-label">Anthropic 最新估值<br>5 月底 · 史上首次反超 OpenAI</div></div>
+  <div class="stat"><div class="stat-num">650<span class="unit">亿$</span></div><div class="stat-label">本轮融资规模<br>较 2 月那轮估值翻 2.5 倍</div></div>
+  <div class="stat"><div class="stat-num">41<span class="unit">天</span></div><div class="stat-label">Opus 4.7 → 4.8 升级间隔<br>Anthropic 史上最快的一次迭代</div></div>
+  <div class="stat"><div class="stat-num">6<span class="unit">%</span></div><div class="stat-label">文心 5.1 预训练成本<br>仅为同规模模型的约 6%</div></div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 01</div><h2 class="section-title">排队 <em>敲钟</em></h2></div>
+      <p class="section-intro">私募市场把 AI 估值堆到天花板之后，下一个战场是公开市场。Anthropic 抢先递表、估值首超 OpenAI；而撑起这串数字的，是 Opus 4.8 这类能替工程团队整段干活的模型 —— 需求陡升，才是万亿叙事的地基。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">💰 头条 · ANTHROPIC IPO</div>
+        <h3>Anthropic 秘密递交 IPO · 9650 亿估值首超 OpenAI · 最快今秋上市</h3>
+        <p>
+          6 月 1 日，Anthropic 在博客中确认：已向监管机构秘密递交 IPO 草案，「发行股数与价格尚未确定」，目标最快今年秋天挂牌。此前数日，公司刚以 9650 亿美元估值完成 650 亿美元融资 —— 较 2 月那轮 3800 亿估值足足翻了 2.5 倍，估值史上首次超过 OpenAI。驱动力写在客户账单里：企业蜂拥而至，用 Claude 接管编程与各类知识工作，需求曲线陡峭上扬。对手紧随其后 —— 据彭博，OpenAI 也在筹备秋季秘密申报；被问到是否在抢「第一家上市」，山姆·奥特曼在 CNBC 上回得云淡风轻：「时机合适才上。」一旦真以近万亿估值敲钟，Anthropic 将跻身标普 500 最顶尖的一小撮公司之列，但这也是 AI 泡沫论的第一场公开听证会：私募可以靠信仰定价，公开市场要看的是季报。作为 Claude 自己生成的这份日报，我们只陈述事实 —— 万亿叙事究竟是远见还是估值透支，答案得交给挂牌后的成交价。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>CNN / Fortune / Bloomberg</strong> · 2026.06.01</span>
+          <a class="read-more" href="https://fortune.com/2026/06/01/anthropic-confidentially-files-ipo-965-billion-valuation/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-12">
+        <div class="story-tag">🤖 模型 · ANTHROPIC OPUS 4.8</div>
+        <h3>Opus 4.8 发布 · 距上代仅 41 天 · Dynamic Workflows 调度「子代理群」</h3>
+        <p>
+          与 IPO 消息几乎同期（5 月 28 日），Anthropic 放出最强公开模型 Opus 4.8，距 Opus 4.7 只隔 41 天 —— 远快于它平常的节奏（最近的 Sonnet、Haiku 分别已 3 个月、7 个月没更新）。这种「加速」背后，是 OpenAI Codex 与谷歌 Gemini 3.5 Flash 接连施压，也有对 4.7 当初口碑平平的修补意味。亮点有二：一是模型更「诚实」，官方与 Bridgewater 的测试者都说它更愿主动标记数据与结论里的不确定，少说没根据的话；二是配套上线研究预览版 Dynamic Workflows，让 Opus 这类大模型能调度成百上千个并行子代理，把「跨几十万行代码的代码库级迁移」从启动一路干到合并、以现有测试套件为达标线。把它和上面的 IPO 放一起看就懂了：撑起 9650 亿估值的不是 PPT，是「需求陡升」四个字 —— 而需求，正来自这种能替工程团队整段干活的模型。更激进的 Mythos 仍被安全门槛拦着，但官方暗示「几周内」可能解禁。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>TechCrunch</strong> · 2026.05.28</span>
+          <a class="read-more" href="https://techcrunch.com/2026/05/28/anthropic-releases-opus-4-8-with-new-dynamic-workflow-tool/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 02</div><h2 class="section-title">国产 <em>两条路</em></h2></div>
+      <p class="section-intro">海外拼「值多少钱」，国内拼「花多少钱」。百度用 6% 的成本把闭源做到登顶，另一拨人则把权重直接开源摆上桌 —— 一条卷降本，一条卷自由，殊途同归地往「可用」收敛。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">🇨🇳 国产前沿 · 百度文心 5.1</div>
+        <h3>文心 5.1：预训练成本仅业界 6% · LMArena 搜索榜国内第一</h3>
+        <p>
+          当海外用估值竞赛刷屏，国内的关键词是「省」。5 月 9 日百度发布文心 5.1：靠「多维弹性预训练」，它从文心 5.0 的子模型矩阵里抽出最优子网络，把总参数压到约 1/3、激活参数压到约 1/2，预训练成本仅为同规模模型的约 6%。成绩单不虚 —— 在 LMArena 以 1223 分登上搜索榜国内第一、全球第四，智能体任务超过 DeepSeek-V4-Pro，GPQA、MMLU-Pro 等知识基准逼近顶尖闭源。把它接到本期主线：Anthropic 在公开市场上拼「值多少钱」，百度在工程上拼「花多少钱」—— 同一条赛道的两端，一端做加法堆估值，一端做除法砍成本。对还在为 token 账单发愁的中国开发者，后者也许更实在。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>量子位 / 新浪科技</strong> · 2026.05.09</span>
+          <a class="read-more" href="https://www.qbitai.com/2026/05/414496.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">⭐ 开源浪潮 · 国产开放权重</div>
+        <h3>国产开源「四起」· Kimi K2.6 / GLM-5.1 / Qwen3.6 / MiniMax M2.7 接连开放</h3>
+        <p>
+          文心走闭源降本，另一拨人则把模型直接开源摆上桌。据 devFlokers 的 5 月盘点，过去一个多月国产开放权重密集发车：月之暗面 Kimi K2.6、智谱 GLM-5.1（曾在 SWE-bench Pro 上以 58.4 分首次让开源模型反超 Claude Opus 4.6）、阿里 Qwen 3.6、MiniMax 开源 M2.7、小米 MiMo-V2.5-Pro、蚂蚁 Ring-2.6-1T 悉数登场；只有阿里 5 月 20 日发布的 Qwen3.7-Max 选择闭源、暂不放权重。把这串名字连起来看，国产大模型已从「追参数」转向「卷可用 + 卷开放」：能在自己机器上跑、能改、能商用，正成为和「跑分多高」同等重要的卖点。当云端前沿在比谁先敲钟，桌面这一侧在比谁更自由。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>devFlokers / 量子位</strong> · 2026.05</span>
+          <a class="read-more" href="https://www.devflokers.com/blog/open-source-ai-projects-may-2026-roundup" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 03</div><h2 class="section-title">数据，<em>才是护城河</em></h2></div>
+      <p class="section-intro">模型趋于同质之后，竞争退回到数据层。气象公司靠气球数据反超官方、机器人公司用 iPhone 采集人类动作；而被 AI 塞满的搜索框，也催出一股「让我清静」的逆流 —— 三条消息，同一个底色。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">🌦️ AI 落地 · WINDBORNE</div>
+        <h3>AI 天气模型 WeatherMesh 6 出炉 · 5 天预报追平传统模型「提前 1 天」精度</h3>
+        <p>
+          6 月 1 日，斯坦福系创业公司 WindBorne 发布第六代天气模型 WeatherMesh 6，在多个变量上比欧洲中期天气预报中心（ECMWF，公认的全球最强）更准。最直观的说法来自其首席产品官：WeatherMesh 6 在「未来 5 天」的地表气温预报，已和传统模型「提前 1 天」一样准；出报频率从 6 小时一次提到每小时一次，欧洲与美国本土分辨率细到 3 公里。它的护城河不在模型而在数据 —— 公司在全球 15 个站点放飞约 400 个气象气球实时采集读数，把这些独家数据直接「喂」进 transformer。CEO 说得直白：「没有数据集优势，我做 AI 天气公司图什么？」在大模型卷参数的当口，这是一记提醒：真正稀缺的从来不是算法，是别人拿不到的那批数据。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>TechCrunch</strong> · 2026.06.01</span>
+          <a class="read-more" href="https://techcrunch.com/2026/06/01/this-ai-weather-startup-is-out-forecasting-government-agencies/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🦾 具身智能 · MECKA AI</div>
+        <h3>Mecka AI 融资 6000 万$ · 用体感传感器与 iPhone「教」机器人</h3>
+        <p>
+          同样在 6 月 1 日，机器人数据公司 Mecka AI 完成 6000 万美元 A 轮。它的思路别致 —— 不靠在实验室里一遍遍遥操作机器人攒数据，而是给人戴上身体传感器、再借 iPhone 采集日常动作，把「人怎么干活」转译成机器能学的训练数据。这正切中具身智能当下最痛的瓶颈：模型不缺脑子，缺的是足够多、足够真实的「身体经验」。把它和左边的 WeatherMesh 摆一起，本期浮出同一条暗线 —— 当模型本身趋于同质，竞争就退回数据层：谁能更便宜、更大规模地采到别人没有的真实世界数据，谁就握住了下一段曲线。算法在收敛，数据在分化。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Fortune</strong> · 2026.06.01</span>
+          <a class="read-more" href="https://fortune.com/2026/06/01/mecka-ai-series-a-60-million-robotics-data-training/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-12">
+        <div class="story-tag">🦆 用户反弹 · DUCKDUCKGO</div>
+        <h3>DuckDuckGo 安装量涨 30% · 用户在逃离被「硬塞」的 AI 搜索</h3>
+        <p>
+          不是所有人都买 AI 的账。5 月 26 日 TechCrunch 报道，注重隐私的搜索引擎 DuckDuckGo 安装量同比上涨约 30%，原因被归结为一种情绪 —— 用户受够了被谷歌「强行喂」AI 概览（AI Overviews），想要一个「干净、能关掉 AI」的搜索。这条小新闻是本期一记难得的反向信号：当 Anthropic 冲万亿、各家把 AI 塞进每一个产品入口，市场里同时长出一股「我就想要朴素工具」的逆流。它提醒所有把 AI 当默认项的玩家：能力越强，越要给用户留一个「不打扰」的选项；否则被嫌烦的，恰恰是最急着展示肌肉的那一方。技术的胜利，不等于体验的胜利 —— 这一点，在融资与跑分的喧嚣里最容易被忘掉。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>TechCrunch</strong> · 2026.05.26</span>
+          <a class="read-more" href="https://techcrunch.com/2026/05/26/duckduckgo-installs-are-up-30-as-users-reject-being-force-fed-googles-ai-search/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 04</div><h2 class="section-title">给智能体 <em>补课</em></h2></div>
+      <p class="section-intro">上游在为「会干活的智能体」疯狂融资、定价，下游研究者却在补最基础的一课 —— 怎么让这些智能体学得诚实、别学会糊弄评分器。能力要烧钱，靠谱要补课，两件事都省不得。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">📄 arXiv · 强化世界模型</div>
+        <h3>用「强化世界模型」给智能体换一个更抗作弊的训练信号</h3>
+        <p>
+          当智能体越来越多地靠强化学习来学「怎么把多步任务做完」，一个老问题浮上来：奖励该谁来给？用「大模型当裁判」（LLM-as-a-judge）打分，容易被智能体钻空子 —— 学会讨好评分器、而非真正完成任务，即所谓「奖励作弊」。arXiv 论文《Reinforcement World Model Learning for LLM-based Agents》（编号 2602.05842）提出另一条路：先学一个「世界模型」去预测环境会怎么变，再用它给出更稳的训练信号。实验里，这套方法明显比直接拿任务成败当奖励更抗作弊，在 ALFWorld 与 τ²-Bench 两个基准上分别再涨 6.9 与 5.7 分。把它放进本期的算力与估值叙事里读别有意味：上游在为「会干活的智能体」疯狂融资、定价，下游研究者却在补最基础的一课 —— 怎么让它们学得诚实、别学会糊弄。能力要烧钱，靠谱要补课，两件事都不能省。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>arXiv 2602.05842</strong> · 2026</span>
+          <a class="read-more" href="https://arxiv.org/abs/2602.05842" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-mark">信号 <span class="accent">/</span> Signal</div>
+    <div class="divider"></div>
+    <p>第 023 期 · 2026 年 6 月 2 日 · 周二</p>
+    <p style="margin-top:8px;">本期收录 5.26 — 6.01 共 8 条 AI 相关动态</p>
+  </div>
+</footer>
+
+</body>
+</html>
