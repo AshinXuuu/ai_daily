@@ -1,0 +1,40 @@
+{
+  "issue": "026",
+  "date": "2026-06-07",
+  "weekday": "周日",
+  "weekdayEn": "Sunday",
+  "type": "daily",
+  "file": "ai_daily_2026_06_07.html",
+  "stories": [
+    {
+      "tag": "💰 头条 · ANTHROPIC IPO",
+      "headline": "9650 亿估值的公司递表了 · Anthropic 机密提交 S-1，万亿敲钟成「基准情形」",
+      "summary": "6 月 1 日，Anthropic 向美国 SEC 机密递交 S-1 草案，正式按下上市时钟。撑起招股书的数字惊人：5 月营收 run-rate 约 470 亿美元，较去年同期约 100 亿翻近 5 倍；递表前刚完成的 650 亿美元 H 轮把投后估值推到 9650 亿，越过 OpenAI 三月底的 8520 亿，成为全球最贵私有 AI 公司。Fortune 称若市场配合，「万亿首秀」是基准情形。招股书还藏着一行注定被反复审视的成本：Anthropic 将在 2029 年 5 月前每月向 SpaceX 付 12.5 亿美元买算力，一年 150 亿全压单一供应商。OpenAI 也在筹备 IPO，2026 或同时迎来两场史上最大 AI 上市、争夺同一池机构资金——私募已把估值顶到天花板，资本下一程，是去公开市场为「最强」找一个能每天交易的价格。",
+      "source": "CNBC / Fortune / TechCrunch"
+    },
+    {
+      "tag": "🚀 资本 · SPACEX IPO",
+      "headline": "SpaceX 路演启动 · 拟募 750 亿、6 月 12 日挂牌 SPCX，或刷新史上最大 IPO",
+      "summary": "6 月 4 日，SpaceX 投资者路演开跑：定价定在 6 月 11 日，6 月 12 日在纳斯达克以代码 SPCX 开盘。若按 750 亿美元募资目标定价，将超越沙特阿美 2019 年上市，成为有记录以来最大 IPO。其 5 月 20 日递交的公开 S-1 披露，与 xAI 完成全股票合并后，2025 年合并营收 187 亿美元，唯一盈利的 Starlink 贡献 114 亿营收、44 亿运营利润。高盛领衔的 21 家承销团里有个反常细节：30% 份额直接分给散户，是巨型 IPO 常规配额的三倍。高盛预计 2026 年 IPO 募资或达约 1600 亿，几乎全靠 SpaceX、OpenAI、Anthropic 撑起，是 2025 全年美国 IPO 的近四倍——一级市场的水，正集体往二级市场倒。",
+      "source": "Build Fast With AI / SEC"
+    },
+    {
+      "tag": "🤖 融资 · COGNITION / DEVIN",
+      "headline": "写代码的 Devin 又贵了 · Cognition 融 10 亿、估值 260 亿，89% 自家代码已由 AI 写",
+      "summary": "5 月 27 日，AI 编程公司 Cognition 完成超 10 亿美元新融资，投后估值约 260 亿，由 Lux Capital、General Catalyst 与 8VC 领投，Founders Fund 等跟投，较去年 9 月估值翻一倍多。旗舰是自主编程智能体 Devin，最能说明增速的是营收：年化 run-rate 已从去年 5 月的 3700 万美元飙到 4.92 亿，目标年内破 10 亿，客户含高盛、奔驰乃至美国政府多个部门。还有一个被反复引用的自证数字：Cognition 约 89% 的自家代码如今由它自己的 AI 写就。接在 Anthropic、SpaceX 之后读，信号清晰——资本最舍得加价的，正是「能自己干活、还能自己写自己」的那类公司；当智能体真开始替工程师上工，它的估值曲线比任何 PPT 都更有说服力。",
+      "source": "Bloomberg / TechCrunch"
+    },
+    {
+      "tag": "🧬 安全 · 四巨头联名信",
+      "headline": "罕见联名 · OpenAI、Anthropic、谷歌 DeepMind、微软四掌门上书国会，吁强制筛查合成 DNA",
+      "summary": "6 月 5 日，OpenAI、Anthropic、谷歌 DeepMind 与微软 AI 四家实验室负责人联名致信美国国会，请求立法强制对所有在美运营的合成 DNA 供应商进行生物安全筛查。核心论点：AI 正侵蚀过去「把生物材料武器化」所需的技术门槛——合成 DNA、RNA 如今可在网上下单，而能分步指导的 AI 模型把作恶者的专业知识门槛进一步压低，二者叠加催生一类新风险。信中未点名具体法案，将请求定性为「紧迫的国家安全事项」。时机耐人寻味：同周 Anthropic 刚呼吁全球协调按下暂停键，OpenAI 确认将遵守特朗普行政令、发版前接受联邦 30 天审查，三件「踩刹车」的事挤在同一 24 小时。AI 实验室极少联名，上次还是 2023 年呼吁暂停大模型训练的公开信；与那封宽泛倡议不同，这封窄而具体——当资本忙着为「能力」定价，造物者主动把「风险」摆上国会桌面。",
+      "source": "Yellow.com / Quartz"
+    },
+    {
+      "tag": "🪟 巨头 · MICROSOFT MAI",
+      "headline": "微软 Build 甩出 7 款自研 MAI 模型 · 第一次不靠 OpenAI 也能上台",
+      "summary": "6 月 2 至 3 日的 Build 2026 上，纳德拉一口气发布 MAI 品牌下七款自研模型，是微软自与 OpenAI 结盟以来削减战略依赖最激进的一步。阵容含：对标前沿的推理旗舰 MAI-Thinking-1、首款自研编程模型 MAI-Code-1-Flash、在 Arena 图像编辑榜以 1403 分压过 Gemini 3 Pro 的 MAI-Image-2.5、号称 43 语种 SOTA、速度快 5 倍的 MAI-Transcribe-1.5、已嵌入 Copilot/Teams/GitHub 的语音模型 MAI-Voice-2，外加两款面向 Azure 的推理特化模型。竞争意图毫不掩饰——微软直称转写与图像两项指标都超过谷歌与 OpenAI。放进本期读别有意味：OpenAI 的 IPO 只剩数周，微软必须向公开市场（也向自己）证明其 AI 战略不会随 OpenAI 的估值或模型质量一起浮沉。七款 MAI，是微软给自己买的对冲，且已进生产线。",
+      "source": "CNBC"
+    }
+  ]
+},

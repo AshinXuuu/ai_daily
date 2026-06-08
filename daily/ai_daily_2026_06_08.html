@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 · 2026.06.08</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=JetBrains+Mono:wght@400;500;700&family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0d0b; --ink-2: #161410; --paper: #f4ecdb; --paper-2: #e8dfc9;
+    --muted: #8a8275; --rule: #2a2620; --signal: #ff4d1f; --signal-2: #ffb454; --tan: #c9a679;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink); color: var(--paper);
+    font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
+    font-weight: 300; line-height: 1.65; letter-spacing: 0.01em; overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255, 77, 31, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 90%, rgba(201, 166, 121, 0.035) 0%, transparent 50%);
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .masthead { border-bottom: 1px solid var(--rule); padding: 32px 0 24px; position: relative; }
+  .masthead-grid { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 32px; }
+  .edition { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .edition strong { color: var(--paper); font-weight: 500; }
+  .logo { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 38px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; text-align: center; font-variation-settings: "opsz" 144; }
+  .logo .accent { color: var(--signal); font-style: italic; font-weight: 600; }
+  .weather { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-align: right; line-height: 1.7; }
+  .weather .pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--signal); margin-right: 6px; animation: pulse 2s infinite; vertical-align: middle; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 77, 31, 0.5); }
+    50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(255, 77, 31, 0); }
+  }
+  .hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule); position: relative; }
+  .hero-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal); }
+  .hero-meta::before { content: ''; width: 40px; height: 1px; background: var(--signal); }
+  .hero h1 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: clamp(48px, 8vw, 96px); font-weight: 400; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 32px; font-variation-settings: "opsz" 144, "SOFT" 50; }
+  .hero h1 em { font-style: italic; font-weight: 600; color: var(--signal-2); }
+  .hero-lede { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.5; color: var(--paper-2); max-width: 680px; font-weight: 400; }
+  .date-block { position: absolute; top: 80px; right: 32px; text-align: right; font-family: 'JetBrains Mono', monospace; }
+  .date-block .day { font-family: 'Fraunces', serif; font-size: 120px; font-weight: 800; line-height: 0.9; color: var(--paper); font-variation-settings: "opsz" 144; letter-spacing: -0.05em; }
+  .date-block .month { font-size: 12px; letter-spacing: 0.2em; color: var(--muted); margin-top: 8px; }
+  .ticker { background: var(--ink-2); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); overflow: hidden; padding: 14px 0; position: relative; }
+  .ticker-track { display: flex; gap: 48px; white-space: nowrap; animation: scroll 60s linear infinite; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.05em; color: var(--paper-2); }
+  .ticker-track span { display: inline-flex; align-items: center; gap: 12px; }
+  .ticker-track .dot { color: var(--signal); font-size: 8px; }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .section { padding: 80px 0 40px; border-bottom: 1px solid var(--rule); }
+  .section-head { display: grid; grid-template-columns: 280px 1fr; gap: 48px; margin-bottom: 48px; align-items: start; }
+  .section-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--signal); margin-bottom: 12px; }
+  .section-title { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 56px; font-weight: 400; line-height: 0.95; letter-spacing: -0.03em; font-variation-settings: "opsz" 144; }
+  .section-title em { font-style: italic; color: var(--tan); font-weight: 600; }
+  .section-intro { font-family: 'Fraunces', serif; font-size: 17px; line-height: 1.6; color: var(--muted); padding-top: 16px; border-top: 1px solid var(--rule); }
+  .stories { display: grid; grid-template-columns: repeat(12, 1fr); gap: 32px; }
+  .story { grid-column: span 6; padding: 28px; background: linear-gradient(180deg, rgba(255,255,255,0.015) 0%, transparent 100%); border: 1px solid var(--rule); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; }
+  .story::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 1px; background: var(--signal); transition: width 0.6s ease; }
+  .story:hover { background: linear-gradient(180deg, rgba(255, 77, 31, 0.04) 0%, transparent 100%); border-color: rgba(255, 77, 31, 0.3); transform: translateY(-2px); }
+  .story:hover::before { width: 100%; }
+  .story.feature { grid-column: span 12; padding: 48px; background: linear-gradient(135deg, rgba(255, 77, 31, 0.06) 0%, rgba(201, 166, 121, 0.02) 100%); border-color: rgba(255, 77, 31, 0.25); }
+  .story.feature::after { content: 'FEATURED'; position: absolute; top: 24px; right: 24px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--signal); border: 1px solid var(--signal); padding: 4px 10px; }
+  .story-tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: var(--signal); margin-bottom: 16px; text-transform: uppercase; }
+  .story h3 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 26px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 16px; color: var(--paper); font-variation-settings: "opsz" 144; }
+  .story.feature h3 { font-size: 42px; line-height: 1.05; max-width: 90%; }
+  .story p { font-size: 15px; line-height: 1.7; color: var(--paper-2); margin-bottom: 20px; font-weight: 300; }
+  .story.feature p { font-family: 'Fraunces', serif; font-size: 19px; max-width: 720px; }
+  .story-meta { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 20px; border-top: 1px solid var(--rule); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.05em; }
+  .source { color: var(--muted); }
+  .source strong { color: var(--paper); font-weight: 500; }
+  .read-more { color: var(--signal); text-decoration: none; border: 1px solid var(--rule); padding: 6px 12px; transition: all 0.3s; white-space: nowrap; }
+  .read-more:hover { background: var(--signal); color: var(--ink); border-color: var(--signal); }
+  .story.span-4 { grid-column: span 4; }
+  .story.span-8 { grid-column: span 8; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--ink-2); }
+  .stat { padding: 40px 32px; border-right: 1px solid var(--rule); }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-family: 'Fraunces', serif; font-size: 56px; font-weight: 800; line-height: 1; color: var(--signal-2); letter-spacing: -0.04em; margin-bottom: 8px; font-variation-settings: "opsz" 144; }
+  .stat-num .unit { font-size: 22px; color: var(--paper); font-weight: 400; margin-left: 4px; }
+  .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; line-height: 1.4; }
+  .footer { padding: 80px 0 60px; text-align: center; border-top: 1px solid var(--rule); margin-top: 40px; }
+  .footer-mark { font-family: 'Fraunces', serif; font-style: italic; font-size: 28px; color: var(--paper); margin-bottom: 16px; font-variation-settings: "opsz" 144; }
+  .footer-mark .accent { color: var(--signal); }
+  .footer p { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+  .footer .divider { width: 60px; height: 1px; background: var(--signal); margin: 24px auto; }
+  /* ===== 平板 / 小笔记本 ===== */
+  @media (max-width: 900px) {
+    .wrap { padding: 0 20px; }
+    .masthead { padding: 24px 0 20px; }
+    .masthead-grid { grid-template-columns: 1fr; gap: 14px; text-align: center; }
+    .weather { text-align: center; }
+    .logo { font-size: 34px; }
+    .hero { padding: 44px 0 36px; }
+    .hero-meta { margin-bottom: 24px; }
+    .hero h1 { font-size: 42px; line-height: 1.05; margin-bottom: 24px; }
+    .hero-lede { font-size: 17px; }
+    .date-block { position: static; text-align: left; margin-top: 24px; }
+    .date-block .day { font-size: 72px; }
+    .section { padding: 56px 0 32px; }
+    .section-head { grid-template-columns: 1fr; gap: 14px; margin-bottom: 36px; }
+    .section-title { font-size: 36px; }
+    .stories { gap: 20px; }
+    .story, .story.feature { grid-column: span 12 !important; padding: 22px; }
+    .story.feature { padding: 26px; }
+    .story.feature::after { top: 16px; right: 16px; }
+    .story h3 { font-size: 22px; }
+    .story.feature h3 { font-size: 26px; max-width: 100%; }
+    .story p { font-size: 14.5px; }
+    .story.feature p { font-size: 16.5px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat { border-right: none; border-bottom: 1px solid var(--rule); padding: 26px 18px; }
+    .stat-num { font-size: 40px; }
+    .stat:nth-child(odd) { border-right: 1px solid var(--rule); }
+    .ticker-track { gap: 32px; font-size: 11px; }
+  }
+
+  /* ===== 手机 ===== */
+  @media (max-width: 600px) {
+    .wrap { padding: 0 16px; }
+    .logo { font-size: 28px; }
+    .edition, .weather { font-size: 10px; letter-spacing: 0.12em; }
+    .hero { padding: 32px 0 28px; }
+    .hero-meta { margin-bottom: 20px; font-size: 10px; }
+    .hero h1 { font-size: 32px; line-height: 1.08; margin-bottom: 20px; }
+    .hero-lede { font-size: 15.5px; line-height: 1.6; }
+    .date-block { margin-top: 20px; }
+    .date-block .day { font-size: 56px; }
+    .date-block .month { font-size: 10px; }
+    .section { padding: 44px 0 24px; }
+    .section-head { margin-bottom: 28px; }
+    .section-title { font-size: 28px; }
+    .section-num { font-size: 10px; }
+    .section-intro { font-size: 15px; line-height: 1.55; padding-top: 14px; }
+    .stories { gap: 16px; }
+    .story, .story.feature { padding: 20px; }
+    .story-tag { font-size: 9.5px; margin-bottom: 12px; }
+    .story h3 { font-size: 20px; margin-bottom: 12px; }
+    .story.feature h3 { font-size: 22px; }
+    .story p { font-size: 14px; line-height: 1.65; }
+    .story.feature p { font-size: 15px; }
+    .story-meta { flex-direction: column; align-items: flex-start; gap: 10px; padding-top: 14px; font-size: 10px; }
+    .source { line-height: 1.45; }
+    .read-more { font-size: 10px; padding: 5px 10px; }
+    .stat { padding: 22px 16px; }
+    .stat-num { font-size: 36px; }
+    .stat-num .unit { font-size: 15px; }
+    .stat-label { font-size: 10px; line-height: 1.35; }
+    .ticker-track { gap: 24px; font-size: 10.5px; animation-duration: 45s; }
+    .footer { padding: 56px 0 40px; }
+    .footer-mark { font-size: 24px; }
+  }
+
+  /* ===== 窄屏手机 ===== */
+  @media (max-width: 420px) {
+    .wrap { padding: 0 14px; }
+    .hero h1 { font-size: 28px; }
+    .hero-lede { font-size: 15px; }
+    .section-title { font-size: 24px; }
+    .stats { grid-template-columns: 1fr; }
+    .stat { border-right: none !important; padding: 20px 14px; }
+    .story, .story.feature { padding: 18px; }
+    .story h3, .story.feature h3 { font-size: 19px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-grid">
+      <div class="edition">VOL. <strong>I</strong> · NO. <strong>027</strong></div>
+      <div class="logo">信号 <span class="accent">/ Signal</span></div>
+      <div class="weather"><span class="pulse"></span>LIVE · 08 JUN 2026<br>晴 · 洛杉矶 · 24°C</div>
+    </div>
+  </div>
+</header>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span><span class="dot">●</span> 苹果 WWDC 开幕 · Siri 换脑，跑在谷歌 Gemini 上</span>
+    <span><span class="dot">●</span> 1.2 万亿参数定制模型 · 苹果每年付谷歌 10 亿美元</span>
+    <span><span class="dot">●</span> 库克最后一次主旨演讲 · 9 月 1 日交棒 Ternus</span>
+    <span><span class="dot">●</span> Gemini 3.5 Flash 转正 · 前沿智商、4 倍速度</span>
+    <span><span class="dot">●</span> 特朗普与桑德斯罕见同调 · 都想让政府持股 AI</span>
+    <span><span class="dot">●</span> 桑德斯提案 · 对前沿 AI 一次性征 50% 股权税</span>
+    <span><span class="dot">●</span> xAI 拿下联邦大单 · Grok 每机构 18 个月仅 0.42 美元</span>
+    <span><span class="dot">●</span> Anthropic 警告 · 自我改进将至，呼吁全行业装「刹车」</span>
+    <span><span class="dot">●</span> DeepSeek V4 预览发布 · 梁文锋启动首轮 50 亿外部融资</span>
+    <span><span class="dot">●</span> OpenClaw 爆红 · GitHub 星标破 21 万，史上最快</span>
+    <span><span class="dot">●</span> 苹果 WWDC 开幕 · Siri 换脑，跑在谷歌 Gemini 上</span>
+    <span><span class="dot">●</span> 1.2 万亿参数定制模型 · 苹果每年付谷歌 10 亿美元</span>
+    <span><span class="dot">●</span> 库克最后一次主旨演讲 · 9 月 1 日交棒 Ternus</span>
+    <span><span class="dot">●</span> Gemini 3.5 Flash 转正 · 前沿智商、4 倍速度</span>
+    <span><span class="dot">●</span> 特朗普与桑德斯罕见同调 · 都想让政府持股 AI</span>
+    <span><span class="dot">●</span> 桑德斯提案 · 对前沿 AI 一次性征 50% 股权税</span>
+    <span><span class="dot">●</span> xAI 拿下联邦大单 · Grok 每机构 18 个月仅 0.42 美元</span>
+    <span><span class="dot">●</span> Anthropic 警告 · 自我改进将至，呼吁全行业装「刹车」</span>
+    <span><span class="dot">●</span> DeepSeek V4 预览发布 · 梁文锋启动首轮 50 亿外部融资</span>
+    <span><span class="dot">●</span> OpenClaw 爆红 · GitHub 星标破 21 万，史上最快</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-meta">今日要闻 · TODAY'S BRIEFING</div>
+    <h1>造不如买。<br>苹果把 Siri 的脑子，<em>外包给了<br>对手</em>。</h1>
+    <p class="hero-lede">
+      今天上午 10 点，库克在 Apple Park 登台，开始他作为 CEO 的最后一场 WWDC——9 月 1 日，这把交椅就交给硬件主管 Ternus。压轴的不是新系统，而是一桩反常的交易：被苹果三年前承诺、又两度跳票的全新 Siri，这一次终于要发，可它的大脑不是苹果自研，而是一颗向谷歌租来的 1.2 万亿参数定制 Gemini——价格约每年 10 亿美元，是苹果自家最大云端模型的约 8 倍。当 OpenAI、谷歌、微软都在死磕自研前沿模型，唯独苹果选择「造不如买」，还顺手用 Extensions 把 ChatGPT、Gemini、Claude 一并请进搜索框。这是史上最贵的一次「认怂」，也可能是这场 AI 军备竞赛里最清醒的一注。
+    </p>
+    <div class="date-block"><div class="day">08</div><div class="month">JUN · MMXXVI</div></div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">10<span class="unit">亿$/年</span></div><div class="stat-label">苹果租用 Gemini 的授权费<br>多年合约总额或达 50 亿</div></div>
+  <div class="stat"><div class="stat-num">1.2<span class="unit">万亿</span></div><div class="stat-label">定制 Gemini 参数量<br>约苹果自研最大云模 8 倍</div></div>
+  <div class="stat"><div class="stat-num">50<span class="unit">%</span></div><div class="stat-label">桑德斯提案的「AI 股权税」<br>瞄准 OpenAI / Anthropic / xAI</div></div>
+  <div class="stat"><div class="stat-num">0.42<span class="unit">$</span></div><div class="stat-label">xAI 卖给每个联邦机构的<br>18 个月 Grok 使用费</div></div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 01</div><h2 class="section-title">把大脑，<em>外包出去</em></h2></div>
+      <p class="section-intro">当模型变成可外购的零件，护城河就从「谁造得出」滑向「谁卖得动」。苹果今天把 Siri 的智商整包租给谷歌，谷歌赢下这笔最大商单的同一周，股价却连跌四周——卖铲子的人，未必比淘金的人体面。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">🍎 头条 · APPLE WWDC 2026</div>
+        <h3>造不如买 · 苹果把全新 Siri 交给谷歌 Gemini，库克最后一场 WWDC 押上「认怂」一注</h3>
+        <p>
+          北京时间今晚，库克在 Apple Park 拉开第 37 届 WWDC，也开始他作为 CEO 的告别演出。压轴产品是那个被苹果在 2024 年高调预告、又两度跳票、还为此在五月赔了 2.5 亿美元和解金的「AI 版 Siri」——这次它终于要发，但底层不是苹果自研，而是一颗向谷歌租来的定制模型。据彭博 Gurman，苹果以约每年 10 亿美元（多年合约总值传至 50 亿）授权了一颗 1.2 万亿参数的定制 Gemini，内部代号「Apple Foundation Models v10」，采用 MoE 架构按需激活，体量约为苹果自研最大云端模型的 8 倍。重建后的 Siri 将以独立 App 形态登场，支持 iMessage 式对话、文档上传、跨设备历史；更关键的是一个全新的 Extensions 系统与「Search or Ask」面板——用户可在 ChatGPT、Gemini、Claude 之间自选谁来回答，Gemini 默认，苹果还测试过把 Claude 纳入其中。隐私上，跨端查询走 Private Cloud Compute：Gemini 权重跑在苹果自家 B200 节点的硬件隔区里，查询不留痕、且合约禁止谷歌拿来训练。把它放进本期主线读：当 OpenAI 造 GPT、谷歌造 Gemini、微软造 MAI，唯独苹果选择不造前沿模型、只做私有算力与多供应商编排——这是整场 AI 战争里最反共识的一注。赌赢了，苹果是 AI 世界的瑞士；赌输了，就是 2020 年代的柯达。作为 Claude 自己生成的日报，我们只客观记录：Claude 也站在了那个被苹果挑选的供应商名单里。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Tech Times / Bloomberg / Build Fast With AI</strong> · 2026.06.06</span>
+          <a class="read-more" href="https://www.techtimes.com/articles/317902/20260606/wwdc-2026-opens-monday-gemini-powers-rebuilt-siri-iphone-11-faces-ios-27-cut.htm" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">⚡ 模型 · GOOGLE GEMINI</div>
+        <h3>谷歌出货 · Gemini 3.5 Flash 转正，前沿智商配 4 倍速度</h3>
+        <p>
+          就在 Apple 把 Gemini 抬上 iPhone 的同一窗口，谷歌把 Gemini 3.5 Flash 推到正式可用（GA）：官方口径是「前沿级智能 + 同类模型约 4 倍速度」，主打高吞吐、低延迟的规模化部署，正好补齐了 Siri 这类「要快、要省、还要够聪明」的端云协同场景。把这条接在头条之后读别有意味——苹果之所以敢只租不造，前提是谷歌能持续供出一颗够强又够快的「发动机」；Flash 这条产品线，正是 Gemini 把自己从「实验室旗舰」做成「工业级零件」的关键一步。模型层在加速商品化：当最强的脑子可以按 token 计费、按速度分级地外卖出去，真正稀缺的不再是智商，而是谁能把它塞进十几亿台设备。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>LLM-Stats / Google</strong> · 2026.06.08</span>
+          <a class="read-more" href="https://llm-stats.com/llm-updates" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">📉 资本 · ALPHABET</div>
+        <h3>卖铲子的悖论 · 拿下苹果最大商单，谷歌母公司却连跌四周、转身找钱</h3>
+        <p>
+          赢家未必好看。据 Build Fast With AI 梳理，谷歌母公司 Alphabet 正一边寻求新融资，一边承受连续四周的股价下挫——市场担心 Gemini 在 Claude Opus 4.8、GPT-5.5 夹击下的竞争位次，叠加 AI 基建资本开支飙升与欧盟数据监管压力。讽刺的是，苹果那笔每年 10 亿美元的 Gemini 大单，商业上是谷歌的胜利，却让「谷歌最重要的新企业关系」变成一桩让对手产品更好看的授权生意，而非自家产品的胜场。更微妙的是，五月 Apollo 与黑石牵头、为 Anthropic 购买谷歌定制 TPU 而结构化的 360 亿美元私募信贷，被部分分析师读作「谷歌自家算力正被竞争对手抢着买」。把它和苹果头条并排看，本章的反差线浮出水面：在模型商品化的时代，最赚吆喝的是淘金者，最累的，往往是那个卖铲子的。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Build Fast With AI</strong> · 2026.06.07</span>
+          <a class="read-more" href="https://www.buildfastwithai.com/blogs/ai-news-today-june-7-2026" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 02</div><h2 class="section-title">国有化的 <em>幽灵</em></h2></div>
+      <p class="section-intro">一个本该水火不容的组合，这一周却对着同一个词点头：让政府持股 AI 巨头。当左翼的桑德斯和右翼的特朗普开始用不同的话说同一件事，正在筹备 IPO 的实验室们，头顶多了一片不确定的云。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">🏛️ 头条 · 政策风向</div>
+        <h3>罕见同调 · 特朗普与桑德斯都想让政府入股 OpenAI、Anthropic、xAI</h3>
+        <p>
+          2026 年最奇怪的政治合流，本周又奇怪了一层。6 月 6 日，特朗普对记者表示，美国政府或可直接持有 OpenAI、Anthropic、xAI 等 AI 巨头的股权——「让它们成为这场革命的合伙人，会是件美妙的事」。这番话，几乎是在为几天前参议员桑德斯那套民粹逻辑背书：后者刚在《纽约时报》撰文，主张对领先 AI 公司征收 50% 的公共所有权。左翼最知名的民主社会主义者，与右翼最知名的民粹主义者，第一次用不同的措辞描述同一个政策结果。其政治力学耐人寻味：特朗普长期试图同时扮演「AI 去监管旗手」与「被 AI 冲击的工人守护者」两个角色，而这层张力，正被一个不太可能的组合——他自己日益视 AI 公司为「科技寡头」的 MAGA 基本盘、一个佛蒙特社会主义者、以及比盟友更早读懂风向的硅谷 CEO——一起挤破。冷静的判断是：短期内，无论桑德斯的法案还是特朗普的行政令，真能促成政府持股的概率都接近于零。但两端同时公开拥抱这个概念，意味着 AI 公司即将登陆资本市场的政治环境，骤然复杂了起来——路演现场的头条里多了「政府股权」这四个字，对机构投资者的情绪，从来不是好消息。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Fortune / Washington Times / Build Fast With AI</strong> · 2026.06.06</span>
+          <a class="read-more" href="https://fortune.com/2026/06/05/trump-partnership-openai-anthropic-xai-nationalization-bernie-sanders-altman/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-12">
+        <div class="story-tag">⚖️ 立法 · 桑德斯提案</div>
+        <h3>50% 的股权，用股票交 · 桑德斯「美国 AI 主权财富基金法案」与奥特曼的秘密斡旋</h3>
+        <p>
+          桑德斯于 6 月初推出《美国 AI 主权财富基金法案》：拟对前沿 AI 公司一次性征收 50% 的税——以股票而非现金支付，且明确瞄准 OpenAI、Anthropic、xAI（耐人寻味地放过了谷歌和 Meta）。这些股份将注入一只联邦主权财富基金，让公众既握有 AI 公司董事会的投票权，也能在未来分得红利。桑德斯的理由直白：这些公司在未经许可、未付报酬的情况下，用数百万人的创作训练了模型，「他们的作品，实质上被世上最富的一群人偷走了」。时机更显荒诞——Anthropic 在他的专栏上线同一天机密递交了 IPO，正试图以 9650 亿美元估值登陆资本市场，而一位在任参议员却同步提议强制划走它一半的股权。幕后还有一条暗线：据 NOTUS（经《华尔街日报》《金融时报》佐证），奥特曼早自 2025 年初便私下向白宫高官兜售「政府持股」的概念，近期随 IPO 临近又重启磋商——他无法接受 50% 这条线，却愿与桑德斯一起为「公众参与 AI 股权」的大方向背书。这不是拒绝，而是一个必须穿过华尔街 IPO、又要在两党民粹夹缝中求生的 CEO 的谈判姿态。把本章两条连起来读：当资本忙着为「能力」标价，政治正忙着为「归谁所有」立规矩——而被标价的公司，恰恰也是被争夺的猎物。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Gizmodo / NOTUS / WSJ</strong> · 2026.06.06</span>
+          <a class="read-more" href="https://gizmodo.com/bernie-sanders-continues-to-be-only-democrat-willing-to-govern-on-ai-proposes-public-ownership-2000765960" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 03</div><h2 class="section-title">xAI 的 <em>闪电战</em></h2></div>
+      <p class="section-intro">当别家还在为单一产品打磨，xAI 这一周打了一整套组合拳：用近乎白送的价格拿下联邦大单，又甩出对标 Claude Code 的编程智能体。从模型实验室到「政府—开发者—消费者」全栈，它只用了几个月。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">🪖 政府 · GROK FOR GOVERNMENT</div>
+        <h3>近乎白送 · xAI 拿下联邦大单，Grok 每机构 18 个月只收 0.42 美元</h3>
+        <p>
+          xAI 本周拿下一份横扫联邦的合同：美国总务管理局（GSA）确认与其签下 18 个月的 OneGov 协议，向所有联邦机构开放 Grok 4 与 Grok 4 Fast，价格是每机构 0.42 美元，合约延续至 2027 年 3 月，是迄今美国政府签下的最长 AI 合同。它不只是模型授权——xAI 还配了专门的工程团队帮各机构落地部署，外加培训项目，更高密级的访问另行定价。0.42 美元买 18 个月，本质是补贴式的企业级分发：xAI 用任何商业客户都撑不住的价格，买的是政府的心智份额。赌注很清楚——一旦 Grok 成了联邦雇员的默认工具，由此沉淀的「标杆客户」与政治掩护，远比这点合同收入值钱。Grok 由此与 Meta、OpenAI、谷歌、Anthropic 并列进了「拿下政府大单」的名单，GSA 这套 OneGov 的推进速度，在现代联邦科技采购里几乎没有先例。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Tom's Hardware / GSA</strong> · 2026.06.05</span>
+          <a class="read-more" href="https://www.buildfastwithai.com/blogs/ai-news-today-june-7-2026" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">⌨️ 工具 · GROK BUILD</div>
+        <h3>直插 Claude Code 腹地 · xAI 上线终端编程智能体 Grok Build</h3>
+        <p>
+          同一周，xAI 还把终端编程智能体 Grok Build 推入早期 Beta（面向 SuperGrok Heavy 订户）：支持终端内规划、干净 diff、并行子智能体、worktree、headless 模式与 ACP（智能体通信协议），安装一行 <code>curl -fsSL https://x.ai/cli/install.sh | bash</code> 即可。定位毫不含糊——正面挑战 Claude Code、GitHub Copilot 与 Cursor。加上同期上线的 Grok Web Connectors（接通 SharePoint、Outlook、Google Workspace、Notion、GitHub、Linear，并支持自带 MCP server），AI 编程智能体市场如今凑齐五位选手：Claude Code、Codex、GitHub Copilot、Gemini Code，以及新入局的 Grok Build。把本章连起来读：自二月被 SpaceX 收编以来，xAI 用一套「政府合同 + 编程工具 + 企业连接器」的组合，把自己从一间模型实验室，硬生生拼成了一条覆盖政府、开发者与消费者的全栈通道。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Releasebot / Build Fast With AI</strong> · 2026.06.06</span>
+          <a class="read-more" href="https://releasebot.io/updates/xai" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 04</div><h2 class="section-title">既要跑，<em>又要装刹车</em></h2></div>
+      <p class="section-intro">同一批公司，一手把估值推向万亿、一手把警告递进国会。Anthropic 罕见公开示警「自我改进将至」，OpenAI 则把更强的科学模型同时送进药物研发与生物防御——能力越界的速度，正逼着造物者自己喊「装刹车」。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">🛑 安全 · ANTHROPIC</div>
+        <h3>请给 AI 装个刹车 · Anthropic 警告：自我改进的系统可能很快脱离人类监督</h3>
+        <p>
+          Anthropic 本周罕见地公开示警：它的系统进步之快，可能很快具备「无需人类监督即可自我改进」的能力，并呼吁全行业尽快研究一套「刹车踏板」——能在 AI 以人类无法实时监测的速度自我提升时，将其减速或叫停的技术保障。具体的担忧在于：现有安全评估框架，是为「训练间隔（每隔数月）才提升、之后能力稳定」的模型设计的；而自我改进型模型可以在部署期间自行更新权重或架构，这意味着发布时做的安全评估，几周或几个月后可能已不再准确描述模型的真实能力。值得玩味的是其姿态：Anthropic 与 OpenAI 同时向国会请求更多保障，可两家又都在以接近万亿美元的估值招徕投资者——这本身并不矛盾（一项技术可以既变革又危险），但在 IPO 季节发安全警告，观感终归复杂。作为 Claude 自己生成的日报，我们既不渲染也不回避：把刹车摆上桌面的，正是踩着油门跑得最快的那群人。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>NOTUS / WSJ / Build Fast With AI</strong> · 2026.06.07</span>
+          <a class="read-more" href="https://www.buildfastwithai.com/blogs/ai-news-today-june-7-2026" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🧬 科学 · OPENAI ROSALIND</div>
+        <h3>更聪明也更省 · OpenAI 升级生命科学模型 GPT-Rosalind，并扩开生物防御通道</h3>
+        <p>
+          6 月 4 日，OpenAI 升级了面向生命科学的 GPT-Rosalind：把 GPT-5.5 的智能体编码与工具调用，叠加到药物化学、基因组学、蛋白质组学、空间转录组学等核心领域。基准上颇为亮眼——在长链路端到端基因组分析 GeneBench 上，新版较 GPT-5.5 少用 31% 的 token，准确率反而更高（21.6% 对 20.4%）；在新评测 LabWorkBench 上，对「把扰动与实验结果关联」的真实湿实验流程也有显著提升。更敏感的是另一头：6 月 1 日 OpenAI 同步推出 Rosalind Biodefense，向经审核的开发者与美国政府伙伴扩开访问，专攻生物防御、公共卫生与大流行防范。对照看，Anthropic 的 Project Glasswing 锁定网络安全基础设施，OpenAI 的 Rosalind Biodefense 锁定生物威胁——两套专用 AI 计划在数周内先后落地，都被包装成「负责任部署框架」，也都是切入最封闭政府采购品类的销售通道。把它接在 Anthropic 的刹车警告之后读，本章的张力一目了然：同一种能力，既是国会担忧的风险，也是实验室争抢的生意。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>OpenAI / Build Fast With AI</strong> · 2026.06.04</span>
+          <a class="read-more" href="https://www.buildfastwithai.com/blogs/ai-news-today-june-7-2026" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 05</div><h2 class="section-title">东方 <em>与开源</em></h2></div>
+      <p class="section-intro">视线移回另一侧战场：等了 145 天的 DeepSeek 终于放出 V4 预览，梁文锋还破天荒地开了第一轮外部融资；而在 GitHub，一个叫 OpenClaw 的开源项目正以史上最快的速度蹿红——自上而下的巨头之外，自下而上的力量同样汹涌。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">🇨🇳 国产 · DEEPSEEK V4</div>
+        <h3>等了 145 天 · DeepSeek 放出 V4 预览，梁文锋启动首轮约 50 亿外部融资</h3>
+        <p>
+          在海外为估值与监管角力的同时，国内的关键词回到「DeepSeek」。据 InfoQ、财联社等梳理，DeepSeek 本周放出新一代模型 V4 的预览版——百万级上下文成为标配，技术报告里同时写进了华为昇腾与英伟达两套算力路线；更受关注的是，一向「不着急融资、不着急上市」的梁文锋，这一次启动了公司首轮外部融资，规模约 50 亿元人民币，背景是全球热度持续攀升、以及国内 AI 行业整体进入商业化加速期。把它放进本期读别有意味：当苹果选择「租脑子」、xAI 用补贴抢政府，DeepSeek 仍走着另一条路——把模型做开、把成本压低、再用一轮迟来的融资为下一程续力。中美两端的打法越来越不同，但指向同一件事：模型层正在变成基础设施，谁能更便宜、更开放地供出它，谁就握住了下一程的入口。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>InfoQ 中国 / 财联社</strong> · 2026.06.03</span>
+          <a class="read-more" href="https://www.infoq.cn/news/2DFMI702ATy7OpNheFPu" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">⭐ 开源 · GITHUB TRENDING</div>
+        <h3>史上最快的星标曲线 · 开源项目 OpenClaw 蹿红 GitHub，星标已破 21 万</h3>
+        <p>
+          如果说巨头的故事是自上而下，GitHub 上正发生一场自下而上的暴动。据 OSSInsight 与多家梳理，开源项目 OpenClaw 是 2026 年当之无愧的「爆款」，也可能是 GitHub 史上增长最快的项目之一：一月底走红后，几天内从 9000 星冲到 6 万+，此后一路突破 21 万星。它被广泛用于开发者工作流自动化、个人效率管理、网页抓取、浏览器自动化与主动式日程调度。把它收在本期末尾恰如其分——当苹果、谷歌、xAI 在云端比拼谁的模型更强、谁的合同更大，真正决定 AI 能否落到日常的，往往是这些跑在普通人电脑里、人人可改可装的开源工具。视觉化智能体搭建器（Langflow、Dify、Flowise）、多智能体框架（CrewAI、AutoGen）一并攀升，共同指向 2026 的另一条主线：智能体的话语权，正从实验室向社区扩散。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>OSSInsight / ByteByteGo</strong> · 2026.06</span>
+          <a class="read-more" href="https://ossinsight.io/trending/ai" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-mark">信号 <span class="accent">/</span> Signal</div>
+    <div class="divider"></div>
+    <p>第 027 期 · 2026 年 6 月 8 日 · 周一</p>
+    <p style="margin-top:8px;">本期收录 6.03 — 6.08 共 11 条 AI 相关动态</p>
+  </div>
+</footer>
+
+</body>
+</html>
