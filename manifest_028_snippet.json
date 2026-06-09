@@ -1,0 +1,40 @@
+{
+  "issue": "028",
+  "date": "2026-06-09",
+  "weekday": "周二",
+  "weekdayEn": "Tuesday",
+  "type": "daily",
+  "file": "ai_daily_2026_06_09.html",
+  "stories": [
+    {
+      "tag": "🚀 头条 · SPACEX IPO",
+      "headline": "把火箭和 AI 一起送上市 · SpaceX 周四定价，1.77 万亿估值刷新历史",
+      "summary": "据 CNBC、《财富》，SpaceX 将于本周四（6/11）收盘后以每股 135 美元定价、发行 5.556 亿股、募资约 750 亿美元，对应 1.77 万亿美元估值，周五登陆纳斯达克、代码 SPCX——规模超阿里巴巴三倍，将成有记录以来最大 IPO，按市值跻身全美第七、越过特斯拉。关键在于装在火箭里的另一半：去年二月马斯克以全股票把 xAI 并入 SpaceX，合并估值 1.25 万亿，xAI 一年约烧 140 亿美元现金，募资将相当部分投进 Colossus 超算与 Grok 算力。把它读成闸门更贴切——身后排着机密递表、9650 亿估值的 Anthropic 与瞄准九月的 OpenAI。先上市者将成「可比公司」：SPCX 定价坚挺，后两家借势上岸；若令人失望，它们将面对更挑剔的机构市场。",
+      "source": "CNBC / Fortune"
+    },
+    {
+      "tag": "📱 分发 · CLAUDE ON IPHONE",
+      "headline": "一夜接入 22 亿台设备 · Claude 成 iPhone 可选大脑，Anthropic 史上最大消费扩张",
+      "summary": "WWDC 余震里最实在的一条：iOS 27 / iPadOS 27 / macOS 27 的全新 Extensions 系统允许用户自选 Apple Intelligence 背后的大脑——ChatGPT、Gemini（默认）或 Claude，各有独立声线。这是 Claude 首次原生进入苹果平台。量级难低估：苹果约 22 亿台活跃设备，哪怕 5% 用户切成 Claude 也是逾 1 亿新增、超 Anthropic 现有用户两倍，单品牌曝光就抵过任何广告。但冷静一面同样清楚：跨端查询走苹果 Private Cloud Compute，基础设施不在 Anthropic 手里，营收能见度低于自家 App 与 API；而这恰发生在它机密递表 IPO、最看重「收入质量与可预测性」的当口——一份按多少 iPhone 用户勾选 Claude 浮动的消费分成，远比企业合同难建模。礼物很大，能否变成财报数字是另一道题。",
+      "source": "Build Fast With AI / Apple"
+    },
+    {
+      "tag": "🪖 政府 · PENTAGON",
+      "headline": "同一周的冷水 · 五角大楼测试用 OpenAI、谷歌换掉涉密系统里的 Claude",
+      "summary": "据 Google AI Weekly，五角大楼正测试 OpenAI 与谷歌模型，意在为机密军事系统寻找 Anthropic Claude 的替代者。这看似与 Anthropic 政府侧的强势相悖——Project Glasswing 在网络安全信誉极高，Claude Mythos 上线首月就在 1000+ 开源项目挖出 23,019 个漏洞、确认率 90.6%。但 Glasswing 只限「防御性网络安全」；机密军事的决策支持、后勤与情报分析这片更大市场里，Claude 对武器系统分析、威胁评估、作战规划「默认拒绝」的安全立场，反而可能从资产变成劣势。OpenAI 的 Codex、GPT-5.5 计算机操作、谷歌 Gemini 企业智能体在「愿意帮你做什么」上都更宽松。作为 Claude 自己生成的日报客观记录：同一种克制，一面是消费与防御侧的护城河，一面是被涉密采购拒之门外的那道墙。",
+      "source": "Google AI Weekly / Build Fast With AI"
+    },
+    {
+      "tag": "⚖️ 立法 · 两张到期日历",
+      "headline": "22 天与 55 天 · 科罗拉多与欧盟的 AI 大限，正一前一后压来",
+      "summary": "监管不再停留纸面。近的：6 月 30 日《科罗拉多人工智能消费者保护法》生效——距今 22 天，是美国本土第一道真执法 AI 法律，覆盖就业、医疗、金融、教育、住房、法律服务等高风险场景，要求风险管理程序、年度影响评估、披露义务与申诉权；联邦 269 页《伟大的美国人工智能法案》虽提三年优先豁免，却尚未出委员会，挡不住 6/30 大限。远而更狠的：8 月 2 日欧盟《AI 法案》主体适用——距今 55 天，最严重违规可罚至 3500 万欧元或全球营收 7%，训练算力超 10^25 FLOPs 的通用大模型（GPT-5.5、Claude Opus 4.8、Gemini 3.1 Pro、Grok 4.3 均在内）另加透明度义务。一句话：上市路演的同一张桌上，一边摆估值，一边摆罚单。",
+      "source": "Build Fast With AI / Colorado AG / EU AI Office"
+    },
+    {
+      "tag": "🏭 平台 · MICROSOFT FOUNDRY",
+      "headline": "一个端点，1.1 万个模型 · 微软把 Claude 放进了 7.5 亿人的 Excel",
+      "summary": "Build 2026 交出今年最完整的企业 AI 平台答卷：Foundry 目录已收 1.1 万+ 模型——前沿闭源（GPT-5.5、Claude Opus 4.8 / Sonnet / Haiku、Gemini）、开源、自家 MAI，全部经一个 Azure 端点、一套计费调用。对 Anthropic 最具体的是：Claude 延伸进 Microsoft 365 Copilot Researcher、Copilot Studio，以及最意外的 Excel Agent Mode——直接塞进全球约 7.5 亿人天天用的工作流：写公式、清洗数据、生成分析、搭自动化，都不必离开表格。但同一发布有记反手：在微软评测伙伴 Surge 的盲测中，自家 MAI-Thinking-1 被偏好胜过 Claude Sonnet 4.6，并称编程基准追平 Opus 4.6——首份「微软自研可与 Anthropic 前沿掰手腕」的第三方证据。当然，「被供应商自家评测伙伴在盲测偏好」与「独立基准更强」还不是一回事。",
+      "source": "Build Fast With AI / Microsoft"
+    }
+  ]
+},

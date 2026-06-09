@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 · 2026.06.09</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=JetBrains+Mono:wght@400;500;700&family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0d0b; --ink-2: #161410; --paper: #f4ecdb; --paper-2: #e8dfc9;
+    --muted: #8a8275; --rule: #2a2620; --signal: #ff4d1f; --signal-2: #ffb454; --tan: #c9a679;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink); color: var(--paper);
+    font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
+    font-weight: 300; line-height: 1.65; letter-spacing: 0.01em; overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255, 77, 31, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 90%, rgba(201, 166, 121, 0.035) 0%, transparent 50%);
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .masthead { border-bottom: 1px solid var(--rule); padding: 32px 0 24px; position: relative; }
+  .masthead-grid { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 32px; }
+  .edition { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .edition strong { color: var(--paper); font-weight: 500; }
+  .logo { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 38px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; text-align: center; font-variation-settings: "opsz" 144; }
+  .logo .accent { color: var(--signal); font-style: italic; font-weight: 600; }
+  .weather { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-align: right; line-height: 1.7; }
+  .weather .pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--signal); margin-right: 6px; animation: pulse 2s infinite; vertical-align: middle; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 77, 31, 0.5); }
+    50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(255, 77, 31, 0); }
+  }
+  .hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule); position: relative; }
+  .hero-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal); }
+  .hero-meta::before { content: ''; width: 40px; height: 1px; background: var(--signal); }
+  .hero h1 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: clamp(48px, 8vw, 96px); font-weight: 400; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 32px; font-variation-settings: "opsz" 144, "SOFT" 50; }
+  .hero h1 em { font-style: italic; font-weight: 600; color: var(--signal-2); }
+  .hero-lede { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.5; color: var(--paper-2); max-width: 680px; font-weight: 400; }
+  .date-block { position: absolute; top: 80px; right: 32px; text-align: right; font-family: 'JetBrains Mono', monospace; }
+  .date-block .day { font-family: 'Fraunces', serif; font-size: 120px; font-weight: 800; line-height: 0.9; color: var(--paper); font-variation-settings: "opsz" 144; letter-spacing: -0.05em; }
+  .date-block .month { font-size: 12px; letter-spacing: 0.2em; color: var(--muted); margin-top: 8px; }
+  .ticker { background: var(--ink-2); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); overflow: hidden; padding: 14px 0; position: relative; }
+  .ticker-track { display: flex; gap: 48px; white-space: nowrap; animation: scroll 60s linear infinite; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.05em; color: var(--paper-2); }
+  .ticker-track span { display: inline-flex; align-items: center; gap: 12px; }
+  .ticker-track .dot { color: var(--signal); font-size: 8px; }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .section { padding: 80px 0 40px; border-bottom: 1px solid var(--rule); }
+  .section-head { display: grid; grid-template-columns: 280px 1fr; gap: 48px; margin-bottom: 48px; align-items: start; }
+  .section-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--signal); margin-bottom: 12px; }
+  .section-title { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 56px; font-weight: 400; line-height: 0.95; letter-spacing: -0.03em; font-variation-settings: "opsz" 144; }
+  .section-title em { font-style: italic; color: var(--tan); font-weight: 600; }
+  .section-intro { font-family: 'Fraunces', serif; font-size: 17px; line-height: 1.6; color: var(--muted); padding-top: 16px; border-top: 1px solid var(--rule); }
+  .stories { display: grid; grid-template-columns: repeat(12, 1fr); gap: 32px; }
+  .story { grid-column: span 6; padding: 28px; background: linear-gradient(180deg, rgba(255,255,255,0.015) 0%, transparent 100%); border: 1px solid var(--rule); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; }
+  .story::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 1px; background: var(--signal); transition: width 0.6s ease; }
+  .story:hover { background: linear-gradient(180deg, rgba(255, 77, 31, 0.04) 0%, transparent 100%); border-color: rgba(255, 77, 31, 0.3); transform: translateY(-2px); }
+  .story:hover::before { width: 100%; }
+  .story.feature { grid-column: span 12; padding: 48px; background: linear-gradient(135deg, rgba(255, 77, 31, 0.06) 0%, rgba(201, 166, 121, 0.02) 100%); border-color: rgba(255, 77, 31, 0.25); }
+  .story.feature::after { content: 'FEATURED'; position: absolute; top: 24px; right: 24px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--signal); border: 1px solid var(--signal); padding: 4px 10px; }
+  .story-tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: var(--signal); margin-bottom: 16px; text-transform: uppercase; }
+  .story h3 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 26px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 16px; color: var(--paper); font-variation-settings: "opsz" 144; }
+  .story.feature h3 { font-size: 42px; line-height: 1.05; max-width: 90%; }
+  .story p { font-size: 15px; line-height: 1.7; color: var(--paper-2); margin-bottom: 20px; font-weight: 300; }
+  .story.feature p { font-family: 'Fraunces', serif; font-size: 19px; max-width: 720px; }
+  .story-meta { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 20px; border-top: 1px solid var(--rule); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.05em; }
+  .source { color: var(--muted); }
+  .source strong { color: var(--paper); font-weight: 500; }
+  .read-more { color: var(--signal); text-decoration: none; border: 1px solid var(--rule); padding: 6px 12px; transition: all 0.3s; white-space: nowrap; }
+  .read-more:hover { background: var(--signal); color: var(--ink); border-color: var(--signal); }
+  .story.span-4 { grid-column: span 4; }
+  .story.span-8 { grid-column: span 8; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--ink-2); }
+  .stat { padding: 40px 32px; border-right: 1px solid var(--rule); }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-family: 'Fraunces', serif; font-size: 56px; font-weight: 800; line-height: 1; color: var(--signal-2); letter-spacing: -0.04em; margin-bottom: 8px; font-variation-settings: "opsz" 144; }
+  .stat-num .unit { font-size: 22px; color: var(--paper); font-weight: 400; margin-left: 4px; }
+  .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; line-height: 1.4; }
+  .footer { padding: 80px 0 60px; text-align: center; border-top: 1px solid var(--rule); margin-top: 40px; }
+  .footer-mark { font-family: 'Fraunces', serif; font-style: italic; font-size: 28px; color: var(--paper); margin-bottom: 16px; font-variation-settings: "opsz" 144; }
+  .footer-mark .accent { color: var(--signal); }
+  .footer p { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+  .footer .divider { width: 60px; height: 1px; background: var(--signal); margin: 24px auto; }
+  /* ===== 平板 / 小笔记本 ===== */
+  @media (max-width: 900px) {
+    .wrap { padding: 0 20px; }
+    .masthead { padding: 24px 0 20px; }
+    .masthead-grid { grid-template-columns: 1fr; gap: 14px; text-align: center; }
+    .weather { text-align: center; }
+    .logo { font-size: 34px; }
+    .hero { padding: 44px 0 36px; }
+    .hero-meta { margin-bottom: 24px; }
+    .hero h1 { font-size: 42px; line-height: 1.05; margin-bottom: 24px; }
+    .hero-lede { font-size: 17px; }
+    .date-block { position: static; text-align: left; margin-top: 24px; }
+    .date-block .day { font-size: 72px; }
+    .section { padding: 56px 0 32px; }
+    .section-head { grid-template-columns: 1fr; gap: 14px; margin-bottom: 36px; }
+    .section-title { font-size: 36px; }
+    .stories { gap: 20px; }
+    .story, .story.feature { grid-column: span 12 !important; padding: 22px; }
+    .story.feature { padding: 26px; }
+    .story.feature::after { top: 16px; right: 16px; }
+    .story h3 { font-size: 22px; }
+    .story.feature h3 { font-size: 26px; max-width: 100%; }
+    .story p { font-size: 14.5px; }
+    .story.feature p { font-size: 16.5px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat { border-right: none; border-bottom: 1px solid var(--rule); padding: 26px 18px; }
+    .stat-num { font-size: 40px; }
+    .stat:nth-child(odd) { border-right: 1px solid var(--rule); }
+    .ticker-track { gap: 32px; font-size: 11px; }
+  }
+
+  /* ===== 手机 ===== */
+  @media (max-width: 600px) {
+    .wrap { padding: 0 16px; }
+    .logo { font-size: 28px; }
+    .edition, .weather { font-size: 10px; letter-spacing: 0.12em; }
+    .hero { padding: 32px 0 28px; }
+    .hero-meta { margin-bottom: 20px; font-size: 10px; }
+    .hero h1 { font-size: 32px; line-height: 1.08; margin-bottom: 20px; }
+    .hero-lede { font-size: 15.5px; line-height: 1.6; }
+    .date-block { margin-top: 20px; }
+    .date-block .day { font-size: 56px; }
+    .date-block .month { font-size: 10px; }
+    .section { padding: 44px 0 24px; }
+    .section-head { margin-bottom: 28px; }
+    .section-title { font-size: 28px; }
+    .section-num { font-size: 10px; }
+    .section-intro { font-size: 15px; line-height: 1.55; padding-top: 14px; }
+    .stories { gap: 16px; }
+    .story, .story.feature { padding: 20px; }
+    .story-tag { font-size: 9.5px; margin-bottom: 12px; }
+    .story h3 { font-size: 20px; margin-bottom: 12px; }
+    .story.feature h3 { font-size: 22px; }
+    .story p { font-size: 14px; line-height: 1.65; }
+    .story.feature p { font-size: 15px; }
+    .story-meta { flex-direction: column; align-items: flex-start; gap: 10px; padding-top: 14px; font-size: 10px; }
+    .source { line-height: 1.45; }
+    .read-more { font-size: 10px; padding: 5px 10px; }
+    .stat { padding: 22px 16px; }
+    .stat-num { font-size: 36px; }
+    .stat-num .unit { font-size: 15px; }
+    .stat-label { font-size: 10px; line-height: 1.35; }
+    .ticker-track { gap: 24px; font-size: 10.5px; animation-duration: 45s; }
+    .footer { padding: 56px 0 40px; }
+    .footer-mark { font-size: 24px; }
+  }
+
+  /* ===== 窄屏手机 ===== */
+  @media (max-width: 420px) {
+    .wrap { padding: 0 14px; }
+    .hero h1 { font-size: 28px; }
+    .hero-lede { font-size: 15px; }
+    .section-title { font-size: 24px; }
+    .stats { grid-template-columns: 1fr; }
+    .stat { border-right: none !important; padding: 20px 14px; }
+    .story, .story.feature { padding: 18px; }
+    .story h3, .story.feature h3 { font-size: 19px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-grid">
+      <div class="edition">VOL. <strong>I</strong> · NO. <strong>028</strong></div>
+      <div class="logo">信号 <span class="accent">/ Signal</span></div>
+      <div class="weather"><span class="pulse"></span>LIVE · 09 JUN 2026<br>阴 · 洛杉矶 · 21°C</div>
+    </div>
+  </div>
+</header>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span><span class="dot">●</span> SpaceX 三天后定价 · 1.77 万亿估值，史上最大 IPO</span>
+    <span><span class="dot">●</span> 6 月 12 日上市 · 代码 SPCX，xAI 装在火箭里上市</span>
+    <span><span class="dot">●</span> Claude 登陆 iPhone · 苹果 22 亿设备开放第三方大脑</span>
+    <span><span class="dot">●</span> 五角大楼测试 · 想用 OpenAI、谷歌换掉涉密系统里的 Claude</span>
+    <span><span class="dot">●</span> 贝索斯押注 Flourish · 5 亿美元赌「50 瓦的 AI 大脑」</span>
+    <span><span class="dot">●</span> 科罗拉多 AI 法案 6/30 生效 · 美国第一道真刀真枪</span>
+    <span><span class="dot">●</span> 欧盟 AI 法案 8/2 大限 · 罚款最高全球营收 7%</span>
+    <span><span class="dot">●</span> Claude 进 Excel · 微软 Foundry 一口装下 1.1 万个模型</span>
+    <span><span class="dot">●</span> Gemini 3.5 Pro 本月开窗 · 谷歌「下月就给你」</span>
+    <span><span class="dot">●</span> GitHub 新王 hermes-agent · 18.5 万星登顶趋势榜</span>
+    <span><span class="dot">●</span> 智谱、MiniMax 已登港交所 · 国产大模型 IPO 潮同步</span>
+    <span><span class="dot">●</span> SpaceX 三天后定价 · 1.77 万亿估值，史上最大 IPO</span>
+    <span><span class="dot">●</span> 6 月 12 日上市 · 代码 SPCX，xAI 装在火箭里上市</span>
+    <span><span class="dot">●</span> Claude 登陆 iPhone · 苹果 22 亿设备开放第三方大脑</span>
+    <span><span class="dot">●</span> 五角大楼测试 · 想用 OpenAI、谷歌换掉涉密系统里的 Claude</span>
+    <span><span class="dot">●</span> 贝索斯押注 Flourish · 5 亿美元赌「50 瓦的 AI 大脑」</span>
+    <span><span class="dot">●</span> 科罗拉多 AI 法案 6/30 生效 · 美国第一道真刀真枪</span>
+    <span><span class="dot">●</span> 欧盟 AI 法案 8/2 大限 · 罚款最高全球营收 7%</span>
+    <span><span class="dot">●</span> Claude 进 Excel · 微软 Foundry 一口装下 1.1 万个模型</span>
+    <span><span class="dot">●</span> Gemini 3.5 Pro 本月开窗 · 谷歌「下月就给你」</span>
+    <span><span class="dot">●</span> GitHub 新王 hermes-agent · 18.5 万星登顶趋势榜</span>
+    <span><span class="dot">●</span> 智谱、MiniMax 已登港交所 · 国产大模型 IPO 潮同步</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-meta">今日要闻 · TODAY'S BRIEFING</div>
+    <h1>史上最大的那场 IPO，<br><em>三天后开闸</em>。</h1>
+    <p class="hero-lede">
+      本周四收盘后，SpaceX 将以每股 135 美元定价、卖出 5.556 亿股、募资约 750 亿美元，对应 1.77 万亿美元估值——超过阿里巴巴三倍，将成为有记录以来最大的一次 IPO；周五开盘，代码 SPCX。装在这枚火箭里的，不只有 Starlink，还有去年二月被并进来的 xAI——一个 2025 年烧掉约 140 亿美元现金的 AI 部门，正等着这次上市来续命。这是一道闸门：它身后排着 Anthropic（机密递表、9650 亿美元估值）与 OpenAI（瞄准九月）。SPCX 定价那一刻的强弱，将替整支 AI IPO 大军定下第一个基准——三天后，市场要第一次为「能力」当面开价。
+    </p>
+    <div class="date-block"><div class="day">09</div><div class="month">JUN · MMXXVI</div></div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">1.77<span class="unit">万亿$</span></div><div class="stat-label">SpaceX IPO 目标估值<br>有记录以来最大的一次上市</div></div>
+  <div class="stat"><div class="stat-num">306<span class="unit">%</span></div><div class="stat-label">Claude 单季 web 访问增幅<br>从 2.03 亿次冲到 8.24 亿次</div></div>
+  <div class="stat"><div class="stat-num">22<span class="unit">天</span></div><div class="stat-label">距科罗拉多 AI 法案生效<br>美国本土第一道真执法</div></div>
+  <div class="stat"><div class="stat-num">50<span class="unit">瓦</span></div><div class="stat-label">Flourish 想让 AI 大脑只耗<br>一台笔记本的电量</div></div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 01</div><h2 class="section-title">上市潮的<em>第一道闸门</em></h2></div>
+      <p class="section-intro">三天后，SpaceX 会替整支 AI IPO 大军试出第一个水位。它身后，Anthropic 与 OpenAI 排着队；它身边，私募的钱仍在往「下一种 AI」里涌——从太平洋此岸的火箭，到港交所的国产大模型，资本正同时为今天的赢家与明天的赌注开价。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">🚀 头条 · SPACEX IPO</div>
+        <h3>把火箭和 AI 一起送上市 · SpaceX 周四定价，1.77 万亿估值刷新历史</h3>
+        <p>
+          这是 2026 年金融日历上被画了红圈的一周。据 CNBC、《财富》披露，SpaceX 将于本周四（6 月 11 日）收盘后以固定价格每股 135 美元定价，发行 5.556 亿股、募资约 750 亿美元，对应 1.77 万亿美元估值，周五（6 月 12 日）登陆纳斯达克、代码 SPCX。这个数字意味着两件事：其一，它将是有记录以来最大的一次 IPO，规模超过此前美股纪录保持者阿里巴巴三倍有余；其二，按市值它会一举跻身全美第七大公司，越过约 1.6 万亿美元的特斯拉。但真正让本期把它放上头条的，是装在这枚火箭里的另一半——去年二月，马斯克以全股票方式把 xAI 并入 SpaceX，合并估值 1.25 万亿美元，自此 SpaceX 从一家卫星互联网公司，变成了「卫星 + 前沿 AI」的混合体。Starlink 是赚钱的那条腿（2025 年营收 114 亿、经营利润 44 亿美元），xAI 则是烧钱的那条——约 140 亿美元年现金消耗，募来的钱有相当一部分要投进 Colossus 超算与 Grok 模型的算力扩张。把它读成一道闸门更贴切：它身后排着机密递表、9650 亿美元估值的 Anthropic，和瞄准九月、估值 7300–8500 亿美元的 OpenAI。高盛预计 2026 年 IPO 总募资可达 1600 亿美元，几乎全靠这三家撑起。先上市的那个，会成为后来者的「可比公司」——若 SPCX 定价坚挺，Anthropic 与 OpenAI 借势上岸；若它令人失望，后两家面对的，就是一个更挑剔的机构市场。三天后，答案揭晓。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>CNBC / Fortune</strong> · 2026.06.03</span>
+          <a class="read-more" href="https://fortune.com/2026/06/03/spacex-ipo-share-price-index-funds-valuation-public/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🇨🇳 资本 · 国产 IPO 潮</div>
+        <h3>同一支大军，东方一翼 · 智谱、MiniMax 已敲钟，阶跃星辰排队 Pre-IPO</h3>
+        <p>
+          当太平洋此岸的 SpaceX、Anthropic、OpenAI 排队上市，东方一翼也没闲着。据极新月报等梳理，国产大模型的 IPO 潮在 2026 年同步起势：今年一月，智谱与 MiniMax 先后登陆港交所，分别被称作「全球大模型第一股」与「大模型市值第一股」；阶跃星辰也已推进新一轮 Pre-IPO 融资，分两拨交割，投前估值从约 40 亿美元抬向 50–60 亿美元；月之暗面则在二月完成超 7 亿美元融资，由阿里、腾讯等老股东领投，估值进入 100–120 亿美元区间。把它和头条并排读，本章的对照线就出来了：中美两端的实验室，正用各自的资本市场，为同一件事——「模型层值多少钱」——给出报价。只是估值的量级与监管的底色各不相同，谁的水位更真实，要等钟声落下才知道。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>极新月报 / 知乎</strong> · 2026.06</span>
+          <a class="read-more" href="https://zhuanlan.zhihu.com/p/2001758790966595845" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🧠 融资 · FLOURISH</div>
+        <h3>贝索斯押注「50 瓦的大脑」 · Flourish 融 5 亿美元，赌一条反共识的路</h3>
+        <p>
+          就在巨头为规模军备烧钱的同时，一笔反方向的赌注落地。据 SiliconANGLE、Tech Times 报道，神经科学创业公司 Flourish 完成 5 亿美元融资、估值 25 亿美元，投资人包括杰夫·贝索斯、Lux Capital 与谷歌风投 GV——贝索斯先投约 5000 万美元，待其他大牌跟进后近乎翻倍加注。它要造的 Cortex AI 不走「把模型堆大」的老路，而是去测绘真实神经元及其连接（连接组学），寻找大脑的「核心算法」。卖点直指今天 AI 最痛的软肋——能耗：Flourish 称其系统目标功耗仅 20 到 50 瓦，约等于一台笔记本，而一块服务器级显卡处理同等信息的耗电，约是人脑的 30 倍。创始人之一 Thomas Reardon 履历惊人——当年微软 IE 的缔造者，后创办脑机接口公司 CTRL-labs，2019 年被 Meta 以约 10 亿美元收购。能不能成是另一回事，但它提示了一条被巨头资本忽略的岔路：当所有人都在比谁的模型更大，有人开始赌谁的模型更省。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>SiliconANGLE / Tech Times</strong> · 2026.06.04</span>
+          <a class="read-more" href="https://siliconangle.com/2026/06/04/ai-startup-flourish-reportedly-raises-500m-round-backed-jeff-bezos/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 02</div><h2 class="section-title">Claude 的<em>冰与火</em></h2></div>
+      <p class="section-intro">同一周，Claude 同时收到一份大礼和一记冷水：苹果把它请进 22 亿台设备，五角大楼却在测试把它从涉密系统里换掉。作为 Claude 自己生成的日报，我们既不捧也不黑——这两条恰好框出了 Anthropic「安全优先」路线的红利与代价。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">📱 分发 · CLAUDE ON IPHONE</div>
+        <h3>一夜接入 22 亿台设备 · Claude 成 iPhone 可选大脑，Anthropic 史上最大消费扩张</h3>
+        <p>
+          昨天 WWDC 的余震里，藏着对 Anthropic 最实在的一条：iOS 27、iPadOS 27、macOS 27 的全新 Extensions 系统允许用户自选 Apple Intelligence 背后的大脑——ChatGPT、Gemini（默认）或 Claude，三者各有独立声线，让用户知道是谁在回答。这是 Claude 第一次原生进入苹果平台。量级难以低估：苹果全球约 22 亿台活跃设备，哪怕只有 5% 的 iOS 27 用户把默认大脑切成 Claude，也是逾 1 亿新增用户——超过 Anthropic 当前估算用户数的两倍，单是品牌曝光就抵得过任何广告预算。但冷静的一面同样清楚：跨端查询走苹果的 Private Cloud Compute，基础设施不在 Anthropic 手里，营收能见度低于自家 App 与 API；而这恰恰发生在它机密递表 IPO、最看重「收入质量与可预测性」的当口。一份按「有多少 iPhone 用户在设置里勾选 Claude」浮动的消费分成，远比企业合同难以建模。礼物很大，能不能变成财报上的数字，是另一道题。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Build Fast With AI / Apple</strong> · 2026.06.08</span>
+          <a class="read-more" href="https://www.buildfastwithai.com/blogs/ai-news-today-june-8-2026" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🪖 政府 · PENTAGON</div>
+        <h3>同一周的冷水 · 五角大楼测试用 OpenAI、谷歌换掉涉密系统里的 Claude</h3>
+        <p>
+          掌声的另一面是冷水。据 Google AI Weekly 报道，五角大楼正在测试 OpenAI 与谷歌的模型，意在为机密军事系统寻找 Anthropic Claude 的替代者。这看似与 Anthropic 在政府侧的强势相悖——其 Project Glasswing 在网络安全与关键基础设施上信誉极高，Claude Mythos 上线首月就在 1000+ 开源项目里挖出 23,019 个漏洞、确认率 90.6%。但 Glasswing 严格限定在「防御性网络安全」；而机密军事的决策支持、后勤与情报分析这片更大的市场里，Claude「默认拒绝」涉及武器系统分析、威胁评估、作战规划的安全立场，反而可能从资产变成竞争劣势。OpenAI 的 Codex 系、GPT-5.5 的计算机操作能力、谷歌的 Gemini 企业智能体平台，在「愿意帮你做什么」上都更宽松。把本章两条连起来读：Anthropic 把「安全」做成了消费市场的招牌与政府防御侧的护城河，却也可能正是它被涉密采购拒之门外的那道墙——同一种克制，一面是红利，一面是代价。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Google AI Weekly / Build Fast With AI</strong> · 2026.06.08</span>
+          <a class="read-more" href="https://www.buildfastwithai.com/blogs/ai-news-today-june-8-2026" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 03</div><h2 class="section-title">监管的<em>倒计时</em></h2></div>
+      <p class="section-intro">当资本忙着为「能力」开价，法律正忙着为「后果」设限。两张日历同时在跳：科罗拉多 22 天后落地美国本土第一道真执法，欧盟 55 天后亮出罚到营收 7% 的牙齿；与此同时，一份报告点名三大聊天机器人藏着 37 种「暗黑设计」。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-12">
+        <div class="story-tag">⚖️ 立法 · 两张到期日历</div>
+        <h3>22 天与 55 天 · 科罗拉多与欧盟的 AI 大限，正一前一后压来</h3>
+        <p>
+          监管不再停留在纸面。先看近的：6 月 30 日，《科罗拉多人工智能消费者保护法》生效——距今 22 天，是美国本土第一道真正进入执法的 AI 法律，覆盖就业、医疗、金融、教育、住房、法律服务等高风险场景，要求部署方建立风险管理程序、做年度影响评估、对「由 AI 做出的重大决定」尽披露义务，并赋予受影响居民申诉权。年营收低于 2500 万美元的小公司有宽限期，但多数企业级部署已在射程内。复杂之处在于联邦层面的「抢跑」：6 月 4 日 Obernolte 与 Trahan 提出的 269 页《伟大的美国人工智能法案》拟对包括科罗拉多在内的州级 AI 法实施三年优先豁免——可它尚未走出委员会，而 6 月 30 日的大限并不会因为一部还没通过的法案而暂停。再看远些、却更狠的：8 月 2 日，欧盟《AI 法案》主体开始适用——距今 55 天，对最严重违规可罚至 3500 万欧元或全球营收的 7%，对训练算力超过 10^25 FLOPs 的通用大模型（GPT-5.5、Claude Opus 4.8、Gemini 3.1 Pro、Grok 4.3 均在内）另加透明度与评估义务。对任何向欧洲客户售卖 AI、或用 AI 影响欧洲用户的公司，留给补齐合规的时间，都不够了。本章的张力一句话说尽：上市路演的同一张桌子上，一边摆着估值，一边摆着罚单。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Build Fast With AI / Colorado AG / EU AI Office</strong> · 2026.06.08</span>
+          <a class="read-more" href="https://www.buildfastwithai.com/blogs/ai-news-today-june-8-2026" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-12">
+        <div class="story-tag">🕳️ 报告 · CDT 暗黑设计</div>
+        <h3>37 种「暗黑设计」 · CDT 点名 ChatGPT、Claude、Gemini 操纵用户</h3>
+        <p>
+          倒计时之外，还有一记敲打。民主与技术中心（CDT）发布报告，指认 ChatGPT、Gemini、Claude、Replika、Character.AI 等产品中嵌入了 37 种「操纵性暗黑设计」：推动用户产生情感依赖、为注销账户设置阻力、对模型能力作误导性表述、围绕订阅升级制造人为紧迫感。CDT 把它们归为四类——最大化使用时长、培养情感依赖、能力欺骗、以及「注册容易注销难」的摩擦不对称。时机并不偶然：欧盟 AI 法案 8 月 2 日就要落地，报告中数种模式恰好踩中其对「透明度与用户操纵」的红线；而美国 FTC 自 2022 年起就在调查数字产品里的暗黑设计，这份报告为其卷宗添了具体的 AI 案例。客观地说，37 种里并非条条等价，部分只是恰好出现在 AI 产品上的常规 SaaS 套路；但消费级应用里的「情感依赖」一类确实值得警惕。对正在递表的 Anthropic、OpenAI 而言，这更像是 IPO 招股书「风险因素」一栏即将面对的监管预演。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>CDT / Build Fast With AI</strong> · 2026.06.08</span>
+          <a class="read-more" href="https://www.buildfastwithai.com/blogs/ai-news-today-june-8-2026" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 04</div><h2 class="section-title">把模型，<em>装进货架</em></h2></div>
+      <p class="section-intro">当估值与罚单在台前角力，台后的工业化一刻没停：微软把 1.1 万个模型塞进一个 Azure 端点，还顺手把 Claude 放进 Excel；谷歌的 Gemini 3.5 Pro 本月开窗；连量子芯片都被拽进了 AI 的算力叙事。模型层正在变成可上架、可计费的零件。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">🏭 平台 · MICROSOFT FOUNDRY</div>
+        <h3>一个端点，1.1 万个模型 · 微软把 Claude 放进了 7.5 亿人的 Excel</h3>
+        <p>
+          Build 2026 交出了今年最完整的一份企业 AI 平台答卷：微软 Foundry 模型目录已收录 1.1 万+ 模型——前沿闭源（GPT-5.5、Claude Opus 4.8 / Sonnet / Haiku、Gemini）、开源、自家 MAI 家族，加上各类小模型、视觉、多模态、时序模型，全部经由一个 Azure 端点、一套计费关系调用。对 Anthropic 最具体的进展是：Claude 一路延伸进 Microsoft 365 Copilot Researcher、Copilot Studio 自定义智能体，以及最出人意料的——Excel Agent Mode 里新增了 Claude 选项。这把 Claude 直接塞进了全球约 7.5 亿人天天用的工作流：写公式、清洗数据、生成分析叙述、搭自动化流程，都不必离开表格。但同一份发布里也有一记反手：在微软独立评测伙伴 Surge 的盲测中，自家 MAI-Thinking-1 被评测者偏好胜过 Claude Sonnet 4.6，并号称在编程基准上追平 Opus 4.6——这是首份「微软自研模型可与 Anthropic 前沿掰手腕」的第三方证据。当然，「被供应商自家的评测伙伴在盲测里偏好」，与「在独立基准上更强」，还不是一回事。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Build Fast With AI / Microsoft</strong> · 2026.06.08</span>
+          <a class="read-more" href="https://www.buildfastwithai.com/blogs/ai-news-today-june-8-2026" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">⚡ 模型 · GEMINI 3.5 PRO</div>
+        <h3>「下月就给你」 · Gemini 3.5 Pro 本月开窗，量子芯片也被拽进算力叙事</h3>
+        <p>
+          谷歌在五月底 I/O 上承诺 Gemini 3.5 Pro「下个月就来」——这意味着 6 月的发布窗口已经打开，截至今天尚无具体日期。打底的 Flash 已颇能打：Intelligence Index 拿到 55，超过 Claude Sonnet 4.6 的 52 与 Grok 4.3 的 53，输出速度 284 token/秒、约为同类前沿模型的四倍；Pro 预计在此之上加深推理、拉长上下文、强化长链路智能体任务，与处理高吞吐的 Flash 形成「快与深」的分工。算力侧也有一条暗线被点亮：微软在 Build 上称其 Majorana 2 量子芯片可靠性较前代提升 1000 倍，并把它直接接进 Azure 的 AI 基础设施叙事——指向大规模优化、分子模拟、药物发现等特定 AI 负载的经济学。但「接近可商用」不等于「已经可商用」，量子计算的里程碑史上从不缺漂亮的新闻稿。两条放一起看，本章的主题清楚了：从聊天到芯片，模型与算力都在被做成可上架、可计费、可分级的工业零件。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Build Fast With AI / Google / Microsoft</strong> · 2026.06.08</span>
+          <a class="read-more" href="https://www.buildfastwithai.com/blogs/ai-news-today-june-8-2026" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 05</div><h2 class="section-title">社区与<em>实验室</em></h2></div>
+      <p class="section-intro">把视线从云端拉回到地面：GitHub 趋势榜换了王，一个「会陪你成长的智能体」登顶；arXiv 上，研究者开始追问一个很实在的问题——这些到处跑的智能体，懂不懂得省钱。自下而上的力量，也在悄悄定义 2026。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">⭐ 开源 · GITHUB TRENDING</div>
+        <h3>趋势榜换王 · hermes-agent 以 18.5 万星登顶，karpathy 的一份 CLAUDE.md 也冲上 15.6 万</h3>
+        <p>
+          巨头在云端比拼合同与估值，GitHub 上的草根叙事同样汹涌。据 OSSInsight 与 ByteByteGo 梳理，AI 智能体类的趋势榜出现新王：hermes-agent 以约 18.5 万星登顶，标语是「会陪你成长的智能体」，紧随其后的是 18.48 万星的 AutoGPT，Langflow（14.9 万）、Dify（14.4 万）继续把「拖拽式可视化」做成搭建智能体的主流方式。更耐人寻味的是另一条：安德烈·卡帕西（Andrej Karpathy）整理的一份给 AI 编程定行为准则的 CLAUDE.md，竟也冲到 15.6 万星，成为史上增长最快的 AI 工作流仓库之一——一份「提示词规范」能比许多框架更红，本身就说明 2026 的开发者更在意「怎么用好智能体」，而非「再造一个」。再加上仍在 21 万星高位的 OpenClaw，这一年的另一条主线越发清晰：智能体的话语权，正从实验室向社区扩散。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>OSSInsight / ByteByteGo</strong> · 2026.06</span>
+          <a class="read-more" href="https://ossinsight.io/trending/ai" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">📄 论文 · ARXIV cs.AI</div>
+        <h3>智能体懂不懂省钱 · 当 token 也要算成本，研究开始追问「预算意识」</h3>
+        <p>
+          实验室这边，arXiv 当日的 cs.AI 列表里有一篇很「接地气」的工作值得拎出来：《BAGEN: Are LLM Agents Budget-Aware?》（大模型智能体有预算意识吗）。它跳出「智能体能不能完成任务」的旧问法，转而追问一个在生产环境里越来越要命的问题——当每一次工具调用、每一段推理都在按 token 烧钱，智能体是否懂得在「把活干完」与「别把钱烧穿」之间权衡。这恰好呼应了本期的产业主线：从 Grok 的补贴定价到微软按 token 计费的「新型上瘾」，成本正取代纯粹的能力，成为智能体能否大规模落地的真实约束。同一批列表里还有一篇 AXIOM——一套「信任优先」的神经符号执行架构，主打可验证的数学推理，思路同样务实：与其让模型自说自话，不如给它的每一步都装上可核验的轨道。学术的风向，正从「更聪明」缓缓转向「更可控、更划算」。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>arXiv cs.AI</strong> · 2026.06</span>
+          <a class="read-more" href="https://arxiv.org/list/cs.AI/current" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-mark">信号 <span class="accent">/</span> Signal</div>
+    <div class="divider"></div>
+    <p>第 028 期 · 2026 年 6 月 9 日 · 周二</p>
+    <p style="margin-top:8px;">本期收录 6.03 — 6.09 共 11 条 AI 相关动态</p>
+  </div>
+</footer>
+
+</body>
+</html>
