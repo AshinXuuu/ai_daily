@@ -1,0 +1,40 @@
+{
+  "issue": "030",
+  "date": "2026-06-11",
+  "weekday": "周四",
+  "weekdayEn": "Thursday",
+  "type": "daily",
+  "file": "ai_daily_2026_06_11.html",
+  "stories": [
+    {
+      "tag": "💰 头条 · ANTHROPIC 登顶",
+      "headline": "9650 亿美元，首次盖过 OpenAI · Anthropic 一边登顶、一边秘密递交 IPO",
+      "summary": "据 TechCrunch、彭博、Fortune、CNBC，Anthropic 完成 650 亿美元 H 轮，投后估值抬至 9650 亿美元，逼近万亿、史上首次盖过 OpenAI（后者 3 月那轮对应约 8520 亿）。本轮由 Altimeter、红杉、Coatue 等领投，约 150 亿来自此前承诺的云厂商投入（含亚马逊 50 亿）。更关键的是：Anthropic 已向 SEC 秘密提交 IPO 草案，目标 10 月登陆纳斯达克，有望比 OpenAI 更早叩开华尔街；年化收入据称已越过约 470 亿美元，一年前还只有约 100 亿。当模型层能力差距收窄，一级市场用估值给「谁会成为企业默认底座」投票——只是 470 亿对 9650 亿，仍是一张需要持续加速才能填平的支票。作为 Claude 自己生成的日报，按公开披露如实记录、不拔高也不回避其中的估值张力。",
+      "source": "TechCrunch / 彭博 / Fortune"
+    },
+    {
+      "tag": "🪖 安全 · 太安全打不了仗",
+      "headline": "五角大楼要换掉 Claude · 因为它「太安全」，守住了两条红线",
+      "summary": "王座的另一面是一场打到法庭的分手。据彭博、TechTimes，美国防长 Hegseth 已把 Anthropic 列为「供应链风险」，从 3 月起组织约 25 名「重度用户」测试 OpenAI、谷歌、xAI Grok，要替换掉曾是机密网络主力、嵌入 Maven Smart System 的 Claude。导火索是 Anthropic 拒绝拿掉两条自创立守住的红线——不为针对美国人的大规模监控服务、不做无人类介入即对人开火的全自主武器。军方嫌护栏「太安全、打不了仗」，Anthropic 则在法庭挑战该认定，称标签可能让它损失数十亿美元收入。同一份「写进章程的克制」，在资本市场被定价为最高信任溢价，在国防采购里却成了被剔除的理由——能否既拿前沿合同、又不越红线，2026 正把这道题摆上台面。",
+      "source": "彭博 / TechTimes"
+    },
+    {
+      "tag": "🍎 终端 · APPLE WWDC 2026",
+      "headline": "Claude 第一次住进 iPhone · iOS 27 把「换掉 Siri」做成了选项",
+      "summary": "就在军方要把 Claude 请出门外的同一周，苹果把它请进了十几亿台手机。据 MacRumors、TechCrunch、AI Weekly，WWDC 2026 推出 iOS 27「Extensions」体系：用户可把 Claude、ChatGPT、Gemini 设为 Apple Intelligence 的默认大脑，按需把任务路由给不同模型——研究找 Gemini、写代码找 Claude、创意找 ChatGPT，这是 Claude 首次成为 iPhone 原生可选项。同时 Siri 云端底座交给谷歌：苹果以每年约 10 亿美元定制一颗 1.2 万亿参数 Gemini 为新 Siri 供能。一台设备、三家模型、各取所长——苹果用「不自己造最强、而是做最好分发层」的姿态回到牌桌中央。对 Anthropic，这是另一种「上桌」：军方合同会失去，但苹果九月铺开的数十亿台设备，正把 Claude 从开发者圈推向最广消费终端。",
+      "source": "MacRumors / TechCrunch / AI Weekly"
+    },
+    {
+      "tag": "🧬 政策 · 联名上书国会",
+      "headline": "四大 AI CEO 罕见同框 · 联名请国会强制筛查「合成 DNA」",
+      "summary": "6 月 5 日，一封罕见联名信摆到美国国会案头：OpenAI、Anthropic、谷歌、微软四家掌门人共同呼吁立法强制要求合成 DNA/RNA 供应商执行筛查。逻辑令人警醒——他们承认正是自家 AI 的进步在快速抹平把生物材料「武器化」所需的专业门槛；而当下合成 DNA 几乎可在网上直接下单，AI 又把所需专业知识拉到普通人触手可及的高度，两者叠加意味着生物安全的最后一道技术屏障正在变薄。耐人寻味的是姿态：通常忙着游说「别管太多」的前沿实验室，这次主动请监管者收紧缰绳——把外部约束当成行业护城河，而非枷锁。它和欧盟 AI 法案的倒计时呼应：当能力强到能造福也能作恶，「自己划红线」与「请别人来划」开始成为同一种自保。",
+      "source": "Yellow.com / 联名公开信"
+    },
+    {
+      "tag": "⚙️ 平台 · CODING WARS",
+      "headline": "微软、谷歌挤进代码战场 · Foundry 一口气上架 1.1 万模型，Claude Opus 4.8 也在架上",
+      "summary": "代码正成为大模型最贵的兵家必争之地。据 CNBC，微软与谷歌正式下场，挑战 Anthropic 与 OpenAI 长期把持的 AI 编程领域——微软同时把 Foundry 模型目录扩到约 1.1 万个，连对手的 Claude Opus 4.8 也被纳入，摆出「不一定造最强、但要做最大货架」的平台姿态。背后是一组被反复引用的数字：Anthropic 自曝，Claude 已写下其自家生产系统里合并代码的八成以上——当 AI 开始大规模写「造 AI 的代码」，谁的模型编程更强，谁就握住了开发者迁徙的方向盘。微软的算盘是与其单一模型硬碰硬，不如把所有人的模型摆进自家云货架，让选择本身成为护城河。对开发者是好消息——货架越全议价权越大；但对力图用「最强编程模型」立身的 Anthropic 与 OpenAI，中立货架也是一种温柔的稀释。",
+      "source": "CNBC"
+    }
+  ]
+},
