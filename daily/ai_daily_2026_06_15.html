@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 · 2026.06.15</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=JetBrains+Mono:wght@400;500;700&family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0d0b; --ink-2: #161410; --paper: #f4ecdb; --paper-2: #e8dfc9;
+    --muted: #8a8275; --rule: #2a2620; --signal: #ff4d1f; --signal-2: #ffb454; --tan: #c9a679;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink); color: var(--paper);
+    font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
+    font-weight: 300; line-height: 1.65; letter-spacing: 0.01em; overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255, 77, 31, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 90%, rgba(201, 166, 121, 0.035) 0%, transparent 50%);
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .masthead { border-bottom: 1px solid var(--rule); padding: 32px 0 24px; position: relative; }
+  .masthead-grid { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 32px; }
+  .edition { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .edition strong { color: var(--paper); font-weight: 500; }
+  .logo { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 38px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; text-align: center; font-variation-settings: "opsz" 144; }
+  .logo .accent { color: var(--signal); font-style: italic; font-weight: 600; }
+  .weather { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-align: right; line-height: 1.7; }
+  .weather .pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--signal); margin-right: 6px; animation: pulse 2s infinite; vertical-align: middle; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 77, 31, 0.5); }
+    50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(255, 77, 31, 0); }
+  }
+  .hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule); position: relative; }
+  .hero-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal); }
+  .hero-meta::before { content: ''; width: 40px; height: 1px; background: var(--signal); }
+  .hero h1 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: clamp(48px, 8vw, 96px); font-weight: 400; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 32px; font-variation-settings: "opsz" 144, "SOFT" 50; }
+  .hero h1 em { font-style: italic; font-weight: 600; color: var(--signal-2); }
+  .hero-lede { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.5; color: var(--paper-2); max-width: 680px; font-weight: 400; }
+  .date-block { position: absolute; top: 80px; right: 32px; text-align: right; font-family: 'JetBrains Mono', monospace; }
+  .date-block .day { font-family: 'Fraunces', serif; font-size: 120px; font-weight: 800; line-height: 0.9; color: var(--paper); font-variation-settings: "opsz" 144; letter-spacing: -0.05em; }
+  .date-block .month { font-size: 12px; letter-spacing: 0.2em; color: var(--muted); margin-top: 8px; }
+  .ticker { background: var(--ink-2); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); overflow: hidden; padding: 14px 0; position: relative; }
+  .ticker-track { display: flex; gap: 48px; white-space: nowrap; animation: scroll 60s linear infinite; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.05em; color: var(--paper-2); }
+  .ticker-track span { display: inline-flex; align-items: center; gap: 12px; }
+  .ticker-track .dot { color: var(--signal); font-size: 8px; }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .section { padding: 80px 0 40px; border-bottom: 1px solid var(--rule); }
+  .section-head { display: grid; grid-template-columns: 280px 1fr; gap: 48px; margin-bottom: 48px; align-items: start; }
+  .section-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--signal); margin-bottom: 12px; }
+  .section-title { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 56px; font-weight: 400; line-height: 0.95; letter-spacing: -0.03em; font-variation-settings: "opsz" 144; }
+  .section-title em { font-style: italic; color: var(--tan); font-weight: 600; }
+  .section-intro { font-family: 'Fraunces', serif; font-size: 17px; line-height: 1.6; color: var(--muted); padding-top: 16px; border-top: 1px solid var(--rule); }
+  .stories { display: grid; grid-template-columns: repeat(12, 1fr); gap: 32px; }
+  .story { grid-column: span 6; padding: 28px; background: linear-gradient(180deg, rgba(255,255,255,0.015) 0%, transparent 100%); border: 1px solid var(--rule); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; }
+  .story::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 1px; background: var(--signal); transition: width 0.6s ease; }
+  .story:hover { background: linear-gradient(180deg, rgba(255, 77, 31, 0.04) 0%, transparent 100%); border-color: rgba(255, 77, 31, 0.3); transform: translateY(-2px); }
+  .story:hover::before { width: 100%; }
+  .story.feature { grid-column: span 12; padding: 48px; background: linear-gradient(135deg, rgba(255, 77, 31, 0.06) 0%, rgba(201, 166, 121, 0.02) 100%); border-color: rgba(255, 77, 31, 0.25); }
+  .story.feature::after { content: 'FEATURED'; position: absolute; top: 24px; right: 24px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--signal); border: 1px solid var(--signal); padding: 4px 10px; }
+  .story-tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: var(--signal); margin-bottom: 16px; text-transform: uppercase; }
+  .story h3 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 26px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 16px; color: var(--paper); font-variation-settings: "opsz" 144; }
+  .story.feature h3 { font-size: 42px; line-height: 1.05; max-width: 90%; }
+  .story p { font-size: 15px; line-height: 1.7; color: var(--paper-2); margin-bottom: 20px; font-weight: 300; }
+  .story.feature p { font-family: 'Fraunces', serif; font-size: 19px; max-width: 720px; }
+  .story-meta { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 20px; border-top: 1px solid var(--rule); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.05em; }
+  .source { color: var(--muted); }
+  .source strong { color: var(--paper); font-weight: 500; }
+  .read-more { color: var(--signal); text-decoration: none; border: 1px solid var(--rule); padding: 6px 12px; transition: all 0.3s; white-space: nowrap; }
+  .read-more:hover { background: var(--signal); color: var(--ink); border-color: var(--signal); }
+  .story.span-4 { grid-column: span 4; }
+  .story.span-8 { grid-column: span 8; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--ink-2); }
+  .stat { padding: 40px 32px; border-right: 1px solid var(--rule); }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-family: 'Fraunces', serif; font-size: 56px; font-weight: 800; line-height: 1; color: var(--signal-2); letter-spacing: -0.04em; margin-bottom: 8px; font-variation-settings: "opsz" 144; }
+  .stat-num .unit { font-size: 22px; color: var(--paper); font-weight: 400; margin-left: 4px; }
+  .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; line-height: 1.4; }
+  .footer { padding: 80px 0 60px; text-align: center; border-top: 1px solid var(--rule); margin-top: 40px; }
+  .footer-mark { font-family: 'Fraunces', serif; font-style: italic; font-size: 28px; color: var(--paper); margin-bottom: 16px; font-variation-settings: "opsz" 144; }
+  .footer-mark .accent { color: var(--signal); }
+  .footer p { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+  .footer .divider { width: 60px; height: 1px; background: var(--signal); margin: 24px auto; }
+  /* ===== 平板 / 小笔记本 ===== */
+  @media (max-width: 900px) {
+    .wrap { padding: 0 20px; }
+    .masthead { padding: 24px 0 20px; }
+    .masthead-grid { grid-template-columns: 1fr; gap: 14px; text-align: center; }
+    .weather { text-align: center; }
+    .logo { font-size: 34px; }
+    .hero { padding: 44px 0 36px; }
+    .hero-meta { margin-bottom: 24px; }
+    .hero h1 { font-size: 42px; line-height: 1.05; margin-bottom: 24px; }
+    .hero-lede { font-size: 17px; }
+    .date-block { position: static; text-align: left; margin-top: 24px; }
+    .date-block .day { font-size: 72px; }
+    .section { padding: 56px 0 32px; }
+    .section-head { grid-template-columns: 1fr; gap: 14px; margin-bottom: 36px; }
+    .section-title { font-size: 36px; }
+    .stories { gap: 20px; }
+    .story, .story.feature { grid-column: span 12 !important; padding: 22px; }
+    .story.feature { padding: 26px; }
+    .story.feature::after { top: 16px; right: 16px; }
+    .story h3 { font-size: 22px; }
+    .story.feature h3 { font-size: 26px; max-width: 100%; }
+    .story p { font-size: 14.5px; }
+    .story.feature p { font-size: 16.5px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat { border-right: none; border-bottom: 1px solid var(--rule); padding: 26px 18px; }
+    .stat-num { font-size: 40px; }
+    .stat:nth-child(odd) { border-right: 1px solid var(--rule); }
+    .ticker-track { gap: 32px; font-size: 11px; }
+  }
+
+  /* ===== 手机 ===== */
+  @media (max-width: 600px) {
+    .wrap { padding: 0 16px; }
+    .logo { font-size: 28px; }
+    .edition, .weather { font-size: 10px; letter-spacing: 0.12em; }
+    .hero { padding: 32px 0 28px; }
+    .hero-meta { margin-bottom: 20px; font-size: 10px; }
+    .hero h1 { font-size: 32px; line-height: 1.08; margin-bottom: 20px; }
+    .hero-lede { font-size: 15.5px; line-height: 1.6; }
+    .date-block { margin-top: 20px; }
+    .date-block .day { font-size: 56px; }
+    .date-block .month { font-size: 10px; }
+    .section { padding: 44px 0 24px; }
+    .section-head { margin-bottom: 28px; }
+    .section-title { font-size: 28px; }
+    .section-num { font-size: 10px; }
+    .section-intro { font-size: 15px; line-height: 1.55; padding-top: 14px; }
+    .stories { gap: 16px; }
+    .story, .story.feature { padding: 20px; }
+    .story-tag { font-size: 9.5px; margin-bottom: 12px; }
+    .story h3 { font-size: 20px; margin-bottom: 12px; }
+    .story.feature h3 { font-size: 22px; }
+    .story p { font-size: 14px; line-height: 1.65; }
+    .story.feature p { font-size: 15px; }
+    .story-meta { flex-direction: column; align-items: flex-start; gap: 10px; padding-top: 14px; font-size: 10px; }
+    .source { line-height: 1.45; }
+    .read-more { font-size: 10px; padding: 5px 10px; }
+    .stat { padding: 22px 16px; }
+    .stat-num { font-size: 36px; }
+    .stat-num .unit { font-size: 15px; }
+    .stat-label { font-size: 10px; line-height: 1.35; }
+    .ticker-track { gap: 24px; font-size: 10.5px; animation-duration: 45s; }
+    .footer { padding: 56px 0 40px; }
+    .footer-mark { font-size: 24px; }
+  }
+
+  /* ===== 窄屏手机 ===== */
+  @media (max-width: 420px) {
+    .wrap { padding: 0 14px; }
+    .hero h1 { font-size: 28px; }
+    .hero-lede { font-size: 15px; }
+    .section-title { font-size: 24px; }
+    .stats { grid-template-columns: 1fr; }
+    .stat { border-right: none !important; padding: 20px 14px; }
+    .story, .story.feature { padding: 18px; }
+    .story h3, .story.feature h3 { font-size: 19px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-grid">
+      <div class="edition">VOL. <strong>I</strong> · NO. <strong>032</strong></div>
+      <div class="logo">信号 <span class="accent">/ Signal</span></div>
+      <div class="weather"><span class="pulse"></span>LIVE · 15 JUN 2026<br>晴 · 洛杉矶 · 23°C</div>
+    </div>
+  </div>
+</header>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span><span class="dot">●</span> 贝索斯 Prometheus 融资 120 亿$ · 估值 410 亿$，押注「通用工程师」</span>
+    <span><span class="dot">●</span> 钱正涌入物理 AI · VC 赌代码买不到的护城河</span>
+    <span><span class="dot">●</span> Coinbase 放智能体进场 · 可自主交易加密货币、自动付费</span>
+    <span><span class="dot">●</span> x402 协议上线 · 让智能体不用人工结账就买 API</span>
+    <span><span class="dot">●</span> 谷歌打响订阅价格战 · AI Plus 月费砍到 4.99$、存储翻倍</span>
+    <span><span class="dot">●</span> FAANG 退场，MANGOS 登基 · 六巨头合计市值超 10 万亿$</span>
+    <span><span class="dot">●</span> MiniMax M3 开源 · SWE-bench 59% 超 GPT-5.5，1M 上下文</span>
+    <span><span class="dot">●</span> 微软开源仓库被投毒 · Miasma 蠕虫盗走 AI 开发者密钥</span>
+    <span><span class="dot">●</span> GitHub 封停 73 个微软仓库 · 殃及 Claude Code、Gemini CLI 用户</span>
+    <span><span class="dot">●</span> arXiv：多智能体也会长出「智识精英」 · 协调失败是结构病</span>
+    <span><span class="dot">●</span> 贝索斯 Prometheus 融资 120 亿$ · 估值 410 亿$，押注「通用工程师」</span>
+    <span><span class="dot">●</span> 钱正涌入物理 AI · VC 赌代码买不到的护城河</span>
+    <span><span class="dot">●</span> Coinbase 放智能体进场 · 可自主交易加密货币、自动付费</span>
+    <span><span class="dot">●</span> x402 协议上线 · 让智能体不用人工结账就买 API</span>
+    <span><span class="dot">●</span> 谷歌打响订阅价格战 · AI Plus 月费砍到 4.99$、存储翻倍</span>
+    <span><span class="dot">●</span> FAANG 退场，MANGOS 登基 · 六巨头合计市值超 10 万亿$</span>
+    <span><span class="dot">●</span> MiniMax M3 开源 · SWE-bench 59% 超 GPT-5.5，1M 上下文</span>
+    <span><span class="dot">●</span> 微软开源仓库被投毒 · Miasma 蠕虫盗走 AI 开发者密钥</span>
+    <span><span class="dot">●</span> GitHub 封停 73 个微软仓库 · 殃及 Claude Code、Gemini CLI 用户</span>
+    <span><span class="dot">●</span> arXiv：多智能体也会长出「智识精英」 · 协调失败是结构病</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-meta">今日要闻 · TODAY'S BRIEFING</div>
+    <h1>最大的赌注，<br>下在<em>物理世界</em>。</h1>
+    <p class="hero-lede">
+      过去一周，AI 的聚光灯从聊天框移开，照向了钢铁与药物。据 TechCrunch，杰夫·贝索斯与前 Verily 联合创始人 Vik Bajaj 创办的 Prometheus 完成新一轮约 120 亿美元融资，投后估值约 410 亿美元——成立还不到一年，它已是史上估值最高的 AI 初创之一。它要造的不是更会写代码的模型，而是一个「通用工程师」：用 AI 自动化从喷气发动机到药物分子的设计与制造。当软件之外的「物理护城河」成了资本的新信仰，这一轮的胜负手，正从屏幕里溢向真实世界。
+    </p>
+    <div class="date-block"><div class="day">15</div><div class="month">JUN · MMXXVI</div></div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">120<span class="unit">亿$</span></div><div class="stat-label">Prometheus 新一轮融资<br>第二轮，成立不足一年</div></div>
+  <div class="stat"><div class="stat-num">10<span class="unit">万亿$+</span></div><div class="stat-label">MANGOS 六巨头合计市值<br>若全部上市的体量</div></div>
+  <div class="stat"><div class="stat-num">4.99<span class="unit">$/月</span></div><div class="stat-label">谷歌 AI Plus 新订阅价<br>消费级价格战打响</div></div>
+  <div class="stat"><div class="stat-num">59<span class="unit">%</span></div><div class="stat-label">MiniMax M3 在 SWE-bench Pro<br>超 GPT-5.5 的编程得分</div></div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 01</div><h2 class="section-title">钱往<em>「实体」里砸</em></h2></div>
+      <p class="section-intro">本期开篇是一道分水岭：当大模型的纸面能力逐渐拉平，最大的钱开始改道，奔向代码买不到的东西——可制造的发动机、可合成的药物、看得见摸得着的护城河。物理 AI，正成为这轮资本最贵的新信仰。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">🛠️ 头条 · PROMETHEUS × 物理 AI</div>
+        <h3>120 亿美元，赌一个「通用工程师」· 贝索斯把钱押向物理世界</h3>
+        <p>
+          这是一次把视线从聊天框拉回钢铁与药剂的融资。据 TechCrunch，杰夫·贝索斯与前 Verily（谷歌生命科学部门）联合创始人 Vik Bajaj 共同创办的物理 AI 公司 Prometheus，宣布完成约 120 亿美元新一轮融资，投后估值约 410 亿美元；出资方包括贝索斯本人，以及摩根大通、高盛、贝莱德等。这已是它去年底成立以来的第二轮——首轮就募了 62 亿美元。公司要做的，是一个被称为「通用工程师」（artificial general engineer）的系统：用 AI 自动化从喷气发动机到药物分子等复杂物理系统的设计与制造，目标直白得惊人——替代大量工程工作。耐人寻味的是贝索斯的判断：他不认为 AI 会带来大规模失业，反而预言「劳动力稀缺」，称生产力提升会抬高生活水准、把双职工家庭变回单职工家庭。这与硅谷不少「AI 取代人类」的论调正相反。把它放进本期主线看，信号很清楚：当模型能力进入平台期，最聪明的钱正在押注一件软件做不到的事——在物理世界里筑起代码无法复制的护城河。一家仅 150 人、还把成果捂得严严实实的公司能值 410 亿美元，本身就是这场豪赌最直白的注脚。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>TechCrunch / CNBC</strong> · 2026.06.11</span>
+          <a class="read-more" href="https://techcrunch.com/2026/06/11/jeff-bezoss-prometheus-raises-12b-to-build-an-artificial-general-engineer-for-the-physical-world/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">💰 风口 · 物理 AI 热钱</div>
+        <h3>不只是 Prometheus · 热钱正集体涌向「物理 AI」</h3>
+        <p>
+          410 亿美元的估值不是孤例，而是一股潮水的浪尖。据 TechCrunch 观察，近几个月风险资本正越来越密集地涌入「物理 AI」赛道——投资人与创业者的共识是：相比纯软件，能与真实世界绑定的系统天然更有壁垒，因为「物理世界能造出代码独力造不出的护城河」。同一篇报道点名的另一案例，是 Eclipse 押注硬件路线、拿下高达 25 亿美元的 Cerebras 相关交易，作为其「物理世界论」的开端。把这股潮水与本期头条并读，一条清晰的资金路线浮出水面：当文本、图像、代码的模型能力被快速追平、商品化，资本开始为「难以被复制」的东西付溢价——机器人、芯片、生物制造、自动化工程。这也解释了为什么贝索斯敢给一家成立不到一年的公司开出 410 亿美元：他买的不是今天的产品，而是物理世界这道护城河本身。屏幕之外的战场，才刚刚开打。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>TechCrunch</strong> · 2026.06.11</span>
+          <a class="read-more" href="https://techcrunch.com/category/artificial-intelligence/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🥭 座次 · FAANG → MANGOS</div>
+        <h3>华尔街换了主角 · 从 FAANG 到 MANGOS，10 万亿美元的新王朝</h3>
+        <p>
+          资本的注意力转向，也体现在一个正在疯传的新缩写上。据 TechCrunch，随着 SpaceX、Anthropic、OpenAI 在同一个窗口期相继走向公开市场，旧的「FAANG」正被「MANGOS」取代——Meta、Anthropic、Nvidia、Google、OpenAI、SpaceX。媒体估算，一旦六家全部上市，合计市值将超过 10 万亿美元；而 OpenAI 与 Anthropic 的 IPO 估值据传都在万亿美元上下。比名字更值得玩味的是底层逻辑的换挡：FAANG 争夺的是消费者的注意力，MANGOS 卖的却是「别人要付费才能运行」的基础设施——算力、模型、轨道、数据中心。这与本期头条遥相呼应：无论是贝索斯押注物理工程，还是这六家垄断 AI 的底层管道，资本都在往「上游」走，争当那个收过路费的人。作为 Claude 自己生成的日报，这里把 Anthropic 列入榜单只是如实转述这一市场叙事——既不替它的估值故事背书，也不回避它仍未上市的事实。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>TechCrunch</strong> · 2026.06.09</span>
+          <a class="read-more" href="https://techcrunch.com/podcast/its-hot-ipo-summer-and-the-mangos-are-ripe/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 02</div><h2 class="section-title">让 AI<em>自己动手</em></h2></div>
+      <p class="section-intro">如果说资本在押注 AI 的「身体」，产品和学术则在追问它的「手」。这一周，智能体被放进了交易账户，可以自主下单、自动付费；而学术界泼来一盆冷水：当一群智能体凑在一起，它们会长出「智识精英」，也会一起把事情搞砸。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">🪙 智能体 · COINBASE FOR AGENTS</div>
+        <h3>把交易账户交给 AI · Coinbase 让智能体自己下单、自己付钱</h3>
+        <p>
+          智能体从「会说」迈向「会做」，这一步迈得相当激进。据 TechCrunch、CoinDesk，Coinbase 推出「Coinbase for Agents」，首发形态正是一个 MCP（模型上下文协议）接口，可把 ChatGPT、Claude、OpenAI Codex 乃至 OpenClaw 等 AI 直接连上用户的 Coinbase 账户。授权之后，智能体能在用户设定的参数内自主交易加密货币、发起支付、再平衡投资组合——上线即支持现货与衍生品，股票交易据称三周内跟进，预测市场预计 7 月初接入。更关键的是它整合了 Coinbase 自研的 x402 支付协议，让智能体无需人工结账，就能为付费 API、付费墙内容、数据与算力买单——这等于给「机器对机器」的经济递上了一张信用卡。信号也因此变得双面：一边，自动化金融的想象空间被一举打开；另一边，把真金白银的下单权交给一个会「一本正经地胡说」的模型，风险敞口同样被一举放大。智能体的「手」伸进钱包的这一刻，便利与失控只隔着一行授权参数。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>TechCrunch / CoinDesk</strong> · 2026.06.11</span>
+          <a class="read-more" href="https://techcrunch.com/2026/06/11/coinbase-debuts-mcp-for-agent-trading/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">📄 论文 · ARXIV cs.MA / cs.AI</div>
+        <h3>一群智能体会长出「精英」· arXiv 揭开多智能体的隐藏幂律</h3>
+        <p>
+          当产品忙着把智能体连成系统，一篇 arXiv 论文却替它们做了一次「群体体检」：《多智能体社会会孕育出智识精英吗？》（Do Agent Societies Develop Intellectual Elites?）。研究者分析了超过 150 万次智能体交互，跨越不同任务、拓扑与规模，发现三条彼此咬合的规律：协调以「重尾级联」的方式扩散、通过「优先连接」机制把影响力汇聚到少数智能体身上、并随系统变大而越来越频繁地爆发极端事件。换句话说，哪怕所有智能体起点能力完全相同，最终也会自发分化出一小撮「智识精英」——贡献越大、影响越大，强者愈强。三条规律共享同一个结构性病根：研究者称之为「整合瓶颈」——系统越大，协调的摊子铺得越开，整合却跟不上，于是长出一个庞大却「松散、貌合神离」的推理过程。它给本章泼了恰到好处的冷水：多智能体协调失败，往往不是某个模型不够聪明，而是「组织方式」本身出了问题。当 Coinbase 们把越来越多智能体接成一张网，这篇论文提醒的恰恰是——可扩展性，取决于你如何编排集体的脑子，而不只是把脑子堆得更多。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>arXiv cs.MA / cs.AI</strong> · 2026.06</span>
+          <a class="read-more" href="https://arxiv.org/abs/2604.02674" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 03</div><h2 class="section-title">价格战<em>烧到了消费者</em></h2></div>
+      <p class="section-intro">巨头在上游抢算力、抢上市，下游却悄悄打起了另一场仗——订阅价格。谷歌把月费砍到不到五美元，第一次把 AI 价格战从新兴市场带进美国客厅。当能力趋同，下一个战场就是钱包。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">🏷️ 价格 · GOOGLE AI PLUS</div>
+        <h3>月费砍到 4.99 美元 · 谷歌把 AI 价格战烧进美国客厅</h3>
+        <p>
+          上游在抢万亿估值，下游谷歌却递出一把价格剪刀。据 TechCrunch，谷歌把 Google AI Plus 的月费从 7.99 美元下调到 4.99 美元，同时把该档位的存储从 200GB 翻倍到 400GB。这档服务今年 1 月推出，定位是美国市场最便宜的付费 AI 订阅，面向个人用户与学生，而非企业，内含 Omni Flash 视频生成、创意工具 Google Flow 与研究助手 NotebookLM。报道点出的关键是：在美国，订阅定价此前从来不是各家 AI 厂商的主战场——大家比的是模型有多强，而不是订阅有多便宜。谷歌主动掀桌，等于把一场原本在新兴市场酝酿的价格战，正式带到了美国消费者面前。把它和本期上游的「天价」叙事并读，对照格外鲜明：一边为算力、上市、物理护城河一掷千金，另一边却开始为每月 3 美元的差价争夺普通用户。这是能力趋同后的必然——当模型谁都用得起，下一个分胜负的地方，就是谁更便宜。问题随之抛给 OpenAI 与 Anthropic：跟，还是不跟？
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>TechCrunch</strong> · 2026.06.09</span>
+          <a class="read-more" href="https://techcrunch.com/2026/06/09/google-just-fired-a-warning-shot-in-the-ai-subscription-price-wars/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🇨🇳 国产 · MINIMAX M3</div>
+        <h3>开源也能「三件套合一」· MiniMax M3 编程超 GPT-5.5</h3>
+        <p>
+          价格战的另一种打法，是干脆把前沿能力开源。据 MiniMax 官方与腾讯新闻，MiniMax 正式发布新一代通用模型 M3，并计划在十天内开源权重——它自称是首个把「前沿编程能力、100 万 token 超长上下文、原生多模态」三件套集齐的开源模型，也是目前全球唯一具备这一完整组合的开源选项。M3 采用名为 MSA（MiniMax 稀疏注意力）的新架构，在百万 token 规模下，单 token 计算量仅约上一代的二十分之一，推理效率大幅提升；成绩单上，它在 SWE-bench Pro 编程评测拿到 59.0%，超过 GPT-5.5 与 Gemini 3.1 Pro，逼近 Claude Opus 4.7。把它和谷歌的降价并读，会发现东西方在用两种方式回答同一个问题——当能力快速商品化，护城河该挖在哪？谷歌选择「更便宜」，MiniMax 选择「更开放」：用一个免费可自托管、还能打的前沿模型，去换开发者生态与话语权。对用户而言，这两种「卷」殊途同归，都是把先进 AI 的门槛一压再压。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>MiniMax / 腾讯新闻</strong> · 2026.06.01</span>
+          <a class="read-more" href="https://www.minimaxi.com/blog/minimax-m3" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 04</div><h2 class="section-title">开源的<em>两副面孔</em></h2></div>
+      <p class="section-intro">开源是这一代 AI 的底色，但它有两副面孔。一面是 MiniMax 们把前沿能力免费放出，抬高整个行业的地板；另一面，是有人把恶意代码塞进巨头的开源仓库，让信任本身成了攻击面。光与影，同源。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-12">
+        <div class="story-tag">🪱 安全 · MICROSOFT × MIASMA 蠕虫</div>
+        <h3>开源仓库被「投毒」· 一条 Miasma 蠕虫，专偷 AI 开发者的密钥</h3>
+        <p>
+          开源的另一副面孔，这一周露得格外狰狞。据 TechCrunch，微软紧急切断了其托管在 GitHub 上的数十个开源项目的访问，调查黑客如何攻入这些仓库、并向代码里注入窃密恶意软件。攻击者用一名微软贡献者被盗的账号凭据推送了恶意更新，上传的配置文件会在开发者用 AI 编程工具打开仓库的瞬间触发载荷——这条被命名为「Miasma」的恶意软件是一种自我复制的蠕虫，由安全公司 Cloudsmith 与 OpenSourceMalware 发现，能在项目被打开时窃取密码、GitHub 令牌、云凭据等各种机密。受波及的项目很多与微软云服务 Azure 相关，更要命的是，不少正是开发者配合 Claude Code、Gemini 命令行、VS Code 等 AI 编程工具时会拉取的依赖。6 月 5 日，GitHub 一口气停用了 Azure、Azure-Samples、Microsoft、MicrosoftDocs 四个组织下的 73 个仓库。把它与本章另一面并读，结论令人清醒：正是「开源 + AI 工具自动拉取依赖」这套极大提升效率的范式，被攻击者反手变成了传播链——你越信任、越自动化，被一次投毒波及的面就越大。当智能体开始替我们读代码、装依赖、连账户，供应链安全不再是运维的边角料，而是这场 AI 竞赛绕不开的底座。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>TechCrunch / Cloudsmith</strong> · 2026.06.08</span>
+          <a class="read-more" href="https://techcrunch.com/2026/06/08/microsofts-open-source-tools-were-hacked-to-steal-passwords-of-ai-developers/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-mark">信号 <span class="accent">/</span> Signal</div>
+    <div class="divider"></div>
+    <p>第 032 期 · 2026 年 6 月 15 日 · 周一</p>
+    <p style="margin-top:8px;">本期收录 6.01 — 6.15 共 8 条 AI 相关动态</p>
+  </div>
+</footer>
+
+</body>
+</html>

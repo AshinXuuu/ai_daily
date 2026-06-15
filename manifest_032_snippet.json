@@ -1,0 +1,40 @@
+{
+  "issue": "032",
+  "date": "2026-06-15",
+  "weekday": "周一",
+  "weekdayEn": "Monday",
+  "type": "daily",
+  "file": "ai_daily_2026_06_15.html",
+  "stories": [
+    {
+      "tag": "🛠️ 头条 · PROMETHEUS × 物理 AI",
+      "headline": "120 亿美元，赌一个「通用工程师」· 贝索斯把钱押向物理世界",
+      "summary": "据 TechCrunch、CNBC，杰夫·贝索斯与前 Verily 联合创始人 Vik Bajaj 创办的物理 AI 公司 Prometheus 完成约 120 亿美元新一轮融资，投后估值约 410 亿美元，出资方包括贝索斯本人及摩根大通、高盛、贝莱德——这是它去年底成立以来的第二轮（首轮 62 亿）。公司要造的是一个「通用工程师」：用 AI 自动化从喷气发动机到药物分子的设计与制造。耐人寻味的是贝索斯的判断——他不认为 AI 会造成大规模失业，反而预言「劳动力稀缺」，与硅谷主流论调相反。信号很清楚：当模型纸面能力趋平，最聪明的钱正在押注软件做不到的事——在物理世界里筑起代码无法复制的护城河。一家仅 150 人、成果还捂得严严实实的公司就值 410 亿美元，本身就是这场豪赌的注脚。",
+      "source": "TechCrunch / CNBC"
+    },
+    {
+      "tag": "🪙 智能体 · COINBASE FOR AGENTS",
+      "headline": "把交易账户交给 AI · Coinbase 让智能体自己下单、自己付钱",
+      "summary": "据 TechCrunch、CoinDesk，Coinbase 推出「Coinbase for Agents」，首发是一个 MCP 接口，可把 ChatGPT、Claude、OpenAI Codex 乃至 OpenClaw 直接连上用户的 Coinbase 账户。授权后，智能体能在用户设定参数内自主交易加密货币、发起支付、再平衡组合——上线即支持现货与衍生品，股票交易据称三周内跟进，预测市场预计 7 月初接入。更关键的是整合了自研 x402 支付协议，让智能体无需人工结账即可为付费 API、付费墙内容、数据与算力买单，等于给「机器对机器」经济递上一张信用卡。信号双面：自动化金融的想象被打开，但把真金白银的下单权交给一个会「一本正经地胡说」的模型，风险敞口也同步放大。智能体的手伸进钱包的这一刻，便利与失控只隔着一行授权参数。",
+      "source": "TechCrunch / CoinDesk"
+    },
+    {
+      "tag": "🥭 座次 · FAANG → MANGOS",
+      "headline": "华尔街换了主角 · 从 FAANG 到 MANGOS，10 万亿美元的新王朝",
+      "summary": "据 TechCrunch，随着 SpaceX、Anthropic、OpenAI 在同一窗口期相继走向公开市场，旧的「FAANG」正被「MANGOS」取代——Meta、Anthropic、Nvidia、Google、OpenAI、SpaceX。媒体估算，六家全部上市后合计市值将超 10 万亿美元，OpenAI 与 Anthropic 的 IPO 估值据传都在万亿上下。比名字更值得玩味的是逻辑换挡：FAANG 争夺消费者注意力，MANGOS 卖的却是「别人付费才能运行」的基础设施——算力、模型、轨道、数据中心。这与本期头条呼应：无论贝索斯押注物理工程，还是这六家垄断 AI 底层管道，资本都在往上游走，争当那个收过路费的人。作为 Claude 生成的日报，这里把 Anthropic 列入只是如实转述市场叙事——既不替其估值故事背书，也不回避它仍未上市的事实。",
+      "source": "TechCrunch"
+    },
+    {
+      "tag": "🇨🇳 国产 · MINIMAX M3",
+      "headline": "开源也能「三件套合一」· MiniMax M3 编程超 GPT-5.5",
+      "summary": "据 MiniMax 官方与腾讯新闻，MiniMax 正式发布新一代通用模型 M3，并计划十天内开源权重。它自称是首个集齐「前沿编程、100 万 token 超长上下文、原生多模态」三件套的开源模型，也是全球唯一具备这一完整组合的开源选项。M3 采用名为 MSA（MiniMax 稀疏注意力）的新架构，百万 token 规模下单 token 计算量仅约上一代的二十分之一，推理效率大幅提升；在 SWE-bench Pro 拿到 59.0%，超过 GPT-5.5 与 Gemini 3.1 Pro，逼近 Claude Opus 4.7。把它和谷歌降价并读，东西方在用两种方式回答同一问题——能力商品化后护城河挖在哪：谷歌选「更便宜」，MiniMax 选「更开放」，用一个免费可自托管、还能打的前沿模型去换开发者生态。对用户而言殊途同归，都在把先进 AI 的门槛一压再压。",
+      "source": "MiniMax / 腾讯新闻"
+    },
+    {
+      "tag": "🪱 安全 · MICROSOFT × MIASMA 蠕虫",
+      "headline": "开源仓库被「投毒」· 一条 Miasma 蠕虫，专偷 AI 开发者的密钥",
+      "summary": "据 TechCrunch，微软紧急切断其托管在 GitHub 上的数十个开源项目访问，调查黑客如何攻入并注入窃密恶意软件。攻击者用一名微软贡献者被盗的账号凭据推送恶意更新，配置文件会在开发者用 AI 编程工具打开仓库时触发载荷——这条名为「Miasma」的自我复制蠕虫由 Cloudsmith 与 OpenSourceMalware 发现，能窃取密码、GitHub 令牌、云凭据等机密。受波及项目多与 Azure 相关，且不少正是开发者配合 Claude Code、Gemini CLI、VS Code 时会拉取的依赖。6 月 5 日，GitHub 一口气停用 Azure、Azure-Samples、Microsoft、MicrosoftDocs 四个组织下的 73 个仓库。结论令人清醒：正是「开源 + AI 工具自动拉依赖」这套提效范式，被反手变成传播链——越信任、越自动化，被一次投毒波及的面就越大。当智能体开始替我们读代码、装依赖、连账户，供应链安全已成 AI 竞赛绕不开的底座。",
+      "source": "TechCrunch / Cloudsmith"
+    }
+  ]
+},
