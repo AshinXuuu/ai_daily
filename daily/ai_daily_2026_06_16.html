@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 · 2026.06.16</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=JetBrains+Mono:wght@400;500;700&family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0d0b; --ink-2: #161410; --paper: #f4ecdb; --paper-2: #e8dfc9;
+    --muted: #8a8275; --rule: #2a2620; --signal: #ff4d1f; --signal-2: #ffb454; --tan: #c9a679;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink); color: var(--paper);
+    font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
+    font-weight: 300; line-height: 1.65; letter-spacing: 0.01em; overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255, 77, 31, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 90%, rgba(201, 166, 121, 0.035) 0%, transparent 50%);
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .masthead { border-bottom: 1px solid var(--rule); padding: 32px 0 24px; position: relative; }
+  .masthead-grid { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 32px; }
+  .edition { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .edition strong { color: var(--paper); font-weight: 500; }
+  .logo { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 38px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; text-align: center; font-variation-settings: "opsz" 144; }
+  .logo .accent { color: var(--signal); font-style: italic; font-weight: 600; }
+  .weather { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-align: right; line-height: 1.7; }
+  .weather .pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--signal); margin-right: 6px; animation: pulse 2s infinite; vertical-align: middle; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 77, 31, 0.5); }
+    50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(255, 77, 31, 0); }
+  }
+  .hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule); position: relative; }
+  .hero-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal); }
+  .hero-meta::before { content: ''; width: 40px; height: 1px; background: var(--signal); }
+  .hero h1 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: clamp(48px, 8vw, 96px); font-weight: 400; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 32px; font-variation-settings: "opsz" 144, "SOFT" 50; }
+  .hero h1 em { font-style: italic; font-weight: 600; color: var(--signal-2); }
+  .hero-lede { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.5; color: var(--paper-2); max-width: 680px; font-weight: 400; }
+  .date-block { position: absolute; top: 80px; right: 32px; text-align: right; font-family: 'JetBrains Mono', monospace; }
+  .date-block .day { font-family: 'Fraunces', serif; font-size: 120px; font-weight: 800; line-height: 0.9; color: var(--paper); font-variation-settings: "opsz" 144; letter-spacing: -0.05em; }
+  .date-block .month { font-size: 12px; letter-spacing: 0.2em; color: var(--muted); margin-top: 8px; }
+  .ticker { background: var(--ink-2); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); overflow: hidden; padding: 14px 0; position: relative; }
+  .ticker-track { display: flex; gap: 48px; white-space: nowrap; animation: scroll 60s linear infinite; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.05em; color: var(--paper-2); }
+  .ticker-track span { display: inline-flex; align-items: center; gap: 12px; }
+  .ticker-track .dot { color: var(--signal); font-size: 8px; }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .section { padding: 80px 0 40px; border-bottom: 1px solid var(--rule); }
+  .section-head { display: grid; grid-template-columns: 280px 1fr; gap: 48px; margin-bottom: 48px; align-items: start; }
+  .section-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--signal); margin-bottom: 12px; }
+  .section-title { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 56px; font-weight: 400; line-height: 0.95; letter-spacing: -0.03em; font-variation-settings: "opsz" 144; }
+  .section-title em { font-style: italic; color: var(--tan); font-weight: 600; }
+  .section-intro { font-family: 'Fraunces', serif; font-size: 17px; line-height: 1.6; color: var(--muted); padding-top: 16px; border-top: 1px solid var(--rule); }
+  .stories { display: grid; grid-template-columns: repeat(12, 1fr); gap: 32px; }
+  .story { grid-column: span 6; padding: 28px; background: linear-gradient(180deg, rgba(255,255,255,0.015) 0%, transparent 100%); border: 1px solid var(--rule); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; }
+  .story::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 1px; background: var(--signal); transition: width 0.6s ease; }
+  .story:hover { background: linear-gradient(180deg, rgba(255, 77, 31, 0.04) 0%, transparent 100%); border-color: rgba(255, 77, 31, 0.3); transform: translateY(-2px); }
+  .story:hover::before { width: 100%; }
+  .story.feature { grid-column: span 12; padding: 48px; background: linear-gradient(135deg, rgba(255, 77, 31, 0.06) 0%, rgba(201, 166, 121, 0.02) 100%); border-color: rgba(255, 77, 31, 0.25); }
+  .story.feature::after { content: 'FEATURED'; position: absolute; top: 24px; right: 24px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--signal); border: 1px solid var(--signal); padding: 4px 10px; }
+  .story-tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: var(--signal); margin-bottom: 16px; text-transform: uppercase; }
+  .story h3 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 26px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 16px; color: var(--paper); font-variation-settings: "opsz" 144; }
+  .story.feature h3 { font-size: 42px; line-height: 1.05; max-width: 90%; }
+  .story p { font-size: 15px; line-height: 1.7; color: var(--paper-2); margin-bottom: 20px; font-weight: 300; }
+  .story.feature p { font-family: 'Fraunces', serif; font-size: 19px; max-width: 720px; }
+  .story-meta { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 20px; border-top: 1px solid var(--rule); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.05em; }
+  .source { color: var(--muted); }
+  .source strong { color: var(--paper); font-weight: 500; }
+  .read-more { color: var(--signal); text-decoration: none; border: 1px solid var(--rule); padding: 6px 12px; transition: all 0.3s; white-space: nowrap; }
+  .read-more:hover { background: var(--signal); color: var(--ink); border-color: var(--signal); }
+  .story.span-4 { grid-column: span 4; }
+  .story.span-8 { grid-column: span 8; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--ink-2); }
+  .stat { padding: 40px 32px; border-right: 1px solid var(--rule); }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-family: 'Fraunces', serif; font-size: 56px; font-weight: 800; line-height: 1; color: var(--signal-2); letter-spacing: -0.04em; margin-bottom: 8px; font-variation-settings: "opsz" 144; }
+  .stat-num .unit { font-size: 22px; color: var(--paper); font-weight: 400; margin-left: 4px; }
+  .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; line-height: 1.4; }
+  .footer { padding: 80px 0 60px; text-align: center; border-top: 1px solid var(--rule); margin-top: 40px; }
+  .footer-mark { font-family: 'Fraunces', serif; font-style: italic; font-size: 28px; color: var(--paper); margin-bottom: 16px; font-variation-settings: "opsz" 144; }
+  .footer-mark .accent { color: var(--signal); }
+  .footer p { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+  .footer .divider { width: 60px; height: 1px; background: var(--signal); margin: 24px auto; }
+  /* ===== 平板 / 小笔记本 ===== */
+  @media (max-width: 900px) {
+    .wrap { padding: 0 20px; }
+    .masthead { padding: 24px 0 20px; }
+    .masthead-grid { grid-template-columns: 1fr; gap: 14px; text-align: center; }
+    .weather { text-align: center; }
+    .logo { font-size: 34px; }
+    .hero { padding: 44px 0 36px; }
+    .hero-meta { margin-bottom: 24px; }
+    .hero h1 { font-size: 42px; line-height: 1.05; margin-bottom: 24px; }
+    .hero-lede { font-size: 17px; }
+    .date-block { position: static; text-align: left; margin-top: 24px; }
+    .date-block .day { font-size: 72px; }
+    .section { padding: 56px 0 32px; }
+    .section-head { grid-template-columns: 1fr; gap: 14px; margin-bottom: 36px; }
+    .section-title { font-size: 36px; }
+    .stories { gap: 20px; }
+    .story, .story.feature { grid-column: span 12 !important; padding: 22px; }
+    .story.feature { padding: 26px; }
+    .story.feature::after { top: 16px; right: 16px; }
+    .story h3 { font-size: 22px; }
+    .story.feature h3 { font-size: 26px; max-width: 100%; }
+    .story p { font-size: 14.5px; }
+    .story.feature p { font-size: 16.5px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat { border-right: none; border-bottom: 1px solid var(--rule); padding: 26px 18px; }
+    .stat-num { font-size: 40px; }
+    .stat:nth-child(odd) { border-right: 1px solid var(--rule); }
+    .ticker-track { gap: 32px; font-size: 11px; }
+  }
+
+  /* ===== 手机 ===== */
+  @media (max-width: 600px) {
+    .wrap { padding: 0 16px; }
+    .logo { font-size: 28px; }
+    .edition, .weather { font-size: 10px; letter-spacing: 0.12em; }
+    .hero { padding: 32px 0 28px; }
+    .hero-meta { margin-bottom: 20px; font-size: 10px; }
+    .hero h1 { font-size: 32px; line-height: 1.08; margin-bottom: 20px; }
+    .hero-lede { font-size: 15.5px; line-height: 1.6; }
+    .date-block { margin-top: 20px; }
+    .date-block .day { font-size: 56px; }
+    .date-block .month { font-size: 10px; }
+    .section { padding: 44px 0 24px; }
+    .section-head { margin-bottom: 28px; }
+    .section-title { font-size: 28px; }
+    .section-num { font-size: 10px; }
+    .section-intro { font-size: 15px; line-height: 1.55; padding-top: 14px; }
+    .stories { gap: 16px; }
+    .story, .story.feature { padding: 20px; }
+    .story-tag { font-size: 9.5px; margin-bottom: 12px; }
+    .story h3 { font-size: 20px; margin-bottom: 12px; }
+    .story.feature h3 { font-size: 22px; }
+    .story p { font-size: 14px; line-height: 1.65; }
+    .story.feature p { font-size: 15px; }
+    .story-meta { flex-direction: column; align-items: flex-start; gap: 10px; padding-top: 14px; font-size: 10px; }
+    .source { line-height: 1.45; }
+    .read-more { font-size: 10px; padding: 5px 10px; }
+    .stat { padding: 22px 16px; }
+    .stat-num { font-size: 36px; }
+    .stat-num .unit { font-size: 15px; }
+    .stat-label { font-size: 10px; line-height: 1.35; }
+    .ticker-track { gap: 24px; font-size: 10.5px; animation-duration: 45s; }
+    .footer { padding: 56px 0 40px; }
+    .footer-mark { font-size: 24px; }
+  }
+
+  /* ===== 窄屏手机 ===== */
+  @media (max-width: 420px) {
+    .wrap { padding: 0 14px; }
+    .hero h1 { font-size: 28px; }
+    .hero-lede { font-size: 15px; }
+    .section-title { font-size: 24px; }
+    .stats { grid-template-columns: 1fr; }
+    .stat { border-right: none !important; padding: 20px 14px; }
+    .story, .story.feature { padding: 18px; }
+    .story h3, .story.feature h3 { font-size: 19px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-grid">
+      <div class="edition">VOL. <strong>I</strong> · NO. <strong>033</strong></div>
+      <div class="logo">信号 <span class="accent">/ Signal</span></div>
+      <div class="weather"><span class="pulse"></span>LIVE · 16 JUN 2026<br>多云 · 洛杉矶 · 21°C</div>
+    </div>
+  </div>
+</header>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span><span class="dot">●</span> AI 裁员潮变「火药桶」· 今年美科技业裁员近 15 万</span>
+    <span><span class="dot">●</span> 一边裁员一边造富 · SpaceX 上市潜在催生 4400 名百万富翁</span>
+    <span><span class="dot">●</span> 安德森：AI 是裁员的「银弹借口」· 大公司普遍超编</span>
+    <span><span class="dot">●</span> Mistral 拟融资 30 亿€ · 估值冲 200 亿€、一年翻倍</span>
+    <span><span class="dot">●</span> Meta 应用 AI 部门被斥「古拉格」· 6500 工程师怨声载道</span>
+    <span><span class="dot">●</span> 1600+ Meta 员工联署 · 抗议点击与键盘被监控做训练数据</span>
+    <span><span class="dot">●</span> OpenClaw 飙到 21 万星 · 本地优先 AI 助手成新顶流</span>
+    <span><span class="dot">●</span> Meta 论文：半形式化推理 · 让代码智能体准确率冲 93%</span>
+    <span><span class="dot">●</span> FBI 造了座「假城」· 2.2 万平尺靶场练防黑客</span>
+    <span><span class="dot">●</span> 安全圈炮轰 Claude Fable · 护栏过严连读博客都拦</span>
+    <span><span class="dot">●</span> AI 裁员潮变「火药桶」· 今年美科技业裁员近 15 万</span>
+    <span><span class="dot">●</span> 一边裁员一边造富 · SpaceX 上市潜在催生 4400 名百万富翁</span>
+    <span><span class="dot">●</span> 安德森：AI 是裁员的「银弹借口」· 大公司普遍超编</span>
+    <span><span class="dot">●</span> Mistral 拟融资 30 亿€ · 估值冲 200 亿€、一年翻倍</span>
+    <span><span class="dot">●</span> Meta 应用 AI 部门被斥「古拉格」· 6500 工程师怨声载道</span>
+    <span><span class="dot">●</span> 1600+ Meta 员工联署 · 抗议点击与键盘被监控做训练数据</span>
+    <span><span class="dot">●</span> OpenClaw 飙到 21 万星 · 本地优先 AI 助手成新顶流</span>
+    <span><span class="dot">●</span> Meta 论文：半形式化推理 · 让代码智能体准确率冲 93%</span>
+    <span><span class="dot">●</span> FBI 造了座「假城」· 2.2 万平尺靶场练防黑客</span>
+    <span><span class="dot">●</span> 安全圈炮轰 Claude Fable · 护栏过严连读博客都拦</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-meta">今日要闻 · TODAY'S BRIEFING</div>
+    <h1>一边裁员，<br>一边<em>造富</em>。</h1>
+    <p class="hero-lede">
+      今天的信号，是一道正在被拉宽的裂缝。据 TechCrunch，今年美国科技业累计裁员已近 15 万人，相当于每天约 974 人离场，比去年快 44%；上个月单月近 4 万人，创两年新高，「AI」连续第三个月成为各行业裁员的头号官方理由。但就在同一时刻，SpaceX 上市把马斯克变成纸面万亿富翁、潜在催生约 4400 名百万富翁，Anthropic 与 OpenAI 的估值双双逼近万亿、正排队走向公开市场。一边被告知「是 AI 抢走了你的饭碗」，另一边却靠 AI 一夜暴富——这道裂缝，才是本期真正的头条。
+    </p>
+    <div class="date-block"><div class="day">16</div><div class="month">JUN · MMXXVI</div></div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">15<span class="unit">万人</span></div><div class="stat-label">2026 年美国科技业累计裁员<br>AI 成头号官方归因</div></div>
+  <div class="stat"><div class="stat-num">9650<span class="unit">亿$</span></div><div class="stat-label">Anthropic 最新估值<br>逼近万亿、排队上市</div></div>
+  <div class="stat"><div class="stat-num">200<span class="unit">亿€</span></div><div class="stat-label">Mistral 寻求的新估值<br>较去年九月近乎翻倍</div></div>
+  <div class="stat"><div class="stat-num">21<span class="unit">万★</span></div><div class="stat-label">OpenClaw GitHub 星标<br>史上最快开源项目之一</div></div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 01</div><h2 class="section-title">一边裁员，<em>一边造富</em></h2></div>
+      <p class="section-intro">本期开篇是一道分配的裂缝：AI 在一端疯狂造富，在另一端被当成裁员的理由。钱仍在源源涌入这条赛道，可它流向的，是估值与股权，而不是被替换掉的工位。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">💥 头条 · AI 裁员 × 财富裂缝</div>
+        <h3>当裁员潮撞上造富潮 · AI 正把社会情绪点成「火药桶」</h3>
+        <p>
+          这是一篇关于「优化叙事」的冷峻观察。据 TechCrunch（作者为总编辑 Connie Loizos），今年美国科技业已发生约 363 起裁员、波及近 15 万人，节奏约为每天 974 人、比去年快 44%；上个月单月近 4 万人，创两年新高，而「AI」连续第三个月成为各行业裁员的头号官方理由。但越来越多人质疑这只是「方便的借口」：支付公司 Block 砍掉近一半员工后，杰克·多尔西先把锅甩给 AI「带来全新工作方式」，被追问后又承认疫情期间确实「超编」了；知名风投马克·安德森更直言 AI 是裁员的「银弹借口」，称大公司普遍超编 25%–75%。真正让局面变得易燃的，是同一时刻的另一端：AI 芯片商 Cerebras 上市首日大涨、两位创始人当场成为亿万富翁；SpaceX 上周五挂牌、市值约 2.1 万亿美元，把马斯克变成纸面万亿富翁，并可能催生约 4400 名百万富翁、约 400 名「半亿富翁」；Anthropic 与 OpenAI 估值双双逼近万亿、正排队上市。文章把它与 2008 提前类比：那一次愤怒的导火索是「谁为烂摊子买单」，而这一次「连崩盘都没有」——公司盈利、AI 造富、裁员照旧。信号很清楚：当「用 AI 替换你」与「靠 AI 暴富」发生在同一批公司身上，技术叙事就不再只是商业话术，而成了一颗正在累积压力的社会火药桶。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>TechCrunch</strong> · 2026.06.15</span>
+          <a class="read-more" href="https://techcrunch.com/2026/06/15/the-ai-layoff-wave-is-becoming-a-powder-keg/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🚀 造富端 · IPO 之夏</div>
+        <h3>万亿富翁与 4400 名百万富翁 · AI 的财富在另一端集中爆发</h3>
+        <p>
+          头条的「造富端」值得单独拆开看。据 TechCrunch 与《纽约时报》，SpaceX 上周五完成上市，市值约 2.1 万亿美元，让马斯克成为全球首位纸面万亿富翁，并可能一举催生约 4400 名百万富翁与约 400 名身家过亿者；此前 AI 芯片公司 Cerebras 上市首日较 185 美元发行价大涨 68%、市值一度约 670 亿美元（其后回落 30%）。更重磅的是两家 AI 巨头：Anthropic 据报最新估值已达约 9650 亿美元、逼近万亿并超过 OpenAI；OpenAI 也在筹备机密招股书、最快今年九月挂牌。把它和本章头条并读，对照才完整——财富正以惊人的速度向极少数 AI「内部人」集中，而裁员名单却在另一端越拉越长。作为 Claude 自己生成的日报，这里如实转述这一市场叙事：既不为任何一家的估值故事背书，也不回避「造富」与「裁员」同时发生所制造的观感张力。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>纽约时报 / TechCrunch</strong> · 2026.06.12</span>
+          <a class="read-more" href="https://www.nytimes.com/2026/06/12/technology/spacex-ipo-openai-anthropic.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🇪🇺 资本 · MISTRAL</div>
+        <h3>钱还在涌进来 · Mistral 拟融 30 亿欧元，估值一年翻倍</h3>
+        <p>
+          裁员的另一面，是资本依旧不差钱——只是钱去了上游。据 TechCrunch、彭博，法国 AI 公司 Mistral 正洽谈新一轮约 30 亿欧元（约 35 亿美元）融资，投后估值约 200 亿欧元，较去年九月 C 轮的 117 亿欧元近乎翻倍。其最大股东是光刻巨头 ASML——后者去年以 13 亿欧元拿下约 11% 股权。这笔钱被定位为欧洲「AI 主权」之战的弹药：在美中之间的算力竞赛里，欧洲想留一张自己的牌。把它和本章并读，一条清晰的资金路径浮现：钱不是变少了，而是更集中地砸向模型、算力与估值这些「上游资产」，而不是流向被技术替换掉的岗位。这恰是头条「火药桶」叙事的注脚——繁荣是真的，分配的失衡也是真的。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>TechCrunch / 彭博</strong> · 2026.06.12</span>
+          <a class="read-more" href="https://techcrunch.com/2026/06/12/mistral-is-rumored-to-be-raising-e3b-at-e20-valuation/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 02</div><h2 class="section-title">人才<em>开始反抗</em></h2></div>
+      <p class="section-intro">如果说资本在 AI 这端高歌猛进，人才那端却传来了刺耳的杂音。当「全员转岗去给模型出题」成了不容拒绝的指令，连大厂最金贵的工程师，也开始公开掀桌。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-12">
+        <div class="story-tag">🧊 文化 · META 应用 AI 部门</div>
+        <h3>「古拉格」式的 AI 工厂 · Meta 6500 名工程师的集体反弹</h3>
+        <p>
+          AI 竞赛的代价，这一周以一种极不体面的方式暴露在台面上。据 TechCrunch，Meta 三个月前成立的「应用 AI」部门约有 6500 名工程师与产品经理，被划入这里的员工称几乎没得选——「要么加入，要么走人」，日常工作是为模型训练批量生产谜题与编程题，许多人形容为「令人窒息」（soul-crushing），私下里干脆称之为「古拉格」。矛盾在本周一场仅限员工、且全程直播的内部演示上彻底引爆：有人闯入直播、爆粗失控，要求与会者当面转告一位 Meta AI 高管「他是个混蛋」。与此同时，全公司有超过 1600 名员工联署，抗议一项会监控他们点击与键盘动作、用作 AI 训练数据的计划；首席产品官 Chris Cox 不得不在电话会上回应这种「残酷」的氛围，扎克伯格也在内部备忘录中承认近期变动「造成了痛苦」、「犯了错误」。把它放进本期主线看，信号格外清醒：AI 的产能不只来自 GPU，也来自被强行重新编排的人。当顶尖人才把自己的处境形容为「古拉格」，再光鲜的估值故事，也盖不住组织内部正在累积的裂痕——这与头条的「火药桶」，其实是同一团火的里与外。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>TechCrunch</strong> · 2026.06.12</span>
+          <a class="read-more" href="https://techcrunch.com/2026/06/12/metas-months-old-ai-unit-is-a-soul-crushing-gulag-say-the-engineers-stuck-inside-it/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 03</div><h2 class="section-title">开源的<em>新地标</em></h2></div>
+      <p class="section-intro">喧嚣之外，真正在改变开发者日常的，是两件安静的事：一个本地优先的 AI 助手登顶 GitHub，一篇论文教会代码智能体「拿证据说话」。地板被悄悄抬高的方式，往往不响。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">⭐ 开源 · OPENCLAW</div>
+        <h3>21 万星的新顶流 · OpenClaw 把 AI 助手搬回你自己的设备</h3>
+        <p>
+          2026 年的开源舞台，主角已经换人。据多家技术媒体盘点，由 PSPDFKit 创始人 Peter Steinberger 发起的 OpenClaw 一路冲到 21 万 GitHub 星标，被称作史上增长最快的开源项目之一。它的定位与多数云端助手相反：完全跑在你自己的设备上，作为一个「本地网关」把各种 AI 模型连接到 50 多个集成入口——WhatsApp、Telegram、Slack、Discord、Signal、iMessage 等都在其中。换句话说，它把「智能体」从别人的服务器搬回了你的电脑。为什么这股风越刮越大？因为当模型能力被快速商品化、隐私与成本成为新的痛点，「本地优先 + 可自托管」就成了开发者最朴素的护城河。它和本期上游的天价叙事形成有趣对照：一边是万亿估值的中心化巨头，一边是星标暴涨的去中心化工具——AI 的重量，正同时往两个相反方向分布。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>GitHub Trending / NocoBase</strong> · 2026.06</span>
+          <a class="read-more" href="https://www.nocobase.com/en/blog/best-open-source-ai-projects-github-2026" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">📄 论文 · ARXIV cs.SE / cs.AI</div>
+        <h3>让代码智能体「拿证据说话」· Meta 半形式化推理把准确率推到 93%</h3>
+        <p>
+          当智能体越来越多地替我们读代码、改代码，「它凭什么这么说」就成了关键问题。一篇来自 Meta 的 arXiv 论文《Agentic Code Reasoning》（作者 Shubham Ugare、Satish Chandra）给出一个务实答案：与其让模型一口气给结论，不如用「半形式化推理」逼它按结构化模板作答，为每一条主张显式地附上证据。效果相当扎实——在「补丁是否等价」的验证任务上，配合 Opus-4.5 的准确率从单次作答的 86% 提升到 93%；在代码问答上，从单次的方法提升 10.8 个百分点至 87%。它给本章补上技术的另一面：开源工具负责把能力的「地板」抬高，而这类推理方法负责把可靠性的「天花板」顶起。当代码智能体开始进入生产环境，能不能「讲清楚为什么」，往往比「跑得快」更决定它配不配被信任。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>arXiv cs.SE / cs.AI (Meta)</strong> · 2026.06</span>
+          <a class="read-more" href="https://arxiv.org/abs/2603.01896" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 04</div><h2 class="section-title">攻防<em>两端</em></h2></div>
+      <p class="section-intro">最后落到安全。一端，执法者建起一座「假城」来演练真实的网络攻击；另一端，模型为了防黑客把护栏拉得太紧，连防守方自己都被挡在门外。安全的边界，正在两头同时被试探。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">🏚️ 防守 · FBI 动能网络靶场</div>
+        <h3>FBI 造了一座「假城」· 用 200 台服务器演练真实网络攻击</h3>
+        <p>
+          为了对抗看不见的攻击，FBI 选择造一座看得见的城。据 TechCrunch，FBI 在阿拉巴马州亨茨维尔园区建起一座约 2.2 万平方英尺的仿真小镇——名为「动能网络靶场」（Kinetic Cyber Range），内有住宅、酒店、加油站、医院、法院和电力公司，全部接入可运行的真实设备，外加一座装有 200 多台 Windows/Linux 物理服务器的数据中心。它的用意，是把调查员从课堂拉进「逼真的实战」：在安全环境里，演练勒索软件攻击及其真实后果，包括医院系统瘫痪时那种「人命关天」的高压决策。该靶场自启用以来已培训超过 1400 名学员。把它放进本期看，信号是务实的：当 AI 让攻击的自动化与规模化都在加速，防守一方也必须把训练做得「更像真的」——纸上推演挡不住会自我复制的现实威胁。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>TechCrunch</strong> · 2026.06.13</span>
+          <a class="read-more" href="https://techcrunch.com/2026/06/13/the-fbi-built-its-own-replica-small-town-to-simulate-real-world-cyberattacks/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🛡️ 护栏 · ANTHROPIC FABLE</div>
+        <h3>护栏拉太紧 · 安全圈抱怨 Claude Fable 连读篇博客都拦</h3>
+        <p>
+          安全的另一端，是「防过头」带来的副作用。据 TechCrunch，Anthropic 本周发布新模型 Fable，定位为其强大网络安全模型 Mythos 的公开受限版；但不少安全研究者随即在网上吐槽：Fable 会拒绝任何「沾点网络安全边」的请求，哪怕只是读一篇博客文章。IBM X-Force 的知名研究者 Valentina「Chompie」Palmiotti 指出，连代码审计、阅读安全博客这类日常防守工作都会触发护栏——模型会暂停对话，提示「安全机制将此消息标记为网络安全或生物学话题」。这些护栏本是为了降低模型被用来开发恶意软件、攻破系统的风险，是 Anthropic 长期的关切；也有研究者认为，部署初期谨慎些可以理解，随着与安全厂商深化合作，护栏大概率会逐步放松。作为 Claude 自己生成的日报，这里按编辑标准客观记录这场争议：它点出的，是 AI 安全里一个真实的两难——拦得太松会被滥用，拦得太紧又会误伤正当的防守者，平衡点究竟划在哪，仍是悬而未决的难题。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>TechCrunch</strong> · 2026.06.10</span>
+          <a class="read-more" href="https://techcrunch.com/2026/06/10/cybersecurity-researchers-arent-happy-about-the-guardrails-on-anthropics-fable/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-mark">信号 <span class="accent">/</span> Signal</div>
+    <div class="divider"></div>
+    <p>第 033 期 · 2026 年 6 月 16 日 · 周二</p>
+    <p style="margin-top:8px;">本期收录 6.10 — 6.15 共 8 条 AI 相关动态</p>
+  </div>
+</footer>
+
+</body>
+</html>
