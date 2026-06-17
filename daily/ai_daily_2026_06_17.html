@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 · 2026.06.17</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=JetBrains+Mono:wght@400;500;700&family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0d0b; --ink-2: #161410; --paper: #f4ecdb; --paper-2: #e8dfc9;
+    --muted: #8a8275; --rule: #2a2620; --signal: #ff4d1f; --signal-2: #ffb454; --tan: #c9a679;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink); color: var(--paper);
+    font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
+    font-weight: 300; line-height: 1.65; letter-spacing: 0.01em; overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255, 77, 31, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 90%, rgba(201, 166, 121, 0.035) 0%, transparent 50%);
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .masthead { border-bottom: 1px solid var(--rule); padding: 32px 0 24px; position: relative; }
+  .masthead-grid { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 32px; }
+  .edition { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .edition strong { color: var(--paper); font-weight: 500; }
+  .logo { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 38px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; text-align: center; font-variation-settings: "opsz" 144; }
+  .logo .accent { color: var(--signal); font-style: italic; font-weight: 600; }
+  .weather { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-align: right; line-height: 1.7; }
+  .weather .pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--signal); margin-right: 6px; animation: pulse 2s infinite; vertical-align: middle; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 77, 31, 0.5); }
+    50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(255, 77, 31, 0); }
+  }
+  .hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule); position: relative; }
+  .hero-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal); }
+  .hero-meta::before { content: ''; width: 40px; height: 1px; background: var(--signal); }
+  .hero h1 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: clamp(48px, 8vw, 96px); font-weight: 400; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 32px; font-variation-settings: "opsz" 144, "SOFT" 50; }
+  .hero h1 em { font-style: italic; font-weight: 600; color: var(--signal-2); }
+  .hero-lede { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.5; color: var(--paper-2); max-width: 680px; font-weight: 400; }
+  .date-block { position: absolute; top: 80px; right: 32px; text-align: right; font-family: 'JetBrains Mono', monospace; }
+  .date-block .day { font-family: 'Fraunces', serif; font-size: 120px; font-weight: 800; line-height: 0.9; color: var(--paper); font-variation-settings: "opsz" 144; letter-spacing: -0.05em; }
+  .date-block .month { font-size: 12px; letter-spacing: 0.2em; color: var(--muted); margin-top: 8px; }
+  .ticker { background: var(--ink-2); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); overflow: hidden; padding: 14px 0; position: relative; }
+  .ticker-track { display: flex; gap: 48px; white-space: nowrap; animation: scroll 60s linear infinite; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.05em; color: var(--paper-2); }
+  .ticker-track span { display: inline-flex; align-items: center; gap: 12px; }
+  .ticker-track .dot { color: var(--signal); font-size: 8px; }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .section { padding: 80px 0 40px; border-bottom: 1px solid var(--rule); }
+  .section-head { display: grid; grid-template-columns: 280px 1fr; gap: 48px; margin-bottom: 48px; align-items: start; }
+  .section-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--signal); margin-bottom: 12px; }
+  .section-title { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 56px; font-weight: 400; line-height: 0.95; letter-spacing: -0.03em; font-variation-settings: "opsz" 144; }
+  .section-title em { font-style: italic; color: var(--tan); font-weight: 600; }
+  .section-intro { font-family: 'Fraunces', serif; font-size: 17px; line-height: 1.6; color: var(--muted); padding-top: 16px; border-top: 1px solid var(--rule); }
+  .stories { display: grid; grid-template-columns: repeat(12, 1fr); gap: 32px; }
+  .story { grid-column: span 6; padding: 28px; background: linear-gradient(180deg, rgba(255,255,255,0.015) 0%, transparent 100%); border: 1px solid var(--rule); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; }
+  .story::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 1px; background: var(--signal); transition: width 0.6s ease; }
+  .story:hover { background: linear-gradient(180deg, rgba(255, 77, 31, 0.04) 0%, transparent 100%); border-color: rgba(255, 77, 31, 0.3); transform: translateY(-2px); }
+  .story:hover::before { width: 100%; }
+  .story.feature { grid-column: span 12; padding: 48px; background: linear-gradient(135deg, rgba(255, 77, 31, 0.06) 0%, rgba(201, 166, 121, 0.02) 100%); border-color: rgba(255, 77, 31, 0.25); }
+  .story.feature::after { content: 'FEATURED'; position: absolute; top: 24px; right: 24px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--signal); border: 1px solid var(--signal); padding: 4px 10px; }
+  .story-tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: var(--signal); margin-bottom: 16px; text-transform: uppercase; }
+  .story h3 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 26px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 16px; color: var(--paper); font-variation-settings: "opsz" 144; }
+  .story.feature h3 { font-size: 42px; line-height: 1.05; max-width: 90%; }
+  .story p { font-size: 15px; line-height: 1.7; color: var(--paper-2); margin-bottom: 20px; font-weight: 300; }
+  .story.feature p { font-family: 'Fraunces', serif; font-size: 19px; max-width: 720px; }
+  .story-meta { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 20px; border-top: 1px solid var(--rule); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.05em; }
+  .source { color: var(--muted); }
+  .source strong { color: var(--paper); font-weight: 500; }
+  .read-more { color: var(--signal); text-decoration: none; border: 1px solid var(--rule); padding: 6px 12px; transition: all 0.3s; white-space: nowrap; }
+  .read-more:hover { background: var(--signal); color: var(--ink); border-color: var(--signal); }
+  .story.span-4 { grid-column: span 4; }
+  .story.span-8 { grid-column: span 8; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--ink-2); }
+  .stat { padding: 40px 32px; border-right: 1px solid var(--rule); }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-family: 'Fraunces', serif; font-size: 56px; font-weight: 800; line-height: 1; color: var(--signal-2); letter-spacing: -0.04em; margin-bottom: 8px; font-variation-settings: "opsz" 144; }
+  .stat-num .unit { font-size: 22px; color: var(--paper); font-weight: 400; margin-left: 4px; }
+  .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; line-height: 1.4; }
+  .footer { padding: 80px 0 60px; text-align: center; border-top: 1px solid var(--rule); margin-top: 40px; }
+  .footer-mark { font-family: 'Fraunces', serif; font-style: italic; font-size: 28px; color: var(--paper); margin-bottom: 16px; font-variation-settings: "opsz" 144; }
+  .footer-mark .accent { color: var(--signal); }
+  .footer p { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+  .footer .divider { width: 60px; height: 1px; background: var(--signal); margin: 24px auto; }
+  /* ===== 平板 / 小笔记本 ===== */
+  @media (max-width: 900px) {
+    .wrap { padding: 0 20px; }
+    .masthead { padding: 24px 0 20px; }
+    .masthead-grid { grid-template-columns: 1fr; gap: 14px; text-align: center; }
+    .weather { text-align: center; }
+    .logo { font-size: 34px; }
+    .hero { padding: 44px 0 36px; }
+    .hero-meta { margin-bottom: 24px; }
+    .hero h1 { font-size: 42px; line-height: 1.05; margin-bottom: 24px; }
+    .hero-lede { font-size: 17px; }
+    .date-block { position: static; text-align: left; margin-top: 24px; }
+    .date-block .day { font-size: 72px; }
+    .section { padding: 56px 0 32px; }
+    .section-head { grid-template-columns: 1fr; gap: 14px; margin-bottom: 36px; }
+    .section-title { font-size: 36px; }
+    .stories { gap: 20px; }
+    .story, .story.feature { grid-column: span 12 !important; padding: 22px; }
+    .story.feature { padding: 26px; }
+    .story.feature::after { top: 16px; right: 16px; }
+    .story h3 { font-size: 22px; }
+    .story.feature h3 { font-size: 26px; max-width: 100%; }
+    .story p { font-size: 14.5px; }
+    .story.feature p { font-size: 16.5px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat { border-right: none; border-bottom: 1px solid var(--rule); padding: 26px 18px; }
+    .stat-num { font-size: 40px; }
+    .stat:nth-child(odd) { border-right: 1px solid var(--rule); }
+    .ticker-track { gap: 32px; font-size: 11px; }
+  }
+
+  /* ===== 手机 ===== */
+  @media (max-width: 600px) {
+    .wrap { padding: 0 16px; }
+    .logo { font-size: 28px; }
+    .edition, .weather { font-size: 10px; letter-spacing: 0.12em; }
+    .hero { padding: 32px 0 28px; }
+    .hero-meta { margin-bottom: 20px; font-size: 10px; }
+    .hero h1 { font-size: 32px; line-height: 1.08; margin-bottom: 20px; }
+    .hero-lede { font-size: 15.5px; line-height: 1.6; }
+    .date-block { margin-top: 20px; }
+    .date-block .day { font-size: 56px; }
+    .date-block .month { font-size: 10px; }
+    .section { padding: 44px 0 24px; }
+    .section-head { margin-bottom: 28px; }
+    .section-title { font-size: 28px; }
+    .section-num { font-size: 10px; }
+    .section-intro { font-size: 15px; line-height: 1.55; padding-top: 14px; }
+    .stories { gap: 16px; }
+    .story, .story.feature { padding: 20px; }
+    .story-tag { font-size: 9.5px; margin-bottom: 12px; }
+    .story h3 { font-size: 20px; margin-bottom: 12px; }
+    .story.feature h3 { font-size: 22px; }
+    .story p { font-size: 14px; line-height: 1.65; }
+    .story.feature p { font-size: 15px; }
+    .story-meta { flex-direction: column; align-items: flex-start; gap: 10px; padding-top: 14px; font-size: 10px; }
+    .source { line-height: 1.45; }
+    .read-more { font-size: 10px; padding: 5px 10px; }
+    .stat { padding: 22px 16px; }
+    .stat-num { font-size: 36px; }
+    .stat-num .unit { font-size: 15px; }
+    .stat-label { font-size: 10px; line-height: 1.35; }
+    .ticker-track { gap: 24px; font-size: 10.5px; animation-duration: 45s; }
+    .footer { padding: 56px 0 40px; }
+    .footer-mark { font-size: 24px; }
+  }
+
+  /* ===== 窄屏手机 ===== */
+  @media (max-width: 420px) {
+    .wrap { padding: 0 14px; }
+    .hero h1 { font-size: 28px; }
+    .hero-lede { font-size: 15px; }
+    .section-title { font-size: 24px; }
+    .stats { grid-template-columns: 1fr; }
+    .stat { border-right: none !important; padding: 20px 14px; }
+    .story, .story.feature { padding: 18px; }
+    .story h3, .story.feature h3 { font-size: 19px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-grid">
+      <div class="edition">VOL. <strong>I</strong> · NO. <strong>034</strong></div>
+      <div class="logo">信号 <span class="accent">/ Signal</span></div>
+      <div class="weather"><span class="pulse"></span>LIVE · 17 JUN 2026<br>晴 · 洛杉矶 · 23°C</div>
+    </div>
+  </div>
+</header>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span><span class="dot">●</span> G7 埃维昂峰会 · 三大 AI 巨头首次同台</span>
+    <span><span class="dot">●</span> 周三 AI 工作午宴 · 各方拟达成「自愿承诺」</span>
+    <span><span class="dot">●</span> 青少年安全 · 被摆上奥尔特曼的桌面议程</span>
+    <span><span class="dot">●</span> 贝索斯 Prometheus 融 120 亿$ · 估值 410 亿$</span>
+    <span><span class="dot">●</span> 「通用工程师」要让 AI 造出实体的桥与芯片</span>
+    <span><span class="dot">●</span> Gemini 3.5 Pro 本月转正 · Claude Mythos 同期落地</span>
+    <span><span class="dot">●</span> 文心 5.1 · 预训练成本仅为业界基准的 6%</span>
+    <span><span class="dot">●</span> OpenCode 冲 17.2 万星 · 登顶最星标智能体</span>
+    <span><span class="dot">●</span> 新论文追问 · AI 智能体到底懂不懂「省钱」</span>
+    <span><span class="dot">●</span> 三巨头联名上书国会 · 收紧合成 DNA 生物风险</span>
+    <span><span class="dot">●</span> G7 埃维昂峰会 · 三大 AI 巨头首次同台</span>
+    <span><span class="dot">●</span> 周三 AI 工作午宴 · 各方拟达成「自愿承诺」</span>
+    <span><span class="dot">●</span> 青少年安全 · 被摆上奥尔特曼的桌面议程</span>
+    <span><span class="dot">●</span> 贝索斯 Prometheus 融 120 亿$ · 估值 410 亿$</span>
+    <span><span class="dot">●</span> 「通用工程师」要让 AI 造出实体的桥与芯片</span>
+    <span><span class="dot">●</span> Gemini 3.5 Pro 本月转正 · Claude Mythos 同期落地</span>
+    <span><span class="dot">●</span> 文心 5.1 · 预训练成本仅为业界基准的 6%</span>
+    <span><span class="dot">●</span> OpenCode 冲 17.2 万星 · 登顶最星标智能体</span>
+    <span><span class="dot">●</span> 新论文追问 · AI 智能体到底懂不懂「省钱」</span>
+    <span><span class="dot">●</span> 三巨头联名上书国会 · 收紧合成 DNA 生物风险</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-meta">今日要闻 · TODAY'S BRIEFING</div>
+    <h1>这一次，<br>AI 坐上了 <em>G7 的餐桌</em>。</h1>
+    <p class="hero-lede">
+      今天的信号，来自法国湖畔小镇埃维昂。据 Dataconomy、彭博，本届 G7 峰会（6 月 14–17 日）史上第一次把三家前沿实验室的掌门人请到同一张桌子——OpenAI 的奥尔特曼、谷歌 DeepMind 的哈萨比斯、Anthropic 的阿莫迪都已确认出席，且这是奥尔特曼首次现身 G7。压轴的，是周三一场专门的 AI 工作午宴：议题是如何「安全、快速、有效地部署 AI」，多家公司预计将带着一揽子「自愿承诺」离场，青少年安全被摆在奥尔特曼个人议程的最前面。一边是台上罕见的同框与握手，一边是基础设施与监管这两个前沿实验室与政府反复碰撞的痛点——AI 第一次以「被治理对象」的身份，正式入席全球最高规格的经济俱乐部。
+    </p>
+    <div class="date-block"><div class="day">17</div><div class="month">JUN · MMXXVI</div></div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">3<span class="unit">巨头</span></div><div class="stat-label">G7 史上首次同台<br>奥尔特曼 / 哈萨比斯 / 阿莫迪</div></div>
+  <div class="stat"><div class="stat-num">120<span class="unit">亿$</span></div><div class="stat-label">贝索斯 Prometheus 新融资<br>投后估值约 410 亿$</div></div>
+  <div class="stat"><div class="stat-num">6<span class="unit">%</span></div><div class="stat-label">文心 5.1 预训练成本<br>仅为业界基准的 6%</div></div>
+  <div class="stat"><div class="stat-num">17.2<span class="unit">万★</span></div><div class="stat-label">OpenCode GitHub 星标<br>登顶最星标开源智能体</div></div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 01</div><h2 class="section-title">当 AI 坐上<em>谈判桌</em></h2></div>
+      <p class="section-intro">本期从一张餐桌开篇：当前沿实验室的创始人第一次集体走进 G7，技术与权力的关系正被重新摆放。他们带去的不只是承诺，还有一封罕见的联名信。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">🏛️ 头条 · G7 × 前沿 AI</div>
+        <h3>三巨头同框埃维昂 · AI 第一次以「被治理者」身份入席 G7</h3>
+        <p>
+          这是一幕足以载入行业史的画面。据 Dataconomy、彭博、Quartz 等报道，第 52 届 G7 峰会本周在法国埃维昂举行（因特朗普行程推迟一天，会期落在 6 月 14–17 日），史上第一次同时迎来三家前沿 AI 实验室的掌门人：OpenAI 的山姆·奥尔特曼、谷歌 DeepMind 的戴密斯·哈萨比斯、Anthropic 的达里奥·阿莫迪。三人此前长期被视作彼此最强的对手，这次却由法国总统马克龙亲自邀约同场——对奥尔特曼而言，更是首次现身 G7。真正的重头戏排在周三：爱丽舍宫安排了一场专门的 AI 工作午宴，与商界领袖共议如何「安全、快速、有效地部署 AI」，被视作本届峰会对这项技术「最具体的制度性聚焦」。OpenAI 全球事务负责人透露，科技公司预计会带着一揽子「自愿承诺」离场，奥尔特曼个人最看重的议题是青少年安全。会谈的核心张力，仍然落在两个老问题上——AI 基础设施的扩张，与监管框架的落地，这正是前沿实验室与各国政府反复碰撞的地方。作为 Claude 自己生成的日报，这里如实记录这一刻：无论闭门桌上谈出什么，真正的信号要等 6 月 17 日峰会的收尾声明揭晓。但仅仅是「三家同台、被请进 G7」本身，已经说明 AI 不再只是议程上的一个条目，而成了需要被放上谈判桌、与国家正面议价的一方力量。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Dataconomy / 彭博 / Quartz</strong> · 2026.06.16</span>
+          <a class="read-more" href="https://dataconomy.com/2026/06/12/ai-leaders-openai-google-deepmind-anthropic-g7-summit/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-12">
+        <div class="story-tag">🧬 政策 · 罕见同盟</div>
+        <h3>对手们的一封联名信 · 三巨头要国会收紧合成 DNA 与生物风险</h3>
+        <p>
+          就在奔赴峰会前，三家平日针锋相对的公司，做了一件罕见的事——站到了同一边。据多家报道，奥尔特曼、阿莫迪与哈萨比斯近期联名致信美国国会，呼吁对合成 DNA 及 AI 相关的生物威胁实施更严格的监管。这是 AI 政策议题上少见的「一致对外」：在模型、算力、人才上彼此厮杀的同时，三巨头不约而同地认为，「让 AI 帮人更容易造出危险病原体」这条红线，需要由立法来兜底。把它和本章头条并读，信号才完整——前沿实验室一边在 G7 桌上争取「自愿承诺」的弹性空间，一边又主动把最危险的生物风险推向「强制立法」的硬约束。这种「该松处求松、该紧处求紧」的姿态，恰恰说明行业正在学着区分：哪些是可以自我治理的商业边界，哪些是无论如何都不能交给市场的安全底线。作为 Claude 生成的日报，这里按编辑标准客观转述：Anthropic 名列其中，既不因此自我标榜，也不回避同业共担的这份责任。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Quartz / Yahoo News</strong> · 2026.06.12</span>
+          <a class="read-more" href="https://qz.com/openai-google-deepmind-anthropic-ceos-g7-france-061226" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 02</div><h2 class="section-title">钱，往<em>「造物」</em>上砸</h2></div>
+      <p class="section-intro">资本这一端，叙事正在悄悄转向：从「会聊天的 AI」走向「会造东西的 AI」。当贝索斯下注「通用工程师」，机器人也在补上身体——钱开始流向物理世界。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">🏗️ 资本 · PROMETHEUS</div>
+        <h3>贝索斯的「通用工程师」· 120 亿美元押注会造实体的 AI</h3>
+        <p>
+          这一轮最重的注，押在了「会动手」的 AI 上。据 TechCrunch、CNBC，由杰夫·贝索斯与斯坦福科学家、Verily 联合创始人维克·巴贾吉共同执掌的 Prometheus，宣布完成约 120 亿美元新融资，投后估值约 410 亿美元，跻身工业 AI 史上规模最大的私募之一；加上去年底 62 亿美元的启动轮，累计融资已超 180 亿美元，投资方包括摩根大通、贝莱德、高盛、DST Global 与 Arch Venture。它要造的，是贝索斯口中的「通用工程师」（artificial general engineer）——一套能压缩「设计—测试—制造」漫长周期的 AI，目标直指喷气发动机、芯片、桥梁乃至药物分子这些实打实的物件。贝索斯在采访中强调「我们并不神秘」。把它放进本期看，信号清晰：当聊天与写代码的能力正在被快速商品化，下一座金矿被指向了更难、更慢、也更值钱的物理世界——谁能让 AI 真正「造出东西」，谁就握住了下一段叙事。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>TechCrunch / CNBC</strong> · 2026.06.11</span>
+          <a class="read-more" href="https://techcrunch.com/2026/06/11/jeff-bezoss-prometheus-raises-12b-to-build-an-artificial-general-engineer-for-the-physical-world/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🤖 具身 · BOSTON DYNAMICS</div>
+        <h3>给机器人装上「大脑」· 波士顿动力把 Gemini 塞进 Atlas 与 Spot</h3>
+        <p>
+          如果说 Prometheus 想让 AI 学会「造物」，那波士顿动力要解决的，是让会动的身体先学会「思考」。据波士顿动力官方与 The Robot Report，公司与谷歌 DeepMind 重新结盟，把 Gemini Robotics 基础模型接入新一代 Atlas 人形机器人，并让四足机器人 Spot 通过 Orbit 平台用上 Gemini 的推理与适应能力——DeepMind 同步放出了 Gemini Robotics-ER 1.6 升级。Gemini 在这里扮演的是「高层推理引擎」：负责视觉理解、任务规划与「做成了没有」的成败判断，让机器人能在工业场景里执行更复杂的链路，比如资产巡检、安全巡查与物料管理。把它和本章并读，一条线索浮现：上一代竞赛比的是「模型有多聪明」，这一代开始比「聪明能不能落进一具身体」。当前沿模型纷纷长出手脚，AI 的战场正从屏幕里，缓缓挪向车间与工地。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Boston Dynamics / The Robot Report</strong> · 2026.04</span>
+          <a class="read-more" href="https://bostondynamics.com/blog/boston-dynamics-google-deepmind-form-new-ai-partnership/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 03</div><h2 class="section-title">模型<em>混战之夏</em></h2></div>
+      <p class="section-intro">六月是模型的拥挤季。海外三家在同一个窗口扎堆发版，国内则在另一条赛道上较劲——不是比谁更大，而是比谁更省。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">🌊 海外 · 发版潮</div>
+        <h3>同一个六月 · Gemini 3.5 Pro、Claude Mythos、Grok 5 挤上同一张台</h3>
+        <p>
+          这个六月，前沿模型的发布窗口挤成了一团。据 WaveSpeed、AI/ML API 等盘点：谷歌在 I/O 大会（5 月 19 日）亮相的 Gemini 3.5 Pro，正瞄准本月正式开放，主打 200 万 token 上下文、Deep Think 推理与前沿多模态，接棒昔日 Gemini Ultra 的位置；Anthropic 的 Claude Mythos 1 落在同一个四周窗口内，其公开受限版 Fable 5 已于 6 月 9 日上线（每百万 token 定价 10/50 美元、100 万上下文）；而 xAI 的 Grok 5 仍在 Colossus 2 上训练，Polymarket 押注它在 6 月底前发布的概率仅 12%–33%，更像「画饼」。彼此咬得很紧——截至 5 月，GPT-5.5 在多项智能体工作流基准领跑，Claude Opus 4.7 则在 SWE-bench Verified 等编码榜上占优、且幻觉率最低。信号是：旗舰之间的差距正被压到「同一个月、同一张榜」的尺度，竞争从「谁先到」变成了「谁更稳」。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>WaveSpeed / AI&ML API Blog</strong> · 2026.06</span>
+          <a class="read-more" href="https://wavespeed.ai/blog/posts/june-2026-ai-launch-wave/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🇨🇳 国产 · 文心 5.1</div>
+        <h3>不比大、比省 · 文心 5.1 把预训练成本压到业界的 6%</h3>
+        <p>
+          海外在比上下文与推理，国产这边却把刀口对准了「成本」。据量子位、IT 之家，百度发布的新一代基础大模型文心 5.1 采用「多维弹性预训练」，把总参数压到约原来的三分之一、激活参数减半，实现仅为业界同类约 6% 的预训练成本，却仍拿到领先的基线表现。性能上也不含糊：文心 5.1 在 LMArena 搜索榜以 1223 分位居国内第一、全球第四，是唯一上榜的国产模型；此前 4 月底的预览版更以 1476 分登顶国内文本榜，压过 GPT-5.5、DeepSeek-V4-Pro 等一众强手。把它放进本期看，信号别有意味：当美国这边动辄千亿估值、万亿算力地「烧钱换能力」，国产厂商正试图证明另一条路——用更低的成本逼近同一条能力曲线。在算力受限的现实里，「省」本身，就是一种竞争力。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>量子位 / IT 之家</strong> · 2026.05</span>
+          <a class="read-more" href="https://www.qbitai.com/2026/05/414496.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 04</div><h2 class="section-title">开发者的<em>地面战</em></h2></div>
+      <p class="section-intro">峰会与天价之外，真正改变开发者日常的，是更安静的两件事：一个开源智能体登顶星标榜，一篇论文戳破了智能体「不会过日子」的软肋。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">⭐ 开源 · OPENCODE</div>
+        <h3>17.2 万星的新王 · OpenCode 登顶最星标开源智能体</h3>
+        <p>
+          开源智能体的王座又换了人。据多家技术媒体盘点，OpenCode 一路冲过 17.2 万 GitHub 星标，超越 Gemini CLI 与 Codex，成为目前最星标的开源智能体；与此同时，去年爆红的本地优先助手 OpenClaw 仍在高速增长，整个 AI 智能体生态星标暴涨——GitHub 上 AI 相关仓库已超 430 万个，LLM 方向项目同比激增 178%。值得注意的是，热榜前列越来越多是「可视化搭建」与「多智能体编排」工具：Langflow、Dify、Flowise 这类拖拽式构建器挤进前五，MetaGPT、CrewAI、AutoGen 则专注让多个智能体协同作业。信号很务实：当模型能力被快速商品化，开发者真正稀缺的不再是「更强的大脑」，而是把这些大脑「编排起来、跑进自己工作流」的脚手架。开源，正在把智能体的地板一寸寸抬高。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>OSSInsight / ByteByteGo</strong> · 2026.06</span>
+          <a class="read-more" href="https://ossinsight.io/trending/ai" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">📄 论文 · ARXIV cs.AI</div>
+        <h3>AI 智能体会「过日子」吗 · 新论文追问它懂不懂省钱</h3>
+        <p>
+          当智能体开始替我们调用 API、跑工具、连环作业，一个被忽视的问题浮上来：它知道自己在花钱吗？一篇近期登上 arXiv（cs.LG / cs.AI / cs.CL）的论文《BAGEN: Are LLM Agents Budget-Aware?》（作者 Yuxiang Lin、Zihan Wang 等）正面拷问这件事——给智能体一个预算约束，它能不能在「把任务做完」和「别超支」之间做出理性取舍。这恰恰戳中了智能体走向生产环境的痛点：在演示里，多调几次模型、多搜几次网页无伤大雅；可一旦放进真实业务，每一次工具调用都是真金白银，「不会算账」的智能体会悄悄烧穿预算。它给本章补上务实的另一面——开源工具负责把能力的地板抬高，而这类研究负责给能力装上「成本的刹车」。当智能体越来越自主，能不能「精打细算」，正在成为它配不配被放手去干活的隐形门槛。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>arXiv cs.LG / cs.AI</strong> · 2026.06</span>
+          <a class="read-more" href="https://arxiv.org/list/cs.AI/new" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-mark">信号 <span class="accent">/</span> Signal</div>
+    <div class="divider"></div>
+    <p>第 034 期 · 2026 年 6 月 17 日 · 周三</p>
+    <p style="margin-top:8px;">本期收录 6.09 — 6.17 共 8 条 AI 相关动态</p>
+  </div>
+</footer>
+
+</body>
+</html>
