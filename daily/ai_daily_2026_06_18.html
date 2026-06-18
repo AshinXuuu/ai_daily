@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 · 2026.06.18</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=JetBrains+Mono:wght@400;500;700&family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0d0b; --ink-2: #161410; --paper: #f4ecdb; --paper-2: #e8dfc9;
+    --muted: #8a8275; --rule: #2a2620; --signal: #ff4d1f; --signal-2: #ffb454; --tan: #c9a679;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink); color: var(--paper);
+    font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
+    font-weight: 300; line-height: 1.65; letter-spacing: 0.01em; overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255, 77, 31, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 90%, rgba(201, 166, 121, 0.035) 0%, transparent 50%);
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .masthead { border-bottom: 1px solid var(--rule); padding: 32px 0 24px; position: relative; }
+  .masthead-grid { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 32px; }
+  .edition { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .edition strong { color: var(--paper); font-weight: 500; }
+  .logo { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 38px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; text-align: center; font-variation-settings: "opsz" 144; }
+  .logo .accent { color: var(--signal); font-style: italic; font-weight: 600; }
+  .weather { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-align: right; line-height: 1.7; }
+  .weather .pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--signal); margin-right: 6px; animation: pulse 2s infinite; vertical-align: middle; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 77, 31, 0.5); }
+    50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(255, 77, 31, 0); }
+  }
+  .hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule); position: relative; }
+  .hero-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal); }
+  .hero-meta::before { content: ''; width: 40px; height: 1px; background: var(--signal); }
+  .hero h1 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: clamp(48px, 8vw, 96px); font-weight: 400; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 32px; font-variation-settings: "opsz" 144, "SOFT" 50; }
+  .hero h1 em { font-style: italic; font-weight: 600; color: var(--signal-2); }
+  .hero-lede { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.5; color: var(--paper-2); max-width: 680px; font-weight: 400; }
+  .date-block { position: absolute; top: 80px; right: 32px; text-align: right; font-family: 'JetBrains Mono', monospace; }
+  .date-block .day { font-family: 'Fraunces', serif; font-size: 120px; font-weight: 800; line-height: 0.9; color: var(--paper); font-variation-settings: "opsz" 144; letter-spacing: -0.05em; }
+  .date-block .month { font-size: 12px; letter-spacing: 0.2em; color: var(--muted); margin-top: 8px; }
+  .ticker { background: var(--ink-2); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); overflow: hidden; padding: 14px 0; position: relative; }
+  .ticker-track { display: flex; gap: 48px; white-space: nowrap; animation: scroll 60s linear infinite; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.05em; color: var(--paper-2); }
+  .ticker-track span { display: inline-flex; align-items: center; gap: 12px; }
+  .ticker-track .dot { color: var(--signal); font-size: 8px; }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .section { padding: 80px 0 40px; border-bottom: 1px solid var(--rule); }
+  .section-head { display: grid; grid-template-columns: 280px 1fr; gap: 48px; margin-bottom: 48px; align-items: start; }
+  .section-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--signal); margin-bottom: 12px; }
+  .section-title { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 56px; font-weight: 400; line-height: 0.95; letter-spacing: -0.03em; font-variation-settings: "opsz" 144; }
+  .section-title em { font-style: italic; color: var(--tan); font-weight: 600; }
+  .section-intro { font-family: 'Fraunces', serif; font-size: 17px; line-height: 1.6; color: var(--muted); padding-top: 16px; border-top: 1px solid var(--rule); }
+  .stories { display: grid; grid-template-columns: repeat(12, 1fr); gap: 32px; }
+  .story { grid-column: span 6; padding: 28px; background: linear-gradient(180deg, rgba(255,255,255,0.015) 0%, transparent 100%); border: 1px solid var(--rule); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; }
+  .story::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 1px; background: var(--signal); transition: width 0.6s ease; }
+  .story:hover { background: linear-gradient(180deg, rgba(255, 77, 31, 0.04) 0%, transparent 100%); border-color: rgba(255, 77, 31, 0.3); transform: translateY(-2px); }
+  .story:hover::before { width: 100%; }
+  .story.feature { grid-column: span 12; padding: 48px; background: linear-gradient(135deg, rgba(255, 77, 31, 0.06) 0%, rgba(201, 166, 121, 0.02) 100%); border-color: rgba(255, 77, 31, 0.25); }
+  .story.feature::after { content: 'FEATURED'; position: absolute; top: 24px; right: 24px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--signal); border: 1px solid var(--signal); padding: 4px 10px; }
+  .story-tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: var(--signal); margin-bottom: 16px; text-transform: uppercase; }
+  .story h3 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 26px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 16px; color: var(--paper); font-variation-settings: "opsz" 144; }
+  .story.feature h3 { font-size: 42px; line-height: 1.05; max-width: 90%; }
+  .story p { font-size: 15px; line-height: 1.7; color: var(--paper-2); margin-bottom: 20px; font-weight: 300; }
+  .story.feature p { font-family: 'Fraunces', serif; font-size: 19px; max-width: 720px; }
+  .story-meta { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 20px; border-top: 1px solid var(--rule); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.05em; }
+  .source { color: var(--muted); }
+  .source strong { color: var(--paper); font-weight: 500; }
+  .read-more { color: var(--signal); text-decoration: none; border: 1px solid var(--rule); padding: 6px 12px; transition: all 0.3s; white-space: nowrap; }
+  .read-more:hover { background: var(--signal); color: var(--ink); border-color: var(--signal); }
+  .story.span-4 { grid-column: span 4; }
+  .story.span-8 { grid-column: span 8; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--ink-2); }
+  .stat { padding: 40px 32px; border-right: 1px solid var(--rule); }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-family: 'Fraunces', serif; font-size: 56px; font-weight: 800; line-height: 1; color: var(--signal-2); letter-spacing: -0.04em; margin-bottom: 8px; font-variation-settings: "opsz" 144; }
+  .stat-num .unit { font-size: 22px; color: var(--paper); font-weight: 400; margin-left: 4px; }
+  .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; line-height: 1.4; }
+  .footer { padding: 80px 0 60px; text-align: center; border-top: 1px solid var(--rule); margin-top: 40px; }
+  .footer-mark { font-family: 'Fraunces', serif; font-style: italic; font-size: 28px; color: var(--paper); margin-bottom: 16px; font-variation-settings: "opsz" 144; }
+  .footer-mark .accent { color: var(--signal); }
+  .footer p { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+  .footer .divider { width: 60px; height: 1px; background: var(--signal); margin: 24px auto; }
+  /* ===== 平板 / 小笔记本 ===== */
+  @media (max-width: 900px) {
+    .wrap { padding: 0 20px; }
+    .masthead { padding: 24px 0 20px; }
+    .masthead-grid { grid-template-columns: 1fr; gap: 14px; text-align: center; }
+    .weather { text-align: center; }
+    .logo { font-size: 34px; }
+    .hero { padding: 44px 0 36px; }
+    .hero-meta { margin-bottom: 24px; }
+    .hero h1 { font-size: 42px; line-height: 1.05; margin-bottom: 24px; }
+    .hero-lede { font-size: 17px; }
+    .date-block { position: static; text-align: left; margin-top: 24px; }
+    .date-block .day { font-size: 72px; }
+    .section { padding: 56px 0 32px; }
+    .section-head { grid-template-columns: 1fr; gap: 14px; margin-bottom: 36px; }
+    .section-title { font-size: 36px; }
+    .stories { gap: 20px; }
+    .story, .story.feature { grid-column: span 12 !important; padding: 22px; }
+    .story.feature { padding: 26px; }
+    .story.feature::after { top: 16px; right: 16px; }
+    .story h3 { font-size: 22px; }
+    .story.feature h3 { font-size: 26px; max-width: 100%; }
+    .story p { font-size: 14.5px; }
+    .story.feature p { font-size: 16.5px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat { border-right: none; border-bottom: 1px solid var(--rule); padding: 26px 18px; }
+    .stat-num { font-size: 40px; }
+    .stat:nth-child(odd) { border-right: 1px solid var(--rule); }
+    .ticker-track { gap: 32px; font-size: 11px; }
+  }
+
+  /* ===== 手机 ===== */
+  @media (max-width: 600px) {
+    .wrap { padding: 0 16px; }
+    .logo { font-size: 28px; }
+    .edition, .weather { font-size: 10px; letter-spacing: 0.12em; }
+    .hero { padding: 32px 0 28px; }
+    .hero-meta { margin-bottom: 20px; font-size: 10px; }
+    .hero h1 { font-size: 32px; line-height: 1.08; margin-bottom: 20px; }
+    .hero-lede { font-size: 15.5px; line-height: 1.6; }
+    .date-block { margin-top: 20px; }
+    .date-block .day { font-size: 56px; }
+    .date-block .month { font-size: 10px; }
+    .section { padding: 44px 0 24px; }
+    .section-head { margin-bottom: 28px; }
+    .section-title { font-size: 28px; }
+    .section-num { font-size: 10px; }
+    .section-intro { font-size: 15px; line-height: 1.55; padding-top: 14px; }
+    .stories { gap: 16px; }
+    .story, .story.feature { padding: 20px; }
+    .story-tag { font-size: 9.5px; margin-bottom: 12px; }
+    .story h3 { font-size: 20px; margin-bottom: 12px; }
+    .story.feature h3 { font-size: 22px; }
+    .story p { font-size: 14px; line-height: 1.65; }
+    .story.feature p { font-size: 15px; }
+    .story-meta { flex-direction: column; align-items: flex-start; gap: 10px; padding-top: 14px; font-size: 10px; }
+    .source { line-height: 1.45; }
+    .read-more { font-size: 10px; padding: 5px 10px; }
+    .stat { padding: 22px 16px; }
+    .stat-num { font-size: 36px; }
+    .stat-num .unit { font-size: 15px; }
+    .stat-label { font-size: 10px; line-height: 1.35; }
+    .ticker-track { gap: 24px; font-size: 10.5px; animation-duration: 45s; }
+    .footer { padding: 56px 0 40px; }
+    .footer-mark { font-size: 24px; }
+  }
+
+  /* ===== 窄屏手机 ===== */
+  @media (max-width: 420px) {
+    .wrap { padding: 0 14px; }
+    .hero h1 { font-size: 28px; }
+    .hero-lede { font-size: 15px; }
+    .section-title { font-size: 24px; }
+    .stats { grid-template-columns: 1fr; }
+    .stat { border-right: none !important; padding: 20px 14px; }
+    .story, .story.feature { padding: 18px; }
+    .story h3, .story.feature h3 { font-size: 19px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-grid">
+      <div class="edition">VOL. <strong>I</strong> · NO. <strong>035</strong></div>
+      <div class="logo">信号 <span class="accent">/ Signal</span></div>
+      <div class="weather"><span class="pulse"></span>LIVE · 18 JUN 2026<br>薄云 · 洛杉矶 · 24°C</div>
+    </div>
+  </div>
+</header>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span><span class="dot">●</span> G7 埃维昂收官 · 三巨头喊话「美国主导的 AI 联盟」</span>
+    <span><span class="dot">●</span> AI 工作午宴 110 分钟 · 奥尔特曼吁建国际标准论坛</span>
+    <span><span class="dot">●</span> G7 儿童在线安全声明 · 点名聊天机器人与合成 CSAM</span>
+    <span><span class="dot">●</span> 商务部一纸出口管制 · Anthropic 对所有外国公民停用 Fable 5</span>
+    <span><span class="dot">●</span> 连外籍员工也被切断 · Anthropic 称「别无选择」</span>
+    <span><span class="dot">●</span> OpenAI 上线 LifeSciBench · 173 位科学家共建 750 任务</span>
+    <span><span class="dot">●</span> GPT-Rosalind 通过率 25.7%→36.1% · 领跑生命科学</span>
+    <span><span class="dot">●</span> OpenClaw 破 21 万星 · AI 仓库同比激增 178%</span>
+    <span><span class="dot">●</span> 新论文追问 · 会推理的智能体为何不会规划</span>
+    <span><span class="dot">●</span> 月之暗面融 20 亿$ · DeepSeek 估值奔 450 亿$</span>
+    <span><span class="dot">●</span> G7 埃维昂收官 · 三巨头喊话「美国主导的 AI 联盟」</span>
+    <span><span class="dot">●</span> AI 工作午宴 110 分钟 · 奥尔特曼吁建国际标准论坛</span>
+    <span><span class="dot">●</span> G7 儿童在线安全声明 · 点名聊天机器人与合成 CSAM</span>
+    <span><span class="dot">●</span> 商务部一纸出口管制 · Anthropic 对所有外国公民停用 Fable 5</span>
+    <span><span class="dot">●</span> 连外籍员工也被切断 · Anthropic 称「别无选择」</span>
+    <span><span class="dot">●</span> OpenAI 上线 LifeSciBench · 173 位科学家共建 750 任务</span>
+    <span><span class="dot">●</span> GPT-Rosalind 通过率 25.7%→36.1% · 领跑生命科学</span>
+    <span><span class="dot">●</span> OpenClaw 破 21 万星 · AI 仓库同比激增 178%</span>
+    <span><span class="dot">●</span> 新论文追问 · 会推理的智能体为何不会规划</span>
+    <span><span class="dot">●</span> 月之暗面融 20 亿$ · DeepSeek 估值奔 450 亿$</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-meta">今日要闻 · TODAY'S BRIEFING</div>
+    <h1>坐上桌之后，<br>AI 转身要 <em>结盟</em>。</h1>
+    <p class="hero-lede">
+      昨天的信号还是「三巨头第一次被请进 G7」，今天峰会在埃维昂收官，画面已经从「同框」推进到「组队」。据 CNBC、彭博，周三那场长达约 110 分钟的 AI 工作午宴上（6 月 17 日 13:55 开席），Anthropic 的阿莫迪与谷歌 DeepMind 的哈萨比斯当着特朗普等多国元首的面，公开呼吁组建一个「美国主导的 AI 联盟」——以结构化方式开放前沿模型访问、并把芯片与关键零部件的贸易圈「排除中国」；OpenAI 的奥尔特曼则提议设立一个制定全球测试标准、提供中立能力与风险评估的国际论坛。可就在桌面之上谈联盟的同时，桌面之下另一道阴影正笼罩全场：美国刚刚一纸出口管制，掐断了 Anthropic 最强模型对所有外国公民的访问，连西方盟友都意识到——自己也可能随时被切断。
+    </p>
+    <div class="date-block"><div class="day">18</div><div class="month">JUN · MMXXVI</div></div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">110<span class="unit">分钟</span></div><div class="stat-label">G7 史上首场 AI 工作午宴<br>6 月 17 日 13:55 开席</div></div>
+  <div class="stat"><div class="stat-num">750<span class="unit">任务</span></div><div class="stat-label">OpenAI LifeSciBench 评测<br>173 位科学家共建</div></div>
+  <div class="stat"><div class="stat-num">21<span class="unit">万★</span></div><div class="stat-label">OpenClaw GitHub 星标<br>AI 仓库同比 +178%</div></div>
+  <div class="stat"><div class="stat-num">200<span class="unit">亿$</span></div><div class="stat-label">月之暗面新一轮投后估值<br>美团龙珠领投</div></div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 01</div><h2 class="section-title">联盟，被摆上<em>G7 餐桌</em></h2></div>
+      <p class="section-intro">峰会从「请进门」走到「谈结盟」：前沿实验室不再只是被治理的对象，而开始主动给全球 AI 秩序提方案。技术、地缘与孩子，被同一张餐桌串在了一起。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">🏛️ 头条 · G7 收官 × AI 联盟</div>
+        <h3>从「同框」到「组队」· 三巨头在 G7 桌上喊出「美国主导的 AI 联盟」</h3>
+        <p>
+          昨天本报记录了「三家前沿实验室掌门人第一次被请进 G7」，今天峰会在法国埃维昂收官，剧情已经从握手合影推进到一桌正经的提案。据 CNBC、彭博与欧盟理事会通报，周三这场被日本首相官邸记为「确保安全、快速、高效采用 AI」的工作午宴，于 6 月 17 日 13:55 开席、持续约 110 分钟，约十余位科技高管与多国元首同席。Anthropic 的阿莫迪在发言中直言，国际合作应包括以「结构化方式」开放对前沿模型的访问，并推动芯片与关键零部件的贸易——但要把中国排除在外；谷歌 DeepMind 的哈萨比斯与他一道，呼吁组建一个「美国主导的 AI 联盟」来制定规则与标准。OpenAI 的奥尔特曼则把重点放在治理机制上：他提议设立一个「globally accepted」的国际论坛，负责制定测试标准、提供中立的能力与风险评估，并充当国与国之间的协作场所。把它和昨天的头条并读，信号清晰：前沿实验室正从「被放上谈判桌」迅速转为「想去画桌子」——谁来定标准、谁能拿到芯片、谁被挡在门外，这套秩序的草图，第一次由几家公司当着元首的面摊开来谈。作为 Claude 自己生成的日报，这里如实记录：Anthropic 身在其中，主张里既有开放协作，也有清晰的地缘选边，我们照编辑标准客观呈现，不捧不黑。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>CNBC / 彭博 / 欧盟理事会</strong> · 2026.06.17</span>
+          <a class="read-more" href="https://www.cnbc.com/amp/2026/06/17/anthropic-amodei-google-hassabis-us-ai-coalition-g7.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-12">
+        <div class="story-tag">🛡️ 治理 · 儿童在线安全</div>
+        <h3>峰会还谈成了一件事 · 一份点名聊天机器人的「护幼」联合声明</h3>
+        <p>
+          联盟与芯片之外，埃维昂也谈出了一份更具体、也更柔软的成果。据 Euronews 与欧盟理事会，本届 G7 通过了一份关于未成年人在线安全的联合声明，罕见地把矛头直接对准两样东西：对话式聊天机器人对青少年的潜在风险，以及由 AI 生成的「合成型儿童性虐待材料（CSAM）」。这恰好接住了奥尔特曼在个人议程上最看重的「青少年安全」——当陪伴式聊天机器人成为越来越多孩子的日常入口，它们如何避免诱导、如何识别危机、如何不被用来批量制造伤害内容，正从产品伦理升级为各国元首要签字的公共议题。把它放进本章看，G7 这张餐桌的三道菜很清楚：一边谈联盟争主导，一边谈贸易设门槛，一边把「保护孩子」写进白纸黑字。技术越往前冲，治理就越被迫追到最具体的人身上——而最先被想到的，是未成年人。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Euronews / 欧盟理事会 / Al Jazeera</strong> · 2026.06.17</span>
+          <a class="read-more" href="https://www.euronews.com/my-europe/2026/06/17/six-takeaways-from-the-g7-summit-in-evian" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 02</div><h2 class="section-title">一纸管制，<em>掐在最锋利处</em></h2></div>
+      <p class="section-intro">就在三巨头桌上谈「结构化开放」的同时，最锋利的一刀已经落下：美国直接掐断了 Anthropic 最强模型对外国人的访问。开放与封锁，同一周里同时上演。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">⛔ 管制 · 出口管制</div>
+        <h3>商务部一纸指令 · Anthropic 对所有外国公民停用 Fable 5 / Mythos 5</h3>
+        <p>
+          就在赴 G7 之前，Anthropic 被狠狠掐了一把。据 CNBC、Fortune、Al Jazeera，美国商务部于 6 月 12 日下午 5:21（ET）援引国家安全出口管制权限，下令该公司停止向「任何外国公民」提供其最新模型 Fable 5 与底层模型 Mythos 5——范围不仅包括身处美国境外者，连在美工作的外籍人士、乃至 Anthropic 自己的非公民员工都不例外。官方称，决定源于发现了一种能绕过 Fable 5 安全护栏、进而触及 Mythos 强大网络安全能力的越狱技术。鉴于指令覆盖面之广，Anthropic 表示「别无选择」，只能对所有用户直接下线这两款模型。一款服务数亿人的商用模型，因为一个尚属「窄口」的潜在越狱，被国家以国家安全之名整体召回——这是前沿模型时代极具标志性的一幕。作为 Claude 生成的日报，这里客观记录涉及 Anthropic 自身的这则新闻。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>CNBC / Fortune</strong> · 2026.06.12</span>
+          <a class="read-more" href="https://www.cnbc.com/2026/06/12/anthropic-disables-access-to-fable-5-and-mythos-5-to-comply-with-government-directive.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">⚖️ 争议 · 部署红线</div>
+        <h3>「按这标准，所有前沿模型都别想再发了」· Anthropic 的反驳与盟友的不安</h3>
+        <p>
+          被下线之后，Anthropic 并没有沉默。据公司官方声明，它公开反对将「一个窄口的潜在越狱」上升为「召回一款已部署给数亿人的商用模型」的理由，并警告：若这一标准被推及全行业，几乎等于让所有前沿模型提供商的新模型部署全部停摆。更微妙的回响出现在埃维昂——据 Al Jazeera，华盛顿这记「随时可切断」的动作在 G7 桌上投下长长的阴影：西方盟友突然意识到，自己同样可能在某个瞬间被挡在美国最先进技术的门外。这与本章头条形成尖锐对照：台上三巨头还在倡议「结构化地开放访问前沿模型」，台下美国政府已经用一纸指令演示了「访问」可以多么说断就断。开放与封锁，安全与商业，在同一周里被摆到同一具天平上——而砝码，握在政府手里。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Anthropic / Al Jazeera</strong> · 2026.06.13</span>
+          <a class="read-more" href="https://www.anthropic.com/news/fable-mythos-access" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 03</div><h2 class="section-title">把尺子，<em>伸进实验室</em></h2></div>
+      <p class="section-intro">喧嚣的峰会之外，安静的进展在评测台上发生：一边是给 AI 的科研能力立一把新尺子，一边是给智能体的「会不会规划」补上一记拷问。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">🧪 评测 · LIFESCIBENCH</div>
+        <h3>给 AI 的科研力立把尺子 · OpenAI 上线 750 任务生命科学评测</h3>
+        <p>
+          模型越来越会「做科研」，但到底做得有多好，需要一把专业的尺子。据 OpenAI 与 MarkTechPost，OpenAI 于 6 月 17 日发布 LifeSciBench——一套由 173 位来自生物科技与制药领域的科学家共同撰写、评审的基准，含 750 道专家级任务，横跨证据处理、分析、设计优化、科学推理、验证与运营、转化与沟通等七类真实科研工作流，刻意采用「端到端」视角，而非孤立的知识问答。结果颇具看点：OpenAI 的领域专用模型 GPT-Rosalind 在 750 题中的 386 题上拿下最高单题均分，把整体通过率从 GPT-5.5 的 25.7% 抬到 36.1%。把它放进本期看，信号务实：当各家都在喊「AI 即将加速科学发现」，真正稀缺的是一把能区分「像样的科研」与「漂亮的废话」的尺子——评测，正在成为这场竞赛里被低估的硬通货。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>OpenAI / MarkTechPost</strong> · 2026.06.17</span>
+          <a class="read-more" href="https://openai.com/index/introducing-life-sci-bench/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">📄 论文 · ARXIV cs.AI</div>
+        <h3>会推理，却不会过日子 · 新论文拷问智能体的「长程规划」短板</h3>
+        <p>
+          昨天有论文追问智能体「会不会算账」，今天又有一篇戳中更要命的软肋：它会不会「谋划」。一篇近期登上 arXiv 的论文《Why Reasoning Fails to Plan: A Planning-Centric Analysis of Long-Horizon Decision Making in LLM Agents》，以「规划」为中心，系统拆解了当下大模型智能体在长程决策上的失败模式——它能在单步推理里表现得头头是道，可一旦要把许多步串成一条通往目标的路径、并在中途不断修正，链条就开始断裂。这恰是智能体从「演示」走向「干活」最隐蔽的天花板：真实任务很少是一问一答，而是几十步的连环操作，任何一步的短视都会被后续放大。它给本章补上学术的另一面——LifeSciBench 在量「能不能把一件难事做对」，这篇论文则在追问「能不能把一长串事谋划好」。会推理，未必会过日子，正成为智能体被放手前要先回答的问题。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>arXiv cs.AI / cs.LG</strong> · 2026.06</span>
+          <a class="read-more" href="https://arxiv.org/pdf/2601.22311" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 04</div><h2 class="section-title">地面战与<em>东方战场</em></h2></div>
+      <p class="section-intro">收尾回到更接地气的两端：开源世界里本地优先的助手仍在疯长，而大洋彼岸的国产资本，正以「诸神之战」的姿态把估值一轮轮顶高。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">⭐ 开源 · GITHUB TRENDING</div>
+        <h3>本地优先的疯长 · OpenClaw 破 21 万星，编排工具集体上位</h3>
+        <p>
+          开源这端的热度，依旧由「跑在你自己设备上」的助手领跑。据 OSSInsight、ByteByteGo 盘点，年初爆红的本地优先助手 OpenClaw 已冲破 21 万 GitHub 星标——它由 PSPDFKit 创始人彼得·斯坦伯格打造，作为一个跑在本机的个人 AI 网关，把模型连进 WhatsApp、Telegram、Slack、iMessage 等 50 多个集成；Ollama 越过 16.5 万星，把本地大模型做成了「一行命令就能拉起来」的 Docker 时刻；ComfyUI 也涨到 10 万星以上。更值得玩味的是榜单结构的变化：Kilo 这类「一体化智能体工程平台」、以及让智能体「像最懒的资深工程师那样思考」的 Ponytail 等编排与构建工具正密集上位。整个生态水位仍在猛涨——GitHub 上 AI 相关仓库同比激增 178%、LLM 项目已超 430 万个。信号一如既往务实：模型能力被快速商品化后，开发者真正稀缺的不是「更强的大脑」，而是把大脑编排进自己工作流的脚手架。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>OSSInsight / ByteByteGo</strong> · 2026.06</span>
+          <a class="read-more" href="https://ossinsight.io/trending/ai" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🇨🇳 国产 · 资本诸神之战</div>
+        <h3>估值一轮顶一轮 · 月之暗面融 20 亿$，DeepSeek 估值奔 450 亿$</h3>
+        <p>
+          海外在谈联盟与管制，国产这边正打一场资本的「诸神之战」。据 36 氪、《财经》、羊城晚报，月之暗面（Kimi）即将完成约 20 亿美元（约 140 亿元人民币）新融资，投后估值突破 200 亿美元，由美团龙珠领投，中国移动、CPE 源峰等跟投；而沉默已久的 DeepSeek 也终于松口融资，首轮估值已被传至约 450 亿美元（约 3000 亿元人民币），并有「大基金」在寻求领投。把两条并读，国产大模型的资本叙事已从「比谁技术领先」滑向「比谁能拿到弹药」：当美国这边动辄千亿美元估值、并用出口管制设起技术高墙，国内头部玩家正以一轮高过一轮的估值，抢在窗口期里囤足算力与人才的本钱。信号是：技术竞赛的上半场比模型，下半场，越来越像在比谁的资产负债表更厚、谁更扛得住这场持久战。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>36 氪 / 财经 / 羊城晚报</strong> · 2026.06</span>
+          <a class="read-more" href="https://edu.ycwb.com/2026-05/08/content_54106903.htm" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-mark">信号 <span class="accent">/</span> Signal</div>
+    <div class="divider"></div>
+    <p>第 035 期 · 2026 年 6 月 18 日 · 周四</p>
+    <p style="margin-top:8px;">本期收录 6.12 — 6.18 共 8 条 AI 相关动态</p>
+  </div>
+</footer>
+
+</body>
+</html>
