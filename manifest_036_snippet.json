@@ -1,0 +1,40 @@
+{
+  "issue": "036",
+  "date": "2026-06-20",
+  "weekday": "周六",
+  "weekdayEn": "Saturday",
+  "type": "daily",
+  "file": "ai_daily_2026_06_20.html",
+  "stories": [
+    {
+      "tag": "💰 头条 · ANTHROPIC IPO",
+      "headline": "9650 亿之后秘密递表 · Anthropic 反超 OpenAI，冲刺十月纳斯达克",
+      "summary": "AI 资本竞赛迎来分水岭。据 Fortune、CNN、雅虎财经，Anthropic 五月底以约 650 亿美元新一轮融资把投后估值顶到 9650 亿美元，越过 OpenAI 上一轮 8520 亿美元，成为全球最值钱的独立 AI 创业公司；并已于 6 月 1 日向 SEC 秘密递交 IPO 申请，目标十月登陆纳斯达克，高盛、摩根大通、摩根士丹利领衔，募资有望超 600 亿美元，或诞生「第一家上市的 AI 安全公司」。撑起估值的是陡直收入曲线：年化收入从 2024 年底约 10 亿美元冲到 2026 年 4 月约 300 亿，五月运行速率约 470 亿美元。信号：排位逻辑正从「谁的模型更聪明」转向「谁能把增长讲成一张能在公开市场定价的资产负债表」。作为 Claude 生成的日报客观呈现——数字耀眼，但秘密递表意味着 S-1 尚未公开，真正考验要等招股书摊开那天，不捧不黑。",
+      "source": "Fortune / CNN / 雅虎财经"
+    },
+    {
+      "tag": "🚀 资本 · SPCX 上市",
+      "headline": "火箭也来抢钟声 · SpaceX 携 xAI 以 1.75 万亿$ 创史上最大 IPO",
+      "summary": "Anthropic 排队上市的同一周，马斯克把火箭与 AI 捆在一起敲了更响一记钟。据 CNBC、NPR，今年二月并入 xAI、同时手握 Starlink、星舰与 Grok 的 SpaceX，于 6 月 12 日以代码 SPCX 登陆纳斯达克：发行约 5.56 亿股、定价 135 美元，募资约 750 亿美元，初始市值约 1.75 万亿美元，超过 2019 年沙特阿美成为史上最大 IPO；首日跳涨 19% 收报 161 美元，市场很快重定价到约 2.1 万亿美元。AI 在这桩交易里存在感微妙：真正赚钱的是 Starlink，xAI 的 Grok 更像被「夹带」进巨轮的成长故事。与头条并读，本周资本信号殊途同归——无论纯粹的 AI 安全公司还是把 AI 嵌进火箭叙事的庞然大物，一级市场的天量估值正集体寻找在公开市场兑现的出口。",
+      "source": "CNBC / NPR"
+    },
+    {
+      "tag": "🧠 模型 · GEMINI 3.5 PRO",
+      "headline": "临门一脚的 Pro · 200 万 token 上下文 + Deep Think",
+      "summary": "谷歌旗舰正卡在「发布前最后一公里」。据 TechTimes、WaveSpeed，Gemini 3.5 Pro 在 5 月 19 日 Google I/O 亮相，但截至 6 月 19 日仍只对部分 Vertex AI 企业客户开放有限预览，尚未进入消费级 Gemini App 与 AI Studio，正式 GA 指向六月内。它把上下文窗口拉到约 200 万 token，配「Deep Think」深度推理与前沿多模态，意在接手昔日 Gemini Ultra 的位置。已上线的同门 Flash 给出风向标：在 Terminal-Bench 2.1（76.2% vs 70.3%）、MCP Atlas、Finance Agent v2 等多项上反超上一代 3.1 Pro，但在「人类最后一考」、ARC-AGI-2 等硬推理与超长上下文切片上仍落后。信号：旗舰差距越来越靠几个百分点丈量，真正悬念是谷歌能否在对手扎堆发新模型的六月把 Pro 准时推到所有人手上。",
+      "source": "TechTimes / WaveSpeed"
+    },
+    {
+      "tag": "📱 渠道 · iOS 27 EXTENSIONS",
+      "headline": "苹果把 Siri 的大脑做成插槽 · Claude、Gemini 都能换上",
+      "summary": "模型在台前比基准，苹果却悄悄改写台后分发规则。据 MacRumors、9to5Mac，苹果在 WWDC 2026（6 月 8 日）前后推进 iOS 27「Extensions」框架：通过专门的 App Store 市场，把 Siri、写作工具与 Image Playground 向第三方 AI 开放——用户可在设置里把 Claude、ChatGPT、Gemini 或 Grok 设为 Apple Intelligence 默认大脑，终结「只能配 ChatGPT」的独家格局。同时新版 Siri 由 Gemini 驱动，背后是传闻每年约 10 亿美元、跑在苹果自有 Private Cloud Compute 上的多年协议。这意味着 Anthropic、OpenAI、谷歌第一次拿到通往十亿余台苹果设备的直达通道。信号很硬：当能力逐渐拉平，最稀缺的是「默认入口」——谁住进 Siri 的插槽，谁就握住下一轮用户习惯的入场券。如实记录：Claude 首次成为 iPhone 内置选项之一，客观呈现。",
+      "source": "MacRumors / 9to5Mac"
+    },
+    {
+      "tag": "🇨🇳 国产 · 旗舰格局",
+      "headline": "三强鼎立 · 阿里 Qwen3.7 综合登顶，国产旗舰一轮顶一轮",
+      "summary": "海外忙着递表上市，国产大模型则在把旗舰一代代往上顶。据澎湃、知乎与多家盘点，阿里在 5 月 20 日阿里云峰会发布 Qwen3.7 系列，含万亿参数 MoE 架构的 Qwen3.7-Max-Preview 与稠密架构的 Qwen3.7-Plus-Preview，多项综合评测登顶国产第一；与之并立的是主打极致成本的 DeepSeek V4 Pro、长上下文见长的 Kimi K2.6，构成五月以来国产「三强鼎立」格局，百度文心 5.1 在企业市场守住一席。更值得记的是路线分化：阿里持续把强能力的 Qwen 系列开源、押注开发者生态，与海外头部「估值越高、闭源越紧」恰成镜像。信号：当美国用秘密递表与出口管制把前沿能力收进高墙，国产玩家正以开源、低价与长上下文等差异化卡位，抢在窗口期把开发者和落地场景先攥在手里。",
+      "source": "澎湃 / 知乎 / CSDN"
+    }
+  ]
+},
