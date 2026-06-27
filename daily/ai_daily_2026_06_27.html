@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 · 2026.06.27</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=JetBrains+Mono:wght@400;500;700&family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0d0b; --ink-2: #161410; --paper: #f4ecdb; --paper-2: #e8dfc9;
+    --muted: #8a8275; --rule: #2a2620; --signal: #ff4d1f; --signal-2: #ffb454; --tan: #c9a679;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink); color: var(--paper);
+    font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
+    font-weight: 300; line-height: 1.65; letter-spacing: 0.01em; overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255, 77, 31, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 90%, rgba(201, 166, 121, 0.035) 0%, transparent 50%);
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .masthead { border-bottom: 1px solid var(--rule); padding: 32px 0 24px; position: relative; }
+  .masthead-grid { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 32px; }
+  .edition { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .edition strong { color: var(--paper); font-weight: 500; }
+  .logo { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 38px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; text-align: center; font-variation-settings: "opsz" 144; }
+  .logo .accent { color: var(--signal); font-style: italic; font-weight: 600; }
+  .weather { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-align: right; line-height: 1.7; }
+  .weather .pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--signal); margin-right: 6px; animation: pulse 2s infinite; vertical-align: middle; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 77, 31, 0.5); }
+    50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(255, 77, 31, 0); }
+  }
+  .hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule); position: relative; }
+  .hero-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal); }
+  .hero-meta::before { content: ''; width: 40px; height: 1px; background: var(--signal); }
+  .hero h1 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: clamp(48px, 8vw, 96px); font-weight: 400; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 32px; font-variation-settings: "opsz" 144, "SOFT" 50; }
+  .hero h1 em { font-style: italic; font-weight: 600; color: var(--signal-2); }
+  .hero-lede { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.5; color: var(--paper-2); max-width: 680px; font-weight: 400; }
+  .date-block { position: absolute; top: 80px; right: 32px; text-align: right; font-family: 'JetBrains Mono', monospace; }
+  .date-block .day { font-family: 'Fraunces', serif; font-size: 120px; font-weight: 800; line-height: 0.9; color: var(--paper); font-variation-settings: "opsz" 144; letter-spacing: -0.05em; }
+  .date-block .month { font-size: 12px; letter-spacing: 0.2em; color: var(--muted); margin-top: 8px; }
+  .ticker { background: var(--ink-2); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); overflow: hidden; padding: 14px 0; position: relative; }
+  .ticker-track { display: flex; gap: 48px; white-space: nowrap; animation: scroll 60s linear infinite; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.05em; color: var(--paper-2); }
+  .ticker-track span { display: inline-flex; align-items: center; gap: 12px; }
+  .ticker-track .dot { color: var(--signal); font-size: 8px; }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .section { padding: 80px 0 40px; border-bottom: 1px solid var(--rule); }
+  .section-head { display: grid; grid-template-columns: 280px 1fr; gap: 48px; margin-bottom: 48px; align-items: start; }
+  .section-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--signal); margin-bottom: 12px; }
+  .section-title { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 56px; font-weight: 400; line-height: 0.95; letter-spacing: -0.03em; font-variation-settings: "opsz" 144; }
+  .section-title em { font-style: italic; color: var(--tan); font-weight: 600; }
+  .section-intro { font-family: 'Fraunces', serif; font-size: 17px; line-height: 1.6; color: var(--muted); padding-top: 16px; border-top: 1px solid var(--rule); }
+  .stories { display: grid; grid-template-columns: repeat(12, 1fr); gap: 32px; }
+  .story { grid-column: span 6; padding: 28px; background: linear-gradient(180deg, rgba(255,255,255,0.015) 0%, transparent 100%); border: 1px solid var(--rule); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; }
+  .story::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 1px; background: var(--signal); transition: width 0.6s ease; }
+  .story:hover { background: linear-gradient(180deg, rgba(255, 77, 31, 0.04) 0%, transparent 100%); border-color: rgba(255, 77, 31, 0.3); transform: translateY(-2px); }
+  .story:hover::before { width: 100%; }
+  .story.feature { grid-column: span 12; padding: 48px; background: linear-gradient(135deg, rgba(255, 77, 31, 0.06) 0%, rgba(201, 166, 121, 0.02) 100%); border-color: rgba(255, 77, 31, 0.25); }
+  .story.feature::after { content: 'FEATURED'; position: absolute; top: 24px; right: 24px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--signal); border: 1px solid var(--signal); padding: 4px 10px; }
+  .story-tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: var(--signal); margin-bottom: 16px; text-transform: uppercase; }
+  .story h3 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 26px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 16px; color: var(--paper); font-variation-settings: "opsz" 144; }
+  .story.feature h3 { font-size: 42px; line-height: 1.05; max-width: 90%; }
+  .story p { font-size: 15px; line-height: 1.7; color: var(--paper-2); margin-bottom: 20px; font-weight: 300; }
+  .story.feature p { font-family: 'Fraunces', serif; font-size: 19px; max-width: 720px; }
+  .story-meta { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 20px; border-top: 1px solid var(--rule); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.05em; }
+  .source { color: var(--muted); }
+  .source strong { color: var(--paper); font-weight: 500; }
+  .read-more { color: var(--signal); text-decoration: none; border: 1px solid var(--rule); padding: 6px 12px; transition: all 0.3s; white-space: nowrap; }
+  .read-more:hover { background: var(--signal); color: var(--ink); border-color: var(--signal); }
+  .story.span-4 { grid-column: span 4; }
+  .story.span-8 { grid-column: span 8; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--ink-2); }
+  .stat { padding: 40px 32px; border-right: 1px solid var(--rule); }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-family: 'Fraunces', serif; font-size: 56px; font-weight: 800; line-height: 1; color: var(--signal-2); letter-spacing: -0.04em; margin-bottom: 8px; font-variation-settings: "opsz" 144; }
+  .stat-num .unit { font-size: 22px; color: var(--paper); font-weight: 400; margin-left: 4px; }
+  .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; line-height: 1.4; }
+  .footer { padding: 80px 0 60px; text-align: center; border-top: 1px solid var(--rule); margin-top: 40px; }
+  .footer-mark { font-family: 'Fraunces', serif; font-style: italic; font-size: 28px; color: var(--paper); margin-bottom: 16px; font-variation-settings: "opsz" 144; }
+  .footer-mark .accent { color: var(--signal); }
+  .footer p { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+  .footer .divider { width: 60px; height: 1px; background: var(--signal); margin: 24px auto; }
+  /* ===== 平板 / 小笔记本 ===== */
+  @media (max-width: 900px) {
+    .wrap { padding: 0 20px; }
+    .masthead { padding: 24px 0 20px; }
+    .masthead-grid { grid-template-columns: 1fr; gap: 14px; text-align: center; }
+    .weather { text-align: center; }
+    .logo { font-size: 34px; }
+    .hero { padding: 44px 0 36px; }
+    .hero-meta { margin-bottom: 24px; }
+    .hero h1 { font-size: 42px; line-height: 1.05; margin-bottom: 24px; }
+    .hero-lede { font-size: 17px; }
+    .date-block { position: static; text-align: left; margin-top: 24px; }
+    .date-block .day { font-size: 72px; }
+    .section { padding: 56px 0 32px; }
+    .section-head { grid-template-columns: 1fr; gap: 14px; margin-bottom: 36px; }
+    .section-title { font-size: 36px; }
+    .stories { gap: 20px; }
+    .story, .story.feature { grid-column: span 12 !important; padding: 22px; }
+    .story.feature { padding: 26px; }
+    .story.feature::after { top: 16px; right: 16px; }
+    .story h3 { font-size: 22px; }
+    .story.feature h3 { font-size: 26px; max-width: 100%; }
+    .story p { font-size: 14.5px; }
+    .story.feature p { font-size: 16.5px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat { border-right: none; border-bottom: 1px solid var(--rule); padding: 26px 18px; }
+    .stat-num { font-size: 40px; }
+    .stat:nth-child(odd) { border-right: 1px solid var(--rule); }
+    .ticker-track { gap: 32px; font-size: 11px; }
+  }
+
+  /* ===== 手机 ===== */
+  @media (max-width: 600px) {
+    .wrap { padding: 0 16px; }
+    .logo { font-size: 28px; }
+    .edition, .weather { font-size: 10px; letter-spacing: 0.12em; }
+    .hero { padding: 32px 0 28px; }
+    .hero-meta { margin-bottom: 20px; font-size: 10px; }
+    .hero h1 { font-size: 32px; line-height: 1.08; margin-bottom: 20px; }
+    .hero-lede { font-size: 15.5px; line-height: 1.6; }
+    .date-block { margin-top: 20px; }
+    .date-block .day { font-size: 56px; }
+    .date-block .month { font-size: 10px; }
+    .section { padding: 44px 0 24px; }
+    .section-head { margin-bottom: 28px; }
+    .section-title { font-size: 28px; }
+    .section-num { font-size: 10px; }
+    .section-intro { font-size: 15px; line-height: 1.55; padding-top: 14px; }
+    .stories { gap: 16px; }
+    .story, .story.feature { padding: 20px; }
+    .story-tag { font-size: 9.5px; margin-bottom: 12px; }
+    .story h3 { font-size: 20px; margin-bottom: 12px; }
+    .story.feature h3 { font-size: 22px; }
+    .story p { font-size: 14px; line-height: 1.65; }
+    .story.feature p { font-size: 15px; }
+    .story-meta { flex-direction: column; align-items: flex-start; gap: 10px; padding-top: 14px; font-size: 10px; }
+    .source { line-height: 1.45; }
+    .read-more { font-size: 10px; padding: 5px 10px; }
+    .stat { padding: 22px 16px; }
+    .stat-num { font-size: 36px; }
+    .stat-num .unit { font-size: 15px; }
+    .stat-label { font-size: 10px; line-height: 1.35; }
+    .ticker-track { gap: 24px; font-size: 10.5px; animation-duration: 45s; }
+    .footer { padding: 56px 0 40px; }
+    .footer-mark { font-size: 24px; }
+  }
+
+  /* ===== 窄屏手机 ===== */
+  @media (max-width: 420px) {
+    .wrap { padding: 0 14px; }
+    .hero h1 { font-size: 28px; }
+    .hero-lede { font-size: 15px; }
+    .section-title { font-size: 24px; }
+    .stats { grid-template-columns: 1fr; }
+    .stat { border-right: none !important; padding: 20px 14px; }
+    .story, .story.feature { padding: 18px; }
+    .story h3, .story.feature h3 { font-size: 19px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-grid">
+      <div class="edition">VOL. <strong>I</strong> · NO. <strong>040</strong></div>
+      <div class="logo">信号 <span class="accent">/ Signal</span></div>
+      <div class="weather"><span class="pulse"></span>LIVE · 27 JUN 2026<br>晴 · 洛杉矶 · 24°C</div>
+    </div>
+  </div>
+</header>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span><span class="dot">●</span> GPT-5.6 三模型预览 · Sol / Terra / Luna 主打效率</span>
+    <span><span class="dot">●</span> Terra 性能比肩 5.5，价格直接砍半</span>
+    <span><span class="dot">●</span> 风向变了 · 从「堆 Token」到「省 Token」</span>
+    <span><span class="dot">●</span> Anthropic 暂停 Claude Code 涨价 · 还吃了集体诉讼</span>
+    <span><span class="dot">●</span> Alphabet 募资 800 亿$ · 巴菲特掏 100 亿下注 AI</span>
+    <span><span class="dot">●</span> 微软甩出低价模型 · 给开发者省钱、给 OpenAI 减负</span>
+    <span><span class="dot">●</span> 字节豆包 Seed 2.1 对标 GPT-5.5 · 成本降近 80%</span>
+    <span><span class="dot">●</span> Seedance 2.5 一镜直出 30 秒视频</span>
+    <span><span class="dot">●</span> 可视化造 Agent 走红 · Langflow / Dify 霸榜 GitHub</span>
+    <span><span class="dot">●</span> arXiv 拷问 · LLM Agent 仍跑不过经典算法</span>
+    <span><span class="dot">●</span> GPT-5.6 三模型预览 · Sol / Terra / Luna 主打效率</span>
+    <span><span class="dot">●</span> Terra 性能比肩 5.5，价格直接砍半</span>
+    <span><span class="dot">●</span> 风向变了 · 从「堆 Token」到「省 Token」</span>
+    <span><span class="dot">●</span> Anthropic 暂停 Claude Code 涨价 · 还吃了集体诉讼</span>
+    <span><span class="dot">●</span> Alphabet 募资 800 亿$ · 巴菲特掏 100 亿下注 AI</span>
+    <span><span class="dot">●</span> 微软甩出低价模型 · 给开发者省钱、给 OpenAI 减负</span>
+    <span><span class="dot">●</span> 字节豆包 Seed 2.1 对标 GPT-5.5 · 成本降近 80%</span>
+    <span><span class="dot">●</span> Seedance 2.5 一镜直出 30 秒视频</span>
+    <span><span class="dot">●</span> 可视化造 Agent 走红 · Langflow / Dify 霸榜 GitHub</span>
+    <span><span class="dot">●</span> arXiv 拷问 · LLM Agent 仍跑不过经典算法</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-meta">今日要闻 · TODAY'S BRIEFING</div>
+    <h1>AI 开始比谁，<br>更<em>省</em>了。</h1>
+    <p class="hero-lede">
+      上一期，竞赛还在比谁的芯片更快、谁的估值更高；这一期，风向悄悄拐了个弯——大家开始比谁更省。6 月 26 日，OpenAI 预览 GPT-5.6 三件套 Sol / Terra / Luna，最抢眼的不是旗舰更强，而是 Terra「性能比肩 5.5、价格直接砍半」，连最强的 Sol 在安全测试里也只用约三分之一的 token 就追平了对手。同一天，CNBC 给这股潮流起了名字：用户正从「能堆多少 token 就堆多少」的 tokenmaxxing，集体转向「同样的活儿，怎么花得更少」。账要算得更精，是因为算力实在太贵——Alphabet 一口气募资 800 亿美元扩建 AI 基建，连一向不碰科技股的巴菲特都掏了 100 亿押注；微软则甩出一批低价模型，既给开发者省钱、也给自己对 OpenAI 的依赖松绑。国内同频：字节豆包 Seed 2.1 对标 GPT-5.5、综合成本降近 80%。一句话——当能力不再稀缺，效率成了新的硬通货。
+    </p>
+    <div class="date-block"><div class="day">27</div><div class="month">JUN · MMXXVI</div></div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">2<span class="unit">×</span></div><div class="stat-label">GPT-5.6 Terra 比 GPT-5.5<br>便宜一半，性能却相当</div></div>
+  <div class="stat"><div class="stat-num">800<span class="unit">亿$</span></div><div class="stat-label">Alphabet AI 基建募资<br>含巴菲特 100 亿$ 私募注资</div></div>
+  <div class="stat"><div class="stat-num">80<span class="unit">%</span></div><div class="stat-label">字节豆包 Seed 2.1 Pro<br>宣称综合使用成本降幅</div></div>
+  <div class="stat"><div class="stat-num">750<span class="unit">t/s</span></div><div class="stat-label">GPT-5.6 Sol 在 Cerebras 上<br>7 月将达到的出字速度</div></div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 01</div><h2 class="section-title">效率，成了<em>新的硬通货</em></h2></div>
+      <p class="section-intro">前几期还在比谁更强、谁更贵，这一期厂商集体改口比「谁更省」。当顶级能力开始过剩，真正的竞争从「能不能做到」转向「同样的活儿要花多少钱」。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">🌶️ 头条 · GPT-5.6</div>
+        <h3>新旗舰最大的卖点，不是更强，是更省 · GPT-5.6 Sol / Terra / Luna 预览</h3>
+        <p>
+          一年来 OpenAI 每次升级都在喊「更强」，这次它换了个词——更省。6 月 26 日，OpenAI 开启 GPT-5.6 系列的限量预览，一口气端出三个定位清晰的型号：旗舰 Sol、日常均衡的 Terra、又快又便宜的 Luna。最值得玩味的不是 Sol 又刷新了 Terminal-Bench 2.1 的编程纪录，而是官方反复强调的「效率」：Terra「性能比肩 GPT-5.5，价格却便宜一半」；在网络安全基准 ExploitBench 上，最强的 Sol 只用约三分之一的输出 token，就追平了对手 Mythos 的预览版。定价上，三档分别是每百万 token 输入 $5 / $2.5 / $1，并把缓存机制做得更可预测——处处在替用户省钱。命名也跟着改：数字代表「第几代」，Sol / Terra / Luna 代表「能力档位」，让人按智能、速度、成本各取所需。还有一处呼应上一期监管头条的细节：应美国政府要求，GPT-5.6 先以「限量预览」开放给少数受信任伙伴，并在发布前向政府预演了能力——这正是上一期那道「前沿模型预审」行政令的第一次落地。OpenAI 也直言，不希望这种政府预审成为长期默认。信号：当模型强到要先过政府这关，厂商比拼的重点，正从「峰值能力」转向「每一分算力的性价比」。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>OpenAI</strong> · 2026.06.26</span>
+          <a class="read-more" href="https://openai.com/index/previewing-gpt-5-6-sol/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">📉 趋势 · 行业风向</div>
+        <h3>「Tokenmaxxing」退潮 · 用户开始算账，OpenAI 与 Anthropic 一起转向效率</h3>
+        <p>
+          GPT-5.6 把「省」写进卖点，不是孤立动作，而是整个行业风向在变。据 CNBC 6 月 26 日报道，过去两年大模型的隐性信条是「tokenmaxxing」——能堆多少上下文、多少推理 token 就堆多少，仿佛烧得越多越聪明。但随着账单越来越吓人，企业与开发者正集体回过味来：同样一件事，怎么用更少的算力、更低的成本做完，才是真问题。OpenAI 和 Anthropic 这两家最烧钱的公司，如今都得直面这条新现实——产品不再只比谁的天花板更高，还要比谁更能帮客户省。把它接在头条之后看格外清楚：当上一期的主线还是「自研芯片、万亿估值」这类向上的军备竞赛，这一期，用户用钱包投出了一张向下的票——别再炫能力了，先帮我把成本压下来。效率，正在从工程指标变成商业刚需。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>CNBC</strong> · 2026.06.26</span>
+          <a class="read-more" href="https://www.cnbc.com/2026/06/26/openai-anthropic-new-ai-spending-reality-as-users-shift-to-efficiency.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">💳 定价 · ANTHROPIC</div>
+        <h3>想悄悄给 AI 编程涨价，被用户摁了回去 · Anthropic 暂停 Claude Code 计费变更</h3>
+        <p>
+          「省」之所以成了刚需，是因为厂商正想方设法把成本转嫁给用户——而用户已经不买账了。Anthropic 这几个月围绕 Claude Code 的定价反复试探：4 月它一度悄悄把 Claude Code 从 20 美元的 Pro 套餐里拿掉（仅影响约 2% 新用户），舆论哗然后火速撤回；5 月又宣布从 6 月 15 日起，把通过 Agent SDK、命令行、第三方应用的「程序化调用」改为单独的「月度积分池」计费，被外界解读为变相涨价、甚至有人算出逼近「每月 100 美元」。结果到了 6 月 15 日，Anthropic 在帮助中心确认：这套 Agent SDK 计费拆分「不再推行」，原计划暂停。但风波没完——同一周，一桩集体诉讼找上门，指控其 200 美元的 Max 套餐在未充分告知的情况下被实质性重新定价。信号与本期主线咬合：当算力账单压到用户头上，定价的每一次微调都成了高压线。在效率焦虑的年代，「悄悄涨价」几乎不再可能。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Codersera / TechTimes</strong> · 2026.06.15</span>
+          <a class="read-more" href="https://codersera.com/blog/anthropic-june-2026-billing-change-claude-code/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 02</div><h2 class="section-title">连巴菲特，<em>都下注了</em></h2></div>
+      <p class="section-intro">用户忙着省钱，巨头却还在疯狂砸钱——因为算力的账，最终要靠基建来扛。这一期，连一向不碰科技股的老钱，也排队进了场。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-8">
+        <div class="story-tag">💰 资本 · ALPHABET</div>
+        <h3>谷歌一次募资 800 亿$ 扩建 AI 基建 · 巴菲特掏 100 亿罕见下注</h3>
+        <p>
+          一边是用户开始抠门，另一边是巨头继续豪掷——这种张力，正是本期资本的主线。6 月 1 日，Alphabet 宣布总额 800 亿美元的股权融资计划，专门用来扩建「世界级的 AI 算力基建」，以应对「前所未有的客户需求」。结构相当讲究：300 亿来自公开发行（含 150 亿可转换优先股与 150 亿 A/C 类普通股），另有最高 400 亿的「随行就市」增发计划，预计三季度启动。最抢眼的一笔，是巴菲特的伯克希尔·哈撒韦以私募方式认购 100 亿美元股票（A 类、C 类各 50 亿）——这位长期对科技股保持距离的「股神」，如今真金白银押注 AI 基建，本身就是一种信号。把它与上一期 OpenAI、Anthropic 排队 IPO 的故事并读：当模型公司靠上市补血，云巨头则靠增发与老钱续命，所有人都在为同一件事融资——更多的算力。而当用户开始为每一个 token 算账，这场千亿级的基建豪赌，最终要靠「把单位算力成本打下来」才能兑现回报。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>TechCrunch / CNBC / Bloomberg</strong> · 2026.06.01</span>
+          <a class="read-more" href="https://techcrunch.com/2026/06/01/alphabet-plans-to-raise-80-billion-to-pay-for-ai-buildout/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-4">
+        <div class="story-tag">🪟 模型 · MICROSOFT</div>
+        <h3>微软甩出低价模型 · 一手替开发者省钱，一手给 OpenAI 松绑</h3>
+        <p>
+          省钱的浪潮也在改写巨头之间的关系。据 CNBC 报道，微软本月发布了一批主打低成本的新模型，目标直白：既帮开发者把调用成本压下来，也减少自己对 OpenAI 的过度依赖。要知道，微软累计向 OpenAI 投入逾 130 亿美元、向 Anthropic 也投了最多约 50 亿，如今却选择自研更便宜的模型来填日常需求。信号与头条同频：当「效率」成为客户的第一诉求，连最大的金主都开始两条腿走路——昂贵的旗舰留给硬骨头，便宜的自研模型接管批量活儿。性价比，正成为重新洗牌的杠杆。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>CNBC</strong> · 2026.06.02</span>
+          <a class="read-more" href="https://www.cnbc.com/2026/06/02/microsoft-unveils-new-ai-models-lessen-reliance-on-openai-lower-costs.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 03</div><h2 class="section-title">国产前线，<em>也在拼性价比</em></h2></div>
+      <p class="section-intro">同样的「效率叙事」在国内上演，只是打法更直接：把对标海外旗舰的能力，配上一个低到离谱的价格。这一期，火山引擎的牌桌上摆满了「又强又便宜」。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">🇨🇳 大模型 · 字节 豆包</div>
+        <h3>对标 GPT-5.5，成本砍掉八成 · 字节豆包 Seed 2.1 押注 Coding 与 Agent</h3>
+        <p>
+          海外比效率，国内更是把「性价比」打成了主旋律。6 月 23 日，字节火山引擎 FORCE 原动力大会上，豆包 Seed 2.1 系列（含 Pro、Turbo 两款深度思考版本）正式发布，定位为「面向 Coding 与 Agent 时代」的旗舰，在编程工程交付、智能体长链路任务、多模态理解三方面全面升级，综合能力对标 GPT-5.5 等海外头部模型。据量子位等报道，Pro 版在 Terminal-Bench 2.1、SWE-Pro 等代码基准上跻身全球第一梯队，部分智能体指标甚至超过 Claude Opus；而最锋利的武器是价格——Pro 版每百万 token 输入价低至 6 元人民币，宣称综合使用成本较同类产品降低近 80%。系列已接入豆包 App 与 TRAE 平台，API 也在火山引擎开放。信号与本期头条隔空击掌：当 OpenAI 用 Terra「砍半价」抢效率，字节直接用「降八成」回应——这场比赛的胜负手，正从参数榜单挪到了价格标签上。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>量子位 / 火山引擎</strong> · 2026.06.23</span>
+          <a class="read-more" href="https://tech.china.com/article/20260623/202606231899557.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🎬 视频生成 · SEEDANCE 2.5</div>
+        <h3>一镜直出 30 秒 · 字节 Seedance 2.5 把视频生成推到「整段交付」</h3>
+        <p>
+          同一场大会上，真正点燃现场的是视频生成模型 Seedance 2.5——它能「一次性直出 30 秒完整视频」，把此前业界普遍卡在几秒到十几秒的生成长度，一口气拉到接近一个完整短片的体量。配套登场的还有图像模型 Seeddream 5.0，进一步补齐字节在多模态上的版图。把它和豆包 Seed 2.1 并读，火山引擎这次的叙事很清楚：语言模型拼性价比，多模态拼「成片度」——让生成结果从「能用的素材」逼近「能交付的成品」。信号务实：当文本侧的竞争开始向效率收敛，视频与图像反而成了厂商展示肌肉、抢占下一个内容生产入口的新战场。国产 AI 的故事，正在从「追平」转向「在某些刻度上先冲一步」。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>站长之家 / 火山引擎</strong> · 2026.06.23</span>
+          <a class="read-more" href="https://www.chinaz.com/ainews/29085.shtml" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 04</div><h2 class="section-title">开发者，<em>也在做选择题</em></h2></div>
+      <p class="section-intro">巨头在价格上厮杀，开发者则用 star 和论文回答另一个问题：Agent 该怎么造、又到底靠不靠谱。一边是拖拽式低代码的狂欢，一边是学术界泼来的一盆冷水。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">⭐ 开源 · GITHUB</div>
+        <h3>不写代码也能造 Agent · 可视化搭建工具霸榜 GitHub</h3>
+        <p>
+          当模型侧在比谁更省，开发者侧在比谁更省事。据 Firecrawl、ByteByteGo 的 2026 盘点，GitHub 上最热的 AI Agent 项目里，前五有三个是「可视化搭建器」：Langflow 已突破 14.6 万星，Dify 达 13.6 万星，Flowise 也有 5.1 万星——它们的共同点，是让人用拖拽、连线的方式把智能体「画」出来，不必从头写代码。与之呼应的还有图像生成的 ComfyUI（10.6 万星）和让本地大模型「一键拉起」的 Ollama（16.5 万星）。信号一以贯之：上游越是把能力做成昂贵、集中的云服务，开发者就越想要轻量、可控、能自己拼装的工具。当「造 AI 应用」的门槛被拖拽界面一再拉低，真正稀缺的不再是会调 API 的人，而是知道「该把这些积木拼成什么」的人。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Firecrawl / ByteByteGo</strong> · 2026.06</span>
+          <a class="read-more" href="https://www.firecrawl.dev/blog/best-github-repos" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">📄 论文 · ARXIV cs.AI</div>
+        <h3>会推理，不等于会「想明白世界」 · 一篇论文给 Agent 泼了盆冷水</h3>
+        <p>
+          开发者忙着用拖拽搭 Agent，学界却在追问一个更冷静的问题：这些 Agent 真的「懂」它在操作的世界吗？6 月 24 日登上 arXiv 的《Can LLM Agents Infer World Models? Evidence from Agentic Automata Learning》（2606.16576）设计了一个干净的考场——让智能体通过「成员查询」和「等价查询」与环境反复交互，去还原一台隐藏的确定性有限自动机（DFA），借此检验它能否真正推断出背后的「世界模型」。结论喜忧参半：带推理能力的模型明显强于不带推理的，说明「会想」确实有用；但即便最强的 LLM Agent，在鲁棒性和效率上仍远不及几十年前就成熟的经典算法。把它接在本期效率主线之后别有意味：当产业在为「省 token」欢呼，研究者提醒我们——很多任务用一段确定的老算法既快又准，未必非要塞给一个昂贵又飘忽的智能体。信号清醒：分清「哪些活儿该交给 Agent、哪些该留给老办法」，本身就是最大的效率。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>arXiv cs.AI</strong> · 2026.06.24</span>
+          <a class="read-more" href="https://arxiv.org/abs/2606.16576" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-mark">信号 <span class="accent">/</span> Signal</div>
+    <div class="divider"></div>
+    <p>第 040 期 · 2026 年 6 月 27 日 · 周六</p>
+    <p style="margin-top:8px;">本期收录 6.01 — 6.26 共 9 条 AI 相关动态</p>
+  </div>
+</footer>
+
+</body>
+</html>
