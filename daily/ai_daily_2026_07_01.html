@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 · 2026.07.01</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=JetBrains+Mono:wght@400;500;700&family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0d0b; --ink-2: #161410; --paper: #f4ecdb; --paper-2: #e8dfc9;
+    --muted: #8a8275; --rule: #2a2620; --signal: #ff4d1f; --signal-2: #ffb454; --tan: #c9a679;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink); color: var(--paper);
+    font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
+    font-weight: 300; line-height: 1.65; letter-spacing: 0.01em; overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255, 77, 31, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 90%, rgba(201, 166, 121, 0.035) 0%, transparent 50%);
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .masthead { border-bottom: 1px solid var(--rule); padding: 32px 0 24px; position: relative; }
+  .masthead-grid { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 32px; }
+  .edition { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .edition strong { color: var(--paper); font-weight: 500; }
+  .logo { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 38px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; text-align: center; font-variation-settings: "opsz" 144; }
+  .logo .accent { color: var(--signal); font-style: italic; font-weight: 600; }
+  .weather { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-align: right; line-height: 1.7; }
+  .weather .pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--signal); margin-right: 6px; animation: pulse 2s infinite; vertical-align: middle; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 77, 31, 0.5); }
+    50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(255, 77, 31, 0); }
+  }
+  .hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule); position: relative; }
+  .hero-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal); }
+  .hero-meta::before { content: ''; width: 40px; height: 1px; background: var(--signal); }
+  .hero h1 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: clamp(48px, 8vw, 96px); font-weight: 400; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 32px; font-variation-settings: "opsz" 144, "SOFT" 50; }
+  .hero h1 em { font-style: italic; font-weight: 600; color: var(--signal-2); }
+  .hero-lede { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.5; color: var(--paper-2); max-width: 680px; font-weight: 400; }
+  .date-block { position: absolute; top: 80px; right: 32px; text-align: right; font-family: 'JetBrains Mono', monospace; }
+  .date-block .day { font-family: 'Fraunces', serif; font-size: 120px; font-weight: 800; line-height: 0.9; color: var(--paper); font-variation-settings: "opsz" 144; letter-spacing: -0.05em; }
+  .date-block .month { font-size: 12px; letter-spacing: 0.2em; color: var(--muted); margin-top: 8px; }
+  .ticker { background: var(--ink-2); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); overflow: hidden; padding: 14px 0; position: relative; }
+  .ticker-track { display: flex; gap: 48px; white-space: nowrap; animation: scroll 60s linear infinite; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.05em; color: var(--paper-2); }
+  .ticker-track span { display: inline-flex; align-items: center; gap: 12px; }
+  .ticker-track .dot { color: var(--signal); font-size: 8px; }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .section { padding: 80px 0 40px; border-bottom: 1px solid var(--rule); }
+  .section-head { display: grid; grid-template-columns: 280px 1fr; gap: 48px; margin-bottom: 48px; align-items: start; }
+  .section-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--signal); margin-bottom: 12px; }
+  .section-title { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 56px; font-weight: 400; line-height: 0.95; letter-spacing: -0.03em; font-variation-settings: "opsz" 144; }
+  .section-title em { font-style: italic; color: var(--tan); font-weight: 600; }
+  .section-intro { font-family: 'Fraunces', serif; font-size: 17px; line-height: 1.6; color: var(--muted); padding-top: 16px; border-top: 1px solid var(--rule); }
+  .stories { display: grid; grid-template-columns: repeat(12, 1fr); gap: 32px; }
+  .story { grid-column: span 6; padding: 28px; background: linear-gradient(180deg, rgba(255,255,255,0.015) 0%, transparent 100%); border: 1px solid var(--rule); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; }
+  .story::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 1px; background: var(--signal); transition: width 0.6s ease; }
+  .story:hover { background: linear-gradient(180deg, rgba(255, 77, 31, 0.04) 0%, transparent 100%); border-color: rgba(255, 77, 31, 0.3); transform: translateY(-2px); }
+  .story:hover::before { width: 100%; }
+  .story.feature { grid-column: span 12; padding: 48px; background: linear-gradient(135deg, rgba(255, 77, 31, 0.06) 0%, rgba(201, 166, 121, 0.02) 100%); border-color: rgba(255, 77, 31, 0.25); }
+  .story.feature::after { content: 'FEATURED'; position: absolute; top: 24px; right: 24px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--signal); border: 1px solid var(--signal); padding: 4px 10px; }
+  .story-tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: var(--signal); margin-bottom: 16px; text-transform: uppercase; }
+  .story h3 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 26px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 16px; color: var(--paper); font-variation-settings: "opsz" 144; }
+  .story.feature h3 { font-size: 42px; line-height: 1.05; max-width: 90%; }
+  .story p { font-size: 15px; line-height: 1.7; color: var(--paper-2); margin-bottom: 20px; font-weight: 300; }
+  .story.feature p { font-family: 'Fraunces', serif; font-size: 19px; max-width: 720px; }
+  .story-meta { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 20px; border-top: 1px solid var(--rule); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.05em; }
+  .source { color: var(--muted); }
+  .source strong { color: var(--paper); font-weight: 500; }
+  .read-more { color: var(--signal); text-decoration: none; border: 1px solid var(--rule); padding: 6px 12px; transition: all 0.3s; white-space: nowrap; }
+  .read-more:hover { background: var(--signal); color: var(--ink); border-color: var(--signal); }
+  .story.span-4 { grid-column: span 4; }
+  .story.span-8 { grid-column: span 8; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--ink-2); }
+  .stat { padding: 40px 32px; border-right: 1px solid var(--rule); }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-family: 'Fraunces', serif; font-size: 56px; font-weight: 800; line-height: 1; color: var(--signal-2); letter-spacing: -0.04em; margin-bottom: 8px; font-variation-settings: "opsz" 144; }
+  .stat-num .unit { font-size: 22px; color: var(--paper); font-weight: 400; margin-left: 4px; }
+  .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; line-height: 1.4; }
+  .footer { padding: 80px 0 60px; text-align: center; border-top: 1px solid var(--rule); margin-top: 40px; }
+  .footer-mark { font-family: 'Fraunces', serif; font-style: italic; font-size: 28px; color: var(--paper); margin-bottom: 16px; font-variation-settings: "opsz" 144; }
+  .footer-mark .accent { color: var(--signal); }
+  .footer p { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+  .footer .divider { width: 60px; height: 1px; background: var(--signal); margin: 24px auto; }
+  /* ===== 平板 / 小笔记本 ===== */
+  @media (max-width: 900px) {
+    .wrap { padding: 0 20px; }
+    .masthead { padding: 24px 0 20px; }
+    .masthead-grid { grid-template-columns: 1fr; gap: 14px; text-align: center; }
+    .weather { text-align: center; }
+    .logo { font-size: 34px; }
+    .hero { padding: 44px 0 36px; }
+    .hero-meta { margin-bottom: 24px; }
+    .hero h1 { font-size: 42px; line-height: 1.05; margin-bottom: 24px; }
+    .hero-lede { font-size: 17px; }
+    .date-block { position: static; text-align: left; margin-top: 24px; }
+    .date-block .day { font-size: 72px; }
+    .section { padding: 56px 0 32px; }
+    .section-head { grid-template-columns: 1fr; gap: 14px; margin-bottom: 36px; }
+    .section-title { font-size: 36px; }
+    .stories { gap: 20px; }
+    .story, .story.feature { grid-column: span 12 !important; padding: 22px; }
+    .story.feature { padding: 26px; }
+    .story.feature::after { top: 16px; right: 16px; }
+    .story h3 { font-size: 22px; }
+    .story.feature h3 { font-size: 26px; max-width: 100%; }
+    .story p { font-size: 14.5px; }
+    .story.feature p { font-size: 16.5px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat { border-right: none; border-bottom: 1px solid var(--rule); padding: 26px 18px; }
+    .stat-num { font-size: 40px; }
+    .stat:nth-child(odd) { border-right: 1px solid var(--rule); }
+    .ticker-track { gap: 32px; font-size: 11px; }
+  }
+
+  /* ===== 手机 ===== */
+  @media (max-width: 600px) {
+    .wrap { padding: 0 16px; }
+    .logo { font-size: 28px; }
+    .edition, .weather { font-size: 10px; letter-spacing: 0.12em; }
+    .hero { padding: 32px 0 28px; }
+    .hero-meta { margin-bottom: 20px; font-size: 10px; }
+    .hero h1 { font-size: 32px; line-height: 1.08; margin-bottom: 20px; }
+    .hero-lede { font-size: 15.5px; line-height: 1.6; }
+    .date-block { margin-top: 20px; }
+    .date-block .day { font-size: 56px; }
+    .date-block .month { font-size: 10px; }
+    .section { padding: 44px 0 24px; }
+    .section-head { margin-bottom: 28px; }
+    .section-title { font-size: 28px; }
+    .section-num { font-size: 10px; }
+    .section-intro { font-size: 15px; line-height: 1.55; padding-top: 14px; }
+    .stories { gap: 16px; }
+    .story, .story.feature { padding: 20px; }
+    .story-tag { font-size: 9.5px; margin-bottom: 12px; }
+    .story h3 { font-size: 20px; margin-bottom: 12px; }
+    .story.feature h3 { font-size: 22px; }
+    .story p { font-size: 14px; line-height: 1.65; }
+    .story.feature p { font-size: 15px; }
+    .story-meta { flex-direction: column; align-items: flex-start; gap: 10px; padding-top: 14px; font-size: 10px; }
+    .source { line-height: 1.45; }
+    .read-more { font-size: 10px; padding: 5px 10px; }
+    .stat { padding: 22px 16px; }
+    .stat-num { font-size: 36px; }
+    .stat-num .unit { font-size: 15px; }
+    .stat-label { font-size: 10px; line-height: 1.35; }
+    .ticker-track { gap: 24px; font-size: 10.5px; animation-duration: 45s; }
+    .footer { padding: 56px 0 40px; }
+    .footer-mark { font-size: 24px; }
+  }
+
+  /* ===== 窄屏手机 ===== */
+  @media (max-width: 420px) {
+    .wrap { padding: 0 14px; }
+    .hero h1 { font-size: 28px; }
+    .hero-lede { font-size: 15px; }
+    .section-title { font-size: 24px; }
+    .stats { grid-template-columns: 1fr; }
+    .stat { border-right: none !important; padding: 20px 14px; }
+    .story, .story.feature { padding: 18px; }
+    .story h3, .story.feature h3 { font-size: 19px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-grid">
+      <div class="edition">VOL. <strong>I</strong> · NO. <strong>044</strong></div>
+      <div class="logo">信号 <span class="accent">/ Signal</span></div>
+      <div class="weather"><span class="pulse"></span>LIVE · 01 JUL 2026<br>晴 · 洛杉矶 · 24°C</div>
+    </div>
+  </div>
+</header>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span><span class="dot">●</span> Claude Sonnet 5 发布 · 最能自主干活的 Sonnet · 引入价 2$/10$</span>
+    <span><span class="dot">●</span> Anthropic 同日推 Claude Science · 矛头对准制药实验室</span>
+    <span><span class="dot">●</span> Claude 半价铺进加州全部州级机构 · 首个全州 AI 生产力工具</span>
+    <span><span class="dot">●</span> Sonnet 5 Terminal-Bench 2.1 冲到 80.4% · 逼近 Opus</span>
+    <span><span class="dot">●</span> OpenAI 甩出自研芯片 Jalapeño · 九个月流片 · 绕开英伟达</span>
+    <span><span class="dot">●</span> 英伟达联手 ServiceNow · 自进化桌面 Agent「Project Arc」进企业</span>
+    <span><span class="dot">●</span> 中国版 Codex 大乱斗 · 豆包专业版 6·24 上线</span>
+    <span><span class="dot">●</span> OpenAI Codex 周活破 500 万 · 半年涨超 7 倍</span>
+    <span><span class="dot">●</span> 一篇新综述追问 · AI 自己动手后谁来追溯</span>
+    <span><span class="dot">●</span> Sonnet 5 标准价比 Opus 便宜约 60% · 抢「跑得起」的 agent</span>
+    <span><span class="dot">●</span> Claude Sonnet 5 发布 · 最能自主干活的 Sonnet · 引入价 2$/10$</span>
+    <span><span class="dot">●</span> Anthropic 同日推 Claude Science · 矛头对准制药实验室</span>
+    <span><span class="dot">●</span> Claude 半价铺进加州全部州级机构 · 首个全州 AI 生产力工具</span>
+    <span><span class="dot">●</span> Sonnet 5 Terminal-Bench 2.1 冲到 80.4% · 逼近 Opus</span>
+    <span><span class="dot">●</span> OpenAI 甩出自研芯片 Jalapeño · 九个月流片 · 绕开英伟达</span>
+    <span><span class="dot">●</span> 英伟达联手 ServiceNow · 自进化桌面 Agent「Project Arc」进企业</span>
+    <span><span class="dot">●</span> 中国版 Codex 大乱斗 · 豆包专业版 6·24 上线</span>
+    <span><span class="dot">●</span> OpenAI Codex 周活破 500 万 · 半年涨超 7 倍</span>
+    <span><span class="dot">●</span> 一篇新综述追问 · AI 自己动手后谁来追溯</span>
+    <span><span class="dot">●</span> Sonnet 5 标准价比 Opus 便宜约 60% · 抢「跑得起」的 agent</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-meta">今日要闻 · TODAY'S BRIEFING</div>
+    <h1>最强之后，<br>轮到<em>最划算</em>。</h1>
+    <p class="hero-lede">
+      上一期，最强的模型被官方一一锁进保险箱。这一周，Anthropic 索性换了张牌桌：6 月 30 日一天连发两记——把能自主跑 agent 的 Sonnet 5 价格砍到旗舰的零头，又推出瞄准制药实验室的 Claude Science；前一天，它刚把 Claude 半价铺进加州所有州级机构。当基准分拉锯到饱和，竞争的重心正从「谁最强」滑向「谁更便宜、谁能进真实场景」。同一周，OpenAI 甩出自研推理芯片 Jalapeño 想把算力成本攥在自己手里，国产阵营扎堆抢「中国版 Codex」，英伟达和 ServiceNow 把自进化 agent 送进企业工位。而当 AI 越来越多地自己动手，学界抛来一个更冷的问题：出了错，谁来追溯。这一周，AI 集体从「炫技」转向「落地」——比的不再是谁站得高，而是谁站得稳。
+    </p>
+    <div class="date-block"><div class="day">01</div><div class="month">JUL · MMXXVI</div></div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">2<span class="unit">$</span></div><div class="stat-label">Sonnet 5 引入价 / 百万输入 token<br>标准价仍比 Opus 便宜约 60%</div></div>
+  <div class="stat"><div class="stat-num">50<span class="unit">%</span></div><div class="stat-label">Claude 给加州政府的折扣<br>首个覆盖全部州级机构的 AI 工具</div></div>
+  <div class="stat"><div class="stat-num">9<span class="unit">个月</span></div><div class="stat-label">Jalapeño 从设计到流片<br>业界最快的 ASIC 开发周期之一</div></div>
+  <div class="stat"><div class="stat-num">500<span class="unit">万</span></div><div class="stat-label">OpenAI Codex 周活用户<br>半年增长超 7 倍 · 编程 Agent 爆发</div></div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 01</div><h2 class="section-title">不拼最强，<em>拼最划算</em></h2></div>
+      <p class="section-intro">上一期最强的模型被关进保险箱，这一周 Anthropic 换了打法：不再抢「谁站得最高」，而是把价格砍下来、把 Claude 铺进政府——让 AI 先「跑得起、用得广」。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">⚡ 头条 · ANTHROPIC SONNET 5</div>
+        <h3>把「自主跑 agent」砍到旗舰的零头 · Claude Sonnet 5 发布，抢的是「跑得起」这三个字</h3>
+        <p>
+          6 月 30 日，Anthropic 发布 Claude Sonnet 5，官方称其为「迄今最能自主干活的 Sonnet」——能自己制定计划、调用浏览器和终端、长时间无人值守地跑完任务，而这在几个月前还得靠更大、更贵的旗舰。真正的杀招在价签：引入价每百万 token 2 美元（输入）/ 10 美元（输出），8 月底前有效，之后回到 3/15 美元，仍比 Opus 4.8 的 5/25 美元便宜约六成。而性能并没有等比缩水——Terminal-Bench 2.1 从上代的 67.0% 跳到 80.4%，计算机操作（OSWorld）81.2%，SWE-bench Pro 敏捷编码 63.2%（Opus 4.8 为 69.2%），知识工作 GDPval 甚至微超旗舰。发布当天，它已成为 Free 与 Pro 用户的默认模型。信号：承接上一期「烧 token 退潮」那条线，这一周供给端给出了正面回应——当客户学会省着用，最强的模型不再是唯一答卷，「够强又够便宜」才是。基准分的军备竞赛正在让位给单位成本的竞赛；能把智能体的账单压到企业敢放开手用，可能比再多刷几分更值钱。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>TechCrunch / VentureBeat / Anthropic</strong> · 2026.06.30</span>
+          <a class="read-more" href="https://techcrunch.com/2026/06/30/anthropic-launches-claude-sonnet-5-as-a-cheaper-way-to-run-agents/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-12">
+        <div class="story-tag">🏛️ 落地 · ANTHROPIC × 加州</div>
+        <h3>不只卖给开发者，还铺进政府 · Claude 半价供加州全部州级机构，首创全州级 AI 生产力工具</h3>
+        <p>
+          就在发新模型的前一天，Anthropic 把 Claude 送进了另一个此前 AI 很难进的场景——政府。6 月 29 日，加州州长纽森宣布与 Anthropic 达成「首创性」合作：Claude 以五折价格向全部州级机构、以及市县地方政府开放，配套免费员工培训和 GenAI 技术支持，用于起草与摘要文件、分析信息、优化日常公共服务。据 TechCrunch，这是首个面向加州所有州级机构铺开的 AI 生产力工具。信号：与本章头条互为一体两面——一边把价格打下来，一边把边界推出去。当模型能力被审批和价签框住，谁能率先进入政府、医院、法院这类「高门槛、慢采购」的公共场景，谁就换到了别人短期难以复制的分发渠道。半价既是让利，也是卡位：先把 Claude 变成加州公务员桌上的默认工具，比多卖几张 API 订阅更有黏性。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>TechCrunch / Gov.ca.gov</strong> · 2026.06.29</span>
+          <a class="read-more" href="https://techcrunch.com/2026/06/29/anthropic-and-gov-newsom-forge-deal-allowing-california-government-to-use-claude-at-half-price/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 02</div><h2 class="section-title">往下沉：<em>进实验室，也进工位</em></h2></div>
+      <p class="section-intro">价格与政府之外，另一条落地线在同步推进：把 AI 从对话框里请出来，塞进制药实验室的流程、坐进企业员工的桌面。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">🧬 落地 · CLAUDE SCIENCE</div>
+        <h3>教会了写代码，现在想教它做实验 · Anthropic 推 Claude Science，押注生命科学</h3>
+        <p>
+          6 月 30 日在旧金山，Anthropic 与 Sonnet 5 同日发布 Claude Science——一款为科研实验室、尤其是药企研发流程量身优化的应用，能自动化蛋白结构预测等一批生物与化学任务，并打通 60 多个科学数据库。CEO Dario Amodei 的野心毫不遮掩：他相信 Claude Science 会像去年 Claude Code 颠覆编程那样，从根本上重塑生命科学，「这将是一项帮我们完整理解生物学复杂度的通用技术」，但也坦承「不确定一定能成，只是看到了开端的迹象」。同步启动的还有一个内部新药发现项目，专攻传统药企不愿碰的「被忽视疾病」。信号：延续本期「落地」主线，Anthropic 把赌注从写代码押到做实验——衡量前沿模型价值的标尺，正从跑分转向「能不能在真实、高风险的专业领域里产出结果」。生命科学是块难啃的硬骨头，但一旦啃下，护城河远比多几分基准来得深。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>STAT / CNBC / Bloomberg</strong> · 2026.06.30</span>
+          <a class="read-more" href="https://www.statnews.com/2026/06/30/anthropic-release-claude-science-ceo-dario-amodei/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🖥️ 企业 · 英伟达 × SERVICENOW</div>
+        <h3>让 agent 长驻你的桌面 · 英伟达联手 ServiceNow 推「Project Arc」自进化桌面智能体</h3>
+        <p>
+          在 ServiceNow Knowledge 2026 大会上，黄仁勋与 ServiceNow CEO 麦克德莫特同台，宣布把合作扩展到全栈企业 AI，核心是 ServiceNow 新推的 Project Arc——一个面向开发者、IT 与管理员的「长时运行、可自我进化」的桌面智能体。它跑在英伟达开源安全运行时 OpenShell 之上，在沙箱化、受策略管控的环境里执行任务，并原生接入 ServiceNow 平台，为 agent 的每一步动作提供治理、可审计与工作流上下文。目前以早期预览形式开放。信号：与本章前两条呼应——AI 落地的下一站，是员工日常操作的桌面。而企业最在意的从来不是「有多聪明」，而是「敢不敢放它自己动」；把治理、审计、沙箱做进 agent 的底座，正是让自主性能被企业接受的前提。能力已经够用，可信才是这一轮真正的门槛。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>NVIDIA / ServiceNow</strong> · 2026.06</span>
+          <a class="read-more" href="https://blogs.nvidia.com/blog/servicenow-autonomous-ai-agents-enterprises/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 03</div><h2 class="section-title">算力这仗，<em>打到自己造芯</em></h2></div>
+      <p class="section-intro">当推理成本成了拦路虎，玩家们不约而同往上游走：一边自己造芯把账单攥在手里，一边把编程 Agent 卷成红海，抢占开发者入口。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">🌶️ 硬件 · OPENAI JALAPEÑO</div>
+        <h3>OpenAI 甩出自己的芯片 · 九个月流片的 Jalapeño，想把算力成本从英伟达手里夺回来</h3>
+        <p>
+          6 月 24 日，OpenAI 与博通联合发布首款自研推理芯片 Jalapeño——一颗为大模型推理从头设计的定制 ASIC，围绕 OpenAI 研究员最看重的算子、内存搬运、网络与服务模式做深度软硬协同优化。它没有英伟达 GPU 那么通用，但更便宜、更专一，早期测试显示每瓦性能「大幅优于」当前最先进方案。更惊人的是速度：从初始设计到流片仅九个月，据称是高性能先进制程 ASIC 史上最快的开发周期之一——OpenAI 还用自家模型加速了部分设计。芯片计划年底开始部署。信号：与本期「省着用/降成本」的主旋律同频——当推理账单成了压在所有前沿玩家头上的石头，把最贵的一环握进自己手里，成了必选项。继谷歌、亚马逊、Meta 之后，OpenAI 也走上自研之路，英伟达「一家独大」的时代，正被一颗颗定制芯片从边缘啃开。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>TechCrunch / CNBC / Broadcom</strong> · 2026.06.24</span>
+          <a class="read-more" href="https://techcrunch.com/2026/06/24/openai-unveils-its-first-custom-chip-built-by-broadcom/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🇨🇳 生态 · 中国版 CODEX</div>
+        <h3>一万个「中国版 Codex」大乱斗 · 从阿里 Qoder 到豆包专业版，编程 Agent 挤成红海</h3>
+        <p>
+          据 36 氪梳理，2026 年国内产品侧最明显的趋势，是无论互联网大厂还是模型厂商，都在抢做自己的 Codex：1 月 30 日阿里桌面 Agent QoderWork 上线，3 月 9 日腾讯云 CodeBuddy 推出 WorkBuddy，5 月 20 日腾讯应用宝发布个人助手 Marvis，6 月 24 日豆包专业版也正式官宣——编程与通用 Agent 的入口之争，已挤成一片红海。这股热度背后是真实需求：OpenAI 6 月披露，Codex 周活跃用户已突破 500 万，半年增长超 7 倍。信号：与本章 OpenAI 造芯遥相呼应——一个抢底层算力，一个抢上层入口，指向的是同一件事：AI 竞争正从「谁的模型更强」下沉到「谁能把编程这件事握在自己的生态里」。当美方把最强模型收进审批，国产阵营选择在应用层密集卡位——谁能先成为开发者每天打开的那个工具，谁就攒下了最难被替代的用户习惯。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>36 氪</strong> · 2026.06</span>
+          <a class="read-more" href="https://36kr.com/p/3868029236401414" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 04</div><h2 class="section-title">AI 自己动手，<em>谁来追溯</em></h2></div>
+      <p class="section-intro">当 agent 越来越多地自主决策、连环调用工具，一个比「更聪明」更冷的问题浮上来：出了错，我们能不能沿着它的脚印，把责任一路倒查回去。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-12">
+        <div class="story-tag">📄 论文 · ARXIV cs.AI</div>
+        <h3>给 agent 留下可追溯的脚印 · 一篇新综述把「证据溯源」摆上信任的核心位置</h3>
+        <p>
+          智能体越来越会自己动手——规划、调工具、连环决策，可一旦结果出错，人们往往说不清它究竟在哪一步、依据什么走偏了。一篇题为《From Agent Traces to Trust: A Survey of Evidence Tracing and Execution Provenance in LLM Agents》（arXiv:2606.04990）的新综述，系统梳理了「执行溯源」这条正在成形的技术线：不再只看智能体给出的最终答案，而是把它每一步的证据来源、工具调用与中间推理都记录成可回溯的轨迹，让人能像查账一样倒推「这个结论到底从哪来」。文中盘点了 AgentSpec、AgentBound、Agent-Sentry 等一批把执行轨迹用于管控与安全的方案。信号：与本期「治理」暗线一脉相承——从 ServiceNow 给桌面 agent 装审计，到 Karpathy 给编码智能体加自检，再到学界把「溯源」提到与「能力」并列的高度，行业正达成一个共识：当 AI 越来越多地替我们做决定，「能不能查」开始和「有多聪明」一样重要。可信，正从一句口号，变成一套可以工程化的脚印。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>arXiv cs.AI</strong> · 2026.06</span>
+          <a class="read-more" href="https://arxiv.org/abs/2606.04990" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-mark">信号 <span class="accent">/</span> Signal</div>
+    <div class="divider"></div>
+    <p>第 044 期 · 2026 年 7 月 1 日 · 周三</p>
+    <p style="margin-top:8px;">本期收录 6.24 — 6.30 共 7 条 AI 相关动态</p>
+  </div>
+</footer>
+
+</body>
+</html>
