@@ -8,10 +8,10 @@ description: 每天早上 8:00 自动生成「信号 / Signal」AI 日报（HTML
 ## 部署目标（背景信息）
 
 ashin 的日报有两条发布通道：
-1. **GitHub 仓库**（由 `./publish.sh` 处理）→ Vercel 自动重新部署
-2. **大陆自建服务器** 124.222.164.101（ubuntu 账号，`/var/www/xxcode/` 由 Nginx 服务）→ 域名 daily.xxcode.work（备案中；主域 xxcode.work 301 跳转到 daily 子域）
+1. **GitHub 仓库**（由 `./publish.sh` 处理 manifest 合并 + git push）→ 仅作版本存档与源码托管。**Vercel 已停止维护，不再自动部署**，GitHub 推送不再触发任何线上部署。
+2. **大陆自建服务器** 124.222.164.101（ubuntu 账号，`/var/www/xxcode/` 由 Nginx 服务）→ 域名 daily.xxcode.work（主域 xxcode.work 301 跳转到 daily 子域）。**这是唯一的线上访问来源**，靠手动 rsync 同步。
 
-服务器同步目前是**手动 rsync**（备案后会考虑焊进 publish.sh 自动化）。所以每天结束时要分别给出两条命令。
+所以每天结束时仍要分别给出两条命令：GitHub 只负责存档，服务器 rsync 才是真正让线上更新的一步。
 
 ## 目录约定（重要，先记牢）
 
@@ -166,7 +166,7 @@ PY
 
 报告完之后，**最后**依次单独打印**两条**发布命令，方便 ashin 直接复制到终端执行。每条命令一个独立的 fenced code block，先 GitHub、后服务器。
 
-### ① 推到 GitHub（Vercel 会自动部署）
+### ① 推到 GitHub（版本存档 · git push；Vercel 已停用，不再自动部署）
 
 ```
 cd ~/Desktop/日报/AI日报/AI新闻日报 && ./publish.sh
@@ -181,9 +181,9 @@ rsync -avz --delete --exclude='.git' --exclude='.DS_Store' --exclude='SKILL*.md'
 要求：
 - 两条命令**各自**用一个独立的代码块包起来（fenced code block，单行），不要合并、不要嵌在段落里、不要换行。
 - 不要省略、不要变形（不要写成 `cd ~/Desktop/AI日报/...` 之类的简写，IP/账号/路径都一字不漏）。
-- 顺序固定：**先 GitHub，后服务器**。GitHub 用 `./publish.sh` 处理 manifest 合并 + git push，服务器只负责把目录原样 rsync 一份。
+- 顺序固定：**先 GitHub，后服务器**。GitHub 用 `./publish.sh` 处理 manifest 合并 + git push（仅存档，Vercel 已停用、不再自动部署），服务器 rsync 才是真正让 daily.xxcode.work 线上更新的一步。
 - 即便当天因为信源不足只出了 5-6 条新闻，两条命令也照常发。
-- 这两条是「一次回话的最后两段」——它们要出现在所有自检结论、文件路径之后，并且在 ①② 之间各给一行说明（比如 "推 GitHub" / "推服务器"）。
+- 这两条是「一次回话的最后两段」——它们要出现在所有自检结论、文件路径之后，并且在 ①② 之间各给一行说明（比如 "推 GitHub 存档" / "推服务器（线上生效）"）。
 - 服务器同步如果以后焊进了 publish.sh 自动化，再来精简这一节。在那之前**坚持两条都给**。
 
 ## 第十二步：线上网址（每天必出，最后一行）

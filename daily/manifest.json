@@ -2,6 +2,46 @@
   "_comment": "信号/Signal AI 日报清单 · 每天只需要在 issues 数组顶部插入一项新的对象。最新的在最上面。",
   "issues": [
     {
+      "issue": "045",
+      "date": "2026-07-02",
+      "weekday": "周四",
+      "weekdayEn": "Thursday",
+      "type": "daily",
+      "file": "ai_daily_2026_07_02.html",
+      "stories": [
+        {
+          "tag": "⚡ 头条 · META COMPUTE",
+          "headline": "砸了 1800 亿建数据中心，现在想把它租出去 · Meta 学 SpaceX 组建云业务，叫板 AWS",
+          "summary": "7 月 1 日据彭博社，Meta 正筹建名为 Meta Compute 的云业务：一边像 CoreWeave 出租「裸算力」，一边学 AWS Bedrock 托管自家模型（含新发布的闭源模型 Muse Spark）对外开放。动机很直白——截至一季度末 Meta 已承诺在 AI 基建上砸约 1829 亿美元，俄亥俄那座「曼哈顿大小」的数据中心今年点亮，而 Llama 与 Meta AI 至今没跑出像样的对外收入。此前 SpaceX 旗下 xAI 已先把 Colossus 算力整包卖给 Anthropic、谷歌。信号：当模型能力彼此追平、单卖模型越来越难赚钱，产业价值正从「谁的模型最强」向「谁拥有数据中心」迁移；Meta 入局后，全球大规模算力与托管模型的卖家从三家变成四家。",
+          "source": "Bloomberg / TechCrunch"
+        },
+        {
+          "tag": "🌗 模型 · OPENAI GPT-5.6",
+          "headline": "把「买智能」做成「按档拿货」· OpenAI 端出 Sol / Terra / Luna 三兄弟，明码标价",
+          "summary": "承接 Anthropic 用 Sonnet 5 把 agent 价格打下来，OpenAI 给出答卷：GPT-5.6 不再是单一模型，而是按能力分档的家族——旗舰 Sol（每百万 token 5$/30$，独享最高推理档与 ultra 模式）、日常款 Terra（2.5$/15$，对标 GPT-5.5 但便宜约一半）、平价款 Luna（1$/6$，主打够用最省）。命名也改为「数字是代、名字是档」。两处细节：Sol 计划 7 月上 Cerebras 晶圆级硬件、推理速度冲到约每秒 750 token（约现有 GPU 的 15×）；这一代目前只对少数「政府背书」的可信伙伴限量开放。信号：与 Meta 卖算力互为表里——一个把算力变现，一个把智能拆成可选规格，定价、速度、谁能用成了新维度。",
+          "source": "OpenAI / VentureBeat / DataCamp"
+        },
+        {
+          "tag": "🛡️ 安全 · FIVE EYES",
+          "headline": "「以月计，而非以年计」· 五眼联盟罕见联署，警告 AI 网络攻击近在眼前",
+          "summary": "6 月 22 日，澳、加、新、英、美情报机构（含 NSA、CISA、GCHQ）联合签署罕见声明《AI 让网络风险转向：领导者为何必须现在行动》，核心判断毫不含糊：前沿 AI 模型能力将超出业界预期，深刻改变攻防两端，「时间不是以年计，而是以月计」。这是一份正式情报评估——据 Reuters 与 CyberScoop，担忧指向 Claude Mythos、GPT-5.5-Cyber 一类模型；《经济学人》披露某次未公开评测中一个 AI agent 数小时内几乎攻破 NSA 与美军网络司令部管理的全部涉密系统。建议很实在：用 AI 做防御、把补丁窗口压到数天（CISA 已将联邦强制修复期缩到 3 天）、把网安上升为董事会级责任。信号：能力越强，双刃越利。",
+          "source": "Cybersecurity Dive / Reuters"
+        },
+        {
+          "tag": "🦑 安全 · SQUIDBLEED",
+          "headline": "潜伏 29 年的老洞，被 AI 一眼看穿 · Claude Mythos 揪出 Squid 代理的致命漏洞",
+          "summary": "就在五眼联盟发警告的同一周，「盾」的一面交出实证。被记为 CVE-2026-47729 的「Squidbleed」，是广泛部署的 Squid 代理服务器里潜伏 29 年的内存泄漏漏洞，会把用户经 HTTP 传输的账号口令暴露给网络相邻的攻击者——它熬过 29 年人工审查、审计与渗透测试，却被 Anthropic「玻璃翼」（Project Glasswing）防御性安全研究里的 Claude Mythos 5 揪出。该项目首月在 1000 个开源项目里分析出 23,019 个漏洞，独立抽样确认率约 90.6%。信号：与五眼警告构成闭环——同一批被政府以「网安风险」收紧的模型，转身却挖出所有人类团队都漏掉的老洞；问题从来不是「AI 会不会用于攻击」，而是「防守方能不能先用起来」。",
+          "source": "Build Fast with AI / Project Glasswing"
+        },
+        {
+          "tag": "🇨🇳 国内 · 字节豆包",
+          "headline": "Agent 自己跑 18 小时写完芯片设计代码 · 字节豆包 Seed 2.1 Pro 咬住第一梯队",
+          "summary": "6 月 23 日，字节在北京 FORCE 原动力大会发布豆包大模型 2.1，其中深度思考模型 Doubao-Seed-2.1-Pro 在 Coding、Agent 与视觉语言（VLM）三大能力上大幅跃升，官方称多项评测超过 Claude Opus 4.6、跨过「生产级」门槛，已在火山引擎 Ark 平台全量开放 API，并接入 TRAE、Coze 等自家工具链。最抓眼球的演示，是一个 agent 无人值守连跑约 18 小时、独立完成一段芯片设计代码。信号：当美方把最强模型收进审批、海外头部忙着卖算力划安全线，国产阵营选择在「能不能真干活」上贴身紧逼——不追求某个跑分第一，而是把 Coding 与 Agent 做到「能托付」；追赶的关键，正从「参数多大」转向「能不能连着跑完一整件事」。",
+          "source": "量子位 / 36 氪"
+        }
+      ]
+    },
+    {
       "issue": "044",
       "date": "2026-07-01",
       "weekday": "周三",
