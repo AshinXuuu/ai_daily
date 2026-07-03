@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 · 2026.07.03</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=JetBrains+Mono:wght@400;500;700&family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0d0b; --ink-2: #161410; --paper: #f4ecdb; --paper-2: #e8dfc9;
+    --muted: #8a8275; --rule: #2a2620; --signal: #ff4d1f; --signal-2: #ffb454; --tan: #c9a679;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink); color: var(--paper);
+    font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
+    font-weight: 300; line-height: 1.65; letter-spacing: 0.01em; overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255, 77, 31, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 90%, rgba(201, 166, 121, 0.035) 0%, transparent 50%);
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .masthead { border-bottom: 1px solid var(--rule); padding: 32px 0 24px; position: relative; }
+  .masthead-grid { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 32px; }
+  .edition { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .edition strong { color: var(--paper); font-weight: 500; }
+  .logo { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 38px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; text-align: center; font-variation-settings: "opsz" 144; }
+  .logo .accent { color: var(--signal); font-style: italic; font-weight: 600; }
+  .weather { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-align: right; line-height: 1.7; }
+  .weather .pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--signal); margin-right: 6px; animation: pulse 2s infinite; vertical-align: middle; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 77, 31, 0.5); }
+    50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(255, 77, 31, 0); }
+  }
+  .hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule); position: relative; }
+  .hero-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal); }
+  .hero-meta::before { content: ''; width: 40px; height: 1px; background: var(--signal); }
+  .hero h1 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: clamp(48px, 8vw, 96px); font-weight: 400; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 32px; font-variation-settings: "opsz" 144, "SOFT" 50; }
+  .hero h1 em { font-style: italic; font-weight: 600; color: var(--signal-2); }
+  .hero-lede { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.5; color: var(--paper-2); max-width: 680px; font-weight: 400; }
+  .date-block { position: absolute; top: 80px; right: 32px; text-align: right; font-family: 'JetBrains Mono', monospace; }
+  .date-block .day { font-family: 'Fraunces', serif; font-size: 120px; font-weight: 800; line-height: 0.9; color: var(--paper); font-variation-settings: "opsz" 144; letter-spacing: -0.05em; }
+  .date-block .month { font-size: 12px; letter-spacing: 0.2em; color: var(--muted); margin-top: 8px; }
+  .ticker { background: var(--ink-2); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); overflow: hidden; padding: 14px 0; position: relative; }
+  .ticker-track { display: flex; gap: 48px; white-space: nowrap; animation: scroll 60s linear infinite; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.05em; color: var(--paper-2); }
+  .ticker-track span { display: inline-flex; align-items: center; gap: 12px; }
+  .ticker-track .dot { color: var(--signal); font-size: 8px; }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .section { padding: 80px 0 40px; border-bottom: 1px solid var(--rule); }
+  .section-head { display: grid; grid-template-columns: 280px 1fr; gap: 48px; margin-bottom: 48px; align-items: start; }
+  .section-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--signal); margin-bottom: 12px; }
+  .section-title { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 56px; font-weight: 400; line-height: 0.95; letter-spacing: -0.03em; font-variation-settings: "opsz" 144; }
+  .section-title em { font-style: italic; color: var(--tan); font-weight: 600; }
+  .section-intro { font-family: 'Fraunces', serif; font-size: 17px; line-height: 1.6; color: var(--muted); padding-top: 16px; border-top: 1px solid var(--rule); }
+  .stories { display: grid; grid-template-columns: repeat(12, 1fr); gap: 32px; }
+  .story { grid-column: span 6; padding: 28px; background: linear-gradient(180deg, rgba(255,255,255,0.015) 0%, transparent 100%); border: 1px solid var(--rule); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; }
+  .story::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 1px; background: var(--signal); transition: width 0.6s ease; }
+  .story:hover { background: linear-gradient(180deg, rgba(255, 77, 31, 0.04) 0%, transparent 100%); border-color: rgba(255, 77, 31, 0.3); transform: translateY(-2px); }
+  .story:hover::before { width: 100%; }
+  .story.feature { grid-column: span 12; padding: 48px; background: linear-gradient(135deg, rgba(255, 77, 31, 0.06) 0%, rgba(201, 166, 121, 0.02) 100%); border-color: rgba(255, 77, 31, 0.25); }
+  .story.feature::after { content: 'FEATURED'; position: absolute; top: 24px; right: 24px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--signal); border: 1px solid var(--signal); padding: 4px 10px; }
+  .story-tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: var(--signal); margin-bottom: 16px; text-transform: uppercase; }
+  .story h3 { font-family: 'Fraunces', 'Noto Serif SC', serif; font-size: 26px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 16px; color: var(--paper); font-variation-settings: "opsz" 144; }
+  .story.feature h3 { font-size: 42px; line-height: 1.05; max-width: 90%; }
+  .story p { font-size: 15px; line-height: 1.7; color: var(--paper-2); margin-bottom: 20px; font-weight: 300; }
+  .story.feature p { font-family: 'Fraunces', serif; font-size: 19px; max-width: 720px; }
+  .story-meta { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 20px; border-top: 1px solid var(--rule); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.05em; }
+  .source { color: var(--muted); }
+  .source strong { color: var(--paper); font-weight: 500; }
+  .read-more { color: var(--signal); text-decoration: none; border: 1px solid var(--rule); padding: 6px 12px; transition: all 0.3s; white-space: nowrap; }
+  .read-more:hover { background: var(--signal); color: var(--ink); border-color: var(--signal); }
+  .story.span-4 { grid-column: span 4; }
+  .story.span-8 { grid-column: span 8; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--ink-2); }
+  .stat { padding: 40px 32px; border-right: 1px solid var(--rule); }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-family: 'Fraunces', serif; font-size: 56px; font-weight: 800; line-height: 1; color: var(--signal-2); letter-spacing: -0.04em; margin-bottom: 8px; font-variation-settings: "opsz" 144; }
+  .stat-num .unit { font-size: 22px; color: var(--paper); font-weight: 400; margin-left: 4px; }
+  .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; line-height: 1.4; }
+  .footer { padding: 80px 0 60px; text-align: center; border-top: 1px solid var(--rule); margin-top: 40px; }
+  .footer-mark { font-family: 'Fraunces', serif; font-style: italic; font-size: 28px; color: var(--paper); margin-bottom: 16px; font-variation-settings: "opsz" 144; }
+  .footer-mark .accent { color: var(--signal); }
+  .footer p { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+  .footer .divider { width: 60px; height: 1px; background: var(--signal); margin: 24px auto; }
+  /* ===== 平板 / 小笔记本 ===== */
+  @media (max-width: 900px) {
+    .wrap { padding: 0 20px; }
+    .masthead { padding: 24px 0 20px; }
+    .masthead-grid { grid-template-columns: 1fr; gap: 14px; text-align: center; }
+    .weather { text-align: center; }
+    .logo { font-size: 34px; }
+    .hero { padding: 44px 0 36px; }
+    .hero-meta { margin-bottom: 24px; }
+    .hero h1 { font-size: 42px; line-height: 1.05; margin-bottom: 24px; }
+    .hero-lede { font-size: 17px; }
+    .date-block { position: static; text-align: left; margin-top: 24px; }
+    .date-block .day { font-size: 72px; }
+    .section { padding: 56px 0 32px; }
+    .section-head { grid-template-columns: 1fr; gap: 14px; margin-bottom: 36px; }
+    .section-title { font-size: 36px; }
+    .stories { gap: 20px; }
+    .story, .story.feature { grid-column: span 12 !important; padding: 22px; }
+    .story.feature { padding: 26px; }
+    .story.feature::after { top: 16px; right: 16px; }
+    .story h3 { font-size: 22px; }
+    .story.feature h3 { font-size: 26px; max-width: 100%; }
+    .story p { font-size: 14.5px; }
+    .story.feature p { font-size: 16.5px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat { border-right: none; border-bottom: 1px solid var(--rule); padding: 26px 18px; }
+    .stat-num { font-size: 40px; }
+    .stat:nth-child(odd) { border-right: 1px solid var(--rule); }
+    .ticker-track { gap: 32px; font-size: 11px; }
+  }
+
+  /* ===== 手机 ===== */
+  @media (max-width: 600px) {
+    .wrap { padding: 0 16px; }
+    .logo { font-size: 28px; }
+    .edition, .weather { font-size: 10px; letter-spacing: 0.12em; }
+    .hero { padding: 32px 0 28px; }
+    .hero-meta { margin-bottom: 20px; font-size: 10px; }
+    .hero h1 { font-size: 32px; line-height: 1.08; margin-bottom: 20px; }
+    .hero-lede { font-size: 15.5px; line-height: 1.6; }
+    .date-block { margin-top: 20px; }
+    .date-block .day { font-size: 56px; }
+    .date-block .month { font-size: 10px; }
+    .section { padding: 44px 0 24px; }
+    .section-head { margin-bottom: 28px; }
+    .section-title { font-size: 28px; }
+    .section-num { font-size: 10px; }
+    .section-intro { font-size: 15px; line-height: 1.55; padding-top: 14px; }
+    .stories { gap: 16px; }
+    .story, .story.feature { padding: 20px; }
+    .story-tag { font-size: 9.5px; margin-bottom: 12px; }
+    .story h3 { font-size: 20px; margin-bottom: 12px; }
+    .story.feature h3 { font-size: 22px; }
+    .story p { font-size: 14px; line-height: 1.65; }
+    .story.feature p { font-size: 15px; }
+    .story-meta { flex-direction: column; align-items: flex-start; gap: 10px; padding-top: 14px; font-size: 10px; }
+    .source { line-height: 1.45; }
+    .read-more { font-size: 10px; padding: 5px 10px; }
+    .stat { padding: 22px 16px; }
+    .stat-num { font-size: 36px; }
+    .stat-num .unit { font-size: 15px; }
+    .stat-label { font-size: 10px; line-height: 1.35; }
+    .ticker-track { gap: 24px; font-size: 10.5px; animation-duration: 45s; }
+    .footer { padding: 56px 0 40px; }
+    .footer-mark { font-size: 24px; }
+  }
+
+  /* ===== 窄屏手机 ===== */
+  @media (max-width: 420px) {
+    .wrap { padding: 0 14px; }
+    .hero h1 { font-size: 28px; }
+    .hero-lede { font-size: 15px; }
+    .section-title { font-size: 24px; }
+    .stats { grid-template-columns: 1fr; }
+    .stat { border-right: none !important; padding: 20px 14px; }
+    .story, .story.feature { padding: 18px; }
+    .story h3, .story.feature h3 { font-size: 19px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-grid">
+      <div class="edition">VOL. <strong>I</strong> · NO. <strong>046</strong></div>
+      <div class="logo">信号 <span class="accent">/ Signal</span></div>
+      <div class="weather"><span class="pulse"></span>LIVE · 03 JUL 2026<br>晴 · 洛杉矶 · 24°C</div>
+    </div>
+  </div>
+</header>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span><span class="dot">●</span> Claude Sonnet 5 成 Free/Pro 默认 · 近 Opus 能力打回 Sonnet 价</span>
+    <span><span class="dot">●</span> 烧不起的 Agent · 这一周比的是谁更便宜</span>
+    <span><span class="dot">●</span> OpenAI 携博通造 Jalapeño · 首颗自研推理芯片 9 个月流片</span>
+    <span><span class="dot">●</span> 高通 40 亿$ 收 Modular · 要做 CUDA 的挑战者</span>
+    <span><span class="dot">●</span> 黑石豪掷 300 亿$ · 在日本狂建 AI 数据中心</span>
+    <span><span class="dot">●</span> 加州签下 Anthropic · 全州机构 5 折用 Claude</span>
+    <span><span class="dot">●</span> Claude Science 上线 · 直插药物发现与生物学</span>
+    <span><span class="dot">●</span> Grok 4.3 登陆 Bedrock · $1.25/$2.50 做最便宜的大厂模型</span>
+    <span><span class="dot">●</span> 智谱、MiniMax 港股破 3000 亿 · 国产「大模型第一股」开战</span>
+    <span><span class="dot">●</span> 开源「AI 白帽」Strix · 让 agent 自己去做渗透测试</span>
+    <span><span class="dot">●</span> Claude Sonnet 5 成 Free/Pro 默认 · 近 Opus 能力打回 Sonnet 价</span>
+    <span><span class="dot">●</span> 烧不起的 Agent · 这一周比的是谁更便宜</span>
+    <span><span class="dot">●</span> OpenAI 携博通造 Jalapeño · 首颗自研推理芯片 9 个月流片</span>
+    <span><span class="dot">●</span> 高通 40 亿$ 收 Modular · 要做 CUDA 的挑战者</span>
+    <span><span class="dot">●</span> 黑石豪掷 300 亿$ · 在日本狂建 AI 数据中心</span>
+    <span><span class="dot">●</span> 加州签下 Anthropic · 全州机构 5 折用 Claude</span>
+    <span><span class="dot">●</span> Claude Science 上线 · 直插药物发现与生物学</span>
+    <span><span class="dot">●</span> Grok 4.3 登陆 Bedrock · $1.25/$2.50 做最便宜的大厂模型</span>
+    <span><span class="dot">●</span> 智谱、MiniMax 港股破 3000 亿 · 国产「大模型第一股」开战</span>
+    <span><span class="dot">●</span> 开源「AI 白帽」Strix · 让 agent 自己去做渗透测试</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-meta">今日要闻 · TODAY'S BRIEFING</div>
+    <h1>烧不起的 Agent，<br>被<em>打回能用的价</em>。</h1>
+    <p class="hero-lede">
+      上一周还在争「谁家有矿」，这一周答案落了地：当企业被 agent 的账单烧怕了，Anthropic 干脆把接近旗舰的能力打回 Sonnet 的价——Claude Sonnet 5 成了每个免费与 Pro 用户的默认模型。竞争的暗线也随之清晰成三条：一是把智能卖便宜，二是绕开英伟达那道「税」——OpenAI 自己造芯片、高通买下让芯片可互换的软件、黑石往地里砸 300 亿美元；三是抢在 IPO 前把模型铺进政府与实验室。当「最强」不再是唯一卖点，谁更便宜、谁有铲子、谁铺得更广，才是这一周真正的胜负手。
+    </p>
+    <div class="date-block"><div class="day">03</div><div class="month">JUL · MMXXVI</div></div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">2<span class="unit">$</span></div><div class="stat-label">Claude Sonnet 5 每百万 token 起步价<br>近 Opus 能力，却打回 Sonnet 价</div></div>
+  <div class="stat"><div class="stat-num">9<span class="unit">个月</span></div><div class="stat-label">OpenAI 首颗自研推理芯片 Jalapeño<br>从设计到流片的周期，业界罕见之快</div></div>
+  <div class="stat"><div class="stat-num">300<span class="unit">亿$</span></div><div class="stat-label">黑石计划在日本投建的 AI 数据中心<br>押注「缺算力」而非「泡沫」</div></div>
+  <div class="stat"><div class="stat-num">30<span class="unit">万</span></div><div class="stat-label">加州将以 5 折向其铺开 Claude 的州府雇员<br>史上最大规模的美国州政府 AI 部署</div></div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 01</div><h2 class="section-title">当「跑得起」<em>压过「跑得赢」</em></h2></div>
+      <p class="section-intro">Q2 里 agent 的账单把不少企业预算烧穿，跑分第一忽然不如「便宜到敢放开用」。这一章里，一个把旗舰能力打折卖，一个把大厂模型价压到地板。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">⚡ 头条 · CLAUDE SONNET 5</div>
+        <h3>把接近旗舰的能力，打回 Sonnet 的价 · Anthropic 用 Sonnet 5 抢下「跑得起的 Agent」</h3>
+        <p>
+          6 月 30 日，Anthropic 发布 Claude Sonnet 5，并从 7 月 1 日起把它设为每个免费与 Pro 用户的默认模型。一句话概括：这是迄今最能「自己干活」的 Sonnet——会做计划、会用浏览器和终端、能自主连跑多步，多项任务上贴近旗舰 Opus 4.8，而 8 月 31 日前的introductory 价只要每百万 token 2$/10$，比上一代 Sonnet 4.6 还低。TechCrunch 直接把它定性为「一种更便宜的跑 agent 的方式」，这个站位是刻意的：Q2 里企业被「token 狂烧」的 agent 账单吓退，年度预算几周烧光；Sonnet 5 就是正面回应——把接近前沿的自主能力，压到企业成本模型撑得住的价位。Cursor、Zapier 等早期伙伴反馈的不是跑分，而是「agent 更守计划、多步改动能一次跑完」这种直接省下人力监督的可靠性。信号：当各家模型在能力上挤成一团，真正拉开差距的已不是「谁更强」，而是「谁便宜到让人敢把活整段交出去」。这也是 Anthropic 冲刺 10 月 IPO 前，最直接的一手棋。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Anthropic / TechCrunch / VentureBeat</strong> · 2026.06.30</span>
+          <a class="read-more" href="https://techcrunch.com/2026/06/30/anthropic-launches-claude-sonnet-5-as-a-cheaper-way-to-run-agents/" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-12">
+        <div class="story-tag">🐦 模型 · XAI GROK 4.3</div>
+        <h3>把价压到地板 · Grok 4.3 上架 Bedrock，$1.25/$2.50 做「最便宜的大厂模型」</h3>
+        <p>
+          与头条互为回声：xAI 的 Grok 4.3 正式上架亚马逊 Bedrock，定价每百万 token 输入 1.25$、输出 2.50$，一举成为 Bedrock 上同规格里最便宜的主流大厂模型，上下文窗口 131K。它被摆在 xAI 的「中端位」——在还没出炉的 Grok 5 之下、初代 Grok 之上。对已经把 2026 年 AI 预算花到顶的团队，Grok 4.3 的每百万 2.5$ 输出，比 Sonnet 5 的 10$（introductory）或 GPT-5.5 的 15$ 便宜一截，用来接那些「不需要顶级 agent 表现」的活正合适。而 Bedrock 现在把 Claude、Nova、Llama、Mistral、AI21 和 Grok 摆进同一份 AWS 合同，等于把「多模型比价」做成了默认动作。信号：这一章两条连起来看很清楚——顶部在打折，中部在贴地，价格战已经从「旗舰之间」下沉到「够用之间」；对买方是好事，对还在烧钱证明估值的卖方，则是又一道收窄的口子。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>AWS / Build Fast with AI</strong> · 2026.07.01</span>
+          <a class="read-more" href="https://www.buildfastwithai.com/blogs/ai-news-today-july-1-2026" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 02</div><h2 class="section-title">都想绕开<em>英伟达那道「税」</em></h2></div>
+      <p class="section-intro">模型打成平手，成本就成了主战场，而成本的大头写着「英伟达」。这一章的三条，是三种绕开它的姿势：自己造芯片、买下让芯片互换的软件、把钱直接砸进土地。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">🌶️ 芯片 · OPENAI JALAPEÑO</div>
+        <h3>OpenAI 造出第一颗芯片 · 携博通推出「墨西哥椒」推理处理器，9 个月流片</h3>
+        <p>
+          6 月 24 日，OpenAI 与博通联合发布 Jalapeño（墨西哥椒）——OpenAI 的第一颗自研「智能处理器」，一颗围绕它对 LLM 推理理解、从零设计的加速器，也是两家多代计算平台的头一步。最抓眼的是速度：从设计到流片仅用约 9 个月，被称为高性能先进半导体里「可能是史上最快的 ASIC 周期之一」，其间还用上了 OpenAI 自家模型来加速设计与优化。工程样片已在实验室按量产目标频率与功耗跑 ML 负载（含 GPT-5.3-Codex-Spark），早期测试显示每瓦性能「大幅优于」当前顶尖方案，计划年底起首批部署。信号：这是「绕开英伟达税」最硬核的一招——OpenAI 不再只当买家，而是把对自家模型的理解焊进硅片。当推理成本决定谁能把价打下去，自研芯片就从锦上添花变成了牌桌门票。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>OpenAI / Broadcom / CNBC</strong> · 2026.06.24</span>
+          <a class="read-more" href="https://www.cnbc.com/2026/06/24/openai-and-broadcom-reveal-jalapeno-first-ai-chip-in-partnership.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🧩 收购 · QUALCOMM × MODULAR</div>
+        <h3>高通 40 亿$ 买下 Modular · 赌一层「跨芯片」的 AI 软件，直指 CUDA 护城河</h3>
+        <p>
+          同一天，高通宣布以约 40 亿美元（换股）收购 AI 软件公司 Modular，补上自己进军数据中心最缺的软件一环。Modular 由 Chris Lattner（LLVM/Swift 之父）与 Tim Davis 于 2022 年创办，它的看家本领是一套让 AI 代码「一次编写、跨不同芯片架构运行、无需重写」的编程语言与栈——直白说，就是要做英伟达 CUDA、AMD ROCm 这类「软件护城河」的挑战者。高通计划为此增发至多约 1920 万股，交易预计 2026 下半年完成。信号：和隔壁 OpenAI 自造芯片是同一枚硬币的两面——一个从硬件绕开英伟达，一个从软件拆掉「换芯片就得重写代码」的锁。真正把算力垄断撬松的，往往不是又一颗更快的芯片，而是让所有芯片变得可替换的那层软件。谁掌握了它，谁就握住了成本曲线的另一端。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Bloomberg / CNBC</strong> · 2026.06.24</span>
+          <a class="read-more" href="https://www.cnbc.com/2026/06/24/qualcomm-ai-chip-modular-software.html" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-12">
+        <div class="story-tag">🏗️ 资本 · BLACKSTONE JAPAN</div>
+        <h3>把钱直接砸进土地 · 黑石计划在日本投 300 亿$ 建 AI 数据中心，赌「缺算力」不是泡沫</h3>
+        <p>
+          6 月 23 日，黑石总裁 Jonathan Gray 在接受《日经》专访时透露：未来三到五年，黑石计划在日本投入约 300 亿美元建设 AI 数据中心，探索合计超过 1GW 的项目容量——这是亚太迄今最大的 AI 基建承诺之一。Gray 的判断很直接：这个行业眼下最大的风险不是「投机性泡沫」，而是未来「算力短缺」。黑石在日本并非从零起步，其旗下 AirTrunk 今年 3 月刚以创纪录的约 1916 亿日元（约 12.4 亿美元）绿色贷款扩建东京数据中心园区。信号：把本章连起来看——OpenAI 在芯片层绕开英伟达，高通在软件层拆锁，而黑石干脆在最底层下注：不管谁的模型赢、用谁家的芯片，电力、土地与机房都是绕不过的瓶颈。当前沿实验室忙着比价、抢 IPO，聪明的钱正安静地流向这条曲线最不性感、却最稀缺的那一段——地基。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Nikkei Asia / Reuters</strong> · 2026.06.23</span>
+          <a class="read-more" href="https://asia.nikkei.com/editor-s-picks/interview/blackstone-to-invest-30bn-in-japan-ai-data-centers-president" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 03</div><h2 class="section-title">抢在敲钟前，<em>把 Claude 铺进政府与实验室</em></h2></div>
+      <p class="section-intro">冲刺 10 月 IPO 的 Anthropic，这一周没在跑分上使劲，而是拓宽落地面：一头签下全州政府，一头开进药物实验室——都是给招股书添的硬注脚。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story feature">
+        <div class="story-tag">🏛️ 政府 · CALIFORNIA × ANTHROPIC</div>
+        <h3>30 万州府雇员，5 折用 Claude · 加州签下史上最大规模的美国州政府 AI 部署</h3>
+        <p>
+          6 月 29 日，加州州长 Newsom 宣布了美国历史上最大规模的州政府 AI 部署：每个州级机构、以及自愿加入的市县，都可通过新设的州级 IT 共享服务门户（SITeS），以 5 折价格接入 Anthropic 的 Claude，配套还有免费的员工培训与 Anthropic 工程师的技术支持。政治意味写在明面上——加州 CIO 直言，联邦国防部对 Anthropic 的「供应链风险」认定，在谈判里「根本没被提起」；Newsom 数月来一直把加州摆成对冲联邦敌意的一极。这套部署也不是从零开始：州内自研助手 Poppy 已在 67 个部门、逾 2800 名员工中试点，DMV、医保、应急管理等条线早已在用 Claude 做客服、案头与代码安全扫描，涉及约 30 万州府雇员。信号：对冲刺 IPO 的 Anthropic 来说，这笔单子的招股书价值不亚于营收——它把「负责任 AI」从口号变成了全美最显眼的公共部门大规模实证。当模型能力彼此追平，「谁被政府信任着大规模用起来」，成了新的竞争壁垒。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>CBS Sacramento / TechRadar</strong> · 2026.06.29</span>
+          <a class="read-more" href="https://www.techradar.com/pro/newsom-strikes-anthropic-deal-to-get-california-government-half-price-claude-ai-access" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-12">
+        <div class="story-tag">🧬 应用 · CLAUDE SCIENCE</div>
+        <h3>让模型进实验室 · Anthropic 上线 Claude Science，直插药物发现与计算生物学</h3>
+        <p>
+          与政府大单同期，Anthropic 还推出了面向科研的专用应用 Claude Science，首波瞄准药物发现、蛋白质结构分析、基因组学与计算生物学。这是 CEO Dario Amodei「用 AI 把生命科学 R&D 周期压缩十倍」目标的落地：它建立在对计算生物学初创 Coefficient Bio 约 4 亿美元全股票收购之上，还揽入了在谷歌 DeepMind 领衔 AlphaFold、拿下 2024 年诺贝尔化学奖的 John Jumper。产品面向药企研发、高校生物实验室与生物科技创业公司，主打更深的领域知识、在生化技术问题上更低的幻觉率，以及与科研数据库 API 的打通。信号：它把 AI-for-Science 的竞争摆成了三家同台——正面对上 OpenAI 的 GPT-Rosalind 与谷歌的 Isomorphic Labs，主导通用模型的同一批实验室，也在争夺「让 AI 做科学」这块更硬、也更长期的地盘。当聊天与写代码逐渐同质化，能不能真的加速一款新药，成了下一个要证明的故事。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>Anthropic / Build Fast with AI</strong> · 2026.06.30</span>
+          <a class="read-more" href="https://www.buildfastwithai.com/blogs/ai-news-today-july-1-2026" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 04</div><h2 class="section-title">上市决赛，<em>太平洋两岸同时敲钟</em></h2></div>
+      <p class="section-intro">造富的这一年，也是排队敲钟的一年。美国三巨头进入 IPO 最后一圈，而在太平洋另一端，国产「大模型第一股」之争同样进了决赛。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">🔔 资本 · US TRIPLE IPO</div>
+        <h3>三巨头的最后一圈 · SpaceX 已上市，OpenAI 瞄 9 月、Anthropic 瞄 10 月</h3>
+        <p>
+          自 6 月起主导市场情绪的「三巨头 IPO 季」进入最后三个月。SpaceX 已于 6 月 12 日登陆纳斯达克，首日从 135 美元冲到 192.46 美元收盘；OpenAI 于 6 月 8 日保密递交 S-1、瞄准 9 月上市，投前估值约 3000 亿美元；Anthropic 6 月 1 日递表、瞄准 10 月，完成 650 亿美元 H 轮后投后估值高达 9650 亿美元。三家若如期敲钟，将是自 2004 年谷歌上市以来科技界最具分量的公开市场事件。但风险同样醒目：OpenAI 预计 2026 年经营亏损约 140 亿美元、42 州总检察长调查已进入传票阶段；Anthropic 虽在奔向盈利，最强模型却仍卡在出口管制之下。PitchBook 的判断很冷——这要么是互联网泡沫以来最重要的 IPO 周期，要么是公开市场关于「叙事 vs 基本面」最贵的一课。信号：Sonnet 5 打折、加州大单、开进实验室，本质都是同一件事的注脚——在敲钟前，把估值撑成现金流。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>CNBC / PitchBook / Build Fast with AI</strong> · 2026.06.30</span>
+          <a class="read-more" href="https://www.buildfastwithai.com/blogs/ai-news-today-july-1-2026" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🇨🇳 国内 · 大模型第一股</div>
+        <h3>这边也在抢敲钟 · 智谱、MiniMax 港股破 3000 亿，月之暗面在排队</h3>
+        <p>
+          太平洋另一端，国产大模型的「第一股」之争同样进了决赛。据财联社，智谱 AI 与 MiniMax 相继登陆港股，即便商业化尚不完善、仍面临巨额亏损，两者市值都双双突破 3000 亿港元大关；而手握逾百亿人民币现金的月之暗面，也在排队候场——三家正贴身角逐「大模型第一股」的名头。技术侧的底气并不弱：智谱 6 月 17 日以 MIT 协议开源 GLM-5.2，主打长程任务、实现 1M 无损上下文，在长程编程基准 FrontierSWE 上拿到 74.4 分；月之暗面的 Kimi 一路押注长程代码与智能体。信号：和隔壁美国三巨头的最后一圈遥相呼应——资本市场对 AI 的定价狂热，并非硅谷独有。不同的是，这批中国玩家一边冲上市、一边坚持开源与低价，把「先上市、再讲盈利」这道题，用另一种打法又答了一遍。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>财联社 / 21 世纪经济报道</strong> · 2026.06</span>
+          <a class="read-more" href="https://www.cls.cn/detail/2227664" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="section-num">章 节 / 05</div><h2 class="section-title">跑分之外，<em>还有人在造工具、立尺子</em></h2></div>
+      <p class="section-intro">当头部忙着比价、抢算力、排队敲钟，学界与开源社区在做另一件事：一边给「多智能体」立更严的尺子，一边把 AI 做成会自己找漏洞的白帽。</p>
+    </div>
+
+    <div class="stories">
+      <article class="story span-6">
+        <div class="story-tag">📄 论文 · ARXIV cs.AI</div>
+        <h3>让 agent 学会「博弈」· 一篇新论文用虚拟博弈，教多智能体互相推演着做决策</h3>
+        <p>
+          当产业界比着「谁的 agent 更多、工具调用更长」，学界退一步问的是：一群 LLM 智能体凑在一起，能不能真的做出更好的决策，而不只是各自答题？一篇题为《Enhancing Decision-Making with Large Language Models through Multi-Agent Fictitious Play》（arXiv:2606.19308）的新工作，把博弈论里的经典方法「虚拟博弈」（fictitious play）搬进多智能体框架——让每个 agent 在反复推演对手可能怎么走的过程中，逐步收敛出更稳的策略，而非一次性地拍脑袋。信号：与上一周那把「像真研究员那样考」的评测尺一脉相承——当各家都宣称多智能体能解决复杂任务，研究者的回应是把「协作」拆开看：到底是真在互相推理，还是只是把答案拼在一起。给热闹的 agent 叙事补上一把冷静的方法论尺子，往往比再堆一个 agent 更要紧。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>arXiv cs.AI</strong> · 2026.06</span>
+          <a class="read-more" href="https://arxiv.org/abs/2606.19308" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+
+      <article class="story span-6">
+        <div class="story-tag">🦉 开源 · STRIX</div>
+        <h3>把「AI 黑客」做成开源白帽 · Strix 让 agent 像真攻击者那样自己去渗透测试</h3>
+        <p>
+          与本周头部把安全收进审批相映成趣，开源社区把「进攻性安全」直接搬上了 GitHub：Strix 是一套开源的 AI 渗透测试 agent，主打「像真黑客那样干活」——动态运行你的代码、找出漏洞，再用真实的 PoC 去验证，而不是只给一份可疑清单。它自带一整套攻防工具：HTTP 拦截代理、浏览器利用、命令执行、侦察与 OSINT、静动态代码分析；并用图模型把多个专职 agent 编排成并行工作流，一个发现新线索，其余就跟着调整探索路径，好在更短窗口里铺开更大的测试覆盖。信号：这正是「盾」的一面在民主化——把过去只有专业红队才玩得起的持续渗透，做成任何团队都能接进 CI/CD 的开源能力。当五眼联盟警告「AI 攻击以月计而非以年计」，真正的解法未必是把模型锁得更死，而是让防守方先把同样的能力用起来、且用得起。
+        </p>
+        <div class="story-meta">
+          <span class="source">来源 · <strong>GitHub / Help Net Security</strong> · 2026</span>
+          <a class="read-more" href="https://github.com/usestrix/strix" target="_blank">阅读原文 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-mark">信号 <span class="accent">/</span> Signal</div>
+    <div class="divider"></div>
+    <p>第 046 期 · 2026 年 7 月 3 日 · 周五</p>
+    <p style="margin-top:8px;">本期收录 6.23 — 7.02 共 11 条 AI 相关动态</p>
+  </div>
+</footer>
+
+</body>
+</html>

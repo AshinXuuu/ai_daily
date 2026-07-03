@@ -1,0 +1,40 @@
+{
+  "issue": "046",
+  "date": "2026-07-03",
+  "weekday": "周五",
+  "weekdayEn": "Friday",
+  "type": "daily",
+  "file": "ai_daily_2026_07_03.html",
+  "stories": [
+    {
+      "tag": "⚡ 头条 · CLAUDE SONNET 5",
+      "headline": "把接近旗舰的能力，打回 Sonnet 的价 · Anthropic 用 Sonnet 5 抢下「跑得起的 Agent」",
+      "summary": "6 月 30 日 Anthropic 发布 Claude Sonnet 5，7 月 1 日起设为每个免费与 Pro 用户的默认模型。这是迄今最能自己干活的 Sonnet——会做计划、会用浏览器与终端、能自主连跑多步，多项任务贴近旗舰 Opus 4.8，而 8 月 31 日前 introductory 价只要每百万 token 2$/10$，比上代 Sonnet 4.6 还低。TechCrunch 定性为「一种更便宜的跑 agent 的方式」：Q2 里企业被 token 狂烧的 agent 账单吓退，年度预算几周烧光，Sonnet 5 正是把接近前沿的自主能力压到成本模型撑得住的价位。Cursor、Zapier 等早期伙伴反馈的不是跑分，而是「agent 更守计划、多步改动一次跑完」。信号：拉开差距的已不是「谁更强」，而是「谁便宜到敢把活整段交出去」——这也是 Anthropic 冲刺 10 月 IPO 前最直接的一手。",
+      "source": "Anthropic / TechCrunch / VentureBeat"
+    },
+    {
+      "tag": "🌶️ 芯片 · OPENAI JALAPEÑO",
+      "headline": "OpenAI 造出第一颗芯片 · 携博通推出「墨西哥椒」推理处理器，9 个月流片",
+      "summary": "6 月 24 日 OpenAI 与博通联合发布 Jalapeño——OpenAI 第一颗自研「智能处理器」，一颗围绕其对 LLM 推理理解、从零设计的加速器，也是两家多代计算平台的头一步。最抓眼的是速度：从设计到流片仅约 9 个月，被称为高性能先进半导体里「可能史上最快的 ASIC 周期之一」，其间还用上 OpenAI 自家模型加速设计。工程样片已在实验室按量产目标频率与功耗跑 ML 负载（含 GPT-5.3-Codex-Spark），早期测试每瓦性能「大幅优于」当前顶尖方案，计划年底起首批部署。信号：这是「绕开英伟达税」最硬核的一招——OpenAI 不再只当买家，而把对自家模型的理解焊进硅片；当推理成本决定谁能把价打下去，自研芯片就从锦上添花变成了牌桌门票。",
+      "source": "OpenAI / Broadcom / CNBC"
+    },
+    {
+      "tag": "🧩 收购 · QUALCOMM × MODULAR",
+      "headline": "高通 40 亿$ 买下 Modular · 赌一层「跨芯片」的 AI 软件，直指 CUDA 护城河",
+      "summary": "同日，高通宣布以约 40 亿美元换股收购 AI 软件公司 Modular，补上进军数据中心最缺的软件一环。Modular 由 LLVM/Swift 之父 Chris Lattner 与 Tim Davis 于 2022 年创办，看家本领是一套让 AI 代码「一次编写、跨不同芯片架构运行、无需重写」的语言与栈——直白说，就是要做英伟达 CUDA、AMD ROCm 这类软件护城河的挑战者。高通计划增发至多约 1920 万股，交易预计 2026 下半年完成。信号：和 OpenAI 自造芯片是同一枚硬币的两面——一个从硬件绕开英伟达，一个从软件拆掉「换芯片就得重写代码」的锁。真正撬松算力垄断的，往往不是又一颗更快的芯片，而是让所有芯片可替换的那层软件。",
+      "source": "Bloomberg / CNBC"
+    },
+    {
+      "tag": "🏛️ 政府 · CALIFORNIA × ANTHROPIC",
+      "headline": "30 万州府雇员，5 折用 Claude · 加州签下史上最大规模的美国州政府 AI 部署",
+      "summary": "6 月 29 日加州州长 Newsom 宣布美国历史上最大规模的州政府 AI 部署：每个州级机构及自愿加入的市县，都可通过新设的州级 IT 共享服务门户 SITeS，以 5 折价接入 Anthropic 的 Claude，配套免费员工培训与工程师技术支持。政治意味写在明面——加州 CIO 直言联邦国防部对 Anthropic 的「供应链风险」认定在谈判里「根本没被提起」。部署并非从零：州内自研助手 Poppy 已在 67 个部门逾 2800 名员工中试点，DMV、医保、应急管理等条线早已用 Claude 做客服、案头与代码安全扫描，涉及约 30 万州府雇员。信号：对冲刺 IPO 的 Anthropic，这笔单子的招股书价值不亚于营收——「谁被政府信任着大规模用起来」，成了模型追平后的新壁垒。",
+      "source": "CBS Sacramento / TechRadar"
+    },
+    {
+      "tag": "🏗️ 资本 · BLACKSTONE JAPAN",
+      "headline": "把钱直接砸进土地 · 黑石计划在日本投 300 亿$ 建 AI 数据中心，赌「缺算力」不是泡沫",
+      "summary": "6 月 23 日黑石总裁 Jonathan Gray 向《日经》透露：未来三到五年，黑石计划在日本投入约 300 亿美元建设 AI 数据中心，探索合计超 1GW 的项目容量，是亚太迄今最大 AI 基建承诺之一。Gray 判断很直接：行业眼下最大风险不是「投机泡沫」，而是未来「算力短缺」。黑石在日本并非从零起步，旗下 AirTrunk 今年 3 月刚以创纪录的约 1916 亿日元（约 12.4 亿美元）绿色贷款扩建东京园区。信号：把本期算力主线连起来看——OpenAI 在芯片层绕开英伟达、高通在软件层拆锁，而黑石干脆在最底层下注：不管谁的模型赢、用谁家芯片，电力、土地与机房都是绕不过的瓶颈。当前沿实验室忙着比价抢 IPO，聪明的钱正流向这条曲线最不性感、却最稀缺的一段——地基。",
+      "source": "Nikkei Asia / Reuters"
+    }
+  ]
+},
